@@ -1416,9 +1416,9 @@ closeConection($conn);
                                                                                                             <option value="Alquilada">Alquilada</option>
                                                                                                             <option value="Propia">Propia</option>
                                                                                                             <option value="Familiar">Familiar</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>
+                                                                                                        </select>w
+                                                                                                    </div>awd
+                                                                                                </div>aa
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="tipoVivienda-others" class="block">Tipo de Vivienda (Obligatorio)</label>

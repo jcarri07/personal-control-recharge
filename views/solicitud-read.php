@@ -145,7 +145,7 @@ if (1) {
                                         $datos2 = mysqli_fetch_assoc($query2);
 
 
-                                        $query3 = mysqli_query($conn, "SELECT nombre FROM unidad WHERE jefe = '$datos[id_jefe]'")
+                                        $query3 = mysqli_query($conn, "SELECT nombre FROM unidad WHERE id_jefe = '$datos[id_jefe]'")
                                             or die('error: ' . mysqli_error($conn));
                                         $datos3 = mysqli_fetch_assoc($query3);
 

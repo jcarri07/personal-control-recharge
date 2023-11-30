@@ -87,23 +87,24 @@ date_default_timezone_set("America/Caracas");
                     <div class="col-md-12 text-center" style="text-align:center; margin-bottom:10px">
                         <img src="files\assets\images\logo.png" alt="logo.png" style="height:75px">
                     </div>
-                    <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesion</h2>
+                    <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesión</h2>
                 </div>
                 <input type="text" placeholder="Usuario" id="user" style="border-radius: 15px;" class="cont" />
                 <input type="password" placeholder="Contraseña" id="password" style="border-radius: 15px;" class="cont" />
                 <!--a href="#">Forgot your password?</a-->
-                <button type="submit" style="margin-top:20px">Iniciar Sesion</button>
+                <button type="submit" style="margin-top:20px">Iniciar Sesión</button>
             </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Bienvenido!</h1>
-                    <p>Ingresa los datos basicos para crear una nueva cuenta</p>
-                    <button class="ghost" id="signIn">Iniciar Sesion</button>
+                    <p>Ingresa los datos básicos para crear una nueva cuenta</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Control de Personal ABAE!</h1>
+                    <h1>SIGH</h1>
+                        <h5><b>Sistema de Información Gestión Humana</b></h5>
                     <p>Registrar Nuevo Personal</p>
                     <button class="ghost" id="signUp">Registrar</button>
                 </div>

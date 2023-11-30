@@ -392,14 +392,14 @@ $fila = mysqli_fetch_assoc($resultado);
                                 <li class="pcoded-hasmenu"><!-- pcoded-trigger -->
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
-                                        <span class="pcoded-mtext">Actualización de Datos</span>
+                                        <span class="pcoded-mtext">Actualización de datos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="pcoded-trigger"> <!--active-->
                                             <a href="../home/form-edit-data.php?page=datos-personales" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Personales</span>
+                                                <span class="pcoded-mtext">Datos personales</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -423,7 +423,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=datos-academicos" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Académicos</span>
+                                                <span class="pcoded-mtext">Datos académicos</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -431,7 +431,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=formacion-exterior" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Formación en el Exterior</span>
+                                                <span class="pcoded-mtext">Formación en el exterior</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -439,7 +439,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=experiencia-laboral-publica" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Experiencia Laboral</span>
+                                                <span class="pcoded-mtext">Experiencia laboral</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -447,7 +447,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=datos-institucionales" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Institucionales</span>
+                                                <span class="pcoded-mtext">Datos institucionales</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -455,7 +455,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=comision-servicio" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Comisión de Servicio</span>
+                                                <span class="pcoded-mtext">Comisión de servicio</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -463,7 +463,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=otros-datos" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Otros Datos</span>
+                                                <span class="pcoded-mtext">Otros datos</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -517,7 +517,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                 <li class=" ">
                                     <a href="../home/form-edit-data.php?page=filtros-de-busqueda">
                                         <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Información de Personal</span>
+                                        <span class="pcoded-mtext">Información de personal</span>
                                     </a>
                                 </li>
                             </ul>

@@ -125,7 +125,7 @@ closeConection($conn);
                                 <div class="page-header-title">
                                     <div class="d-inline">
                                         <h4>Formulario de Registro</h4>
-                                        <span>Datos personales del Empleado. </span>
+                                        <span>Datos personales del empleado</span>
                                     </div>
                                 </div>
                             </div>
@@ -133,13 +133,10 @@ closeConection($conn);
                                 <div class="page-header-breadcrumb">
                                     <ul class="breadcrumb-title">
                                         <li class="breadcrumb-item">
-                                            <a href="index-1.htm"> <i class="feather icon-home"></i> </a>
+                                            <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                         </li>
                                         <li class="breadcrumb-item active">
-                                            <a href="#!" class="activate">Datos Personales</a>
-                                            <a href="#!">/ Datos de Hijos</a>
-                                            <a href="#!">/ Nucleo Familiar</a>
-                                            <a href="#!">/ Datos Academicos</a>
+                                            <a class="activate">Formulario de Registro</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -160,7 +157,7 @@ closeConection($conn);
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs md-tabs tabs-left b-none" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-toggle="tab" href="#home5" role="tab" style="text-align: left; margin-left: 10px;" id="tab-personales">Personales</a>
+                                                    <a class="nav-link active" data-toggle="tab" href="#home5" role="tab" style="text-align: left; margin-left: 10px; margin-right: 100px;" id="tab-personales">Personales</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">

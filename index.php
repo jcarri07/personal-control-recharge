@@ -181,7 +181,7 @@ date_default_timezone_set("America/Caracas");
                             case "si":
                                 Swal.fire({
                                         icon: 'success',
-                                        title: 'Sesion Iniciada',
+                                        title: 'Sesión Iniciada',
                                         showConfirmButton: false,
                                         timer: 1500
                                     });  //CUANDO INICIA SESION
@@ -193,7 +193,7 @@ date_default_timezone_set("America/Caracas");
                                 Swal.fire({
                                         icon: 'warning',
                                         title: 'Error en verificación',
-                                        text: 'Nombre de Usuario o Contraseña Incorrecto',
+                                        text: 'Nombre de usuario o contraseña incorrecto',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //CONTRASEÑA O USUARIO INCORRECTOS
@@ -248,7 +248,7 @@ date_default_timezone_set("America/Caracas");
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Usuario no Registrado',
-                                        text: 'Problema de comunicación con el servidor, intente mas tarde',
+                                        text: 'Problema de comunicación con el servidor, intente más tarde',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //ERROR AL REGISTRAR
@@ -257,7 +257,7 @@ date_default_timezone_set("America/Caracas");
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Usuario no Registrado',
-                                        text: 'El numero de cedula ya existe',
+                                        text: 'El número de cédula ya existe',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //CEDULA EXISTENTE

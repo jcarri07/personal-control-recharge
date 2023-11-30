@@ -1416,9 +1416,9 @@ closeConection($conn);
                                                                                                             <option value="Alquilada">Alquilada</option>
                                                                                                             <option value="Propia">Propia</option>
                                                                                                             <option value="Familiar">Familiar</option>
-                                                                                                        </select>w
-                                                                                                    </div>awd
-                                                                                                </div>aa
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="tipoVivienda-others" class="block">Tipo de Vivienda (Obligatorio)</label>
@@ -1728,6 +1728,7 @@ closeConection($conn);
         function changeDireccion() {
             // Cargar unidades al seleccionar una dirección
             var direccionId = $("#direccion").val();
+            var idDireccion = direccionId;
             var cargo = $("#cargo").val();
             if (cargo === "Empleado" || cargo === "Personal de Investigacion" || cargo === "Jefe") {
                 $.ajax({
@@ -1756,12 +1757,35 @@ closeConection($conn);
                     }
                 });
             }
+
+            console.log("valor unidad: " + idUnidad);
+            console.log("valor direccion: "+idDireccion)
+
+            // Realizar una solicitud AJAX para obtener el nombre del jefe
+            $.ajax({
+                url: "../utils/get-jefe.php",
+                type: "POST",
+                data: {
+                    idUnidad: idUnidad,
+                    idDireccion: idDireccion,
+                    cargo: cargo
+                },
+                success: function(data) {
+                    $("#jefe").val("DATA: " + data);
+                    $("#jefe").html(data);
+                    console.log(data);
+                },
+                error: function(error) {
+                    console.log("Error en la solicitud AJAX: " + error);
+                }
+            });
         }
 
         function changeUnidad() {
             var idUnidad = $("#unidad").val();
+            var idDireccion = $("#direccion").val();
             console.log("valor unidad: " + idUnidad);
-
+            console.log("valor direccion: "+idDireccion)
             var cargo = $("#cargo").val();
 
             // Realizar una solicitud AJAX para obtener el nombre del jefe
@@ -1770,6 +1794,7 @@ closeConection($conn);
                 type: "POST",
                 data: {
                     idUnidad: idUnidad,
+                    idDireccion: idDireccion,
                     cargo: cargo
                 },
                 success: function(data) {

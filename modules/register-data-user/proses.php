@@ -554,11 +554,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                die("Error de conexión: " . $conn->connect_error);
           }
 
-          //Agregar Supervisor Inmediato
-          if ($supervisorInmediato === "0" || $supervisorInmediato === 0) {
+          //Agregar Supervisor Inmediato Jefe de Unidad
+          if ($supervisorInmediato === "0" || $supervisorInmediato === 0 && $cargo === 'Jefe') {
                $queryUnidadJefe = "UPDATE unidad SET id_jefe = '$idUser' WHERE id_unidad = '$unidadAdscripcion'";
                $queryCargo = "UPDATE usuario SET cargo = 'JEFE' WHERE id_usuario = '$idUser'";
                $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_unidad LIKE '$unidadAdscripcion'"; 
+          } else {
+               $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
+          }
+
+          //Agregar Supervisor Inmediato Director
+          if ($supervisorInmediato === "0" || $supervisorInmediato === 0 && $cargo === 'Director') {
+               $queryDirector = "UPDATE direccion SET id_jefe = '$idUser' WHERE id_direccion = '$direccionAdscripcion'";
+               $queryCargo = "UPDATE usuario SET cargo = 'DIRECTOR' WHERE id_usuario = '$idUser'";
+               $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_direccion LIKE '$direccionAdscripcion'"; 
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
           }
@@ -606,6 +615,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if (
                $conn->query($querySetJefe) === TRUE
+          ) {
+               echo "Consulta ejecutada correctamente.";
+          } else {
+               echo "Error al ejecutar la consulta: " . $conn->error;
+          }
+
+          if (
+               $conn->query($queryDirector) === TRUE
           ) {
                echo "Consulta ejecutada correctamente.";
           } else {

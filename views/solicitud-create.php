@@ -223,12 +223,12 @@ function get_periodos($fechaInicio, $fechaFin = null)
                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <h2 class="sub-title">A partir de:</h2>
-                                                    <input type="date" id="fechain" name="fecha_ini" class="form-control">
+                                                    <input type="date" id="fechainper" name="fecha_ini_per" class="form-control">
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <h2 class="sub-title">Hasta:</h2>
-                                                    <input type="date" id="fechafin" name="fecha_fin" class="form-control">
+                                                    <input type="date" id="fechafinper" name="fecha_fin_per" class="form-control">
                                                 </div>
 
                                                

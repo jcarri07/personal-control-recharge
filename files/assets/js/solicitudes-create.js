@@ -12,6 +12,8 @@ tiposol.addEventListener("change", (event) => {
                 div.style.display = '';
                 div = document.getElementById('form_vacaciones');
                 div.style.display = 'none';
+                div = document.getElementById('form_permisos');
+                div.style.display = 'none';
             //  alert(cod);
             }
     
@@ -20,12 +22,25 @@ tiposol.addEventListener("change", (event) => {
                 div.style.display = 'none';
                 div = document.getElementById('form_vacaciones');
                 div.style.display = 'none';
+                div = document.getElementById('form_permisos');
+                div.style.display = 'none';
             }
 
             if (cod == "Vacaciones") {
                 div = document.getElementById('form_reposo');
                 div.style.display = 'none';
                 div = document.getElementById('form_vacaciones');
+                div.style.display = '';
+                div = document.getElementById('form_permisos');
+                div.style.display = 'none';
+            }
+
+            if (cod == "Vacaciones") {
+                div = document.getElementById('form_reposo');
+                div.style.display = 'none';
+                div = document.getElementById('form_vacaciones');
+                div.style.display = 'none';
+                div = document.getElementById('form_permisos');
                 div.style.display = '';
             }
                 

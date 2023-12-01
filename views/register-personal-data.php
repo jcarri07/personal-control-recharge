@@ -1416,9 +1416,9 @@ closeConection($conn);
                                                                                                             <option value="Alquilada">Alquilada</option>
                                                                                                             <option value="Propia">Propia</option>
                                                                                                             <option value="Familiar">Familiar</option>
-                                                                                                        </select>w
-                                                                                                    </div>awd
-                                                                                                </div>aa
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="tipoVivienda-others" class="block">Tipo de Vivienda (Obligatorio)</label>
@@ -1474,11 +1474,11 @@ closeConection($conn);
                                                                                             <fieldset>
 
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Utilizar Trasnporte Publico (Obligatorio)</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Utilizar Transporte Publico (Obligatorio)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="usaTrasporte" id="transportePublico-others" onchange="hideVehiculoPublic()" required>
-                                                                                                            <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
+                                                                                                            <option value="No">No</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
@@ -1545,7 +1545,7 @@ closeConection($conn);
                                                                                                     <div class="text-center">
                                                                                                         <h1>¡Registro Completado!</h1>
                                                                                                         <p>Para modificar sus datos, acceda al módulo de actualización de información.</p>
-                                                                                                        <a class="btn btn-outline-success" href="../../personal-control/home/form-edit-data.php?page=datos-personales">Modificar</a>
+                                                                                                        <a class="btn btn-outline-success" href="../../personal-control-recharge/home/form-edit-data.php?page=datos-personales">Modificar</a>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

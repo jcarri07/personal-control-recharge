@@ -32,7 +32,7 @@ closeConection($conn);
 <!DOCTYPE html>
 
 <head>
-    <title>Adminty - Premium Admin Template by Colorlib </title>
+    <title></title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -298,7 +298,7 @@ closeConection($conn);
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($queryEstados)) {
                                                                                                             ?>
-                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo utf8_encode($row['estado']); ?></option>
+                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                                                                                                             <?php
                                                                                                             }
                                                                                                             ?>

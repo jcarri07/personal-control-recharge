@@ -66,7 +66,7 @@ $datos_experiencias = $conn->query($query_experiencia);
 // $rowExpericncia = $datos_experiencias->fetch_assoc();
 $numExperiencia = $datos_experiencias->num_rows;
 
-$query2 = "SELECT * FROM unidad WHERE jefe ='$row1[id_jefe]'";
+$query2 = "SELECT * FROM unidad WHERE id_jefe ='$row1[id_jefe]'";
 $datos2 = $conn->query($query2);
 $row2 = $datos2 ->fetch_assoc();
 

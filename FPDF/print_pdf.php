@@ -52,7 +52,7 @@ $query1 = "SELECT * FROM usuario WHERE id_usuario ='$row[id_usuario]'";
 $datos1 = $conn->query($query1);
 $row1 = $datos1 ->fetch_assoc();
 
-$query2 = "SELECT * FROM unidad WHERE jefe ='$row1[id_jefe]'";
+$query2 = "SELECT * FROM unidad WHERE id_jefe ='$row1[id_jefe]'";
 $datos2 = $conn->query($query2);
 $row2 = $datos2 ->fetch_assoc();
 
@@ -288,6 +288,6 @@ else if($row['descripcion'] == "Extemporaneo"){
     }
 // cell(ancho, largo, contenido,borde?, salto de linea?)
 
-
+ob_end_clean();
 $pdf->Output();
 ?>

@@ -108,6 +108,7 @@ include_once "../database/conexion.php";
                                                                 JOIN datos_personales da ON da.id_usuario = u.id_usuario
                                                                 WHERE s.id_usuario = '$id_usuario' AND NOT s.is_read IS NULL AND NOT s.estatus_supervisor = 'pendiente' AND NOT s.estatus = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");
+                            $num_re = mysqli_num_rows($res);
                         }
                         if ($tipo_usuario == 'jefe') {
                             //notificaciones si eres supervisor LISTO
@@ -131,10 +132,11 @@ include_once "../database/conexion.php";
                                                                 WHERE s.id_usuario = '$id_usuario'AND NOT s.is_read IS NULL AND NOT s.estatus_supervisor = 'pendiente' AND NOT s.estatus = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");
                             $num_r = mysqli_num_rows($re);
+                            $num_re = mysqli_num_rows($res);
                         }
 
 
-                        $num_re = mysqli_num_rows($res);
+                        
 
                         if (($num_r + $num_re) == 0) { ?>
 

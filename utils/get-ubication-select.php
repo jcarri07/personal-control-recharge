@@ -27,7 +27,7 @@ if(mysqli_num_rows($query) > 0) {
         $id_item = $row[$id_item_name];
         $item = $row[$item_name];
 ?>
-        <option value='<?php echo $id_item; ?>'><?php echo utf8_encode($item); ?></option>
+        <option value='<?php echo $id_item; ?>'><?php echo $item; ?></option>
 <?php
     }
 }

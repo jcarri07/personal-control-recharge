@@ -564,6 +564,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_unidad LIKE '$unidadAdscripcion'"; 
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
+               $queryJefeInmediatoABAE = "UPDATE datos_abae SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
           }
 
           $sqlSelect = "SELECT id_jefe FROM datos_abae WHERE id_usuario = '$idUser'"; 
@@ -601,6 +602,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if (
                $conn->query($queryJefeInmediato) === TRUE
+          ) {
+               echo "Consulta ejecutada correctamente.";
+          } else {
+               echo "Error al ejecutar la consulta: " . $conn->error;
+          }
+
+          if (
+               $conn->query($queryJefeInmediatoABAE) === TRUE
           ) {
                echo "Consulta ejecutada correctamente.";
           } else {

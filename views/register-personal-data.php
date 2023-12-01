@@ -30,7 +30,6 @@ WHERE d.cargo IN ('Jefe', 'Director', 'Vicepresidente', 'Presidente');");
 closeConection($conn);
 ?>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <title>Adminty - Premium Admin Template by Colorlib </title>

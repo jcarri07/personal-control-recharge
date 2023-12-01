@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 19:48:03
+-- Tiempo de generación: 01-12-2023 a las 18:55:38
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -394,6 +394,13 @@ CREATE TABLE `datos_abae` (
   `id_jefe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `datos_abae`
+--
+
+INSERT INTO `datos_abae` (`id_datos_abae`, `id_usuario`, `id_unidad`, `fecha_ingreso`, `cargo`, `correo_abae`, `nombres_familiares_abae`, `estatus`, `fecha_inicio_administracion`, `id_direccion`, `tlf_oficina`, `id_jefe`) VALUES
+(58, 25, 0, '2010-06-12', 'Director', 'gguedez@gmail.com', '', 'activo', '2009-06-12', 1, '', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -468,8 +475,19 @@ CREATE TABLE `datos_personales` (
   `foto` varchar(100) NOT NULL DEFAULT 'default_image.jpg',
   `cantidad_hijos` int(10) NOT NULL DEFAULT 0,
   `enfermedad_cronica` varchar(200) NOT NULL DEFAULT 'N/A',
-  `nombre_conyugue` varchar(200) NOT NULL DEFAULT 'N/A'
+  `nombre_conyugue` varchar(200) NOT NULL DEFAULT 'N/A',
+  `parroquia` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `datos_personales`
+--
+
+INSERT INTO `datos_personales` (`id_datos_personales`, `id_usuario`, `id_municipio`, `fecha_registro`, `domicilio`, `lugar_nacimiento`, `fecha_nacimiento`, `sexo`, `estado_civil`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `estatura`, `peso`, `perfil_dominante`, `telefono_movil`, `telefono_habitacion`, `rif`, `contacto_emergencia`, `telefono_emergencia`, `alergias`, `tipo_sangre`, `padece_enfermedad_cronica`, `esta_embarazada`, `meses_gestacion`, `firma`, `estatus`, `foto`, `cantidad_hijos`, `enfermedad_cronica`, `nombre_conyugue`, `parroquia`) VALUES
+(58, 25, 94, '2023-11-29', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1978-06-12', 'Masculino', 'Soltero(a)', 'S', '32', '40', '1.60', '80', 'Zurdo', '4564564564', '4515415151', '3123123', 'Jose Carrizales', '4564566465', 'Priperam', 'O+', 'No', 'N/A', 'N/A', 'IMG_20221204_134132_710.jpg', 'activo', 'IMG-20221001-WA0036.jpg', 0, 'N/A', 'N/A', 0),
+(59, 26, 225, '2023-11-29', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1990-04-18', 'Femenino', 'Soltero(a)', 'M', '30', '42', '1.68', '50', 'Diestro', '14651561', '', '24642009', '7498494', '8949498', 'Priperam', 'B+', 'No', 'No', 'N/A', 'Category (1).png', 'activo', 'logoplatzi_alpha_f155cb85-e046-4715-87b1-5df4ec41e632.png', 0, 'N/A', 'N/A', 0),
+(60, 27, 87, '2023-12-01', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1995-07-29', 'Masculino', 'Casado(a)', 'M', '32', '42', '1.68', '85', 'Diestro', '04144001564', '02423770971', '24642009', 'Yohaily Añez', '04244086819', 'Priperam', 'B+', 'No', 'N/A', 'N/A', 'Firma digital.PNG', 'activo', 'Profile.png', 0, 'N/A', 'Yohaily Añez', 0),
+(61, 27, 87, '2023-12-01', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1995-07-29', 'Masculino', 'Casado(a)', 'M', '34', '42', '1.68', '85', 'Diestro', '04144001564', '02423770971', '246420099', 'Yohaily Añez', '04244086819', 'Priperam', 'B+', 'No', 'N/A', 'N/A', 'Firma digital.PNG', 'activo', '20220530_133745.jpg', 0, 'N/A', 'Yohaily Añez', 276);
 
 -- --------------------------------------------------------
 
@@ -975,6 +993,15 @@ CREATE TABLE `nivel_academico` (
   `estatus` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `nivel_academico`
+--
+
+INSERT INTO `nivel_academico` (`id_nivel_academico`, `id_usuario`, `especializacion`, `titulo_obtenido`, `anio_egreso`, `instituto_universitario`, `estatus`) VALUES
+(21, 25, 'Post-Grado', 'Ingeniero de Sistemas', '2014', 'UNEFA', 'activo'),
+(22, 26, 'Licenciatura', 'Ingeniero Mecanico', '2016', 'UNEFA', 'activo'),
+(23, 27, 'Licenciatura', 'Ingeniero de Sistemas', '2019', 'UNEFA', 'activo');
+
 -- --------------------------------------------------------
 
 --
@@ -1031,6 +1058,13 @@ CREATE TABLE `otros_datos_usuario` (
   `deporte_actividad_cutural` varchar(200) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `otros_datos_usuario`
+--
+
+INSERT INTO `otros_datos_usuario` (`id_otros_datos_usuario`, `id_usuario`, `facebook`, `twitter`, `instagram`, `otras_redes`, `tiene_carnet_patria`, `codigo_carnet_patria`, `serial_carnet_patria`, `beneficios_patria`, `tiene_carnet_psuv`, `codigo_carnet_psuv`, `serial_carnet_psuv`, `beneficios_psuv`, `partido_politico`, `movimiento_social`, `comuna`, `es_vocero_comuna`, `recibe_clap`, `vivienda`, `tipo_vivienda`, `posee_vehiculo`, `tipo_vehiculo`, `usa_transporte_publico`, `tipo_transporte_publico`, `ruta_trabajo`, `deporte_actividad_cutural`, `estatus`) VALUES
+(14, 25, '', '', '', '', 'No', '', '', '', 'No', '', '', '', 'No', 'No', 'No', 'No', 'No', 'Alquilada', 'Casa', 'No', 'Automóvil', 'No', '', 'Nueva Taborda - Centro / Centro - Borburata', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -2492,7 +2526,7 @@ CREATE TABLE `unidad` (
 
 INSERT INTO `unidad` (`id_unidad`, `id_direccion`, `nombre`, `id_jefe`, `estatus`) VALUES
 (1, 1, 'Desarrollo e Innovacion Tecnologica', '', 'activo'),
-(2, 1, 'Logistica de Produccion', '21', 'activo'),
+(2, 1, 'Logistica de Produccion', '23', 'activo'),
 (3, 1, 'Desarrollo de Productos y Procesos', '', 'activo'),
 (4, 1, 'Mantenimiento Industrial', '', 'activo'),
 (5, 2, 'Gestion de Plataformas y Proyectos Espaciales', '', 'activo'),
@@ -2537,7 +2571,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, `user`, `pass`, `tipo_usuario`, `estatus`, `id_jefe`, `step`, `correo`) VALUES
-(12, 'Admin', 'DGH', '1234786', 'director', 'User_admin', '1234', 'admin', 'activo', 0, 6, 'dgh_abae@abae.gob.ve');
+(12, 'Admin', 'DGH', '1234786', 'director', 'User_admin', '1234', 'admin', 'activo', 0, 6, 'dgh_abae@abae.gob.ve'),
+(25, 'Gustavo', 'Guedez', '12554444', 'Director', 'gguedez07', '12345', 'jefe', 'activo', 0, 9, 'gguedez@abae.gob.ve'),
+(26, 'Karla', 'Mieres', '14544554', '', 'kmieres07', '12345', 'empleado', 'activo', 0, 6, 'kmieres@gmail.com'),
+(27, 'Jose Franzue', 'Carrizales Vargas', '24642009', '', 'jcarri07', '12345', 'empleado', 'activo', 0, 1, 'jcarrizales@abae.gob.ve');
 
 --
 -- Índices para tablas volcadas
@@ -2689,7 +2726,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `datos_abae`
 --
 ALTER TABLE `datos_abae`
-  MODIFY `id_datos_abae` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_datos_abae` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_hijos`
@@ -2707,7 +2744,7 @@ ALTER TABLE `datos_militar`
 -- AUTO_INCREMENT de la tabla `datos_personales`
 --
 ALTER TABLE `datos_personales`
-  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_vacaciones`
@@ -2749,7 +2786,7 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT de la tabla `nivel_academico`
 --
 ALTER TABLE `nivel_academico`
-  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `nucleo_familiar`
@@ -2761,7 +2798,7 @@ ALTER TABLE `nucleo_familiar`
 -- AUTO_INCREMENT de la tabla `otros_datos_usuario`
 --
 ALTER TABLE `otros_datos_usuario`
-  MODIFY `id_otros_datos_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_otros_datos_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -2785,7 +2822,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
@@ -2797,7 +2834,7 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

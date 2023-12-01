@@ -1,5 +1,6 @@
-$(document).on('change', "#estado, #ciudad", function() {
+$(document).on('change', "#estado, #ciudad, #parroquia", function() {
     console.log("Faro")
+    console.log("id: "+this.id);
     if (this.id == "estado" || this.id == "ciudad") {
         var destino = "";
         var id = "";
@@ -9,23 +10,19 @@ $(document).on('change', "#estado, #ciudad", function() {
             $('#ciudad').empty();
             $("#ciudad").append("<option value=''>Cargando...</option>");
             $('#municipio').empty();
-            //$('#parroquia').empty();
+            // $('#parroquia').empty();
             $("#municipio").append("<option value=''>Seleccione</option>");
-            //$("#parroquias").append("<option value=''>Seleccione</option>");
+            // $("#parroquia").append("<option value=''>Seleccionesss</option>");
         }
         if (this.id == "ciudad") {
-            destino = "municipio";
-            id = $('#estado').prop('value');
-
-            $('#municipio').empty();
-            $("#municipio").append("<option value=''>Cargando...</option>");
-            //$('#parroquias').empty();
-            //$("#parroquias").append("<option value=''>Seleccione</option>");
-        }
-        /*if(this.id == "municipio"){
-            destino = "parroquias";
+            destino = "parroquia";
             id = this.value;
-        }*/
+
+            // $('#municipio').empty();
+            // $("#municipio").append("<option value=''>Cargando...</option>");
+            $('#parroquia').empty();
+            $("#parroquia").append("<option value=''>Seleccione</option>");
+        }
 
         $.ajax({
             url: '../utils/get-ubication-select.php',
@@ -35,10 +32,11 @@ $(document).on('change', "#estado, #ciudad", function() {
                 id: id
             },
             success: function(response) {
+                console.log(response);
                 $('select#' + destino).html(response).fadeIn();
             },
             error: function(response) {
-
+                console.log(response.error);
             }
         });
     }

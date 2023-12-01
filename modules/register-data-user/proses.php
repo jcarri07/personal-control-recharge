@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                //DIRECCION Y CONTACTO 
                $state = $_POST['state'];
                $municipality = $_POST['municipality'];
+               $parroquia = $_POST['parroquia'];
                $address = $_POST['address'];
                $phone = $_POST['phone'];
                $cellphone = $_POST['cellphone'];
@@ -114,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $sql = "INSERT INTO datos_personales (
                     id_usuario,
                     id_municipio,
+                    parroquia,
                     domicilio,
                     lugar_nacimiento,
                     fecha_nacimiento,
@@ -142,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     enfermedad_cronica,
                     nombre_conyugue
      
-               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                $stmt = $conn->prepare($sql);
 
@@ -152,9 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                // Vincular los parámetros de la consulta
                $stmt->bind_param(
-                    "iissssssssssssssssssssssssiss",
+                    "iiissssssssssssssssssssssssiss",
                     $idUser,
                     $municipality,
+                    $parroquia,
                     $address,
                     $birthPlace,
                     $birthday,

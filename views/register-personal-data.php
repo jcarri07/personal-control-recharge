@@ -280,7 +280,6 @@ closeConection($conn);
                                                                                                             <option value="Casado(a)">Casado(a)</option>
                                                                                                             <option value="Conyugue">Conyugue</option>
                                                                                                             <option value="Anulado">Anulado</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
                                                                                                             <option value="Separado de Union Legal">Separado de Unión Legal</option>
                                                                                                             <option value="Separado de Union de Hecho">Separado de Unión de Hecho</option>
                                                                                                             <option value="Viudo(a)">Viudo(a)</option>

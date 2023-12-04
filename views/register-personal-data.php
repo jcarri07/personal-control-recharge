@@ -358,9 +358,6 @@ closeConection($conn);
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            </fieldset>
-                                                                                            <h3> Datos Médicos </h3>
-                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row" style="bottom: 150px" id="divSpouse">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="datejoin" class="block">Nombre del Conyugue</label>
@@ -369,6 +366,9 @@ closeConection($conn);
                                                                                                         <input name="spouse" type="text" id="spouse" class="form-control" required>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                            </fieldset>
+                                                                                            <h3> Datos Médicos </h3>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="University-2" class="block">Alergias</label>

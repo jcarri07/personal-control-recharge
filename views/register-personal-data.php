@@ -279,7 +279,6 @@ closeConection($conn);
                                                                                                             <option value="Casado(a)">Casado(a)</option>
                                                                                                             <option value="Conyugue">Conyugue</option>
                                                                                                             <option value="Anulado">Anulado</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
                                                                                                             <option value="Separado de Union Legal">Separado de Unión Legal</option>
                                                                                                             <option value="Separado de Union de Hecho">Separado de Unión de Hecho</option>
                                                                                                             <option value="Viudo(a)">Viudo(a)</option>
@@ -355,7 +354,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Nombre del Contacto de Emergencia</label>
+                                                                                                        <label class="block">Nombre de Emergencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>

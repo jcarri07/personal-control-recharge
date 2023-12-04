@@ -176,7 +176,7 @@ include_once "../database/conexion.php";
 
                                                             while ($row = mysqli_fetch_array($res)) { ?>
                                                                 <tr class="text-center" style="vertical-align: middle;">
-                                                                    <td style="vertical-align: middle;"><img class="d- align-self-center img-radius" src="../assets/empleados-images/<? echo $row['foto']; ?>" alt="User-Profile-Image" style="height: 50px;"> </td>
+                                                                    <td style="vertical-align: middle;"><div style="width:80px;height:80px;overflow: hidden;border-radius:50%;text-align:center;"><img class="d- align-self-center img-radius" src="../assets/empleados-images/<?php echo $row['foto']; ?>" alt="User-Profile-Image" style="height: 80px;"></div> </td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['tipo_solicitud']; ?></td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['nombres'] . " " . $row['apellidos']; ?></td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['nombreS'] . " " . $row['apellidoS']; ?></td>
@@ -193,7 +193,7 @@ include_once "../database/conexion.php";
 
                                                             while ($row = mysqli_fetch_array($re)) { ?>
                                                                 <tr class="text-center">
-                                                                    <td style="vertical-align: middle;"><img class="d-flex align-self-center img-radius" src="../assets/empleados-images/<?php echo $row['foto']; ?>" alt="User-Profile-Image" style="height: 50px;"> </td>
+                                                                    <td style="vertical-align: middle;"><div style="width:80px;height:80px;overflow: hidden;border-radius:50%;text-align:center;"><img class="d-flex align-self-center img-radius" src="../assets/empleados-images/<?php echo $row['foto']; ?>" alt="User-Profile-Image" style="height: 80px;"> </div></td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['tipo_solicitud']; ?></td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['nombres'] . " " . $row['apellidos']; ?></td>
                                                                     <td style="vertical-align: middle;"> <?php echo $row['nombreS'] . " " . $row['apellidoS']; ?></td>

@@ -122,6 +122,8 @@ if (isset($_POST['Guardar'])) {
 
     if($tipo_solicitud == "Permisos"){
         $subject = $motivo_permisos;
+        $fecha_ini  = mysqli_real_escape_string($conn, trim($_POST['fecha_ini_per']));
+        $fecha_fin  = mysqli_real_escape_string($conn, trim($_POST['fecha_fin_per']));
     }
 
     // echo $fecha_ini. "Hola" . $fecha_fin." ". $subject;

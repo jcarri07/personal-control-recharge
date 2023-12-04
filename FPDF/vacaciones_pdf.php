@@ -57,6 +57,10 @@ $query1 = "SELECT * FROM usuario WHERE id_usuario ='$row[id_usuario]'";
 $datos1 = $conn->query($query1);
 $row1 = $datos1 ->fetch_assoc();
 
+$query_datos_abae = "SELECT * FROM datos_abae WHERE id_usuario ='$row[id_usuario]'";
+$datos_abae = $conn->query($query_datos_abae);
+$row_datos_abae = $datos_abae->fetch_assoc();
+
 $query_abae = "SELECT * FROM datos_abae WHERE id_usuario ='$row[id_usuario]'";
 $datos_abae = $conn->query($query_abae);
 $rowAbae = $datos_abae->fetch_assoc();
@@ -66,13 +70,17 @@ $datos_experiencias = $conn->query($query_experiencia);
 // $rowExpericncia = $datos_experiencias->fetch_assoc();
 $numExperiencia = $datos_experiencias->num_rows;
 
-$query2 = "SELECT * FROM unidad WHERE jefe ='$row1[id_jefe]'";
+$query2 = "SELECT * FROM unidad WHERE id_jefe ='$row1[id_jefe]'";
 $datos2 = $conn->query($query2);
 $row2 = $datos2 ->fetch_assoc();
 
 $query3 = "SELECT * FROM usuario WHERE id_usuario='$row1[id_jefe]'";
 $datos3 = $conn->query($query3);
 $row3 = $datos3 ->fetch_assoc();
+
+$query_datos_abae_jefe = "SELECT * FROM datos_abae WHERE id_usuario ='$row1[id_jefe]'";
+$datos_abae_jefe = $conn->query($query_datos_abae_jefe);
+$row_datos_abae_jefe = $datos_abae_jefe->fetch_assoc();
 
 $query4 = "SELECT * FROM datos_personales WHERE id_usuario='$row1[id_jefe]'";
 $datos4 = $conn->query($query4);
@@ -114,7 +122,7 @@ $pdf->SetX(16);
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(60,7,$row1['nombres'] .' '. $row1['apellidos'],'1',0,'C',0);
 $pdf->Cell(60,7,$row1['cedula'],'1',0,'C',0);
-$pdf->Cell(60,7,$row1['cargo'],'1',1,'C',0);
+$pdf->Cell(60,7,$row_datos_abae['cargo'],'1',1,'C',0);
 
 
 $pdf->SetX(16);
@@ -125,7 +133,7 @@ $pdf->Cell(60,7,utf8_decode('Cargo:'),'0',1,'C',0);
 $pdf->SetFont('Arial','',12);
 $pdf->SetX(76);
 $pdf->Cell(60,15,$row3['nombres'] .' '. $row3['apellidos'],'1',0,'C',0);
-$pdf->Cell(60,15,$row3['cargo'],'1',0,'C',0);
+$pdf->Cell(60,15,$row_datos_abae_jefe['cargo'],'1',0,'C',0);
 $pdf->SetX(16);
 $pdf->MultiCell(60,15,$row2['nombre'],1,'C');
 

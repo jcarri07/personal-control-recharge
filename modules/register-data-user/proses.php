@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                //DIRECCION Y CONTACTO 
                $state = $_POST['state'];
                $municipality = $_POST['municipality'];
+               $parroquia = $_POST['parroquia'];
                $address = $_POST['address'];
                $phone = $_POST['phone'];
                $cellphone = $_POST['cellphone'];
@@ -114,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $sql = "INSERT INTO datos_personales (
                     id_usuario,
                     id_municipio,
+                    parroquia,
                     domicilio,
                     lugar_nacimiento,
                     fecha_nacimiento,
@@ -142,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     enfermedad_cronica,
                     nombre_conyugue
      
-               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                $stmt = $conn->prepare($sql);
 
@@ -152,9 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                // Vincular los parámetros de la consulta
                $stmt->bind_param(
-                    "iissssssssssssssssssssssssiss",
+                    "iiissssssssssssssssssssssssiss",
                     $idUser,
                     $municipality,
+                    $parroquia,
                     $address,
                     $birthPlace,
                     $birthday,
@@ -561,6 +564,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_unidad LIKE '$unidadAdscripcion'"; 
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
+               $queryJefeInmediatoABAE = "UPDATE datos_abae SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
           }
 
           $sqlSelect = "SELECT id_jefe FROM datos_abae WHERE id_usuario = '$idUser'"; 
@@ -598,6 +602,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if (
                $conn->query($queryJefeInmediato) === TRUE
+          ) {
+               echo "Consulta ejecutada correctamente.";
+          } else {
+               echo "Error al ejecutar la consulta: " . $conn->error;
+          }
+
+          if (
+               $conn->query($queryJefeInmediatoABAE) === TRUE
           ) {
                echo "Consulta ejecutada correctamente.";
           } else {

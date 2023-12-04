@@ -30,10 +30,9 @@ WHERE d.cargo IN ('Jefe', 'Director', 'Vicepresidente', 'Presidente');");
 closeConection($conn);
 ?>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <title>Adminty - Premium Admin Template by Colorlib </title>
+    <title></title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -213,7 +212,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form id="example-advanced-form" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertPersonalData" enctype="multipart/form-data">
                                                                                             <h3> Datos Personales </h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label class="block">Nombres y Apellidos</label>
@@ -289,7 +288,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Dirección y Contacto </h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Estado</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -298,7 +297,7 @@ closeConection($conn);
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($queryEstados)) {
                                                                                                             ?>
-                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo utf8_encode($row['estado']); ?></option>
+                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                                                                                                             <?php
                                                                                                             }
                                                                                                             ?>
@@ -309,6 +308,14 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Municipio</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="municipality" id="ciudad" required>
+                                                                                                            <option value="N/A">Seleccione</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">Parroquia</div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <select class="form-control required" name="parroquia" id="parroquia" required>
                                                                                                             <option value="N/A">Seleccione</option>
                                                                                                         </select>
                                                                                                     </div>
@@ -353,7 +360,10 @@ closeConection($conn);
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="divSpouse">
+                                                                                            </fieldset>
+                                                                                            <h3> Datos Médicos </h3>
+                                                                                             <fieldset style="overflow: auto;">
+                                                                                                <div class="form-group row" style="bottom: 150px" id="divSpouse">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="datejoin" class="block">Nombre del Conyugue</label>
                                                                                                     </div>
@@ -361,9 +371,6 @@ closeConection($conn);
                                                                                                         <input name="spouse" type="text" id="spouse" class="form-control" required>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            </fieldset>
-                                                                                            <h3> Datos Médicos </h3>
-                                                                                            <fieldset>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="University-2" class="block">Alergias</label>
@@ -453,7 +460,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Datos Finales</h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Talla de Camisa</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -545,7 +552,7 @@ closeConection($conn);
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Hijos</p>
                                                                                             </div>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="userName-2" class="block">Nombres y Apellidos</label>
@@ -668,7 +675,7 @@ closeConection($conn);
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Nucleo Familiar</p>
                                                                                             </div>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Parentesco</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1028,7 +1035,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="basic-forms" method="POST" action="../modules/register-data-user/proses.php?act=insertInstituteData">
                                                                                             <h3> Datos Institucionales </h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Fecha de Inicio en la ABAE</label>
@@ -1114,7 +1121,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Segunda Etapa </h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Fecha de Inicio en la Administración Pública</label>
@@ -1255,7 +1262,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="design-wizard" method="POST" action="../modules/register-data-user/proses.php?act=insertOthersData">
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Facebook</label>
@@ -1323,7 +1330,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Posee Carnet del PSUV</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1386,7 +1393,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Es Usted Vocero en Alguna Comuna o Consejo Comunal</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1412,9 +1419,9 @@ closeConection($conn);
                                                                                                             <option value="Alquilada">Alquilada</option>
                                                                                                             <option value="Propia">Propia</option>
                                                                                                             <option value="Familiar">Familiar</option>
-                                                                                                        </select>w
-                                                                                                    </div>awd
-                                                                                                </div>aa
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="tipoVivienda-others" class="block">Tipo de Vivienda (Obligatorio)</label>
@@ -1467,14 +1474,13 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
-
+                                                                                             <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Utilizar Trasnporte Publico (Obligatorio)</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Utilizar Transporte Publico (Obligatorio)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="usaTrasporte" id="transportePublico-others" onchange="hideVehiculoPublic()" required>
-                                                                                                            <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
+                                                                                                            <option value="No">No</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
@@ -1541,7 +1547,7 @@ closeConection($conn);
                                                                                                     <div class="text-center">
                                                                                                         <h1>¡Registro Completado!</h1>
                                                                                                         <p>Para modificar sus datos, acceda al módulo de actualización de información.</p>
-                                                                                                        <a class="btn btn-outline-success" href="../../personal-control/home/form-edit-data.php?page=datos-personales">Modificar</a>
+                                                                                                        <a class="btn btn-outline-success" href="../../personal-control-recharge/home/form-edit-data.php?page=datos-personales">Modificar</a>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

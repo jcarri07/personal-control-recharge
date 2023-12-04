@@ -151,8 +151,8 @@ $fila = mysqli_fetch_assoc($resultado);
                         </ul-->
                         <ul class="nav-right">
                             <!--INICIO DE NOTIFICACIONES-->
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
+                            <li class="header-notification" style="padding: 0px">
+                                <div class="dropdown-primary dropdown" style="width:50px;">
                                     <?php
                                     include '../php/notificacion/notificacion.php';
                                     ?>
@@ -208,9 +208,10 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </div>
                                 </div>
                             </li>-->
-                            <li class="user-profile header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                            <li style="padding:10px"></li>
+                            <li class="user-profile header-notification" style="padding: 0px;">
+                                <div class="dropdown-primary dropdown" style="text-align: center;">
+                                    <div class="dropdown-toggle" data-toggle="dropdown" >
                                         <img src="../assets/empleados-images/<?php if($personal_data != null) { echo $personal_data['foto']; } else { echo "avatar_default.jpg"; } ?>" class="img-radius" alt="User-Profile-Image">
                                         <span><?php echo $fila['nombres']." ".$fila['apellidos'] ?></span>
                                         <i class="feather icon-chevron-down"></i>
@@ -245,6 +246,7 @@ $fila = mysqli_fetch_assoc($resultado);
 
                                 </div>
                             </li>
+                            <li style="padding:5px"></li>
                         </ul>
                     </div>
                 </div>

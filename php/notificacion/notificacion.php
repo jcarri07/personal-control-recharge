@@ -1,4 +1,4 @@
-<div class="dropdown-toggle" data-toggle="dropdown">
+<div class="dropdown-toggle" data-toggle="dropdown" style="text-align: center;">
     <i class="feather icon-bell"></i>
 </div>
 <?php
@@ -115,7 +115,7 @@ function notificacion($conn, $tipo_usuario, $id_usuario)
 
     <?php
     } else { ?>
-        <span class="badge bg-c-pink"><?php echo $num_r + $num_re; ?></span>
+        <span class="badge bg-c-pink" style="right: 2px;z-index:-1;"><?php echo $num_r + $num_re; ?></span>
         <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" style="border-radius:5px">
             <?php
             if ($num_re >= 1) {

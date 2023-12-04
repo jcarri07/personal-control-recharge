@@ -4,6 +4,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag() {
     dataLayer.push(arguments);
 }
+console.log("solicitudes");
 gtag("js", new Date());
 const tiposol = document.getElementById("tipo_sol");
 const reposo = document.getElementById("form_reposo");
@@ -16,6 +17,8 @@ const horario = document.getElementById("horario");
 
 const f_ini = document.getElementById("fechain");
 const f_fin = document.getElementById("fechafin");
+const f_ini_per = document.getElementById("fechainper");
+const f_fin_per = document.getElementById("fechafinper");
 const f_ini_vaca = document.getElementById("fecha_ini");
 const peri_disfrute = document.getElementById("peri_disfrute");
 
@@ -46,7 +49,8 @@ tiposol.addEventListener("change", (event) => {
         f_ini_vaca.removeAttribute("required");
         motivo_per.removeAttribute("required");
         horario.removeAttribute("required");
-
+        f_ini_per.removeAttribute("required");
+        f_fin_per.removeAttribute("required");
 
         //    alert(cod);
     } else if (cod == "Constancia") {
@@ -59,7 +63,8 @@ tiposol.addEventListener("change", (event) => {
         f_ini_vaca.removeAttribute("required");
         motivo_per.removeAttribute("required");
         horario.removeAttribute("required");
-
+        f_ini_per.removeAttribute("required");
+        f_fin_per.removeAttribute("required");
 
     } 
     else if (cod == "Permisos") {
@@ -71,6 +76,10 @@ tiposol.addEventListener("change", (event) => {
         f_ini_vaca.removeAttribute("required");  
         f_ini.removeAttribute("required");
         f_fin.removeAttribute("required");
+        f_ini_per.setAttribute("required", "required");
+        f_fin_per.setAttribute("required", "required");
+        horario.setAttribute("required", "required");
+        motivo_per.setAttribute("required", "required");
 
     } else if (cod == "Vacaciones") {
         ocultSolicitud(reposo);
@@ -83,6 +92,8 @@ tiposol.addEventListener("change", (event) => {
         f_fin.removeAttribute("required");
         motivo_per.removeAttribute("required");
         horario.removeAttribute("required");
+        f_ini_per.removeAttribute("required");
+        f_fin_per.removeAttribute("required");
 
         $('#fecha_ini').keydown( () => {
             return false;

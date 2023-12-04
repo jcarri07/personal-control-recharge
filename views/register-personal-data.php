@@ -346,7 +346,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Teléfono de Emergencia</label>
+                                                                                                        <label class="block">Teléfono en Caso de Emergencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyPhone" type="number" class="form-control required" required>
@@ -354,7 +354,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Nombre del Contacto de Emergencia</label>
+                                                                                                        <label class="block">Nombre en Caso de Emergencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>

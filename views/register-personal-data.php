@@ -286,6 +286,14 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                <div class="form-group row" style="bottom: 150px" id="divSpouse">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label for="datejoin" class="block">Nombre del Conyugue</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="spouse" type="text" id="spouse" class="form-control" required>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             </fieldset>
                                                                                             <h3> Dirección y Contacto </h3>
                                                                                              <fieldset style="overflow: auto;">
@@ -358,14 +366,6 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row" style="bottom: 150px" id="divSpouse">
-                                                                                                    <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="datejoin" class="block">Nombre del Conyugue</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="spouse" type="text" id="spouse" class="form-control" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>

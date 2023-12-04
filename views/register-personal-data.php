@@ -276,13 +276,11 @@ closeConection($conn);
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status" name="statusEmployeer" onchange="hideMarriedInformation()" required>
                                                                                                             <option value="N/A">Seleccione</option>
-                                                                                                            <option value="Casado(a)">Casado(a)</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
-                                                                                                            <option value="Anulado">Anulado</option>
-                                                                                                            <option value="Separado de Union Legal">Separado de Unión Legal</option>
-                                                                                                            <option value="Separado de Union de Hecho">Separado de Unión de Hecho</option>
-                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
                                                                                                             <option value="Soltero(a)">Soltero(a)</option>
+                                                                                                            <option value="Conyugue">Concubinato</option>
+                                                                                                            <option value="Casado(a)">Casado(a)</option>
+                                                                                                            <option value="Anulado">Divorciado(a)</option>
+                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>

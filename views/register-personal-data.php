@@ -1545,7 +1545,7 @@ closeConection($conn);
                                                                                                     <div class="text-center">
                                                                                                         <h1>¡Registro Completado!</h1>
                                                                                                         <p>Para modificar sus datos, acceda al módulo de actualización de información.</p>
-                                                                                                        <a class="btn btn-outline-success" href="../../personal-control-recharge/home/form-edit-data.php?page=datos-personales">Modificar</a>
+                                                                                                        <a class="btn btn-outline-success" href="../home/form-edit-data.php?page=datos-personales">Modificar</a>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

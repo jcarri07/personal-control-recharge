@@ -1316,7 +1316,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="div-codigo">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Codigo Carnet de la Patria</label>
+                                                                                                        <label for="confirm-2" class="block">Código Carnet de la Patria</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="code-others" type="text" class="form-control required" value="">
@@ -1353,7 +1353,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="div-codigoPSUV">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Codigo Carnet del PSUV</label>
+                                                                                                        <label for="confirm-2" class="block">Código Carnet del PSUV</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="codePsuv-others" type="text" class="form-control required" value="">

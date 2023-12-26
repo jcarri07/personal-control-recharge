@@ -40,7 +40,7 @@ $fila = mysqli_fetch_assoc($resultado);
 
 
 <head>
-    <title>SGDP - ABAE</title>
+    <title>ABAE | Personal</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -500,7 +500,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </li>
                                         <li class="">
                                             <a href="../FPDF/Reposo_Vacio.php">
-                                                <span class="pcoded-mtext">Reposo</span>
+                                                <span class="pcoded-mtext">Reposos</span>
                                             </a>
                                         </li>
                                         <li class="">
@@ -554,7 +554,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </li>
                                         <li class="">
                                             <a href="../home/select_admin.php">
-                                                <span class="pcoded-mtext">Selec. Admin</span>
+                                                <span class="pcoded-mtext">Administrador</span>
                                             </a>
                                         </li>
                                     </ul>

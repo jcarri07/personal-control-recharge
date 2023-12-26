@@ -27,7 +27,7 @@
                         <div class="col-lg-8" style="margin-bottom: 0px;">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>Configuración de administrador</h4>
+                                    <h4>Configuración de Administrador</h4>
                                     <!--<span>Otros Datos</span>-->
                                 </div>
                             </div>
@@ -36,11 +36,11 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <!--<a href="#!" class="activate">Actualización de Datos / Otros Datos</a>-->
-                                        <a href="#!" class="activate">Configuración de administrador</a>
+                                        <a class="activate">Configuraciones / Administrador</a>
                                     </li>
                                 </ul>
                             </div>
@@ -59,7 +59,7 @@
                                                 <section>
                                                     <form id="form-edit" class="wizard-form">
                                                         <div class="box-title mb-1">
-                                                            <h3>Administrador Actual</h3>
+                                                            <h4>Administrador Actual</h4>
                                                         </div>
                                                         <!--<fieldset>-->
                                                             <div class="form-group row align-items-center d-flex flex-column">
@@ -71,15 +71,16 @@
                                                                     <label class="block">Nombre y Apellido</label>
                                                                     <input name="pass" id="pass" type="text" class="form-control" maxlength="50" value="<?php echo $datos_personales['nombres'] . ' ' . $datos_personales['apellidos']; ?>" readonly>
                                                                 </div>
-                                                                <div class="box-title mb-1">
-                                                            <h3>Nuevo administrador</h3>
-                                                                </div>
-
+                                                            </div>
+                                                        <div class="box-title mb-1">
+                                                            <h4>Nuevo Administrador</h4>
+                                                        </div>
+                                                            <div class="form-group row align-items-center d-flex flex-column">
                                                                 <div class="col-md-7">
-                                                                <label class="block">Usuario</label>
-                                                                <select id="nuevo_adm"  class="form-control form-control-primary" onclick="nombre_admin_nuevo();">
+                                                                    <label class="block">Usuario</label>
+                                                                    <select id="nuevo_adm"  class="form-control form-control-primary" onclick="nombre_admin_nuevo();">
                                                                         <option value="">Seleccione</option>
-                                                                     <?php
+                                                                    <?php
                                                                         $query = mysqli_query($conn, "SELECT user FROM usuario WHERE cargo = 'jefe' OR cargo = 'director'")
                                                                             or die('error ' . mysqli_error($conn));
 
@@ -89,15 +90,12 @@
                                                                     ?>
                                                                     </select>
                                                                 </div>
-
                                                                 <div class="col-md-7">
 
                                                                     <label class="block">Nombres y Apellidos</label>
                                                                     <input id="nuevo_nom" type="text" class="form-control" maxlength="50" value="" readonly>
                                                                 </div>
-                                                        
-
-                                                        </div>
+                                                            </div>
                                                         <!--</fieldset>-->
 
                                                         <div class="text-center mt-3">

@@ -39,7 +39,7 @@ if($datos_personales['step'] > 4){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Formación en el Exterior</span>
+                                    <span>Datos de Formación Exterior</span>
                                 </div>
                             </div>
                         </div>
@@ -47,10 +47,10 @@ if($datos_personales['step'] > 4){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Formación en el Exterior</a>
+                                        <a class="activate">Actualización de Datos / Formación Exterior</a>
                                     </li>
                                 </ul>
                             </div>
@@ -120,7 +120,7 @@ if($datos_personales['step'] > 4){
                                                 }
                                                 else{
                                             ?>
-                                                <h2 class="text-center mt-4">No Hay Ninguna Formación en el Exterior Registrada.</h2>
+                                                <h2 class="text-center mt-4">No hay ninguna formación en el exterior registrada</h2>
 
                                                 
                                             <?php 
@@ -225,7 +225,7 @@ if($datos_personales['step'] > 4){
         $("#aux_id").text("");
         $("#aux_opc").text("add");
         $("#form-edit")[0].reset();
-        $("#modal-form .modal-title").text("Añadir Formación en el Exterior");
+        $("#modal-form .modal-title").text("Añadir Formación Exterior");
         $("#modal-form").modal("show");
     }
 
@@ -238,7 +238,7 @@ if($datos_personales['step'] > 4){
         $("#instituto").val(instituto);
         $("#pais").val(pais);
 
-        $("#modal-form .modal-title").text("Editar Formación en el Exterior");
+        $("#modal-form .modal-title").text("Editar Formación Exterior");
         $("#modal-form").modal("show");
     }
 
@@ -269,7 +269,7 @@ if($datos_personales['step'] > 4){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -277,13 +277,13 @@ if($datos_personales['step'] > 4){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -292,7 +292,7 @@ if($datos_personales['step'] > 4){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -342,7 +342,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Formación en el Exterior</span>
+                                    <span>Datos de Formación Exterior</span>
                                 </div>
                             </div>
                         </div>
@@ -350,10 +350,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Formación en el Exterior</a>
+                                        <a class="activate">Actualización de Datos / Formación Exterior</a>
                                     </li>
                                 </ul>
                             </div>
@@ -366,7 +366,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Formación en el Exterior en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de formación en el exterior en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

@@ -72,10 +72,10 @@ if($datos_personales['step'] > 6){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Datos Institucionales</a>
+                                        <a class="activate">Actualización de Datos / Institucionales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -99,11 +99,11 @@ if($datos_personales['step'] > 6){
                                                         <!--<fieldset>-->
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-4">
-                                                                    <label class="block">Fecha de Inicio en la ABAE</label>
+                                                                    <label class="block">Ingreso en la ABAE</label>
                                                                     <input name="fecha_ingreso" id="fecha_ingreso" type="date" class="form-control" value="<?php echo $datos_abae['fecha_ingreso'];?>" required>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label class="block">Años de Servicio en la ABAE</label>
+                                                                    <label class="block">Años en la ABAE</label>
                                                                     <input name="age" id="age" type="number" class="form-control">
                                                                 </div>
 
@@ -111,8 +111,8 @@ if($datos_personales['step'] > 6){
                                                                     <label class="block">Cargo</label>
                                                                     <select class="form-control" id="cargo" name="cargo" required onchange="changeCargo();">
                                                                         <option value="">Seleccione</option>
-                                                                        <option value="Presidente">Presidente</option>
-                                                                        <option value="Vice-Presidente">Vice-Presidente</option>
+                                                                        <!-- <option value="Presidente">Presidente</option> -->
+                                                                        <!-- <option value="Vice-Presidente">Vice-Presidente</option> -->
                                                                         <option value="Director">Director</option>
                                                                         <option value="Jefe">Jefe</option>
                                                                         <option value="Personal de Investigacion">Personal de Investigacion</option>
@@ -161,7 +161,7 @@ if($datos_personales['step'] > 6){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label class="block">Fecha de Inicio en la Administración Pública</label>
+                                                                    <label class="block">Inicio en la Administración Pública</label>
                                                                     <input name="fecha_inicio_admin_publica" id="fecha_inicio_admin_publica" type="date" class="form-control" value="<?php echo $datos_abae['fecha_inicio_administracion'];?>" required>
                                                                 </div>
 
@@ -170,12 +170,12 @@ if($datos_personales['step'] > 6){
                                                                     <input name="correo" id="correo" type="text" class="form-control" value="<?php echo $datos_abae['correo_abae'];?>" maxlength="100" required>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label class="block">Teléfono Oficina / Ext</label>
+                                                                    <label class="block">Teléfono Oficina / Ext.</label>
                                                                     <input name="telefono_oficina" id="telefono_oficina" type="text" class="form-control" value="<?php echo $datos_abae['tlf_oficina'];?>" maxlength="40">
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="block">Posee Familiares en ABAE</label>
+                                                                    <label class="block">Posee Familiares en la ABAE</label>
                                                                     <select class="form-control" id="posee_familiares_abae" name="posee_familiares_abae" required onchange="changeFamiliaresAbae();">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -390,7 +390,7 @@ if($datos_personales['step'] > 6){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -398,13 +398,13 @@ if($datos_personales['step'] > 6){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -413,7 +413,7 @@ if($datos_personales['step'] > 6){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -470,10 +470,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Datos Institucionales</a>
+                                        <a class="activate">Actualización de Datos / Institucionales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -486,7 +486,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Datos Institucionales en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de datos institucionales en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

@@ -28,7 +28,7 @@
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Configuración de Perfil</h4>
-                                    <!--<span>Otros Datos</span>-->
+                                    <span>Modificación de Perfil</span>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <!--<a href="#!" class="activate">Actualización de Datos / Otros Datos</a>-->
-                                        <a class="activate">Configuración de Perfil</a>
+                                        <a class="activate">Perfil</a>
                                     </li>
                                 </ul>
                             </div>
@@ -151,7 +151,7 @@
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }

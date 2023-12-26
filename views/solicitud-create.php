@@ -198,13 +198,13 @@ function get_periodos($fechaInicio, $fechaFin = null)
                                                 <option value="">Seleccione</option>
                                                 <option value="Por Docencia">Por Docencia</option>
                                                 <option value="Por Estudios">Por Estudios</option>
-                                                <option value="Consulta Medica">Consulta Medica</option>
+                                                <option value="Consulta Medica">Consulta Médica</option>
                                                 <option value="Matrimonio">Matrimonio</option>
                                                 <option value="Fallecimiento de Familiar">Fallecimiento de Familiar</option>
                                                 <option value="Lactancia Materna">Lactancia Materna</option>
                                                 <option value="Nacimiento de Hijo">Nacimiento de Hijo</option>
                                                 <option value="Diligencia Personales">Diligencia Personales</option>
-                                                <option value="Cuidados Medicos de Familiares">Cuidados Medicos de Familiares</option>
+                                                <option value="Cuidados Medicos de Familiares">Cuidados Médicos de Familiares</option>
                                                 <option value="Otros">Otros</option>
                                             </select>
                                             </div>
@@ -299,7 +299,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                 </button>
             </div>
             <div class="modal-body">
-                Hay una solicitud de vacaciones pendiente que aún no ha sido aprobada.
+                Hay una solicitud de vacaciones pendiente que aún no ha sido aprobada
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -318,7 +318,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                 <h4 class="modal-title w-100">Solicitud Pendiente!</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center">Hay una solicitud de vacaciones pendiente que aún no ha sido aprobada.</p>
+                <p class="text-center">Hay una solicitud de vacaciones pendiente que aún no ha sido aprobada</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-block" data-dismiss="modal">OK</button>
@@ -337,7 +337,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                 <h4 class="modal-title w-100">Atención!</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center">Sus vacaciones no pueden iniciar en fines de semana o días feriados.</p>
+                <p class="text-center">Sus vacaciones no pueden iniciar en fines de semana o días feriados</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-block" data-dismiss="modal">OK</button>
@@ -356,7 +356,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                 <h4 class="modal-title w-100">Atención!</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center">Éste período coincide con el siguiente período vacacional:</p>
+                <p class="text-center">Este período coincide con el siguiente período vacacional:</p>
                 <br>
                 <div class="form-group">
                     <div class="row justify-content-center">

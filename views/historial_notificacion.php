@@ -142,7 +142,7 @@ include_once "../database/conexion.php";
 
                             <ul class="" style="border-radius:5px">
                                 <li style="padding: 10px 10px;color:#808080;">
-                                    <h5>No Tiene Historial de Notificaciones</h5>
+                                    <h5>No tiene historial de notificaciones</h5>
 
                                 </li>
                             </ul>

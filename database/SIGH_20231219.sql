@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 18:55:38
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 7.4.30
+-- Tiempo de generación: 20-12-2023 a las 01:52:42
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 CREATE DATABASE personal_control;
 USE personal_control;
@@ -394,13 +394,6 @@ CREATE TABLE `datos_abae` (
   `id_jefe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `datos_abae`
---
-
-INSERT INTO `datos_abae` (`id_datos_abae`, `id_usuario`, `id_unidad`, `fecha_ingreso`, `cargo`, `correo_abae`, `nombres_familiares_abae`, `estatus`, `fecha_inicio_administracion`, `id_direccion`, `tlf_oficina`, `id_jefe`) VALUES
-(58, 25, 0, '2010-06-12', 'Director', 'gguedez@gmail.com', '', 'activo', '2009-06-12', 1, '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -479,16 +472,6 @@ CREATE TABLE `datos_personales` (
   `parroquia` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `datos_personales`
---
-
-INSERT INTO `datos_personales` (`id_datos_personales`, `id_usuario`, `id_municipio`, `fecha_registro`, `domicilio`, `lugar_nacimiento`, `fecha_nacimiento`, `sexo`, `estado_civil`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `estatura`, `peso`, `perfil_dominante`, `telefono_movil`, `telefono_habitacion`, `rif`, `contacto_emergencia`, `telefono_emergencia`, `alergias`, `tipo_sangre`, `padece_enfermedad_cronica`, `esta_embarazada`, `meses_gestacion`, `firma`, `estatus`, `foto`, `cantidad_hijos`, `enfermedad_cronica`, `nombre_conyugue`, `parroquia`) VALUES
-(58, 25, 94, '2023-11-29', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1978-06-12', 'Masculino', 'Soltero(a)', 'S', '32', '40', '1.60', '80', 'Zurdo', '4564564564', '4515415151', '3123123', 'Jose Carrizales', '4564566465', 'Priperam', 'O+', 'No', 'N/A', 'N/A', 'IMG_20221204_134132_710.jpg', 'activo', 'IMG-20221001-WA0036.jpg', 0, 'N/A', 'N/A', 0),
-(59, 26, 225, '2023-11-29', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1990-04-18', 'Femenino', 'Soltero(a)', 'M', '30', '42', '1.68', '50', 'Diestro', '14651561', '', '24642009', '7498494', '8949498', 'Priperam', 'B+', 'No', 'No', 'N/A', 'Category (1).png', 'activo', 'logoplatzi_alpha_f155cb85-e046-4715-87b1-5df4ec41e632.png', 0, 'N/A', 'N/A', 0),
-(60, 27, 87, '2023-12-01', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1995-07-29', 'Masculino', 'Casado(a)', 'M', '32', '42', '1.68', '85', 'Diestro', '04144001564', '02423770971', '24642009', 'Yohaily Añez', '04244086819', 'Priperam', 'B+', 'No', 'N/A', 'N/A', 'Firma digital.PNG', 'activo', 'Profile.png', 0, 'N/A', 'Yohaily Añez', 0),
-(61, 27, 87, '2023-12-01', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1995-07-29', 'Masculino', 'Casado(a)', 'M', '34', '42', '1.68', '85', 'Diestro', '04144001564', '02423770971', '246420099', 'Yohaily Añez', '04244086819', 'Priperam', 'B+', 'No', 'N/A', 'N/A', 'Firma digital.PNG', 'activo', '20220530_133745.jpg', 0, 'N/A', 'Yohaily Añez', 276);
-
 -- --------------------------------------------------------
 
 --
@@ -521,12 +504,23 @@ CREATE TABLE `direccion` (
 --
 
 INSERT INTO `direccion` (`id_direccion`, `id_sede`, `nombre`, `id_jefe`, `estatus`) VALUES
-(1, 5, 'Dirección de\nInvestigación e\nInnovación', '', 'activo'),
-(2, 1, 'Direccion de Calidad, Normalizacion y Regulacion', '', 'activo'),
-(3, 1, 'Direccion de Ciencia Formacion y Desarrollo', '', 'activo'),
-(4, 1, 'Direccion de Sistemas Espaciales', '', 'activo'),
-(5, 1, 'Direccion de Aplicaciones Espaciales', '', 'activo'),
-(8, 1, 'N/A', 'N/A', 'activo');
+(1, 1, 'Presidencia', '', 'activo'),
+(2, 1, 'Despacho', '', 'activo'),
+(3, 1, 'Dirección de Seguridad Integral', '', 'activo'),
+(4, 1, 'Consultoría Jurídica', '', 'activo'),
+(5, 1, 'Dirección de Gestión Humana', '', 'activo'),
+(6, 1, 'Dirección de Planificación, Organización y Presupuesto', '', 'activo'),
+(7, 1, 'Dirección de Gestión Administrativa', '', 'activo'),
+(8, 1, 'Dirección de Tecnología de la Información y la Comunicación', '', 'activo'),
+(9, 1, 'Dirección de Asuntos Internacionales', '', 'activo'),
+(10, 1, 'Oficina de Atención al Ciudadano', '', 'activo'),
+(11, 1, 'Oficina de Gestión Comunicacional', '', 'activo'),
+(12, 1, 'Dirección Ejecutiva', '', 'activo'),
+(13, 1, 'Dirección de Aplicaciones Espaciales', '', 'activo'),
+(14, 1, 'Dirección de Sistemas Espaciales', '', 'activo'),
+(15, 1, 'Dirección de Ciencia, Formación y Desarrollo', '', 'activo'),
+(16, 1, 'Dirección de Calidad, Normalización y Regulación', '', 'activo'),
+(17, 1, 'Dirección de Investigación e Innovación', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -606,7 +600,7 @@ CREATE TABLE `feriados` (
 --
 
 INSERT INTO `feriados` (`id`, `days_actual`, `days_siguiente`, `fecha_actualizacion`) VALUES
-(1, '[{\"name\":\"Año Nuevo\",\"date\":\"2023-01-01\",\"status\":\"inactivo\"},{\"name\":\"Día de los Reyes Magos\",\"date\":\"2023-01-06\",\"status\":\"inactivo\"},{\"name\":\"Día del Maestro\",\"date\":\"2023-01-15\",\"status\":\"inactivo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-20\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-21\",\"status\":\"activo\"},{\"name\":\"San José\",\"date\":\"2023-03-19\",\"status\":\"inactivo\"},{\"name\":\"Semana Santa\",\"date\":\"2023-04-03\",\"status\":\"inactivo\"},{\"name\":\"Jueves Santo\",\"date\":\"2023-04-06\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2023-04-07\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2023-04-09\",\"status\":\"inactivo\"},{\"name\":\"Declaración de la Independencia\",\"date\":\"2023-04-19\",\"status\":\"inactivo\"},{\"name\":\"Día del trabajador\",\"date\":\"2023-05-01\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2023-06-24\",\"status\":\"activo\"},{\"name\":\"Día de la Independencia\",\"date\":\"2023-07-05\",\"status\":\"activo\"},{\"name\":\"Natalicio de Simón Bolívar\",\"date\":\"2023-07-24\",\"status\":\"activo\"},{\"name\":\"Día de la Bandera\",\"date\":\"2023-08-03\",\"status\":\"inactivo\"},{\"name\":\"Día de Nuestra Señora de Coromoto\",\"date\":\"2023-09-11\",\"status\":\"inactivo\"},{\"name\":\"Día de la resistencia indígena\",\"date\":\"2023-10-12\",\"status\":\"inactivo\"},{\"name\":\"Todos los Santos\",\"date\":\"2023-11-01\",\"status\":\"inactivo\"},{\"name\":\"Día de los Difuntos\",\"date\":\"2023-11-02\",\"status\":\"inactivo\"},{\"name\":\"La inmaculada concepción\",\"date\":\"2023-12-08\",\"status\":\"inactivo\"},{\"name\":\"Día de la Aviación Nacional\",\"date\":\"2023-12-10\",\"status\":\"inactivo\"},{\"name\":\"Nochebuena\",\"date\":\"2023-12-24\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2023-12-25\",\"status\":\"activo\"},{\"name\":\"Fin del Año\",\"date\":\"2023-12-31\",\"status\":\"activo\"}]', '[{\"name\":\"Año Nuevo\",\"date\":\"2024-01-01\",\"status\":\"inactivo\"},{\"name\":\"Día de los Reyes Magos\",\"date\":\"2024-01-06\",\"status\":\"inactivo\"},{\"name\":\"Día del Maestro\",\"date\":\"2024-01-15\",\"status\":\"inactivo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-12\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-13\",\"status\":\"activo\"},{\"name\":\"San José\",\"date\":\"2024-03-19\",\"status\":\"inactivo\"},{\"name\":\"Semana Santa\",\"date\":\"2024-03-25\",\"status\":\"inactivo\"},{\"name\":\"Jueves Santo\",\"date\":\"2024-03-28\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2024-03-29\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2024-03-31\",\"status\":\"inactivo\"},{\"name\":\"Declaración de la Independencia\",\"date\":\"2024-04-19\",\"status\":\"inactivo\"},{\"name\":\"Día del trabajador\",\"date\":\"2024-05-01\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2024-06-24\",\"status\":\"activo\"},{\"name\":\"Día de la Independencia\",\"date\":\"2024-07-05\",\"status\":\"activo\"},{\"name\":\"Natalicio de Simón Bolívar\",\"date\":\"2024-07-24\",\"status\":\"activo\"},{\"name\":\"Día de la Bandera\",\"date\":\"2024-08-03\",\"status\":\"inactivo\"},{\"name\":\"Día de Nuestra Señora de Coromoto\",\"date\":\"2024-09-11\",\"status\":\"inactivo\"},{\"name\":\"Día de la resistencia indígena\",\"date\":\"2024-10-12\",\"status\":\"inactivo\"},{\"name\":\"Todos los Santos\",\"date\":\"2024-11-01\",\"status\":\"inactivo\"},{\"name\":\"Día de los Difuntos\",\"date\":\"2024-11-02\",\"status\":\"inactivo\"},{\"name\":\"La inmaculada concepción\",\"date\":\"2024-12-08\",\"status\":\"inactivo\"},{\"name\":\"Día de la Aviación Nacional\",\"date\":\"2024-12-10\",\"status\":\"inactivo\"},{\"name\":\"Nochebuena\",\"date\":\"2024-12-24\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2024-12-25\",\"status\":\"activo\"},{\"name\":\"Fin del Año\",\"date\":\"2024-12-31\",\"status\":\"activo\"}]', '2023-11-27');
+(1, '[{\"name\":\"AÃ±o Nuevo\",\"date\":\"2023-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Reyes Magos\",\"date\":\"2023-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del Maestro\",\"date\":\"2023-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-20 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-21 00:00:00\",\"status\":\"activo\"},{\"name\":\"San JosÃ©\",\"date\":\"2023-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2023-04-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2023-04-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2023-04-07 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2023-04-09 00:00:00\",\"status\":\"activo\"},{\"name\":\"DeclaraciÃ³n de la Independencia\",\"date\":\"2023-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del trabajador\",\"date\":\"2023-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2023-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Independencia\",\"date\":\"2023-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de SimÃ³n BolÃ­var\",\"date\":\"2023-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Bandera\",\"date\":\"2023-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de Nuestra SeÃ±ora de Coromoto\",\"date\":\"2023-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la resistencia indÃ­gena\",\"date\":\"2023-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2023-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Difuntos\",\"date\":\"2023-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepciÃ³n\",\"date\":\"2023-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la AviaciÃ³n Nacional\",\"date\":\"2023-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2023-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2023-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del AÃ±o\",\"date\":\"2023-12-31 00:00:00\",\"status\":\"activo\"}]', '[{\"name\":\"AÃ±o Nuevo\",\"date\":\"2024-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Reyes Magos\",\"date\":\"2024-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del Maestro\",\"date\":\"2024-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-13 00:00:00\",\"status\":\"activo\"},{\"name\":\"San JosÃ©\",\"date\":\"2024-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2024-03-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2024-03-28 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2024-03-29 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2024-03-31 00:00:00\",\"status\":\"activo\"},{\"name\":\"DeclaraciÃ³n de la Independencia\",\"date\":\"2024-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del trabajador\",\"date\":\"2024-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2024-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Independencia\",\"date\":\"2024-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de SimÃ³n BolÃ­var\",\"date\":\"2024-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Bandera\",\"date\":\"2024-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de Nuestra SeÃ±ora de Coromoto\",\"date\":\"2024-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la resistencia indÃ­gena\",\"date\":\"2024-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2024-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Difuntos\",\"date\":\"2024-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepciÃ³n\",\"date\":\"2024-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la AviaciÃ³n Nacional\",\"date\":\"2024-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2024-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2024-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del AÃ±o\",\"date\":\"2024-12-31 00:00:00\",\"status\":\"activo\"}]', '2023-12-18');
 
 -- --------------------------------------------------------
 
@@ -993,15 +987,6 @@ CREATE TABLE `nivel_academico` (
   `estatus` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `nivel_academico`
---
-
-INSERT INTO `nivel_academico` (`id_nivel_academico`, `id_usuario`, `especializacion`, `titulo_obtenido`, `anio_egreso`, `instituto_universitario`, `estatus`) VALUES
-(21, 25, 'Post-Grado', 'Ingeniero de Sistemas', '2014', 'UNEFA', 'activo'),
-(22, 26, 'Licenciatura', 'Ingeniero Mecanico', '2016', 'UNEFA', 'activo'),
-(23, 27, 'Licenciatura', 'Ingeniero de Sistemas', '2019', 'UNEFA', 'activo');
-
 -- --------------------------------------------------------
 
 --
@@ -1058,13 +1043,6 @@ CREATE TABLE `otros_datos_usuario` (
   `deporte_actividad_cutural` varchar(200) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `otros_datos_usuario`
---
-
-INSERT INTO `otros_datos_usuario` (`id_otros_datos_usuario`, `id_usuario`, `facebook`, `twitter`, `instagram`, `otras_redes`, `tiene_carnet_patria`, `codigo_carnet_patria`, `serial_carnet_patria`, `beneficios_patria`, `tiene_carnet_psuv`, `codigo_carnet_psuv`, `serial_carnet_psuv`, `beneficios_psuv`, `partido_politico`, `movimiento_social`, `comuna`, `es_vocero_comuna`, `recibe_clap`, `vivienda`, `tipo_vivienda`, `posee_vehiculo`, `tipo_vehiculo`, `usa_transporte_publico`, `tipo_transporte_publico`, `ruta_trabajo`, `deporte_actividad_cutural`, `estatus`) VALUES
-(14, 25, '', '', '', '', 'No', '', '', '', 'No', '', '', '', 'No', 'No', 'No', 'No', 'No', 'Alquilada', 'Casa', 'No', 'Automóvil', 'No', '', 'Nueva Taborda - Centro / Centro - Borburata', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -2451,11 +2429,11 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`id_sede`, `nombre`, `direccion`, `telefono_oficina`, `jefe`, `estatus`) VALUES
-(1, 'CTSR', 'Caracas', '02420000000', '', 'activo'),
-(2, 'SAT', 'Caracas', '024200000000', '', 'activo'),
-(3, 'ETCS-Baemari', 'Guarico', '024200000000', '', 'activo'),
-(4, 'ETCS-Luepa', 'Bolivar', '024200000000', '', 'activo'),
-(5, 'CIDE', 'Borburata', '024200000000', '', 'activo');
+(1, 'CTSR', 'Caracas', '', '', 'activo'),
+(2, 'SAT', 'Caracas', '', '', 'activo'),
+(3, 'ETCS-Baemari', 'Guárico', '', '', 'activo'),
+(4, 'ETCS-Luepa', 'Bolívar', '', '', 'activo'),
+(5, 'CIDE', 'Carabobo', '', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -2501,10 +2479,11 @@ CREATE TABLE `tipo_solicitud` (
 --
 
 INSERT INTO `tipo_solicitud` (`id`, `nombre`, `estatus`) VALUES
-(1, 'Reposo', 'activa'),
-(2, 'Constancia', 'activa'),
-(3, 'Permisos', 'inactiva'),
-(4, 'Vacaciones', 'activa');
+(1, 'Vacaciones', 'activa'),
+(2, 'Reposo', 'activa'),
+(3, 'Permisos', 'activa'),
+(4, 'Constancia', 'activa');
+
 
 -- --------------------------------------------------------
 
@@ -2525,25 +2504,57 @@ CREATE TABLE `unidad` (
 --
 
 INSERT INTO `unidad` (`id_unidad`, `id_direccion`, `nombre`, `id_jefe`, `estatus`) VALUES
-(1, 1, 'Desarrollo e Innovacion Tecnologica', '', 'activo'),
-(2, 1, 'Logistica de Produccion', '23', 'activo'),
-(3, 1, 'Desarrollo de Productos y Procesos', '', 'activo'),
-(4, 1, 'Mantenimiento Industrial', '', 'activo'),
-(5, 2, 'Gestion de Plataformas y Proyectos Espaciales', '', 'activo'),
-(6, 2, 'Aseguramiento de la Calidad de Productos Espaciales', '', 'activo'),
-(7, 2, 'Ingenieria Espacial', '', 'activo'),
-(8, 2, 'Gestion de Calidad', '', 'activo'),
-(9, 3, 'Ciencias Espaciales y Exploracion', '', 'activo'),
-(10, 3, 'Educacion Espacial', '', 'activo'),
-(11, 4, 'Operacion de Vehiculos Espaciales', '', 'activo'),
-(12, 4, 'Segmento Terreno', '', 'activo'),
-(13, 4, 'Equipos y Talleres Especializados', '', 'activo'),
-(14, 5, 'Observacion de la Tierra', '', 'activo'),
-(15, 5, 'Mediciones Cientificas', '', 'activo'),
-(16, 5, 'Sistemas de Navegacion', '', 'activo'),
-(17, 5, 'Telecomunicaciones', '', 'activo'),
-(18, 5, 'Gestion de Datos Espaciales', '', 'activo'),
-(25, 1, 'N/A', 'N/A', 'activo');
+(1, 2, 'Coordinación de Obras e Infraestructura', '', NULL),
+(2, 2, 'Archivo Central', '', NULL),
+(3, 3, 'Seguridad Laboral', '', NULL),
+(4, 3, 'Seguridad, Higiene y Ambiente', '', NULL),
+(5, 3, 'Seguridad Industrial', '', NULL),
+(6, 4, 'Asesoría y Asuntos Jurídicos', '', NULL),
+(7, 4, 'Estudios, Doctrina y Derecho Espacial', '', NULL),
+(8, 5, 'Planificación, Captación y Desarrollo', '', NULL),
+(9, 5, 'Administración de Gestión Humana', '', NULL),
+(10, 5, 'Bienestar Social y Salud Laboral', '', NULL),
+(11, 6, 'Planificación', '', NULL),
+(12, 6, 'Organización y Procesos', '', NULL),
+(13, 6, 'Presupuesto', '', NULL),
+(14, 7, 'Contabilidad', '', NULL),
+(15, 7, 'Tesorería', '', NULL),
+(16, 7, 'Compras y Servicios', '', NULL),
+(17, 7, 'Servicios Generales', '', NULL),
+(18, 7, 'Bienes Nacionales', '', NULL),
+(19, 7, 'Contrataciones', '', NULL),
+(20, 8, 'Soporte Técnico y Atención al Usuario', '', NULL),
+(21, 8, 'Soporte de Redes y Servidores', '', NULL),
+(22, 8, 'Desarrollo de Sistemas', '', NULL),
+(23, 9, 'Asuntos Bilaterales y Multilaterales', '', NULL),
+(24, 9, 'Análisis Estratégico Internacional', '', NULL),
+(25, 10, 'Atención a Reclamos, Quejas, Sugerencias y Peticiones', '', NULL),
+(26, 10, 'Distribución de Información y Promoción de la Participación', '', NULL),
+(27, 11, 'Medios de Información', '', NULL),
+(28, 11, 'Audiovisual y Diseño Gráfico', '', NULL),
+(29, 11, 'Relaciones Interinstitucionales', '', NULL),
+(30, 12, 'Centro de Documentación Espacial', '', NULL),
+(31, 12, 'Gestión de Productos y Servicios', '', NULL),
+(32, 12, 'Control y Seguimiento de Proyectos Espaciales', '', NULL),
+(33, 12, 'Coordinación de Políticas y Prospectiva Espacial', '', NULL),
+(34, 13, 'Observación de la Tierra', '', NULL),
+(35, 13, 'Mediciones Científicas', '', NULL),
+(36, 13, 'Sistemas de Navegación', '', NULL),
+(37, 13, 'Telecomunicaciones', '', NULL),
+(38, 13, 'Gestión de Datos Espaciales', '', NULL),
+(39, 14, 'Operación de Vehículos Espaciales', '', NULL),
+(40, 14, 'Segmento Terreno', '', NULL),
+(41, 14, 'Equipos y Talleres Especializados', '', NULL),
+(42, 15, 'Ciencias Espaciales y Exploración', '', NULL),
+(43, 15, 'Educación Espacial', '', NULL),
+(44, 16, 'Gestión de Plataformas y Proyectos Espaciales', '', NULL),
+(45, 16, 'Aseguramiento de la Calidad de Productos Espaciales', '', NULL),
+(46, 16, 'Ingeniería Espacial', '', NULL),
+(47, 16, 'Gestión de la Calidad', '', NULL),
+(48, 17, 'Desarrollo e Innovación Tecnológica', '', NULL),
+(49, 17, 'Logística de Producción', '', NULL),
+(50, 17, 'Desarrollo de Productos y Procesos', '', NULL),
+(51, 17, 'Seguridad y Mantenimiento Industrial', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -2571,10 +2582,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, `user`, `pass`, `tipo_usuario`, `estatus`, `id_jefe`, `step`, `correo`) VALUES
-(12, 'Admin', 'DGH', '1234786', 'director', 'User_admin', '1234', 'admin', 'activo', 0, 6, 'dgh_abae@abae.gob.ve'),
-(25, 'Gustavo', 'Guedez', '12554444', 'Director', 'gguedez07', '12345', 'jefe', 'activo', 0, 9, 'gguedez@abae.gob.ve'),
-(26, 'Karla', 'Mieres', '14544554', '', 'kmieres07', '12345', 'empleado', 'activo', 0, 6, 'kmieres@gmail.com'),
-(27, 'Jose Franzue', 'Carrizales Vargas', '24642009', '', 'jcarri07', '12345', 'empleado', 'activo', 0, 1, 'jcarrizales@abae.gob.ve');
+(0, 'Administrador', 'SIGH', '0', 'Operador', 'SIGH', '1234', 'admin', 'activo', 0, 0, '');
 
 --
 -- Índices para tablas volcadas
@@ -2726,37 +2734,37 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `datos_abae`
 --
 ALTER TABLE `datos_abae`
-  MODIFY `id_datos_abae` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_datos_abae` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_hijos`
 --
 ALTER TABLE `datos_hijos`
-  MODIFY `id_datos_hijos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_datos_hijos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_militar`
 --
 ALTER TABLE `datos_militar`
-  MODIFY `id_datos_militar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_datos_militar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_personales`
 --
 ALTER TABLE `datos_personales`
-  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_vacaciones`
 --
 ALTER TABLE `datos_vacaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -2768,13 +2776,13 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de la tabla `experiencia_instituciones_publicas`
 --
 ALTER TABLE `experiencia_instituciones_publicas`
-  MODIFY `id_experiencia_instituciones_publicas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_experiencia_instituciones_publicas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `formacion_exterior`
 --
 ALTER TABLE `formacion_exterior`
-  MODIFY `id_formacion_exterior` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_formacion_exterior` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
@@ -2786,19 +2794,19 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT de la tabla `nivel_academico`
 --
 ALTER TABLE `nivel_academico`
-  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `nucleo_familiar`
 --
 ALTER TABLE `nucleo_familiar`
-  MODIFY `id_nucleo_familiar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_nucleo_familiar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `otros_datos_usuario`
 --
 ALTER TABLE `otros_datos_usuario`
-  MODIFY `id_otros_datos_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_otros_datos_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
@@ -2822,19 +2830,19 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
 --
 ALTER TABLE `unidad`
-  MODIFY `id_unidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_unidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

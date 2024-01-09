@@ -19,7 +19,7 @@ date_default_timezone_set("America/Caracas");
 ?>
 
 <head>
-    <title>Login </title>
+    <title>SIGH | Login </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -114,7 +114,7 @@ date_default_timezone_set("America/Caracas");
 
     <footer>
         <p>
-            Creado por la Direccion de Investigacion e Innovacion Espacial, USMI-UDLP; ABAE 2023.
+            Desarrollado por la Dirección de Investigación e Innovación Espacial, USMI-UDLP; ABAE 2023
         </p>
     </footer>
 
@@ -192,8 +192,8 @@ date_default_timezone_set("America/Caracas");
                             case "no":
                                 Swal.fire({
                                         icon: 'warning',
-                                        title: 'Error en verificación',
-                                        text: 'Nombre de usuario o contraseña incorrecto',
+                                        title: 'Error de verificación',
+                                        text: 'Usuario o contraseña incorrecto',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //CONTRASEÑA O USUARIO INCORRECTOS

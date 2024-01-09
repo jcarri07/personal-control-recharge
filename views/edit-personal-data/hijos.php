@@ -34,7 +34,7 @@ if($datos_personales['step'] > 1){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Hijos</span>
+                                    <span>Datos de Hijos</span>
                                 </div>
                             </div>
                         </div>
@@ -42,10 +42,10 @@ if($datos_personales['step'] > 1){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Hijos</a>
+                                        <a class="activate">Actualización de Datos / Hijos</a>
                                     </li>
                                 </ul>
                             </div>
@@ -76,7 +76,7 @@ if($datos_personales['step'] > 1){
                                                                     <th>Nombre</th>
                                                                     <th>Fecha de Nacimiento</th>
                                                                     <th>Sexo</th>
-                                                                    <th>Grado Educacional</th>
+                                                                    <th>Grado Escolar</th>
                                                                     <th></th>
                                                                 </tr>
                                                             </thead>
@@ -119,7 +119,7 @@ if($datos_personales['step'] > 1){
                                                 }
                                                 else{
                                             ?>
-                                                <h2 class="text-center mt-4">No Hay Hijos Registrados.</h2>
+                                                <h2 class="text-center mt-4">No hay hijos registrados</h2>
 
                                                 
                                             <?php 
@@ -160,19 +160,17 @@ if($datos_personales['step'] > 1){
                                         <input id="name" name="name" type="text" class="required form-control" maxlength="100" required>
                                     </div>
                                     <div class="col-md-6">
+                                        <label class="block">Cédula de Identidad</label>
+                                        <input name="ci" id="ci" type="number" class="required form-control" maxlength="30">
+                                    </div>
+                                    <div class="col-md-6">
                                         <label class="block">Fecha de Nacimiento</label>
                                         <input name="birthday" id="birthday" type="date" class="form-control required" onchange="calculateAge('birthday','age')" required>
                                     </div>
-
                                     <div class="col-md-6">
                                         <label class="block">Edad</label>
                                         <input name="ageEmployeer" id="age" type="text" class="form-control required" readonly>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="block">Cédula de Identidad</label>
-                                        <input name="ci" id="ci" type="number" class="required form-control" maxlength="30">
-                                    </div>
-
                                     <div class="col-md-6">
                                         <label class="block">Sexo</label>
                                         <select class="form-control required" id="gender" name="gender" onchange="//womanInformation(this)" required>
@@ -182,44 +180,37 @@ if($datos_personales['step'] > 1){
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="block">Grado Educacional</label>
+                                        <label class="block">Grado Escolar</label>
                                         <select class="form-control required" id="education" name="education">
-                                            <option value="">Seleccione</option>
+                                            <option value="Seleccione">Seleccione</option>
+                                            <option value="N/A">N/A</option>
+                                            <option value="Inicial">Inicial</option>
                                             <option value="Primaria">Primaria</option>
                                             <option value="Secundaria">Secundaria</option>
                                             <option value="Universitario">Universitario</option>
                                         </select>
                                     </div>
-                                    
                                     <div class="col-md-6">
                                         <label for="" class="block">Talla de Camisa</label>
                                         <select class="form-control" name="shirtSizes" id="shirtSizes">
-                                            <option value="">Seleccione</option>
+                                        <option value="Seleccione">Seleccione</option>
+                                            <option value="XS">XS</option>
                                             <option value="S">S</option>
                                             <option value="M">M</option>
                                             <option value="L">L</option>
                                             <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
+                                            <option value="2XL">2XL</option>
+                                            <option value="3XL">3XL</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="jeansSizes" class="block">Talla de Pantalón</label>
-                                        <select class="form-control" name="jeansSizes" id="jeansSizes">
-                                            <option value="">Seleccione</option>
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L">L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="XXL">XXL</option>
-                                        </select>
+                                        <input name="jeansSizes" id="jeansSizes" type="number" class="form-control" maxlength="10">
                                     </div>
-
                                     <div class="col-md-6">
                                         <label for="shoesSizes" class="block">Talla de Calzado</label>
                                         <input name="shoesSizes" id="shoesSizes" type="number" class="form-control" maxlength="10">
-                                    </div>
-                                    
-                                    
+                                    </div>                                   
                                 </div>
 
                                 <div class="row">
@@ -316,7 +307,7 @@ if($datos_personales['step'] > 1){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -324,13 +315,13 @@ if($datos_personales['step'] > 1){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -339,7 +330,7 @@ if($datos_personales['step'] > 1){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -389,7 +380,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Hijos</span>
+                                    <span>Datos de Hijos</span>
                                 </div>
                             </div>
                         </div>
@@ -397,10 +388,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Hijos</a>
+                                        <a class="activate">Actualización de Datos / Hijos</a>
                                     </li>
                                 </ul>
                             </div>
@@ -413,7 +404,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Hijos en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el Registro de Hijos en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

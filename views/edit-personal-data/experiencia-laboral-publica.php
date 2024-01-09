@@ -39,7 +39,7 @@ if($datos_personales['step'] > 5){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Experiencia Laboral en Instituciones Públicas</span>
+                                    <span>Datos de Experiencia Laboral</span>
                                 </div>
                             </div>
                         </div>
@@ -47,10 +47,10 @@ if($datos_personales['step'] > 5){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Experiencia Laboral en Instituciones Públicas</a>
+                                        <a class="activate">Actualización de Datos / Experiencia Laboral</a>
                                     </li>
                                 </ul>
                             </div>
@@ -121,7 +121,7 @@ if($datos_personales['step'] > 5){
                                                 }
                                                 else{
                                             ?>
-                                                <h2 class="text-center mt-4">No Hay Ninguna Experiencia Laboral Registrada.</h2>
+                                                <h2 class="text-center mt-4">No hay ninguna experiencia laboral registrada</h2>
 
                                                 
                                             <?php 
@@ -179,7 +179,7 @@ if($datos_personales['step'] > 5){
                                     <div class="col-md-6">
                                         <label class="block">Posee Antecedentes de Servicios</label>
                                         <select class="form-control" id="antecedentes_servicios" name="antecedentes_servicios" required>
-                                            <option value="">Seleccione</option>
+                                            <option value="Seleccione">Seleccione</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
                                         </select>
@@ -272,7 +272,7 @@ if($datos_personales['step'] > 5){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -280,13 +280,13 @@ if($datos_personales['step'] > 5){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -295,7 +295,7 @@ if($datos_personales['step'] > 5){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -345,7 +345,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Experiencia Laboral en Instituciones Públicas</span>
+                                    <span>Datos de Experiencia Laboral</span>
                                 </div>
                             </div>
                         </div>
@@ -353,10 +353,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Experiencia Laboral en Instituciones Públicas</a>
+                                        <a class="activate">Actualización de Datos / Experiencia Laboral</a>
                                     </li>
                                 </ul>
                             </div>
@@ -369,7 +369,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Experiencia Laboral en Instituciones Públicas en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de experiencia laboral en instituciones públicas en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

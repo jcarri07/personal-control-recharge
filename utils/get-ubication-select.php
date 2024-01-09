@@ -1,6 +1,5 @@
 <?php
 require_once '../database/conexion.php';
-header('Content-Type: text/html; charset=UTF-8');
 
 $cat = $_POST['cat'];
 $id = $_POST['id'];

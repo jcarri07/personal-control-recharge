@@ -88,7 +88,7 @@ if($datos_personales['step'] > 8){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Otros Datos</span>
+                                    <span>Otros Datos del Empleado</span>
                                 </div>
                             </div>
                         </div>
@@ -96,10 +96,10 @@ if($datos_personales['step'] > 8){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Otros Datos</a>
+                                        <a class="activate">Actualización de Datos / Otros Datos</a>
                                     </li>
                                 </ul>
                             </div>
@@ -195,7 +195,7 @@ if($datos_personales['step'] > 8){
                                                             </div>
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_partido_politico" class="block">Pertenece a algún Partido Político?</label>
+                                                                    <label for="pertenece_partido_politico" class="block">¿Pertenece a algún Partido Político? (Indique)</label>
                                                                     <select class="form-control" name="pertenece_partido_politico" id="pertenece_partido_politico">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -203,7 +203,7 @@ if($datos_personales['step'] > 8){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_movimiento_social" class="block">Pertenece a algún Movimiento Social?</label>
+                                                                    <label for="pertenece_movimiento_social" class="block">¿Pertenece a algún Movimiento Social? (Indique)</label>
                                                                     <select class="form-control" name="pertenece_movimiento_social" id="pertenece_movimiento_social">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -212,7 +212,7 @@ if($datos_personales['step'] > 8){
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_comuna" class="block">Pertenece a alguna Comuna o Consejo Comunal?</label>
+                                                                    <label for="pertenece_comuna" class="block">¿Pertenece a alguna Comuna o Consejo Comunal? (Indique)</label>
                                                                     <select class="form-control" name="pertenece_comuna" id="pertenece_comuna">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -220,7 +220,7 @@ if($datos_personales['step'] > 8){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="es_vocero_comuna" class="block">Es Usted Vocero en Alguna Comuna o Consejo Comunal?</label>
+                                                                    <label for="es_vocero_comuna" class="block">¿Es Usted Vocero en Alguna Comuna o Consejo Comunal? (Indique)</label>
                                                                     <select class="form-control" name="es_vocero_comuna" id="es_vocero_comuna">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -229,7 +229,7 @@ if($datos_personales['step'] > 8){
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label for="recibe_clap" class="block">Recibe Beneficio de la Caja Clap?</label>
+                                                                    <label for="recibe_clap" class="block">¿Recibe Beneficio de la Caja Clap?</label>
                                                                     <select class="form-control" name="recibe_clap" id="recibe_clap">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -243,7 +243,7 @@ if($datos_personales['step'] > 8){
                                                             </div>
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-6">
-                                                                    <label for="vivienda" class="block">Posee Vivienda Propia, Alquilada o Familiar?</label>
+                                                                    <label for="vivienda" class="block">¿Posee Vivienda Propia, Alquilada o Familiar?</label>
                                                                     <select class="form-control" name="vivienda" id="vivienda">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Alquilada">Alquilada</option>
@@ -267,7 +267,7 @@ if($datos_personales['step'] > 8){
                                                                             <option value="Cabaña">Cabaña</option>
                                                                             <option value="Anexo">Anexo</option>
                                                                             <option value="Apartaestudio">Apartaestudio</option>
-                                                                            <option value="Local comercial">Local comercial</option>
+                                                                            <option value="Local comercial">Local Comercial</option>
                                                                             <option value="Oficina">Oficina</option>
                                                                             <option value="Terreno">Terreno</option>
                                                                             <option value="Galpón">Galpón</option>
@@ -276,7 +276,7 @@ if($datos_personales['step'] > 8){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="posee_vehiculo" class="block">Posee Vehiculo Propio?</label>
+                                                                    <label for="posee_vehiculo" class="block">¿Posee Vehiculo Propio?</label>
                                                                     <select class="form-control" name="posee_vehiculo" id="posee_vehiculo" onchange="changeVehiculo();">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -293,13 +293,13 @@ if($datos_personales['step'] > 8){
                                                                         <option value="Motocicleta">Motocicleta</option>
                                                                         <option value="Bicicleta">Bicicleta</option>
                                                                         <option value="Autobús">Autobús</option>
-                                                                        <option value="Camion">Camion</option>
+                                                                        <option value="Camion">Camión</option>
                                                                         <option value="Otro">Otro</option>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label for="usa_transporte_publico" class="block">Utiliza Transporte Público?</label>
+                                                                    <label for="usa_transporte_publico" class="block">¿Utiliza Transporte Público?</label>
                                                                     <select class="form-control" name="usa_transporte_publico" id="usa_transporte_publico" onchange="changeTransportePublico();">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -316,7 +316,7 @@ if($datos_personales['step'] > 8){
                                                                     <input name="ruta_trabajo" id="ruta_trabajo" type="text" class="form-control" maxlength="500" value="<?php echo $ruta_trabajo;?>">
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="block">Practica Algún Deporte o Actividad Cultural? Indique</label>
+                                                                    <label class="block">¿Practica Algún Deporte o Actividad Cultural? (Indique)</label>
                                                                     <input name="deporte_actividad_cultural" id="deporte_actividad_cultural" type="text" class="form-control" maxlength="200" value="<?php echo $deporte_actividad_cultural;?>">
                                                                 </div>
                                                                 
@@ -484,7 +484,7 @@ if($datos_personales['step'] > 8){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -492,13 +492,13 @@ if($datos_personales['step'] > 8){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -507,7 +507,7 @@ if($datos_personales['step'] > 8){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -556,7 +556,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Otros Datos</span>
+                                    <span>Otros Datos del Empleado</span>
                                 </div>
                             </div>
                         </div>
@@ -564,10 +564,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Otros Datos</a>
+                                        <a class="activate">Actualización de Datos / Otros Datos</a>
                                     </li>
                                 </ul>
                             </div>
@@ -580,7 +580,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Otros Datos en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de otros datos en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

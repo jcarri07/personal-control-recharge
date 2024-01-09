@@ -36,7 +36,7 @@ if($datos_personales['step'] > 2){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Familiares</span>
+                                    <span>Datos de Familiares</span>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ if($datos_personales['step'] > 2){
                                                 }
                                                 else{
                                             ?>
-                                                <h2 class="text-center mt-4">No Hay Familiares Registrados.</h2>
+                                                <h2 class="text-center mt-4">No hay familiares registrados</h2>
 
                                                 
                                             <?php 
@@ -162,16 +162,17 @@ if($datos_personales['step'] > 2){
                                     <div class="col-md-12">
                                         <label class="block">Parentesco</label>
                                         <select class="form-control" id="status_family" name="status_family" required>
-                                            <option value="">Seleccione</option>
+                                        <option value="Seleccione">Seleccione</option>
                                             <option value="Conyugue">Conyugue</option>
-                                            <option value="Hijo(a)">Hijo (a)</option>
+                                            <option value="Esposo(a)">Esposo(a)</option>
+                                            <option value="Hijo(a)">Hijo(a)</option>
                                             <option value="Madre">Madre</option>
                                             <option value="Padre">Padre</option>
-                                            <option value="Tio(a)">Tio (a)</option>
-                                            <option value="Hermano(a)">Hermano (a)</option>
-                                            <option value="Abuelo(a)">Abuelo (a)</option>
-                                            <option value="Sobrino(a)">Sobrino (a)</option>
-                                            <option value="Nieto(a)">Nieto (a)</option>
+                                            <option value="Hermano(a)">Hermano(a)</option>
+                                            <option value="Tio(a)">Tio(a)</option>
+                                            <option value="Sobrino(a)">Sobrino(a)</option>
+                                            <option value="Abuelo(a)">Abuelo(a)</option>
+                                            <option value="Nieto(a)">Nieto(a)</option>
                                         </select>
                                     </div>
 
@@ -209,21 +210,19 @@ if($datos_personales['step'] > 2){
                                     <div class="col-md-6">
                                         <label class="block">Estado Civil</label>
                                         <select class="form-control" id="estado_civil" name="estado_civil" required>
-                                            <option value="">Seleccione</option>
-                                            <option value="Casado(a)">Casado(a)</option>
-                                            <option value="Conyugue">Conyugue</option>
-                                            <option value="Anulado">Anulado</option>
-                                            <option value="Conyugue">Conyugue</option>
-                                            <option value="Separado de Union Legal">Separado de Union Legal</option>
-                                            <option value="Separado de Union de Hecho">Separado de Union de Hecho</option>
-                                            <option value="Viudo(a)">Viudo(a)</option>
+                                            <option value="Seleccione">Seleccione</option>
                                             <option value="Soltero(a)">Soltero(a)</option>
+                                            <option value="Conyugue">Concubinato</option>
+                                            <option value="Casado(a)">Casado(a)</option>
+                                            <option value="Anulado">Divorciado(a)</option>
+                                            <option value="Viudo(a)">Viudo(a)</option>
                                         </select>
                                     </div>
                                     
                                     <div class="col-md-6">
                                         <label class="block">Grado de Instrucción</label>
                                         <select class="form-control" id="education" name="education" required>
+                                            <option value="Seleccione">Seleccione</option>
                                             <option value="N/A">N/A</option>
                                             <option value="Primaria">Primaria</option>
                                             <option value="Secundaria">Secundaria</option>
@@ -325,7 +324,7 @@ if($datos_personales['step'] > 2){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -333,13 +332,13 @@ if($datos_personales['step'] > 2){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -348,7 +347,7 @@ if($datos_personales['step'] > 2){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -398,7 +397,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Familiares</span>
+                                    <span>Datos de Familiares</span>
                                 </div>
                             </div>
                         </div>
@@ -406,10 +405,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Familiares</a>
+                                        <a class="activate">Actualización de Datos / Familiares</a>
                                     </li>
                                 </ul>
                             </div>
@@ -422,7 +421,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Familiares en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de familiares en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

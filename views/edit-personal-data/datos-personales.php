@@ -386,10 +386,10 @@ if(mysqli_num_rows($query) > 0){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Datos Personales</a>
+                                        <a class="activate">Actualización de Datos / Personales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -428,14 +428,10 @@ if(mysqli_num_rows($query) > 0){
                                                                     <label class="block">Correo</label>
                                                                     <input name="email" type="email" class="required form-control" value="<?php echo $fila['correo'] ?>" required maxlength="200">
                                                                 </div>
-
                                                                 <div class="col-md-4">
                                                                     <label class="block">R.I.F</label>
                                                                     <input name="rifEmployeer" type="text" class="form-control required" value="<?php echo $datos_personales_detalles['rif'];?>" maxlength="20">
                                                                 </div>
-
-                                                                
-                                                                
                                                                 <div class="col-md-4">
                                                                     <label class="block">Lugar de Nacimiento</label>
                                                                     <input name="birthPlace" type="text" class="form-control required" value="<?php echo $datos_personales_detalles['lugar_nacimiento'];?>" maxlength="100" required>
@@ -448,7 +444,6 @@ if(mysqli_num_rows($query) > 0){
                                                                     <label class="block">Edad</label>
                                                                     <input name="ageEmployeer" id="age" type="text" class="form-control required" value="" readonly>
                                                                 </div>
-                                                            
                                                                 <div class="col-md-4">
                                                                     <label class="block">Sexo</label>
                                                                     <select class="form-control required" id="gender" name="gender" onchange="womanInformation(this)">
@@ -457,19 +452,20 @@ if(mysqli_num_rows($query) > 0){
                                                                         <option value="Masculino">Masculino</option>
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                     <label class="block">Estado Civil</label>
                                                                     <select class="form-control required" id="status" name="status" onchange="hideMarriedInformation()">
                                                                         <option value="N/A">Seleccione</option>
-                                                                        <option value="Casado(a)">Casado(a)</option>
-                                                                        <option value="Conyugue">Conyugue</option>
-                                                                        <option value="Anulado">Anulado</option>
-                                                                        <option value="Conyugue">Conyugue</option>
-                                                                        <option value="Separado de Union Legal">Separado de Union Legal</option>
-                                                                        <option value="Separado de Union de Hecho">Separado de Union de Hecho</option>
-                                                                        <option value="Viudo(a)">Viudo(a)</option>
                                                                         <option value="Soltero(a)">Soltero(a)</option>
+                                                                        <option value="Conyugue">Concubinato</option>
+                                                                        <option value="Casado(a)">Casado(a)</option>
+                                                                        <option value="Anulado">Divorciado(a)</option>
+                                                                        <option value="Viudo(a)">Viudo(a)</option>
                                                                     </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="datejoin" class="block">Nombre del Cónyugue</label>
+                                                                    <input name="spouse" type="text" id="spouse" class="form-control" value="<?php echo $datos_personales_detalles['nombre_conyugue'];?>" maxlength="200">
                                                                 </div>
                                                             </div>
                                                         <!--</fieldset>-->
@@ -498,15 +494,21 @@ if(mysqli_num_rows($query) > 0){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-4">
+                                                                    <label class="block">Parroquia</label>
+                                                                    <select class="form-control required" name="parroquia" id="parroquia">
+                                                                        <option value="N/A">Seleccione</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-4">
                                                                     <label class="block">Dirección de Domicilio</label>
                                                                     <input name="address" type="text" class="form-control required" value="<?php echo $datos_personales_detalles['domicilio'];?>" maxlength="100">
                                                                 </div>
 
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <label class="block">Teléfono de Habitación</label>
                                                                     <input name="phone" type="number" class="form-control required" value="<?php echo $datos_personales_detalles['telefono_habitacion'];?>" maxlength="20">
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <label class="block">Teléfono Móvil</label>
                                                                     <input name="cellphone" type="number" class="form-control required" value="<?php echo $datos_personales_detalles['telefono_movil'];?>" maxlength="20">
                                                                 </div>
@@ -516,7 +518,7 @@ if(mysqli_num_rows($query) > 0){
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label class="block">Nombre del Contacto de Emergencia</label>
+                                                                    <label class="block">Nombre de Emergencia</label>
                                                                     <input name="emergencyContact" type="text" class="form-control required" value="<?php echo $datos_personales_detalles['contacto_emergencia'];?>" maxlength="50">
                                                                 </div>
                                                             </div>
@@ -545,7 +547,7 @@ if(mysqli_num_rows($query) > 0){
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label for="" class="block">Padece de alguna enfermedad Crónica?</label>
+                                                                    <label for="" class="block">Enfermedad Crónica</label>
                                                                     <select class="form-control required" name="chronicDisease" id="chronicDisease" onchange="chronicFunction(this);">
                                                                         <option value="N/A">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -554,13 +556,10 @@ if(mysqli_num_rows($query) > 0){
                                                                 </div>
                                                                 
                                                                 <div class="col-md-4">
-                                                                    <label for="datejoin" class="block">Describa Tipo de Enfermedad</label>
+                                                                    <label for="datejoin" class="block">Tipo de Enfermedad</label>
                                                                     <input name="chronic" id='chronicInput' type="text" class="form-control" maxlength="200">
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <label for="datejoin" class="block">Nombre del Cónyugue</label>
-                                                                    <input name="spouse" type="text" id="spouse" class="form-control" value="<?php echo $datos_personales_detalles['nombre_conyugue'];?>" maxlength="200">
-                                                                </div>
+
                                                                 <div class="col-md-4">
                                                                     <label for="perfilDominante" class="block">Perfil Dominante</label>
                                                                     <select class="form-control required" name="perfilDominante" id="perfilDominante">
@@ -575,7 +574,7 @@ if(mysqli_num_rows($query) > 0){
                                                                     <input name="childrens" id="childrens" type="number" class="form-control required" readonly value="<?php echo $datos_personales_detalles['cantidad_hijos'];?>">
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <label for="" class="block" value="0">Si esta Embarazada Indique</label>
+                                                                    <label for="" class="block" value="0">Estado de Embarazo</label>
                                                                     <select class="form-control" id="pregnant" name="pregnant" onchange="hideGestation(this)">
                                                                         <option value="N/A">Seleccione</option>
                                                                         <option value="Si">Si</option>
@@ -600,19 +599,21 @@ if(mysqli_num_rows($query) > 0){
                                                             </div>
                                                         </fieldset>
                                                         <div class="box-title">
-                                                            <h3>Tallas y Medidas</h3>
+                                                            <h3>Datos Finales</h3>
                                                         </div>
                                                         <fieldset>
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-4">
                                                                     <label for="" class="block">Talla de Camisa</label>
                                                                     <select class="form-control required" name="shirtSizes" id="shirtSizes">
-                                                                        <option value="N/A">Seleccione</option>form>
+                                                                        <option value="N/A">Seleccione</option>
+                                                                        <option value="XS">XS</option>
                                                                         <option value="S">S</option>
                                                                         <option value="M">M</option>
                                                                         <option value="L">L</option>
                                                                         <option value="XL">XL</option>
-                                                                        <option value="XXL">XXL</option>
+                                                                        <option value="2XL">2XL</option>
+                                                                        <option value="3XL">3XL</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -634,12 +635,12 @@ if(mysqli_num_rows($query) > 0){
                                                                 </div>
                                                             
                                                                 <div class="col-md-6">
-                                                                    <label for="date" class="block">Firma digital</label>
-                                                                    <input name="firm" id="firm" type="file" class="form-control required date-control">
+                                                                    <label for="date" class="block">Firma Digital</label>
+                                                                    <input name="firm" id="firm" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png">
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label for="date" class="block">Foto del Empleado</label>
-                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" class="form-control required date-control">
+                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png">
                                                                 </div>
                                                             </div>
                                                         </fieldset>
@@ -882,7 +883,7 @@ if(mysqli_num_rows($query) > 0){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -890,13 +891,13 @@ if(mysqli_num_rows($query) > 0){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -905,7 +906,7 @@ if(mysqli_num_rows($query) > 0){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -962,10 +963,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Datos Personales</a>
+                                        <a class="activate">Actualización de Datos / Personales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -978,7 +979,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Datos Personales en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el Registro de Datos Personales en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

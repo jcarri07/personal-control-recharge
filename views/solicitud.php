@@ -299,7 +299,7 @@ function calculate_feriados($año)
                                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                      <i class='icofont icofont-close-line-circled'></i>
                                     </button>
-                                     <p><strong>Solicitud enviada.</strong> Su requerimiento ha sido enviado para su revisión</p>
+                                     <p><strong>Solicitud enviada</strong> Su requerimiento ha sido enviado para su revisión</p>
                                     </div>";
     } elseif ($_GET['alert'] == 2) {
         echo "<div class='alert alert-warning icons-alert'>
@@ -313,14 +313,14 @@ function calculate_feriados($año)
                                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                      <i class='icofont icofont-close-line-circled'></i>
                                     </button>
-                                     <p><strong>Solicitud aprobada.</strong></p>
+                                     <p><strong>Solicitud aprobada</strong></p>
                                     </div>";
     } elseif ($_GET['alert'] == 4) {
         echo " <div class='alert alert-success icons-alert'>
                                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                                      <i class='icofont icofont-close-line-circled'></i>
                                     </button>
-                                     <p><strong>La solicitud fue rechazada.</strong></p>
+                                     <p><strong>La solicitud fue rechazada</strong></p>
                                     </div>";
     }
 
@@ -474,7 +474,7 @@ function calculate_feriados($año)
                                                 <table id="tabla_1" class="table table-striped table-bordered nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th style="text-align: center">ÍTEMM</th>
+                                                            <th style="text-align: center">ÍTEM</th>
                                                             <th style="text-align: center">SOLICITUD</th>
                                                             <th style="text-align: center">SOLICITANTE</th>
                                                             <th style="text-align: center">ESTADO</th>

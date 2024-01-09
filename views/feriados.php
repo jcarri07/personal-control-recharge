@@ -69,12 +69,43 @@ $año_int = intval(date("Y"));
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="page-wrapper">
 
+<div class="container-fluid">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-8" style="margin-bottom: 0px;">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>Configuración de Feriados</h4>
+                                    <!--<span>Otros Datos</span>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="page-header-breadcrumb">
+                                <ul class="breadcrumb-title">
+                                    <li class="breadcrumb-item">
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        <!--<a href="#!" class="activate">Actualización de Datos / Otros Datos</a>-->
+                                        <a class="activate">Configuraciones / Feriados</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
     <!-- Page-body start -->
     <div class="page-body">
         <div class="card">
 
             <div class="feriados-container">
-                <h1 class="mx-auto">Días feriados</h1>
+                <h3 class="mx-auto">Días Feriados</h3>
                 <br>
 
                 <div class="contenedor">
@@ -82,7 +113,7 @@ $año_int = intval(date("Y"));
                         <h4>Año <?php echo $año_int; ?></h3>
                             <table>
                                 <tr>
-                                    <th>Día feriado</th>
+                                    <th>Día Feriado</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
                                 </tr>
@@ -102,7 +133,7 @@ $año_int = intval(date("Y"));
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='3'>No hay días feriados registrados.</td></tr>";
+                                    echo "<tr><td colspan='3'>No hay días feriados registrados</td></tr>";
                                 }
 
                                 ?>
@@ -113,7 +144,7 @@ $año_int = intval(date("Y"));
                         <h4>Año <?php echo ($año_int+1); ?></h3>
                             <table>
                                 <tr>
-                                    <th>Día feriado</th>
+                                    <th>Día Feriado</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
                                 </tr>
@@ -133,7 +164,7 @@ $año_int = intval(date("Y"));
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='3'>No hay días feriados registrados.</td></tr>";
+                                    echo "<tr><td colspan='3'>No hay días feriados registrados</td></tr>";
                                 }
 
                                 ?>

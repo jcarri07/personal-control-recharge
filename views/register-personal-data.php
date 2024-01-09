@@ -288,7 +288,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Dirección y Contacto </h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Estado</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -362,7 +362,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Datos Médicos </h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row" style="bottom: 150px" id="divSpouse">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="datejoin" class="block">Nombre del Conyugue</label>
@@ -460,7 +460,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Datos Finales</h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Talla de Camisa</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -552,7 +552,7 @@ closeConection($conn);
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Hijos</p>
                                                                                             </div>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="userName-2" class="block">Nombres y Apellidos</label>
@@ -675,7 +675,7 @@ closeConection($conn);
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Nucleo Familiar</p>
                                                                                             </div>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Parentesco</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1035,7 +1035,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="basic-forms" method="POST" action="../modules/register-data-user/proses.php?act=insertInstituteData">
                                                                                             <h3> Datos Institucionales </h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Fecha de Inicio en la ABAE</label>
@@ -1121,7 +1121,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Segunda Etapa </h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Fecha de Inicio en la Administración Pública</label>
@@ -1262,7 +1262,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="design-wizard" method="POST" action="../modules/register-data-user/proses.php?act=insertOthersData">
                                                                                             <h3></h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Facebook</label>
@@ -1330,7 +1330,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Posee Carnet del PSUV</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1393,7 +1393,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Es Usted Vocero en Alguna Comuna o Consejo Comunal</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1474,7 +1474,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                             <fieldset style="overflow: auto;">
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Utilizar Transporte Publico (Obligatorio)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -1608,8 +1608,7 @@ closeConection($conn);
     <script src="../utils/get-ubication-select.js"></script>
     <!-- <link href="path/to/select2.min.css" rel="stylesheet" />
     <script src="path/to/select2.min.js"></script> -->
-    <script>   
-
+    <script>
         //Agregar hijos
         $(document).ready(function() {
             $('#button-edit').click(function(e) {
@@ -1730,7 +1729,14 @@ closeConection($conn);
         function changeDireccion() {
             // Cargar unidades al seleccionar una dirección
             var direccionId = $("#direccion").val();
+            var idUnidad = $("#unidad").val();
             var cargo = $("#cargo").val();
+
+
+            console.log("valor unidad 1: " + idUnidad);
+            console.log("valor direccion 1: " + direccionId);
+
+
             if (cargo === "Empleado" || cargo === "Personal de Investigacion" || cargo === "Jefe") {
                 $.ajax({
                     url: "../utils/get-unidades.php",
@@ -1750,7 +1756,8 @@ closeConection($conn);
                     url: "../utils/get-directores.php",
                     type: "POST",
                     data: {
-                        direccionId: direccionId
+                        direccionId: direccionId,
+                        idUnidad: idUnidad
                     },
                     success: function(data) {
                         $("#jefe").val("DATA: " + data);
@@ -1762,27 +1769,45 @@ closeConection($conn);
 
         function changeUnidad() {
             var idUnidad = $("#unidad").val();
-            console.log("valor unidad: " + idUnidad);
+            var direccionId = $("#direccion").val();
+            console.log("valor unidad 2: " + idUnidad);
+            console.log("valor direccion 2: " + direccionId);
+
 
             var cargo = $("#cargo").val();
 
             // Realizar una solicitud AJAX para obtener el nombre del jefe
-            $.ajax({
-                url: "../utils/get-jefe.php",
-                type: "POST",
-                data: {
-                    idUnidad: idUnidad,
-                    cargo: cargo
-                },
-                success: function(data) {
-                    $("#jefe").val("DATA: " + data);
-                    $("#jefe").html(data);
-                    console.log(data);
-                },
-                error: function(error) {
-                    console.log("Error en la solicitud AJAX: " + error);
-                }
-            });
+            if (cargo === "Jefe") {
+                $.ajax({
+                    url: "../utils/get-directores.php",
+                    type: "POST",
+                    data: {
+                        direccionId: direccionId,
+                        idUnidad: idUnidad
+                    },
+                    success: function(data) {
+                        $("#jefe").val("DATA: " + data);
+                        $("#jefe").html(data);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "../utils/get-jefe.php",
+                    type: "POST",
+                    data: {
+                        idUnidad: idUnidad,
+                        cargo: cargo
+                    },
+                    success: function(data) {
+                        $("#jefe").val("DATA: " + data);
+                        $("#jefe").html(data);
+                        console.log(data);
+                    },
+                    error: function(error) {
+                        console.log("Error en la solicitud AJAX: " + error);
+                    }
+                });
+            }
         }
 
         function confirmModal() {

@@ -557,31 +557,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                die("Error de conexión: " . $conn->connect_error);
           }
 
+          if ($cargo === "Jefe") {
+               $queryUnidadJefe = "UPDATE unidad SET id_jefe = ? WHERE id_unidad = ?";
+
+               $stmt2 = $conn->prepare($queryUnidadJefe);
+               $stmt2->bind_param("ii", $idUser, $unidadAdscripcion);
+               $stmt2->execute();
+               $resultQuery = $stmt2->get_result();
+          }
+
           //Agregar Supervisor Inmediato
           if ($supervisorInmediato === "0" || $supervisorInmediato === 0) {
-               $queryUnidadJefe = "UPDATE unidad SET id_jefe = '$idUser' WHERE id_unidad = '$unidadAdscripcion'";
-               $queryCargo = "UPDATE usuario SET cargo = 'JEFE' WHERE id_usuario = '$idUser'";
-               $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_unidad LIKE '$unidadAdscripcion'"; 
+               if ($cargo === "Director") {
+                    $queryUnidadJefe = "UPDATE direccion SET id_jefe = '$idUser' WHERE id_direccion = '$direccionAdscripcion'";
+                    $queryCargo = "UPDATE usuario SET cargo = 'JEFE' WHERE id_usuario = '$idUser'";
+                    $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_direccion LIKE '$direccionAdscripcion'";
+               } elseif ($cargo === "Jefe") {
+                    $queryUnidadJefe = "UPDATE unidad SET id_jefe = '$idUser' WHERE id_unidad = '$unidadAdscripcion'";
+                    $queryCargo = "UPDATE usuario SET cargo = 'JEFE' WHERE id_usuario = '$idUser'";
+                    $querySetJefe = "UPDATE datos_abae SET id_jefe = '$idUser' WHERE id_usuario != '$idUser' AND id_unidad LIKE '$unidadAdscripcion'";
+               }
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
                $queryJefeInmediatoABAE = "UPDATE datos_abae SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
           }
 
-          $sqlSelect = "SELECT id_jefe FROM datos_abae WHERE id_usuario = '$idUser'"; 
+
+          $sqlSelect = "SELECT id_jefe FROM datos_abae WHERE id_usuario = '$idUser'";
           $resultado = $conn->query($sqlSelect);
 
           if ($resultado->num_rows > 0) {
-          $fila = $resultado->fetch_assoc();
-          $idJefe = $fila['id_jefe'];
+               $fila = $resultado->fetch_assoc();
+               $idJefe = $fila['id_jefe'];
 
-          $sqlUpdate = "UPDATE usuario SET id_jefe = $idJefe WHEREid_usuario = '$idUser'"; 
-          if ($conn->query($sqlUpdate) === TRUE) {
-               echo "Actualización exitosa";
+               $sqlUpdate = "UPDATE usuario SET id_jefe = $idJefe WHERE id_usuario = '$idUser'";
+               if ($conn->query($sqlUpdate) === TRUE) {
+                    echo "Actualización exitosa";
+               } else {
+                    echo "Error al actualizar: " . $conexion->error;
+               }
           } else {
-               echo "Error al actualizar: " . $conexion->error;
-          }
-          } else {
-          echo "No se encontraron resultados en datos_empresa";
+               echo "No se encontraron resultados en datos_empresa";
           }
 
           if (

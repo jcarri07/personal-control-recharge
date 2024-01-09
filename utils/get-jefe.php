@@ -41,7 +41,6 @@ if ($result->num_rows > 0) {
         );
         $options .= "<option value='" . $row['id_usuario'] . "'>" . $row['nombres'] . " " . $row['apellidos'] . " " . "<b>(" . $row['cargo'] . ")</b>" . "</option>";
     }
-    if(cargo)
     $options .= "<option value='$value'>Soy el Nuevo Supervisor de esta UNIDA/DIRECCION</option>";
 } else {
     $data[] = array(

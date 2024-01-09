@@ -566,6 +566,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $resultQuery = $stmt2->get_result();
           }
 
+          if ($cargo === "Director") {
+               $queryDirectorJefe = "UPDATE direccion SET id_jefe = ? WHERE id_direccion = ?";
+
+               $stmt2 = $conn->prepare($queryDirectorJefe);
+               $stmt2->bind_param("ii", $idUser, $direccionAdscripcion);
+               $stmt2->execute();
+               $resultQuery = $stmt2->get_result();
+          }
+
           //Agregar Supervisor Inmediato
           if ($supervisorInmediato === "0" || $supervisorInmediato === 0) {
                if ($cargo === "Director") {

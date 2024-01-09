@@ -47,7 +47,6 @@ if ($result->num_rows > 0) {
         'id_usuario' => '',
         'cargo' => 'No hay unidades disponibles'
     );
-    $options = "<option value='$value'>Soy el Nuevo Supervisor de esta UNIDA/DIRECCION</option>";
 }
 // Devolver los datos en formato JSON
 echo json_encode($data);

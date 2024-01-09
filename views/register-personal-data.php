@@ -368,19 +368,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Datos Médicos </h3>
-<<<<<<< HEAD
                                                                                             <fieldset style="overflow: auto;">
-                                                                                                <div class="form-group row" style="bottom: 150px" id="divSpouse">
-                                                                                                    <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="datejoin" class="block">Nombre del Conyugue</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="spouse" type="text" id="spouse" class="form-control" required>
-                                                                                                    </div>
-                                                                                                </div>
-=======
-                                                                                             <fieldset style="overflow: auto;">
->>>>>>> 88b2ae5284f4a015ec5e29819666e49b080912dc
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="University-2" class="block">Alergias</label>
@@ -643,7 +631,7 @@ closeConection($conn);
                                                                                                         <input name="pants-children" type="number" class=" form-control required" required>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                       
+
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label class="block">Talla de Calzado</label>
@@ -1391,7 +1379,7 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">¿Pertenece a Algún Partido Político? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="partidoPolitico" id="partido-others">
-                                                                                                        <option value="Seleccione">Seleccione</option>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>

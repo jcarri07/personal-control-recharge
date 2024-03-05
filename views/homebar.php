@@ -494,17 +494,17 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="../FPDF/Vacaciones_Vacio.php">
+                                            <a href="../FPDF/Formato_Vacaciones.php" target="_blank">
                                                 <span class="pcoded-mtext">Vacaciones</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="../FPDF/Reposo_Vacio.php">
+                                            <a href="../FPDF/Formato_Reposo.php" target="_blank">
                                                 <span class="pcoded-mtext">Reposos</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="../FPDF/Prueba_permiso.php">
+                                            <a href="../FPDF/Formato_Permisos.php" target="_blank">
                                                 <span class="pcoded-mtext">Permisos</span>
                                             </a>
                                         </li>

@@ -2174,3 +2174,27 @@ function calculate_feriados($año)
 
 
 ?>
+<div class="modal fade" id="modali" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Cambio de Administrador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Por favor, ingrese la contraseña para validar el cambio de administrador:</p>
+                <input type="password" id="password" class="form-control" placeholder="Contraseña">
+
+                <div id="error-message" style="font-size: 10px; color: red;"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Validar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,8 +1,25 @@
+
+<?php
+    require_once '../database/conexion.php';
+    $idUser = $_SESSION["id_usuario"];
+
+    // Verificar la conexión
+    if (mysqli_connect_errno()) {
+        echo "Error al conectar a la base de datos: " . mysqli_connect_error();
+        exit();
+    }
+
+    $sql = "SELECT * FROM usuario WHERE id_usuario = '$idUser' LIMIT 1;";
+    $query = mysqli_query($conn, $sql);
+    $datos_personales = mysqli_fetch_array($query);
+
+    //closeConection($conn);
+
+?>
 <div class="page-wrapper">
 
                                 <div class="page-body">
                                     <div class="row">
-
                                     <div class="col-xl-3 col-md-6">
                                             <div class="card social-card bg-simple-c-blue">
                                                 <div class="card-block">
@@ -13,7 +30,12 @@
                                                         </div>                                                    
                                                     </div>
                                                 </div>
+                                                <?php if($_SESSION['tipo_usuario'] != "admin"){ ?> 
                                                 <a href="../home/form-register.php" class="download-icon"><i class="feather icon-user-plus"></i></a>
+                                                <?php }else { ?>
+                                                    <a class="download-icon"><i class="feather icon-user-plus"></i></a>
+                                                <?php } ?>
+
                                                 <div class="card-footer">
                                                     <!--<p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i></p>-->
                                                 </div>
@@ -30,13 +52,17 @@
                                                         </div>                                                    
                                                     </div>
                                                 </div>
-                                                <a href="../home/form-edit-data.php?page=datos-personales" class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php if($_SESSION['tipo_usuario'] != "admin"){ ?> 
+                                                    <a href="../home/form-edit-data.php?page=datos-personales" class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php }else { ?>
+                                                    <a class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php } ?>
+
                                                 <div class="card-footer">
                                                     <!--<p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i></p>-->
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xl-3 col-md-6">
                                             <div class="card social-card bg-simple-c-blue">
                                                 <div class="card-block">

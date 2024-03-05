@@ -372,6 +372,9 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>
                             </ul>
+<?php
+                    if($_SESSION['tipo_usuario'] != "admin"){
+?>                           
                             <div class="pcoded-navigatio-lavel">Datos personales</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
@@ -386,10 +389,6 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <span class="pcoded-mtext">Actualización de datos</span>
                                     </a>
                                 </li>-->
-
-
-
-
 
                                 <li class="pcoded-hasmenu"><!-- pcoded-trigger -->
                                     <a href="javascript:void(0)">
@@ -474,7 +473,9 @@ $fila = mysqli_fetch_assoc($resultado);
                                 </li>
                             </ul>
 
-
+<?php
+ }
+?>
 
 
 
@@ -494,7 +495,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="../FPDF/Vacaciones_Vacio.php">
+                                            <a href="../FPDF/Vacaciones_Vacio.php" >
                                                 <span class="pcoded-mtext">Vacaciones</span>
                                             </a>
                                         </li>

@@ -2,6 +2,26 @@
 require_once('../database/conexion.php');
 //session_start();
 
+// Verificar la conexión
+if (mysqli_connect_errno()) {
+    echo "Error al conectar a la base de datos: " . mysqli_connect_error();
+    exit();
+}
+
+$idUser = $_SESSION["id_usuario"];
+$sql = "SELECT step FROM usuario WHERE id_usuario = '$idUser'";
+$query = mysqli_query($conn, $sql);
+$stepValue = 0;
+
+if($query) {
+    $step = mysqli_fetch_array($query);
+    if($step) {
+        $stepValue = $step['step'];
+        //echo "Valor de step: " . $stepValue;
+    } 
+}
+
+
 // INICIO DE LA VERIFICACIÓN EN LA API DE LOS DIAS FERIADOS, PARA QUE SEAN CARGADOS EN LA BASE DE DATOS SI NO EXISTEN , Y DE EXISTIR QUE LOS ACTUALICE.
 $query = "SELECT * FROM feriados WHERE id = 1";
 $resultado = mysqli_query($conn, $query);
@@ -189,6 +209,8 @@ function calculate_feriados($año)
     <html lang="en">
 
     <head>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <title>Adminty - Premium Admin Template by Colorlib </title>
         <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -222,7 +244,7 @@ function calculate_feriados($año)
 
         <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css">
 
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
         <link rel="stylesheet" type="text/css" href="..\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css">
@@ -326,7 +348,15 @@ function calculate_feriados($año)
 
     if ($_SESSION['tipo_usuario'] == "admin") {
     ?>
+<body>
 
+<?php
+// Realizar la consulta SQL y guardar el resultado en una variable
+$valor = "resultado_de_tu_consulta";
+
+// Luego, en tu código HTML, puedes incluir ese valor en el atributo que desees
+echo '<img src="..\files\assets\images\logo.png" alt="' . $valor . '" width="150" height="60">';
+?>
         <!-- Page-body start -->
         <div class="page-body">
             <div class="card">
@@ -337,6 +367,8 @@ function calculate_feriados($año)
                             <div class="user-head row">
                                 <div class="user-face">
                                     <img src="..\files\assets\images\logo.png" alt="Theme-Logo" width="150" height="60">
+                                    <input type="text" id="inputStep" value="<?php echo $step; ?>">
+
                                 </div>
                             </div>
                         </div>
@@ -354,6 +386,8 @@ function calculate_feriados($año)
                             </div>
                         </div>
                     </div>
+
+
                     <?php
                     $todas = mysqli_query($conn, "SELECT COUNT(*) id_solicitud FROM solicitud WHERE estatus_supervisor='aprobada'");
                     $value = mysqli_fetch_assoc($todas);
@@ -376,6 +410,7 @@ function calculate_feriados($año)
                             <div class="user-body">
                                 <div class="p-20 text-center">
                                     <!-- <a href="../home/solicitudes-create.php" class="btn btn-danger">Solicitar</a>-->
+
                                 </div>
                                 <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                     <li class="nav-item mail-section">
@@ -495,7 +530,7 @@ function calculate_feriados($año)
                                                             or die('error: ' . mysqli_error($conn));
 
                                                         $nombre = mysqli_fetch_assoc($query1);
-
+                                                        
 
                                                         echo
                                                         "                              <form method='POST'>
@@ -1439,10 +1474,11 @@ function calculate_feriados($año)
                                         <span class="label label-primary f-right"><?php echo ($value3_jefe['id_solicitud']); ?></span>
                                     </a>
                                 </li>
-
                                 <li class="nav-item mail-section">
                                     <a class="nav-link" data-toggle="pill" role="tab">
                                         <i class="icofont icofont-"></i>
+                                        <?php echo '<input type="text" id="inputStep" style="display: none;" value="' . $stepValue . '">'; ?>
+
                                     </a>
                                 </li>
 
@@ -1662,6 +1698,7 @@ function calculate_feriados($año)
                                                         or die('error: ' . mysqli_error($conn));
 
                                                     $nombre = mysqli_fetch_assoc($query1);
+                                                    
 
                                                     echo
                                                     "                              <form method='POST'>
@@ -1684,7 +1721,6 @@ function calculate_feriados($año)
                                                                                     <td><a  class='email-name'>$data[estatus]</a></td>
                                                                                     <td class='email-time'>" . date('d-m-Y H:i:s', strtotime($data['created_date'])) . "</td>
                                                                                     <td> <button type='submit' formaction='solicitudes-read.php' formmethod='POST' name='id' value='$data[id_solicitud]' class='btn btn-info btn-outline-info btn-icon'><i class='icofont icofont-eye-alt' style='margin-left: 3px;'></i></button> </td>
-
                                                                                     </tr>
                                                                                     </form>
 
@@ -2174,27 +2210,53 @@ function calculate_feriados($año)
 
 
 ?>
-<div class="modal fade" id="modali" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal">Cambio de Administrador</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Por favor, ingrese la contraseña para validar el cambio de administrador:</p>
-                <input type="password" id="password" class="form-control" placeholder="Contraseña">
+<!-- Button trigger modal -->
+<button  id="autoOpenModalBtn"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+</button>
 
-                <div id="error-message" style="font-size: 10px; color: red;"></div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Validar</button>
-            </div>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cargue sus datos</h5>
+      </div>
+      <div class="modal-body">
+      Cargue sus datos hasta al menos el paso numero 8 (Comisión de servicio) para poder generar solicitudes.
+      </div>
+      <div class="modal-footer">
+        <a href="../home/form-register.php" type="button" class="btn btn-primary">Aceptar</a>
+      </div>
     </div>
+  </div>
 </div>
 
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    var pasos = document.getElementById("inputStep").value;
+    console.log(pasos); 
+
+    document.getElementById('autoOpenModalBtn').style.display = 'none';
+
+    if(pasos == 8 || pasos == 9){
+
+        // Aquí puedes cerrar la modal
+        document.getElementById('exampleModal').style.display = 'none'; // Ocultar la modal
+
+
+    }
+   else{
+    // Activar la ventana modal automáticamente
+    document.getElementById('autoOpenModalBtn').click();
+
+   }
+    // Ocultar el botón
+
+});
+
+
+</script>

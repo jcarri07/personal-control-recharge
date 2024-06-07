@@ -1,8 +1,25 @@
+
+<?php
+    require_once '../database/conexion.php';
+    $idUser = $_SESSION["id_usuario"];
+
+    // Verificar la conexión
+    if (mysqli_connect_errno()) {
+        echo "Error al conectar a la base de datos: " . mysqli_connect_error();
+        exit();
+    }
+
+    $sql = "SELECT * FROM usuario WHERE id_usuario = '$idUser' LIMIT 1;";
+    $query = mysqli_query($conn, $sql);
+    $datos_personales = mysqli_fetch_array($query);
+
+    //closeConection($conn);
+
+?>
 <div class="page-wrapper">
 
                                 <div class="page-body">
                                     <div class="row">
-
                                     <div class="col-xl-3 col-md-6">
                                             <div class="card social-card bg-simple-c-blue">
                                                 <div class="card-block">
@@ -13,7 +30,12 @@
                                                         </div>                                                    
                                                     </div>
                                                 </div>
+                                                <?php if($_SESSION['tipo_usuario'] != "admin"){ ?> 
                                                 <a href="../home/form-register.php" class="download-icon"><i class="feather icon-user-plus"></i></a>
+                                                <?php }else { ?>
+                                                    <a class="download-icon"><i class="feather icon-user-plus"></i></a>
+                                                <?php } ?>
+
                                                 <div class="card-footer">
                                                     <!--<p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i></p>-->
                                                 </div>
@@ -30,13 +52,17 @@
                                                         </div>                                                    
                                                     </div>
                                                 </div>
-                                                <a href="../home/form-edit-data.php?page=datos-personales" class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php if($_SESSION['tipo_usuario'] != "admin"){ ?> 
+                                                    <a href="../home/form-edit-data.php?page=datos-personales" class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php }else { ?>
+                                                    <a class="download-icon"><i class="feather icon-user-check"></i></a>
+                                                <?php } ?>
+
                                                 <div class="card-footer">
                                                     <!--<p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i></p>-->
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xl-3 col-md-6">
                                             <div class="card social-card bg-simple-c-blue">
                                                 <div class="card-block">
@@ -415,8 +441,8 @@
                                                                 <i class="feather icon-folder bg-simple-c-blue update-icon"></i>
                                                             </div>
                                                             <div class="col">
-                                                                <h6>Carga de Datos</h6>
-                                                                <p class="text-muted m-b-0">Datos Personales, Hijos, Familiares, Datos Académicos, Formación en el Exterior, Experiencia Laboral, Datos Institucionales, Comisión de Servicio, Otros Datos.</p>
+                                                                <h6>Carga de datos</h6>
+                                                                <p class="text-muted m-b-0">Datos personales, hijos, familiares, datos académicos, formación en el exterior, experiencia laboral, datos institucionales, comisión de servicio, otros datos.</p>
                                                             </div>
                                                         </div>
                                                         <div class="row p-b-15">
@@ -425,8 +451,8 @@
                                                                 <i class="feather icon-edit bg-simple-c-pink  update-icon"></i>
                                                             </div>
                                                             <div class="col">
-                                                                <h6>Actualización de Datos</h6>
-                                                                <p class="text-muted m-b-0">Datos Personales, Hijos, Familiares, Datos Académicos, Formación en el Exterior, Experiencia Laboral, Datos Institucionales, Comisión de Servicio, Otros Datos.</p>
+                                                                <h6>Actualización de datos</h6>
+                                                                <p class="text-muted m-b-0">Datos personales, hijos, familiares, datos académicos, formación en el exterior, experiencia laboral, datos institucionales, comisión de servicio, otros datos.</p>
                                                             </div>
                                                         </div>
                                                         
@@ -437,7 +463,7 @@
                                                             </div>
                                                             <div class="col">
                                                                 <h6>Solicitudes</h6>
-                                                                <p class="text-muted m-b-10">Reposo, Vacaciones, Constancia de Trabajo y  Permisos.</p>
+                                                                <p class="text-muted m-b-10">Vacaciones, permisos, reposos y constancia de trabajo.</p>
                                                                 <!--<div class="table-responsive">
                                                                     <table class="table table-hover m-b-0">
                                                                         <tbody>
@@ -464,8 +490,8 @@
                                                                 <i class="feather icon-download bg-simple-c-green update-icon"></i>
                                                             </div>
                                                             <div class="col">
-                                                                <h6>Descarga de Formatos</h6>
-                                                                <p class="text-muted m-b-0">Formatos de Vacaciones, Permisos y Reposo.</p>
+                                                                <h6>Descarga de formatos</h6>
+                                                                <p class="text-muted m-b-0">Vacaciones, permisos y reposos.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -539,7 +565,7 @@
                                                         <div class="col">
                                                             <h6 class="m-b-0">Correo Institucional</h6>
                                                             </br></br>
-                                                            <p class="m-b-0">Acceso directo al correo institucional ABAE</p>
+                                                            <p class="m-b-0">Acceso directo al correo de la ABAE</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -556,7 +582,7 @@
                                                         <div class="col">
                                                             <h6 class="m-b-0">Twitter</h6>
                                                             </br></br>
-                                                            <p class="m-b-0">Acceso directo al la cuenta de la Agencia</p>
+                                                            <p class="m-b-0">Acceso directo a la cuenta de la ABAE</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -573,7 +599,7 @@
                                                         <div class="col">
                                                             <h6 class="m-b-0">Facebook</h6>
                                                             </br></br>
-                                                            <p class="m-b-0">Acceso directo al la cuenta de la Agencia</p>
+                                                            <p class="m-b-0">Acceso directo a la cuenta de la ABAE</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -590,7 +616,7 @@
                                                         <div class="col">
                                                             <h6 class="m-b-0">Instagram</h6>
                                                             </br></br>
-                                                            <p class="m-b-0">Acceso directo al la cuenta de la Agencia</p>
+                                                            <p class="m-b-0">Acceso directo a la cuenta de la ABAE</p>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -56,8 +56,8 @@
                         <div class="col-lg-8" style="margin-bottom: 0px;">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>Búsqueda</h4>
-                                    <span>Información de Personal</span>
+                                    <h4>Información de Personal</h4>
+                                    <span>Búsqueda de Información</span>
                                 </div>
                             </div>
                         </div>
@@ -65,10 +65,10 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Búsqueda / Información de Personal</a>
+                                        <a class="activate">Información de Personal</a>
                                     </li>
                                 </ul>
                             </div>

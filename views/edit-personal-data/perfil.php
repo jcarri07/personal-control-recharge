@@ -28,7 +28,7 @@
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Configuración de Perfil</h4>
-                                    <!--<span>Otros Datos</span>-->
+                                    <span>Modificación de Perfil</span>
                                 </div>
                             </div>
                         </div>
@@ -36,11 +36,11 @@
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <!--<a href="#!" class="activate">Actualización de Datos / Otros Datos</a>-->
-                                        <a href="#!" class="activate">Configuración de Perfil</a>
+                                        <a class="activate">Perfil</a>
                                     </li>
                                 </ul>
                             </div>
@@ -79,13 +79,13 @@
                                                         <!--</fieldset>-->
                                                         
 
-                                                        <div class="row">
+                                                        <!--div class="row">
                                                             <div class="col-md-12 loaderParent">
                                                                 <div class="loader">
                                                                 </div>
                                                                 Por favor, espere
                                                             </div>
-                                                        </div>
+                                                        </div-->
 
                                                         <div class="text-center mt-3">
                                                             <button class="btn btn-primary">Actualizar</button>
@@ -123,7 +123,7 @@
         if(this.pass.value != "" || this.pass_repeat.value != ""){
             if(this.pass.value != this.pass_repeat.value){
                 $("#modal-generic .aceptar button").attr("onclick", "");
-                $("#modal-generic .message").text("Las contraseñas no coinciden.");
+                $("#modal-generic .message").text("Las contraseñas no coinciden");
                 $("#modal-generic").modal("show");
                 return false;
             }
@@ -151,7 +151,7 @@
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -159,7 +159,7 @@
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
@@ -171,7 +171,7 @@
                         }
                         else{
                             //alertify.error("Error al registrar.");
-                            $("#modal-generic .message").text("Error al registrar.");
+                            $("#modal-generic .message").text("Error al registrar");
                             $("#modal-generic").modal("show");
                         }
                     } 
@@ -181,7 +181,7 @@
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });

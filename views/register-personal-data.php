@@ -30,10 +30,9 @@ WHERE d.cargo IN ('Jefe', 'Director', 'Vicepresidente', 'Presidente');");
 closeConection($conn);
 ?>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <title>Adminty - Premium Admin Template by Colorlib </title>
+    <title></title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -124,8 +123,8 @@ closeConection($conn);
                             <div class="col-lg-8">
                                 <div class="page-header-title">
                                     <div class="d-inline">
-                                        <h4>Formulario de Registro</h4>
-                                        <span>Datos personales del Empleado. </span>
+                                        <h4>Mis Datos</h4>
+                                        <span>Formulario de Registro</span>
                                     </div>
                                 </div>
                             </div>
@@ -133,13 +132,10 @@ closeConection($conn);
                                 <div class="page-header-breadcrumb">
                                     <ul class="breadcrumb-title">
                                         <li class="breadcrumb-item">
-                                            <a href="index-1.htm"> <i class="feather icon-home"></i> </a>
+                                            <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                         </li>
                                         <li class="breadcrumb-item active">
-                                            <a href="#!" class="activate">Datos Personales</a>
-                                            <a href="#!">/ Datos de Hijos</a>
-                                            <a href="#!">/ Nucleo Familiar</a>
-                                            <a href="#!">/ Datos Academicos</a>
+                                            <a class="activate">Mis Datos</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -160,7 +156,7 @@ closeConection($conn);
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs md-tabs tabs-left b-none" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" data-toggle="tab" href="#home5" role="tab" style="text-align: left; margin-left: 10px;" id="tab-personales">Personales</a>
+                                                    <a class="nav-link active" data-toggle="tab" href="#home5" role="tab" style="text-align: left; margin-left: 10px; margin-right: 100px;" id="tab-personales">Personales</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
@@ -172,27 +168,27 @@ closeConection($conn);
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab" style="text-align: left; margin-left: 10px;" id="tab-academicos">Academicos</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab" style="text-align: left; margin-left: 10px;" id="tab-academicos">Académicos</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings7" role="tab" style="text-align: left; margin-left: 10px;" id="tab-exterior">Formacion Exterior</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings7" role="tab" style="text-align: left; margin-left: 10px;" id="tab-exterior">Formación exterior</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings8" role="tab" style="text-align: left; margin-left: 10px;" id="tab-experiencia">Experiencia</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings8" role="tab" style="text-align: left; margin-left: 10px;" id="tab-experiencia">Experiencia laboral</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings9" role="tab" style="text-align: left; margin-left: 10px;" id="tab-institucionales">Datos Institucionales</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings9" role="tab" style="text-align: left; margin-left: 10px;" id="tab-institucionales">Institucionales</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings10" role="tab" style="text-align: left; margin-left: 10px;" id="tab-comision">Comision de Servicio</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings10" role="tab" style="text-align: left; margin-left: 10px;" id="tab-comision">Comision de servicio</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#settings11" role="tab" style="text-align: left; margin-left: 10px;" id="tab-otros">Otros Datos</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#settings11" role="tab" style="text-align: left; margin-left: 10px;" id="tab-otros">Otros datos</a>
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
@@ -216,7 +212,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form id="example-advanced-form" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertPersonalData" enctype="multipart/form-data">
                                                                                             <h3> Datos Personales </h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label class="block">Nombres y Apellidos</label>
@@ -227,7 +223,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Cedula de Identidad</label>
+                                                                                                        <label class="block">Cédula de Identidad</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="ciEmployeer" type="number" class="required form-control" value="<?php echo $fila['cedula'] ?>" readonly>
@@ -280,20 +276,25 @@ closeConection($conn);
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status" name="statusEmployeer" onchange="hideMarriedInformation()" required>
                                                                                                             <option value="N/A">Seleccione</option>
-                                                                                                            <option value="Casado(a)">Casado(a)</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
-                                                                                                            <option value="Anulado">Anulado</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
-                                                                                                            <option value="Separado de Union Legal">Separado de Union Legal</option>
-                                                                                                            <option value="Separado de Union de Hecho">Separado de Union de Hecho</option>
-                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
                                                                                                             <option value="Soltero(a)">Soltero(a)</option>
+                                                                                                            <option value="Conyugue">Concubinato</option>
+                                                                                                            <option value="Casado(a)">Casado(a)</option>
+                                                                                                            <option value="Anulado">Divorciado(a)</option>
+                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
                                                                                                         </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row" style="bottom: 150px" id="divSpouse">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label for="datejoin" class="block">Nombre del Conyugue</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="spouse" type="text" id="spouse" class="form-control" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Dirección y Contacto </h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Estado</div>
                                                                                                     <div class="col-md-8 col-lg-10">
@@ -302,7 +303,7 @@ closeConection($conn);
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($queryEstados)) {
                                                                                                             ?>
-                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo utf8_encode($row['estado']); ?></option>
+                                                                                                                <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
                                                                                                             <?php
                                                                                                             }
                                                                                                             ?>
@@ -318,8 +319,16 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">Parroquia</div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <select class="form-control required" name="parroquia" id="parroquia" required>
+                                                                                                            <option value="N/A">Seleccione</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Direccion de Domicilio</label>
+                                                                                                        <label class="block">Dirección de Domicilio</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="address" type="text" class="form-control required" required>
@@ -327,7 +336,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Telefono de Habitacion</label>
+                                                                                                        <label class="block">Teléfono de Habitación</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="phone" type="number" class="form-control ">
@@ -335,7 +344,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Telefono Movil</label>
+                                                                                                        <label class="block">Teléfono Móvil</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="cellphone" type="number" class="form-control required" required>
@@ -343,7 +352,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Telefono de Emergencia</label>
+                                                                                                        <label class="block">Teléfono de Emergencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyPhone" type="number" class="form-control required" required>
@@ -351,23 +360,15 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Nombre del Contacto de Emergencia</label>
+                                                                                                        <label class="block">Nombre de Emergencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="emergencyContact" type="text" class="form-control required" required>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="divSpouse">
-                                                                                                    <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="datejoin" class="block">Nombre del Conyugue</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="spouse" type="text" id="spouse" class="form-control" required>
-                                                                                                    </div>
-                                                                                                </div>
                                                                                             </fieldset>
-                                                                                            <h3> Datos Medicos </h3>
-                                                                                            <fieldset>
+                                                                                            <h3> Datos Médicos </h3>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="University-2" class="block">Alergias</label>
@@ -393,7 +394,7 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Padece de alguna enfermedad Crónica?</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Enfermedad Crónica</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="chronicDisease" id="chronicDisease" onchange="chronicFunction()">
                                                                                                             <option value="N/A">Seleccione</option>
@@ -404,7 +405,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="chronicDiv">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="datejoin" class="block">Describa tipo de enfermedad</label>
+                                                                                                        <label for="datejoin" class="block">Tipo de Enfermedad</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="chronic" id='chronicInput' type="text" class="form-control">
@@ -429,7 +430,7 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div> -->
                                                                                                 <div class="form-group row" id="divPregnant">
-                                                                                                    <div class="col-md-4 col-lg-2">Si esta Embarazada Indique</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Estado de Embarazo</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control" id="pregnant" name="pregnant" onchange="hideGestation()">
                                                                                                             <option value="N/A">Seleccione</option>
@@ -456,24 +457,26 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
-                                                                                            <h3> Datos finales</h3>
-                                                                                            <fieldset>
+                                                                                            <h3> Datos Finales</h3>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Talla de Camisa</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="shirtSizes" required>
                                                                                                             <option value="N/A">Seleccione</option>
+                                                                                                            <option value="XS">XS</option>
                                                                                                             <option value="S">S</option>
                                                                                                             <option value="M">M</option>
                                                                                                             <option value="L">L</option>
                                                                                                             <option value="XL">XL</option>
-                                                                                                            <option value="XXL">XXL</option>
+                                                                                                            <option value="2XL">2XL</option>
+                                                                                                            <option value="3XL">3XL</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="surname-2" class="block">Talla de Pantalon</label>
+                                                                                                        <label for="surname-2" class="block">Talla de Pantalón</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="jeansSizes" type="number" class="form-control required" required>
@@ -505,7 +508,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="date" class="block">Firma digital</label>
+                                                                                                        <label for="date" class="block">Firma Digital</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="firm" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png" required>
@@ -546,16 +549,24 @@ closeConection($conn);
                                                                                 <div id="wizard">
                                                                                     <section>
                                                                                         <form class="wizard-form" id="form-children" method="POST" action="../modules/register-data-user/proses.php?act=insertChildrenData" enctype="multipart/form-data">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Hijos</p>
                                                                                             </div>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="userName-2" class="block">Nombres y Apellidos</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input id="employeerName-children" name="employeerName-children" type="text" class="required form-control" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label for="email-2" class="block">Cédula de Identidad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="ci-children" type="number" class=" form-control">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
@@ -575,27 +586,22 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="email-2" class="block">Cedula de Identidad</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="ci-children" type="number" class=" form-control" value="0" placeholder="0">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Sexo</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="gender-children" name="gender-children" onchange="womanInformation()">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Femenino">Femenino</option>
                                                                                                             <option value="Masculino">Masculino</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Grado Educacional</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Grado Escolar</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control" id="status-children" name="grade-children" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="N/A">N/A</option>
+                                                                                                            <option value="Inicial">Inicial</option>
                                                                                                             <option value="Primaria">Primaria</option>
                                                                                                             <option value="Secundaria">Secundaria</option>
                                                                                                             <option value="Universitario">Universitario</option>
@@ -606,32 +612,32 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Talla de Camisa</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="shirt-children" name="shirt-children" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
+                                                                                                            <option value="XS">XS</option>
                                                                                                             <option value="S">S</option>
                                                                                                             <option value="M">M</option>
                                                                                                             <option value="L">L</option>
                                                                                                             <option value="XL">XL</option>
-                                                                                                            <option value="XXL">XXL</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Talla de Pantalon</div>
-                                                                                                    <div class="col-md-8 col-lg-10">
-                                                                                                        <select class="form-control required" id="shirt-children" name="pants-children" required>
-                                                                                                            <option value="S">S</option>
-                                                                                                            <option value="M">M</option>
-                                                                                                            <option value="L">L</option>
-                                                                                                            <option value="XL">XL</option>
-                                                                                                            <option value="XXL">XXL</option>
+                                                                                                            <option value="2XL">2XL</option>
+                                                                                                            <option value="3XL">3XL</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
+                                                                                                        <Label class="block">Talla de Pantalón</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="pants-children" type="number" class=" form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
                                                                                                         <label class="block">Talla de Calzado</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="shoes-children" type="number" class=" form-control required" value="0" placeholder="0" required>
+                                                                                                        <input name="shoes-children" type="number" class=" form-control required" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
@@ -669,23 +675,24 @@ closeConection($conn);
                                                                                 <div id="wizard">
                                                                                     <section>
                                                                                         <form class="wizard-form" id="form-family" method="POST" action="../modules/register-data-user/proses.php?act=insertFamilyData">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
-                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Nucleo Familiar</p>
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Familiares</p>
                                                                                             </div>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Parentesco</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status-family" name="type-family" required>
-                                                                                                            <option value="Esposo(a)">Esposo(a)</option>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Conyugue">Conyugue</option>
+                                                                                                            <option value="Esposo(a)">Esposo(a)</option>
                                                                                                             <option value="Hijo(a)">Hijo(a)</option>
                                                                                                             <option value="Madre">Madre</option>
                                                                                                             <option value="Padre">Padre</option>
-                                                                                                            <option value="Tio(a)">Tio(a)</option>
                                                                                                             <option value="Hermano(a)">Hermano(a)</option>
-                                                                                                            <option value="Abuelo(a)">Abuelo(a)</option>
+                                                                                                            <option value="Tio(a)">Tio(a)</option>
                                                                                                             <option value="Sobrino(a)">Sobrino(a)</option>
+                                                                                                            <option value="Abuelo(a)">Abuelo(a)</option>
                                                                                                             <option value="Nieto(a)">Nieto(a)</option>
                                                                                                         </select>
                                                                                                     </div>
@@ -708,15 +715,15 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Cedula</label>
+                                                                                                        <label for="confirm-2" class="block">Cédula de Identidad</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="ci-family" id="ci-family" type="text" class="form-control required" value="" required>
+                                                                                                        <input name="ci-family" id="ci-family" type="number" class="form-control required" value="" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="email-2" class="block">Fecha de nacimiento</label>
+                                                                                                        <label for="email-2" class="block">Fecha de Nacimiento</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="birthDate-family" type="date" id="birthday-family" class=" form-control" onchange="calculateAge('birthday-family', 'age-family')" required>
@@ -734,6 +741,7 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Sexo</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="gender-family" name="gender-family" onchange="womanInformation()" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Femenino">Femenino</option>
                                                                                                             <option value="Masculino">Masculino</option>
                                                                                                         </select>
@@ -743,21 +751,20 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Estado Civil</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status-family" name="status-family" onchange="hideMarriedInformation()" required>
-                                                                                                            <option value="Casado(a)">Casado(a)</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
-                                                                                                            <option value="Anulado">Anulado</option>
-                                                                                                            <option value="Conyugue">Conyugue</option>
-                                                                                                            <option value="Separado de Union Legal">Separado de Union Legal</option>
-                                                                                                            <option value="Separado de Union de Hecho">Separado de Union de Hecho</option>
-                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Soltero(a)">Soltero(a)</option>
+                                                                                                            <option value="Conyugue">Concubinato</option>
+                                                                                                            <option value="Casado(a)">Casado(a)</option>
+                                                                                                            <option value="Anulado">Divorciado(a)</option>
+                                                                                                            <option value="Viudo(a)">Viudo(a)</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Grado de Instruccion</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Grado de Instrucción</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="grade-family" name="grade-family" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="N/A">N/A</option>
                                                                                                             <option value="Primaria">Primaria</option>
                                                                                                             <option value="Secundaria">Secundaria</option>
@@ -800,24 +807,27 @@ closeConection($conn);
                                                                                 <div id="wizard">
                                                                                     <section>
                                                                                         <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertAcademicData">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
-                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos Academicos</p>
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos Académicos</p>
                                                                                             </div>
                                                                                             <fieldset style="height: 489px;">
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Especializacion</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Grado de Instrucción</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status-children" name="grade-academic" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="TSU">TSU</option>
                                                                                                             <option value="Licenciatura">Licenciatura</option>
-                                                                                                            <option value="Especializacion">Especializacion</option>
+                                                                                                            <option value="Especializacion">Especialización</option>
                                                                                                             <option value="Post-Grado">Post-Grado</option>
+                                                                                                            <option value="Maestría">Maestría</option>
+                                                                                                            <option value="Doctorado">Doctorado</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Titulo Obtenido</label>
+                                                                                                        <label for="confirm-2" class="block">Título Obtenido</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="title-academic" id="dropper-default-children" type="text" class="form-control required" required>
@@ -825,7 +835,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Año de grado</label>
+                                                                                                        <label for="confirm-2" class="block">Año de Grado</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="year-academic" id="year-academic" type="number" class="form-control required" value="" required>
@@ -833,7 +843,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="email-2" class="block">Institucion Universitaria</label>
+                                                                                                        <label for="email-2" class="block">Institución Universitaria</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="institute-academic" type="text" class=" form-control" required>
@@ -874,13 +884,13 @@ closeConection($conn);
                                                                                 <div id="wizard">
                                                                                     <section>
                                                                                         <form class="wizard-form" id="form-exterior" style="height: 564px;" method="POST" action="../modules/register-data-user/proses.php?act=insertAcademicExteriorData">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
-                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Formacion Exterior</p>
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Formación Exterior</p>
                                                                                             </div>
                                                                                             <fieldset style="height: 489px;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Titulo Obtenido</label>
+                                                                                                        <label for="confirm-2" class="block">Título Obtenido</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="title-exterior" id="dropper-default-children" type="text" class="form-control required" required>
@@ -888,7 +898,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Año de grado</label>
+                                                                                                        <label for="confirm-2" class="block">Año de Grado</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="anio-exterior" id="year-academic" type="number" class="form-control required" value="" required>
@@ -896,14 +906,14 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="email-2" class="block">Institucion Universitaria</label>
+                                                                                                        <label for="email-2" class="block">Institución Universitaria</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="institute-exterior" type="text" class=" form-control" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Indique Pais</div>
+                                                                                                    <div class="col-md-4 col-lg-2">País</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="status-children" name="country-exterior" required>
                                                                                                             <?php
@@ -951,13 +961,13 @@ closeConection($conn);
                                                                                 <div id="wizard" style=" height: 615px;">
                                                                                     <section>
                                                                                         <form class="wizard-form" style="height: 564px;" id="public-form" method="POST" action="../modules/register-data-user/proses.php?act=insertPublicData">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 300px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
-                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Experiencia Administracion Publica</p>
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Experiencia Laboral</p>
                                                                                             </div>
                                                                                             <fieldset style="height: 489px;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Organismos</label>
+                                                                                                        <label for="confirm-2" class="block">Organismo</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="organismos-public" id="dropper-default-children" type="text" class="form-control required" required>
@@ -991,6 +1001,7 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Posee Antecedentes de Servicios</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="antecedentes-public" name="grade-academic" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                             <option value="No">No</option>
                                                                                                         </select>
@@ -1032,10 +1043,10 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="basic-forms" method="POST" action="../modules/register-data-user/proses.php?act=insertInstituteData">
                                                                                             <h3> Datos Institucionales </h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Fecha de Inicio en la ABAE</label>
+                                                                                                        <label for="confirm-2" class="block">Ingreso en la ABAE</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="begin-institute" id="begin-institute" type="date" class="form-control required" onchange="calculateTime('begin-institute','calculate-time')" required>
@@ -1043,7 +1054,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Años de Servicio en la ABAE</label>
+                                                                                                        <label for="confirm-2" class="block">Años en la ABAE</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="time-institute" id="calculate-time" type="number" class="form-control required" onchange="" readonly>
@@ -1053,13 +1064,13 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Cargo</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="cargo" name="job-institute" onchange="hideRole()" required>
-                                                                                                            <option value="0">Seleccionar Cargo</option>
+                                                                                                            <option value="0">Seleccione</option>
                                                                                                             <!-- <option value="Presidente">Presidente</option> -->
                                                                                                             <!-- <option value="Vice-Presidente">Vice-Presidente</option> -->
                                                                                                             <option value="Director">Director</option>
                                                                                                             <option value="Jefe">Jefe</option>
-                                                                                                            <option value="Personal de Investigacion">Personal de Investigacion</option>
-                                                                                                            <option value="Empleado">Empleado</option>
+                                                                                                            <option value="Personal de Investigacion">Personal Sustantivo</option>
+                                                                                                            <option value="Empleado">Personal de Apoyo</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
@@ -1067,7 +1078,7 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Sede</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="sede" name="sede-institute" onchange="changeSede()" required>
-                                                                                                            <option value="0">Seleccionar Sede</option>
+                                                                                                            <option value="0">Seleccione</option>
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($querySedes)) {
                                                                                                             ?>
@@ -1079,10 +1090,10 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="direccion-div">
-                                                                                                    <div class="col-md-4 col-lg-2">Direccion de Adscripcion</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Dirección de Adscripción</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="direccion" name="direction-institute" onchange="changeDireccion()">
-                                                                                                            <option value="0">Seleccionar Dirección</option>
+                                                                                                            <option value="0">Seleccione</option>
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($queryDirecciones)) {
                                                                                                             ?>
@@ -1094,10 +1105,10 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="unidad-div">
-                                                                                                    <div class="col-md-4 col-lg-2">Unidad de Adscripcion</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Unidad de Adscripción</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="unidad" name="unity-institute" onchange="changeUnidad()">
-                                                                                                            <option value="0">Seleccionar Unidad</option>
+                                                                                                            <option value="0">Seleccione</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
@@ -1118,10 +1129,10 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3> Segunda Etapa </h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Fecha de Inicio en la Administracion Publica</label>
+                                                                                                        <label for="confirm-2" class="block">Inicio en la Administración Pública</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="begin-publicInstitute" id="default" type="date" class="form-control required" onchange="" required>
@@ -1129,7 +1140,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Correo Electronico Institucional</label>
+                                                                                                        <label for="confirm-2" class="block">Correo Electrónico Institucional</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="email-institute" id="dropper-default" type="email" class="form-control required" onchange="" required>
@@ -1137,16 +1148,17 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Telefono de Oficina / Ext</label>
+                                                                                                        <label for="confirm-2" class="block">Teléfono de Oficina / Ext.</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="tlf-institute" id="age" type="number" class="form-control required" value="">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Posee Familiares en ABAE</div>
+                                                                                                    <div class="col-md-4 col-lg-2">Posee Familiares en la ABAE</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control " id="family-institute" onchange="hideFamilyInformation()">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                             <option value="No">No</option>
                                                                                                         </select>
@@ -1187,13 +1199,13 @@ closeConection($conn);
                                                                                 <div id="wizard" style=" height: 615px;">
                                                                                     <section>
                                                                                         <form class="wizard-form" id="form-comision" style="height: 564px;" method="POST" action="../modules/register-data-user/proses.php?act=insertComisionData">
-                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 200px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
-                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Comision de Servicio</p>
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Datos de Comisión de Servicio</p>
                                                                                             </div>
                                                                                             <fieldset style="height: 488px;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="email-2" class="block">Instituto / Ente / Componente de Procedencia</label>
+                                                                                                        <label for="email-2" class="block">Instituto de Procedencia</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="institute-comision" type="text" class=" form-control" required>
@@ -1209,7 +1221,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Fecha de Inicio de Comision</label>
+                                                                                                        <label for="confirm-2" class="block">Inicio de Comisión</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="beginDate-comision" id="dropper-default" type="date" class="form-control required" onchange="" required>
@@ -1217,7 +1229,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Fecha de Culminacion de la Comision de Servicio</label>
+                                                                                                        <label for="confirm-2" class="block">Culminacion de Comisión</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="finishDate-comision" id="dropper-default" type="date" class="form-control required" onchange="" required>
@@ -1259,7 +1271,7 @@ closeConection($conn);
                                                                                     <section>
                                                                                         <form class="wizard-form" id="design-wizard" method="POST" action="../modules/register-data-user/proses.php?act=insertOthersData">
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Facebook</label>
@@ -1296,6 +1308,7 @@ closeConection($conn);
                                                                                                     <div class="col-md-4 col-lg-2">Posee Carnet de la Patria</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="carnet-others" name="posee-carnetPatria" onchange="hideCarnetPatria()">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
@@ -1303,7 +1316,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="div-codigo">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Codigo Carnet de la Patria</label>
+                                                                                                        <label for="confirm-2" class="block">Código Carnet de la Patria</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="code-others" type="text" class="form-control required" value="">
@@ -1327,11 +1340,12 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Posee Carnet del PSUV</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="carnetPsuv-institute" name="posee-carnetPSUV" onchange="hideCarnetPSUV()">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
@@ -1339,7 +1353,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row" id="div-codigoPSUV">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Codigo Carnet del PSUV</label>
+                                                                                                        <label for="confirm-2" class="block">Código Carnet del PSUV</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="codePsuv-others" type="text" class="form-control required" value="">
@@ -1362,27 +1376,30 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Pertenece a Algún Partido Politico</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Pertenece a Algún Partido Político? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="partidoPolitico" id="partido-others">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Pertenece a Algún Movimiento Social</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Pertenece a Algún Movimiento Social? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="movimientoSocial" id="movimiento-others">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Pertenece a Alguna Comuna o Consejo Comunal</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Pertenece a Alguna Comuna o Consejo Comunal? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="comuna" id="comuna-others">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
@@ -1390,29 +1407,32 @@ closeConection($conn);
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Es Usted Vocero en Alguna Comuna o Consejo Comunal</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Es Usted Vocero en Alguna Comuna o Consejo Comunal? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="vocero" id="vocero-others">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Recibe el Beneficio de la Caja Clap</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Recibe el Beneficio de la Caja Clap?</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="bolsa-others" name="bolsa">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Posee Vivienda Propia Alquilada o Familiar (Obligatorio)</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Posee Vivienda Propia Alquilada o Familiar?</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="vivienda-others" name="vivienda-others" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Alquilada">Alquilada</option>
                                                                                                             <option value="Propia">Propia</option>
                                                                                                             <option value="Familiar">Familiar</option>
@@ -1421,10 +1441,11 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="tipoVivienda-others" class="block">Tipo de Vivienda (Obligatorio)</label>
+                                                                                                        <label for="tipoVivienda-others" class="block">Tipo de Vivienda</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select id='typeVivienda' name="tipoVivienda-others" class="form-control required" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Casa">Casa</option>
                                                                                                             <option value="Apartamento">Apartamento</option>
                                                                                                             <option value="Townhouse">Townhouse</option>
@@ -1435,7 +1456,7 @@ closeConection($conn);
                                                                                                             <option value="Cabaña">Cabaña</option>
                                                                                                             <option value="Anexo">Anexo</option>
                                                                                                             <option value="Apartaestudio">Apartaestudio</option>
-                                                                                                            <option value="Local comercial">Local comercial</option>
+                                                                                                            <option value="Local comercial">Local Comercial</option>
                                                                                                             <option value="Oficina">Oficina</option>
                                                                                                             <option value="Terreno">Terreno</option>
                                                                                                             <option value="Galpón">Galpón</option>
@@ -1445,9 +1466,10 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Posee Vehiculo Propio (Obligatorio)</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Posee Vehículo Propio?</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" id="vehiculo-others" name="vehiculopropio" onchange="hideVehiculo()" required>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="No">No</option>
                                                                                                             <option value="Si">Si</option>
                                                                                                         </select>
@@ -1459,26 +1481,27 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="tipoVehiculo-others">
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Automóvil">Automóvil</option>
                                                                                                             <option value="Camioneta">Camioneta</option>
                                                                                                             <option value="Motocicleta">Motocicleta</option>
                                                                                                             <option value="Bicicleta">Bicicleta</option>
                                                                                                             <option value="Autobús">Autobús</option>
-                                                                                                            <option value="Camion">Camion</option>
+                                                                                                            <option value="Camion">Camión</option>
                                                                                                             <option value="Otro">Otro</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <h3></h3>
-                                                                                            <fieldset>
-
+                                                                                            <fieldset style="overflow: auto;">
                                                                                                 <div class="form-group row">
-                                                                                                    <div class="col-md-4 col-lg-2">Utilizar Trasnporte Publico (Obligatorio)</div>
+                                                                                                    <div class="col-md-4 col-lg-2">¿Utiliza Transporte Público?</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control required" name="usaTrasporte" id="transportePublico-others" onchange="hideVehiculoPublic()" required>
-                                                                                                            <option value="No">No</option>
+                                                                                                            <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="Si">Si</option>
+                                                                                                            <option value="No">No</option>
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
@@ -1492,7 +1515,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label for="confirm-2" class="block">Describa Brevemente la Ruta que Utiliza Para Trasladarse al Lugar de Trabajo (Obligatorio)</label>
+                                                                                                        <label for="confirm-2" class="block">Describa Brevemente la Ruta que Utiliza Para Trasladarse al Lugar de Trabajo</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="ruta-others" type="text" class="form-control required" value="" required>
@@ -1500,7 +1523,7 @@ closeConection($conn);
                                                                                                 </div>
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">
-                                                                                                        <label class="block">Practica Algún Deporte o Actividad Cultural (Indique)</label>
+                                                                                                        <label class="block">¿Practica Algún Deporte o Actividad Cultural? (Indique)</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <input name="deporte-others" type="text" class="form-control required">
@@ -1544,8 +1567,8 @@ closeConection($conn);
                                                                                                     </div>
                                                                                                     <div class="text-center">
                                                                                                         <h1>¡Registro Completado!</h1>
-                                                                                                        <p>Para modificar sus datos, acceda al módulo de actualización de información.</p>
-                                                                                                        <a class="btn btn-outline-success" href="../../personal-control/home/form-edit-data.php?page=datos-personales">Modificar</a>
+                                                                                                        <p>Para modificar sus datos, acceda al módulo de actualización de datos</p>
+                                                                                                        <a class="btn btn-outline-success" href="../../personal-control-recharge/home/form-edit-data.php?page=datos-personales">Modificar</a>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1606,8 +1629,7 @@ closeConection($conn);
     <script src="../utils/get-ubication-select.js"></script>
     <!-- <link href="path/to/select2.min.css" rel="stylesheet" />
     <script src="path/to/select2.min.js"></script> -->
-    <script>   
-
+    <script>
         //Agregar hijos
         $(document).ready(function() {
             $('#button-edit').click(function(e) {
@@ -1728,8 +1750,14 @@ closeConection($conn);
         function changeDireccion() {
             // Cargar unidades al seleccionar una dirección
             var direccionId = $("#direccion").val();
-            var idDireccion = direccionId;
+            var idUnidad = $("#unidad").val();
             var cargo = $("#cargo").val();
+
+
+            console.log("valor unidad 1: " + idUnidad);
+            console.log("valor direccion 1: " + direccionId);
+
+
             if (cargo === "Empleado" || cargo === "Personal de Investigacion" || cargo === "Jefe") {
                 $.ajax({
                     url: "../utils/get-unidades.php",
@@ -1749,7 +1777,8 @@ closeConection($conn);
                     url: "../utils/get-directores.php",
                     type: "POST",
                     data: {
-                        direccionId: direccionId
+                        direccionId: direccionId,
+                        idUnidad: idUnidad
                     },
                     success: function(data) {
                         $("#jefe").val("DATA: " + data);
@@ -1783,29 +1812,45 @@ closeConection($conn);
 
         function changeUnidad() {
             var idUnidad = $("#unidad").val();
-            var idDireccion = $("#direccion").val();
-            console.log("valor unidad: " + idUnidad);
-            console.log("valor direccion: "+idDireccion)
+            var direccionId = $("#direccion").val();
+            console.log("valor unidad 2: " + idUnidad);
+            console.log("valor direccion 2: " + direccionId);
+
+
             var cargo = $("#cargo").val();
 
             // Realizar una solicitud AJAX para obtener el nombre del jefe
-            $.ajax({
-                url: "../utils/get-jefe.php",
-                type: "POST",
-                data: {
-                    idUnidad: idUnidad,
-                    idDireccion: idDireccion,
-                    cargo: cargo
-                },
-                success: function(data) {
-                    $("#jefe").val("DATA: " + data);
-                    $("#jefe").html(data);
-                    console.log(data);
-                },
-                error: function(error) {
-                    console.log("Error en la solicitud AJAX: " + error);
-                }
-            });
+            if (cargo === "Jefe") {
+                $.ajax({
+                    url: "../utils/get-directores.php",
+                    type: "POST",
+                    data: {
+                        direccionId: direccionId,
+                        idUnidad: idUnidad
+                    },
+                    success: function(data) {
+                        $("#jefe").val("DATA: " + data);
+                        $("#jefe").html(data);
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: "../utils/get-jefe.php",
+                    type: "POST",
+                    data: {
+                        idUnidad: idUnidad,
+                        cargo: cargo
+                    },
+                    success: function(data) {
+                        $("#jefe").val("DATA: " + data);
+                        $("#jefe").html(data);
+                        console.log(data);
+                    },
+                    error: function(error) {
+                        console.log("Error en la solicitud AJAX: " + error);
+                    }
+                });
+            }
         }
 
         function confirmModal() {

@@ -19,7 +19,7 @@ date_default_timezone_set("America/Caracas");
 ?>
 
 <head>
-    <title>Login </title>
+    <title>SIGH | Login </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -87,23 +87,24 @@ date_default_timezone_set("America/Caracas");
                     <div class="col-md-12 text-center" style="text-align:center; margin-bottom:10px">
                         <img src="files\assets\images\logo.png" alt="logo.png" style="height:75px">
                     </div>
-                    <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesion</h2>
+                    <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesión</h2>
                 </div>
                 <input type="text" placeholder="Usuario" id="user" style="border-radius: 15px;" class="cont" />
                 <input type="password" placeholder="Contraseña" id="password" style="border-radius: 15px;" class="cont" />
                 <!--a href="#">Forgot your password?</a-->
-                <button type="submit" style="margin-top:20px">Iniciar Sesion</button>
+                <button type="submit" style="margin-top:20px">Iniciar Sesión</button>
             </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Bienvenido!</h1>
-                    <p>Ingresa los datos basicos para crear una nueva cuenta</p>
-                    <button class="ghost" id="signIn">Iniciar Sesion</button>
+                    <p>Ingresa los datos básicos para crear una nueva cuenta</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Control de Personal ABAE!</h1>
+                    <h1>SIGH</h1>
+                        <h5><b>Sistema de Información Gestión Humana</b></h5>
                     <p>Registrar Nuevo Personal</p>
                     <button class="ghost" id="signUp">Registrar</button>
                 </div>
@@ -113,7 +114,7 @@ date_default_timezone_set("America/Caracas");
 
     <footer>
         <p>
-            Creado por la Direccion de Investigacion e Innovacion Espacial, USMI-UDLP; ABAE 2023.
+            Desarrollado por la Dirección de Investigación e Innovación Espacial, USMI-UDLP; ABAE 2023
         </p>
     </footer>
 
@@ -180,7 +181,7 @@ date_default_timezone_set("America/Caracas");
                             case "si":
                                 Swal.fire({
                                         icon: 'success',
-                                        title: 'Sesion Iniciada',
+                                        title: 'Sesión Iniciada',
                                         showConfirmButton: false,
                                         timer: 1500
                                     });  //CUANDO INICIA SESION
@@ -191,8 +192,8 @@ date_default_timezone_set("America/Caracas");
                             case "no":
                                 Swal.fire({
                                         icon: 'warning',
-                                        title: 'Error en verificación',
-                                        text: 'Nombre de Usuario o Contraseña Incorrecto',
+                                        title: 'Error de verificación',
+                                        text: 'Usuario o contraseña incorrecto',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //CONTRASEÑA O USUARIO INCORRECTOS
@@ -247,7 +248,7 @@ date_default_timezone_set("America/Caracas");
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Usuario no Registrado',
-                                        text: 'Problema de comunicación con el servidor, intente mas tarde',
+                                        text: 'Problema de comunicación con el servidor, intente más tarde',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //ERROR AL REGISTRAR
@@ -256,7 +257,7 @@ date_default_timezone_set("America/Caracas");
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Usuario no Registrado',
-                                        text: 'El numero de cedula ya existe',
+                                        text: 'El número de cédula ya existe',
                                         confirmButtonText: 'Aceptar',
                                         confirmButtonColor: '#01a9ac',
                                     }); //CEDULA EXISTENTE

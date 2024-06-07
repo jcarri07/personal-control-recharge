@@ -3,7 +3,9 @@ require_once '../database/conexion.php';
 
 // Obtener el ID de la unidad seleccionada
 $direccionId = $_POST['direccionId'];
+$unidad = $_POST['idUnidad'];
 $value = 0;
+$idUser = $_SESSION["id_usuario"];
 
 // Realizar la primera consulta para obtener el id_jefe
 $sql = "SELECT id_jefe FROM direccion WHERE id_direccion LIKE ? LIMIT 1";
@@ -22,6 +24,7 @@ if ($result->num_rows > 0) {
 
 // Realizar la segunda consulta utilizando el id_jefe
 $sql = "SELECT id_usuario, nombres, apellidos, cargo FROM usuario WHERE (id_usuario IS NOT NULL OR id_usuario != '') AND id_usuario = ?";
+
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $idJefe);
 $stmt->execute();

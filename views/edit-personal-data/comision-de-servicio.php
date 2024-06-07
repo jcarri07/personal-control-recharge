@@ -44,7 +44,7 @@ if($datos_personales['step'] > 7){
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Comisión de Servicio</span>
+                                    <span>Datos de Comisión de Servicio</span>
                                 </div>
                             </div>
                         </div>
@@ -52,10 +52,10 @@ if($datos_personales['step'] > 7){
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Comisión de Servicio</a>
+                                        <a class="activate">Actualización de Datos / Comisión de Servicio</a>
                                     </li>
                                 </ul>
                             </div>
@@ -79,7 +79,7 @@ if($datos_personales['step'] > 7){
                                                         <!--<fieldset>-->
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-6">
-                                                                    <label class="block">Instituto / Ente / Componente de Procedencia</label>
+                                                                    <label class="block">Instituto de Procedencia</label>
                                                                     <input name="instituto" id="instituto" type="text" class="form-control" maxlength="100" value="<?php echo $instituto;?>">
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -88,11 +88,11 @@ if($datos_personales['step'] > 7){
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label class="block">Fecha de Inicio de la Comisión</label>
+                                                                    <label class="block">Inicio de Comisión</label>
                                                                     <input name="fecha_inicio" id="fecha_inicio" type="date" class="form-control" value="<?php echo $fecha_inicio;?>">
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="block">Fecha de Culminación de la Comisión de Servicio</label>
+                                                                    <label class="block">Culminación de Comisión</label>
                                                                     <input name="fecha_fin" id="fecha_fin" type="date" class="form-control" value="<?php echo $fecha_fin;?>">
                                                                 </div>
                                                                 
@@ -162,7 +162,7 @@ if($datos_personales['step'] > 7){
                 $('.loaderParent').hide();
                 if(response == 'si'){
                     //alertify.success("Bello."); 
-                    $("#modal-generic .message").text("Actualización exitosa");
+                    $("#modal-generic .message").text("Actualización Exitosa");
                     $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                     $("#modal-generic").modal("show");
                 }
@@ -170,13 +170,13 @@ if($datos_personales['step'] > 7){
                     $("#modal-generic .aceptar button").attr("onclick", "");
                     if(response == "vacio"){
                         //alertify.warning("Datos vacíos o sin modificación.");
-                        $("#modal-generic .message").text("Datos Vacíos o sin Modificación");
+                        $("#modal-generic .message").text("Datos vacíos o sin modificación");
                         $("#modal-generic").modal("show");
                         
                     }
                     else{
                         //alertify.error("Error al registrar.");
-                        $("#modal-generic .message").text("Error al registrar.");
+                        $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     } 
                 }
@@ -185,7 +185,7 @@ if($datos_personales['step'] > 7){
             error: function(response){
                 $('.loaderParent').hide();
                 //alertify.error("Error al registrar."); 
-                $("#modal-generic .message").text("Error al registrar.");
+                $("#modal-generic .message").text("Error al registrar");
                 $("#modal-generic").modal("show");
             }
         });
@@ -234,7 +234,7 @@ else{
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>Actualización de Datos</h4>
-                                    <span>Comisión de Servicio</span>
+                                    <span>Datos de Comisión de Servicio</span>
                                 </div>
                             </div>
                         </div>
@@ -242,10 +242,10 @@ else{
                             <div class="page-header-breadcrumb">
                                 <ul class="breadcrumb-title">
                                     <li class="breadcrumb-item">
-                                        <a href="#"> <i class="feather icon-home"></i> </a>
+                                        <a href="../home/dashboard.php"> <i class="feather icon-home"></i> </a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#!" class="activate">Actualización de Datos / Comisión de Servicio</a>
+                                        <a class="activate">Actualización de Datos / Comisión de Servicio</a>
                                     </li>
                                 </ul>
                             </div>
@@ -258,7 +258,7 @@ else{
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h2 class="text-center">Complete el Registro de Comisión de Servicio en <b>"Mis Datos"</b>.</h2>
+                                    <h2 class="text-center">Complete el registro de comisión de servicio en <b>"Mis Datos"</b></h2>
                                 </div>
                             </div>
                         </div>

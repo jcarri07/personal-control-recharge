@@ -40,7 +40,7 @@ $fila = mysqli_fetch_assoc($resultado);
 
 
 <head>
-    <title>SGDP - ABAE</title>
+    <title>ABAE | Personal</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -151,8 +151,8 @@ $fila = mysqli_fetch_assoc($resultado);
                         </ul-->
                         <ul class="nav-right">
                             <!--INICIO DE NOTIFICACIONES-->
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
+                            <li class="header-notification" style="padding: 0px">
+                                <div class="dropdown-primary dropdown" style="width:50px;">
                                     <?php
                                     include '../php/notificacion/notificacion.php';
                                     ?>
@@ -208,9 +208,10 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </div>
                                 </div>
                             </li>-->
-                            <li class="user-profile header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                            <li style="padding:10px"></li>
+                            <li class="user-profile header-notification" style="padding: 0px;">
+                                <div class="dropdown-primary dropdown" style="text-align: center;">
+                                    <div class="dropdown-toggle" data-toggle="dropdown" >
                                         <img src="../assets/empleados-images/<?php if($personal_data != null) { echo $personal_data['foto']; } else { echo "avatar_default.jpg"; } ?>" class="img-radius" alt="User-Profile-Image">
                                         <span><?php echo $fila['nombres']." ".$fila['apellidos'] ?></span>
                                         <i class="feather icon-chevron-down"></i>
@@ -245,6 +246,7 @@ $fila = mysqli_fetch_assoc($resultado);
 
                                 </div>
                             </li>
+                            <li style="padding:5px"></li>
                         </ul>
                     </div>
                 </div>
@@ -370,6 +372,9 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>
                             </ul>
+<?php
+                    if($_SESSION['tipo_usuario'] != "admin"){
+?>                           
                             <div class="pcoded-navigatio-lavel">Datos personales</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
@@ -385,21 +390,17 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>-->
 
-
-
-
-
                                 <li class="pcoded-hasmenu"><!-- pcoded-trigger -->
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
-                                        <span class="pcoded-mtext">Actualización de Datos</span>
+                                        <span class="pcoded-mtext">Actualización de datos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="pcoded-trigger"> <!--active-->
                                             <a href="../home/form-edit-data.php?page=datos-personales" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Personales</span>
+                                                <span class="pcoded-mtext">Personales</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -423,7 +424,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=datos-academicos" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Académicos</span>
+                                                <span class="pcoded-mtext">Académicos</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -431,7 +432,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=formacion-exterior" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Formación en el Exterior</span>
+                                                <span class="pcoded-mtext">Formación exterior</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -439,7 +440,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=experiencia-laboral-publica" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Experiencia Laboral</span>
+                                                <span class="pcoded-mtext">Experiencia laboral</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -447,7 +448,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=datos-institucionales" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Datos Institucionales</span>
+                                                <span class="pcoded-mtext">Institucionales</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -455,7 +456,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=comision-servicio" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Comisión de Servicio</span>
+                                                <span class="pcoded-mtext">Comisión de servicio</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -463,7 +464,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <li class=" ">
                                             <a href="../home/form-edit-data.php?page=otros-datos" data-i18n="nav.widget.main">
                                                 <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Otros Datos</span>
+                                                <span class="pcoded-mtext">Otros datos</span>
                                                 <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
                                             </a>
@@ -472,7 +473,9 @@ $fila = mysqli_fetch_assoc($resultado);
                                 </li>
                             </ul>
 
-
+<?php
+ }
+?>
 
 
 
@@ -492,17 +495,17 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="../FPDF/Vacaciones_Vacio.php">
+                                            <a href="../FPDF/Formato_Vacaciones.php" target="_blank">
                                                 <span class="pcoded-mtext">Vacaciones</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="../FPDF/Reposo_Vacio.php">
-                                                <span class="pcoded-mtext">Reposo</span>
+                                            <a href="../FPDF/Formato_Reposo.php" target="_blank">
+                                                <span class="pcoded-mtext">Reposos</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="../FPDF/Prueba_permiso.php">
+                                            <a href="../FPDF/Formato_Permisos.php" target="_blank">
                                                 <span class="pcoded-mtext">Permisos</span>
                                             </a>
                                         </li>
@@ -517,7 +520,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                 <li class=" ">
                                     <a href="../home/form-edit-data.php?page=filtros-de-busqueda">
                                         <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Información de Personal</span>
+                                        <span class="pcoded-mtext">Información de personal</span>
                                     </a>
                                 </li>
                             </ul>
@@ -552,7 +555,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </li>
                                         <li class="">
                                             <a href="../home/select_admin.php">
-                                                <span class="pcoded-mtext">Selec. Admin</span>
+                                                <span class="pcoded-mtext">Administrador</span>
                                             </a>
                                         </li>
                                     </ul>

@@ -110,12 +110,13 @@
 
 
     if($filtro == "hijos"){
+        $add_select .= ", dh.nombre AS 'nombre_hijo', dh.fecha_nacimiento AS 'fecha_nacimiento' ";
+        $add_tables .= ", datos_hijos dh";
+        $add_where .= " AND u.id_usuario = dh.id_usuario ";
+        $title = "";
+        $name = ""; 
+
         if($sexo != "" || $subfiltro != ""){
-            $add_select .= ", dh.nombre AS 'nombre_hijo', dh.fecha_nacimiento AS 'fecha_nacimiento' ";
-            $add_tables .= ", datos_hijos dh";
-            $add_where .= " AND u.id_usuario = dh.id_usuario ";
-            $title = "";
-            $name = "";
 
             if($sexo != ""){
                 $title = "Sexo";

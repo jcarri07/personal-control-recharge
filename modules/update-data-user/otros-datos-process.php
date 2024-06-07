@@ -114,8 +114,8 @@
                 $sql = "UPDATE otros_datos_usuario SET movimiento_social = '$pertenece_movimiento_social' WHERE id_otros_datos_usuario = '$id_otros_datos_usuario';";
                 $res = mysqli_query($conn, $sql);
             }
-            if($es_vocero_comuna != $row['comuna']){
-                $sql = "UPDATE otros_datos_usuario SET comuna = '$es_vocero_comuna' WHERE id_otros_datos_usuario = '$id_otros_datos_usuario';";
+            if($pertenece_comuna != $row['comuna']){
+                $sql = "UPDATE otros_datos_usuario SET comuna = '$pertenece_comuna' WHERE id_otros_datos_usuario = '$id_otros_datos_usuario';";
                 $res = mysqli_query($conn, $sql);
             }
             if($es_vocero_comuna != $row['es_vocero_comuna']){

@@ -195,37 +195,55 @@ if($datos_personales['step'] > 8){
                                                             </div>
                                                             <div class="form-group row justify-content-center">
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_partido_politico" class="block">¿Pertenece a algún Partido Político? (Indique)</label>
-                                                                    <select class="form-control" name="pertenece_partido_politico" id="pertenece_partido_politico">
+                                                                    <label for="pertenece_partido_politico_select" class="block">¿Pertenece a algún Partido Político?</label>
+                                                                    <select class="form-control" name="pertenece_partido_politico_select" id="pertenece_partido_politico_select" onchange="changeComunasYPartidos(this.id);">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
                                                                         <option value="No">No</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_movimiento_social" class="block">¿Pertenece a algún Movimiento Social? (Indique)</label>
-                                                                    <select class="form-control" name="pertenece_movimiento_social" id="pertenece_movimiento_social">
+                                                                    <label for="pertenece_partido_politico" class="block">(Indique Partido Político)</label>
+                                                                    <input name="pertenece_partido_politico" id="pertenece_partido_politico" type="text" class="form-control" maxlength="100" value="<?php echo $partido_politico;?>">
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <label for="pertenece_movimiento_social_select" class="block">¿Pertenece a algún Movimiento Social?</label>
+                                                                    <select class="form-control" name="pertenece_movimiento_social_select" id="pertenece_movimiento_social_select" onchange="changeComunasYPartidos(this.id);">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
                                                                         <option value="No">No</option>
                                                                     </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="pertenece_movimiento_social" class="block">(Indique Movimiento Social)</label>
+                                                                    <input name="pertenece_movimiento_social" id="pertenece_movimiento_social" type="text" class="form-control" maxlength="100" value="<?php echo $movimiento_social;?>">
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    <label for="pertenece_comuna" class="block">¿Pertenece a alguna Comuna o Consejo Comunal? (Indique)</label>
-                                                                    <select class="form-control" name="pertenece_comuna" id="pertenece_comuna">
+                                                                    <label for="pertenece_comuna_select" class="block">¿Pertenece a alguna Comuna o Consejo Comunal?</label>
+                                                                    <select class="form-control" name="pertenece_comuna_select" id="pertenece_comuna_select" onchange="changeComunasYPartidos(this.id);">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
                                                                         <option value="No">No</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label for="es_vocero_comuna" class="block">¿Es Usted Vocero en Alguna Comuna o Consejo Comunal? (Indique)</label>
-                                                                    <select class="form-control" name="es_vocero_comuna" id="es_vocero_comuna">
+                                                                    <label for="pertenece_comuna" class="block">(Indique Comuna o Consejo Comunal)</label>
+                                                                    <input name="pertenece_comuna" id="pertenece_comuna" type="text" class="form-control" maxlength="100" value="<?php echo $comuna;?>">
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <label for="es_vocero_comuna_select" class="block">¿Es Usted Vocero en Alguna Comuna o Consejo Comunal?</label>
+                                                                    <select class="form-control" name="es_vocero_comuna_select" id="es_vocero_comuna_select" onchange="changeComunasYPartidos(this.id);">
                                                                         <option value="">Seleccione</option>
                                                                         <option value="Si">Si</option>
                                                                         <option value="No">No</option>
                                                                     </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="es_vocero_comuna" class="block">(Indique Comuna o Consejo Comunal)</label>
+                                                                    <input name="es_vocero_comuna" id="es_vocero_comuna" type="text" class="form-control" maxlength="100" value="<?php echo $es_vocero_comuna;?>">
                                                                 </div>
 
                                                                 <div class="col-md-6">
@@ -363,10 +381,35 @@ if($datos_personales['step'] > 8){
         $("#posee_carnet_psuv").val("<?php echo $tiene_carnet_psuv;?>");
         changeCarnetPSUV();
 
-        $("#pertenece_partido_politico").val("<?php echo $partido_politico;?>");
+        /*$("#pertenece_partido_politico").val("<?php echo $partido_politico;?>");
         $("#pertenece_movimiento_social").val("<?php echo $movimiento_social;?>");
         $("#pertenece_comuna").val("<?php echo $comuna;?>");
-        $("#es_vocero_comuna").val("<?php echo $es_vocero_comuna;?>");
+        $("#es_vocero_comuna").val("<?php echo $es_vocero_comuna;?>");*/
+
+        if("<?php echo $partido_politico;?>" == "")
+            $("#pertenece_partido_politico_select").val("No");
+        else
+            $("#pertenece_partido_politico_select").val("Si");
+
+        if("<?php echo $movimiento_social;?>" == "")
+            $("#pertenece_movimiento_social_select").val("No");
+        else
+            $("#pertenece_movimiento_social_select").val("Si");
+
+        if("<?php echo $comuna;?>" == "")
+            $("#pertenece_comuna_select").val("No");
+        else
+            $("#pertenece_comuna_select").val("Si");
+
+        if("<?php echo $es_vocero_comuna;?>" == "")
+            $("#es_vocero_comuna_select").val("No");
+        else
+            $("#es_vocero_comuna_select").val("Si");
+
+        changeComunasYPartidos("pertenece_partido_politico_select");
+        changeComunasYPartidos("pertenece_movimiento_social_select");
+        changeComunasYPartidos("pertenece_comuna_select");
+        changeComunasYPartidos("es_vocero_comuna_select");
         $("#recibe_clap").val("<?php echo $recibe_clap;?>");
         $("#vivienda").val("<?php echo $vivienda;?>");
         $("#tipo_vivienda").val("<?php echo $tipo_vivienda;?>");
@@ -429,6 +472,17 @@ if($datos_personales['step'] > 8){
             $("#tipo_transporte_publico").parent().hide();
             $("#tipo_transporte_publico").val("");
         } 
+    }
+
+    function changeComunasYPartidos(id){
+        var id_campo = id.replace("_select", "");
+        if($("#" + id).val() == "Si") {
+            $("#" + id_campo).parent().show();
+        }
+        else {
+            $("#" + id_campo).val("");
+            $("#" + id_campo).parent().hide();
+        }
     }
 
 

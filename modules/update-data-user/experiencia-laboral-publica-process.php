@@ -76,5 +76,14 @@
             echo "vacio";
     }
 
+    if($opc == "estatus"){
+        $estatus = $_POST['estatus'];
+        $sql = "UPDATE experiencia_instituciones_publicas SET estatus = '$estatus' WHERE id_experiencia_instituciones_publicas = '$id';";
+        $res = mysqli_query($conn, $sql);
+
+        if($res == 1)
+            echo "si";
+    }
+
     closeConection($conn);
 ?>

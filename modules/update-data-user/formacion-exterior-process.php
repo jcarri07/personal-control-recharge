@@ -70,5 +70,14 @@
             echo "vacio";
     }
 
+    if($opc == "estatus"){
+        $estatus = $_POST['estatus'];
+        $sql = "UPDATE formacion_exterior SET estatus = '$estatus' WHERE id_formacion_exterior = '$id';";
+        $res = mysqli_query($conn, $sql);
+
+        if($res == 1)
+            echo "si";
+    }
+
     closeConection($conn);
 ?>

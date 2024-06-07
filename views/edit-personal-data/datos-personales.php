@@ -28,6 +28,9 @@ if(mysqli_num_rows($query) > 0){
     $sql = "SELECT * FROM municipios;";
     $queryMunicipios = mysqli_query($conn, $sql);
 
+    $sql = "SELECT * FROM parroquias;";
+    $queryParroquias = mysqli_query($conn, $sql);
+
     closeConection($conn);
 
     $array_municipios = array();
@@ -37,6 +40,15 @@ if(mysqli_num_rows($query) > 0){
         $array_aux['municipio'] = $row['municipio'];
         $array_aux['id_estado'] = $row['id_estado'];
         array_push($array_municipios, $array_aux);
+    }
+
+    $array_parroquias = array();
+    while($row = mysqli_fetch_array($queryParroquias)){
+        $array_aux = array();
+        $array_aux['id_parroquia'] = $row['id_parroquia'];
+        $array_aux['id_municipio'] = $row['id_municipio'];
+        $array_aux['parroquia'] = $row['parroquia'];
+        array_push($array_parroquias, $array_aux);
     }
 
 ?>
@@ -489,7 +501,7 @@ if(mysqli_num_rows($query) > 0){
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label class="block">Municipio</label>
-                                                                    <select class="form-control required" name="municipality" id="ciudad">
+                                                                    <select class="form-control required" name="municipality" id="ciudad" onchange="changeCiudad();">
                                                                         <option value="N/A">Seleccione</option>
                                                                     </select>
                                                                 </div>
@@ -704,13 +716,22 @@ if(mysqli_num_rows($query) > 0){
 
 
 <script>
-    var array_municipios = <?php echo json_encode($array_municipios);?>
+    var array_municipios = <?php echo json_encode($array_municipios);?>;
+    var array_parroquias = <?php echo json_encode($array_parroquias);?>;
 
     $(document).ready(function() {
         $("#birthday").trigger("change");
 
         $("#gender").val("<?php echo $datos_personales_detalles['sexo'];?>");
         $("#status").val("<?php echo $datos_personales_detalles['estado_civil'];?>");
+        $("#status").trigger("change");
+        if("<?php echo $datos_personales_detalles['estado_civil'];?>" == "N/A" ||
+            "<?php echo $datos_personales_detalles['estado_civil'];?>" == "Soltero(a)" ||
+            "<?php echo $datos_personales_detalles['estado_civil'];?>" == "Anulado" ||
+            "<?php echo $datos_personales_detalles['estado_civil'];?>" == "Viudo(a)"
+        ) { 
+            $("#spouse").parent().hide();
+        }
 
         var id_estado; 
         for(var i = 0 ; i < array_municipios.length ; i++){
@@ -728,6 +749,8 @@ if(mysqli_num_rows($query) > 0){
             }
         }*/
         $("#ciudad").val('<?php echo $datos_personales_detalles['id_municipio'];?>');
+        changeCiudad();
+        $("#parroquia").val('<?php echo $datos_personales_detalles['parroquia'];?>');
 
         $("#bloodType").val('<?php echo $datos_personales_detalles['tipo_sangre'];?>');
         $("#chronicDisease").val('<?php echo $datos_personales_detalles['padece_enfermedad_cronica'];?>');
@@ -749,11 +772,26 @@ if(mysqli_num_rows($query) > 0){
         $("#chronicDisease").trigger("change");
     });
 
+    $("#status").on("change", function() { console.log(this.value);
+        if(this.value == "N/A" ||
+            this.value == "Soltero(a)" ||
+            this.value == "Anulado" ||
+            this.value == "Viudo(a)"
+        ) {
+            $("#spouse").parent().hide();
+        }
+        else {
+            $("#spouse").parent().show();
+        }
+    });
+
     
     //$("#estado").on("change", function() {
     function changeEstado(){
-        if($("#estado").val() == "N/A")
+        if($("#estado").val() == "N/A") {
             $("#ciudad").html("<option value=''>Seleccione</option>");
+            $("#parroquia").html("<option value=''>Seleccione</option>");
+        }
         else{
             $("#ciudad").html("<option value=''>Seleccione</option>");
             for(var i = 0 ; i < array_municipios.length ; i++){
@@ -761,8 +799,22 @@ if(mysqli_num_rows($query) > 0){
                     $("#ciudad").append("<option value='" + array_municipios[i]['id_municipio'] + "'>" + array_municipios[i]['municipio'] + "</option>");
                 }
             }
+            $("#parroquia").html("<option value=''>Seleccione</option>");
         }
     //});
+    }
+
+    function changeCiudad(){
+        if($("#ciudad").val() == "N/A")
+            $("#parroquia").html("<option value=''>Seleccione</option>");
+        else{
+            $("#parroquia").html("<option value=''>Seleccione</option>");
+            for(var i = 0 ; i < array_parroquias.length ; i++){
+                if(array_parroquias[i]['id_municipio'] == $("#ciudad").val()){
+                    $("#parroquia").append("<option value='" + array_parroquias[i]['id_parroquia'] + "'>" + array_parroquias[i]['parroquia'] + "</option>");
+                }
+            }
+        }
     }
 
     //Ocultar informacion femenina

@@ -589,6 +589,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
                $queryJefeInmediatoABAE = "UPDATE datos_abae SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
+               echo $queryUnidadJefe;
           }
 
 
@@ -620,53 +621,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                echo "Error al actualizar el campo id jefe N/A " . $conn->error;
           }
 
-          // if (
-          //      $conn->query($queryUnidadJefe) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+          if (!empty($queryUnidadJefe)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($queryUnidadJefe) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
-          // if (
-          //      $conn->query($queryCargo) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+           if (!empty($queryCargo)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($queryCargo) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
-          // if (
-          //      $conn->query($queryJefeInmediato) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+           if (!empty($queryJefeInmediato)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($queryJefeInmediato) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
-          // if (
-          //      $conn->query($queryJefeInmediatoABAE) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+           if (!empty($queryJefeInmediatoABAE)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($queryJefeInmediatoABAE) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
-          // if (
-          //      $conn->query($querySetJefe) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+           if (!empty($querySetJefe)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($querySetJefe) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
-          // if (
-          //      $conn->query($queryDirector) === TRUE
-          // ) {
-          //      echo "Consulta ejecutada correctamente.";
-          // } else {
-          //      echo "Error al ejecutar la consulta: " . $conn->error;
-          // }
+           if (!empty($queryDirector)) {
+               // Verifica si la consulta no está vacía antes de ejecutarla
+               if ($conn->query($queryDirector) === TRUE) {
+                   echo "Consulta ejecutada correctamente.";
+               } else {
+                   echo "Error al ejecutar la consulta: " . $conn->error;
+               }
+           } else {
+               echo "La consulta está vacía.";
+           }
 
           // Verificar si $cargo es igual a "Jefe" o "Director"
           if ($cargo == "Jefe" || $cargo == "Director") {
@@ -690,7 +709,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "Error al ejecutar la consulta: " . $conn->error;
                }
           } else {
-               echo "El valor de \$cargo no es válido.";
+               echo "SUPERVISOR: ".$supervisorInmediato."  El valor de \$cargo no es válido.";
           }
 
           // Cerrar la conexión y liberar recursos
@@ -698,7 +717,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $conn->close();
 
           echo "Datos institucionales registrados";
-          header("Location: ../../home/form-register.php");
+          // header("Location: ../../home/form-register.php");
      }
 }
 
@@ -853,5 +872,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      }
 }
 
-// header("Location: ../../home/form-register.php");
+header("Location: ../../home/form-register.php");
 exit;

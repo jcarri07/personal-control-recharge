@@ -104,6 +104,16 @@ if (1) {
                         or die('error: ' . mysqli_error($conn));
                     $cargo = mysqli_fetch_assoc($cargosql);
 
+
+                    $unidadsql = mysqli_query($conn, "SELECT UNIDAD.nombre AS nombre_unidad, 
+                    DIRECCION.id_direccion, 
+                    DIRECCION.nombre AS nombre_direccion
+                    FROM UNIDAD 
+                    INNER JOIN DIRECCION ON UNIDAD.id_direccion = DIRECCION.id_direccion 
+                    WHERE UNIDAD.id_unidad ='$cargo[id_unidad]';")
+                        or die('error: ' . mysqli_error($conn));
+                    $unidad = mysqli_fetch_assoc($unidadsql);
+                    
                     ?>
 
                     <div class="row">
@@ -184,7 +194,7 @@ if (1) {
                                                 <span class="input-group-addon">
                                                     <i>Unidad:</i>
                                                 </span>
-                                                <input type="text" class="form-control" value="<?php echo $datos3['nombre']; ?>" readonly>
+                                                <input type="text" class="form-control" value="<?php echo $unidad['nombre_unidad'] . ' - ' . $unidad['nombre_direccion']; ?>" readonly>
                                             </div>
                                         </div>
                                     </div>

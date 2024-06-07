@@ -355,7 +355,6 @@ function calculate_feriados($año)
 $valor = "resultado_de_tu_consulta";
 
 // Luego, en tu código HTML, puedes incluir ese valor en el atributo que desees
-echo '<img src="..\files\assets\images\logo.png" alt="' . $valor . '" width="150" height="60">';
 ?>
         <!-- Page-body start -->
         <div class="page-body">
@@ -367,7 +366,7 @@ echo '<img src="..\files\assets\images\logo.png" alt="' . $valor . '" width="150
                             <div class="user-head row">
                                 <div class="user-face">
                                     <img src="..\files\assets\images\logo.png" alt="Theme-Logo" width="150" height="60">
-                                    <input type="text" id="inputStep" value="<?php echo $step; ?>">
+                                    <!-- <input type="text" id="inputStep" value="<?php echo $stepValue; ?>"> -->
 
                                 </div>
                             </div>

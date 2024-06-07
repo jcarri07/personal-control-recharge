@@ -111,6 +111,9 @@ if($datos_personales['step'] > 2){
                                                                         <button class="btn btn-primary btn-table" onclick="openModalEdit('<?php echo $id_nucleo_familiar;?>', '<?php echo $nombre;?>', '<?php echo $apellido;?>', '<?php echo $parentesco;?>', '<?php echo $cedula;?>', '<?php echo $fecha_nacimiento;?>', '<?php echo $sexo;?>', '<?php echo $estado_civil;?>', '<?php echo $educacion;?>');">
                                                                             <i class="feather icon-edit"></i>
                                                                         </button>
+                                                                        <button class="btn btn-danger btn-table" onclick="deseaEliminar('<?php echo $id_nucleo_familiar;?>');">
+                                                                            <i class="feather icon-trash"></i>
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                             <?php 
@@ -261,6 +264,7 @@ if($datos_personales['step'] > 2){
 
 <div id="aux_id" style="display:none;"></div>
 <div id="aux_opc" style="display:none;"></div>
+<div id="aux_estatus" style="display:none;"></div>
 
 <script>
     //$("#row-select").DataTable();
@@ -352,9 +356,79 @@ if($datos_personales['step'] > 2){
             }
         });
     });
+
+    function deseaEliminar(id) {
+        $("#modal-actions .message").text("¿Desea eliminar?");
+        $('#aux_id').text(id);
+        $('#aux_estatus').text("inactivo");
+        $("#modal-actions").modal("show");
+    }
+
+    function modify_estatus() {
+        $("#modal-actions").modal("hide");
+        var datos = new FormData();
+        datos.append('id', $("#aux_id").text());
+        datos.append('opc', "estatus");
+        datos.append('estatus', $("#aux_estatus").text());
+
+        $('.loaderParent').show();
+
+        $.ajax({
+            url: 			'../modules/update-data-user/datos-familiares-process.php',
+            type:			'POST',
+            data:			datos,
+            cache:          false,
+            contentType:    false,
+            processData:    false,
+            success: function(response){ //console.log(response);
+                $('.loaderParent').hide();
+                if(response == 'si'){
+                    //alertify.success("Bello."); 
+                    $("#modal-generic .message").text("Actualización Exitosa");
+                    $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
+                    $("#modal-generic").modal("show");
+                }
+                else{
+                    $("#modal-generic .aceptar button").attr("onclick", "");
+                    $("#modal-generic .message").text("Error al registrar");
+                    $("#modal-generic").modal("show");
+                }
+            }
+            ,
+            error: function(response){
+                $('.loaderParent').hide();
+                //alertify.error("Error al registrar."); 
+                $("#modal-generic .message").text("Error al registrar");
+                $("#modal-generic").modal("show");
+            }
+        });
+    }
 </script>
 
 
+<div id="modal-actions" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-card card-block login-card-modal">
+            <div class="md-float-material"><!--form-->
+                <div class="card m-t-15">
+                    <div class="auth-box card-block">
+                        <div class="row m-b-0">
+                            <div class="col-md-12 text-center" style="margin-bottom: 0px;">
+                                <h2 class="message"></h2>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12 text-center aceptar" style="margin-bottom: 0px;">
+                                        <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" onclick="modify_estatus();">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="modal-generic" class="modal fade" role="dialog">
     <div class="modal-dialog">

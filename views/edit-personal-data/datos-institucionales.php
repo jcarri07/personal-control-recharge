@@ -18,10 +18,20 @@
     $querySedes = mysqli_query($conn, "SELECT * FROM sede;");
     $queryDirecciones = mysqli_query($conn, "SELECT * FROM direccion;");
     $queryUnidades = mysqli_query($conn, "SELECT * FROM unidad;");
-    $queryJefes = mysqli_query($conn, "SELECT u.id_usuario, u.nombres, u.apellidos, d.cargo
+    /*$queryJefes = mysqli_query($conn, "SELECT u.id_usuario, u.nombres, u.apellidos, d.cargo
                                         FROM usuario u
                                         JOIN datos_abae d ON u.id_usuario = d.id_usuario
-                                        WHERE d.cargo IN ('Jefe', 'Director', 'Vicepresidente', 'Presidente');");
+                                        WHERE d.cargo IN ('Jefe', 'Director', 'Vicepresidente', 'Presidente');");*/
+
+    $sql = "SELECT d.id_jefe AS 'id_jefe', nombres, apellidos, u.cargo AS 'cargo', id_direccion
+            FROM direccion d, usuario u
+            WHERE d.id_jefe LIKE u.id_usuario;";
+    $queryDirectores = mysqli_query($conn, $sql);
+
+    $sql = "SELECT d.id_jefe AS 'id_jefe', nombres, apellidos, u.cargo AS 'cargo', id_unidad
+            FROM unidad d, usuario u
+            WHERE d.id_jefe LIKE u.id_usuario;";
+    $queryJefes = mysqli_query($conn, $sql);
 
     $sql = "SELECT id_datos_abae, id_unidad, fecha_ingreso, cargo, correo_abae, nombres_familiares_abae, fecha_inicio_administracion, da.id_direccion AS 'id_direccion', tlf_oficina, id_sede FROM datos_abae da, direccion d WHERE da.id_direccion = d.id_direccion AND id_usuario = '$idUser' AND da.estatus = 'activo';";
     $query = mysqli_query($conn, $sql);
@@ -48,6 +58,29 @@ if($datos_personales['step'] > 6){
         $array_aux['nombre'] = $row['nombre'];
         $array_aux['id_direccion'] = $row['id_direccion'];        
         array_push($array_unidades, $array_aux);
+    }
+
+
+    $array_directores = array();
+    while($row = mysqli_fetch_array($queryDirectores)){
+        $array_aux = array();
+        $array_aux['id_usuario'] = $row['id_jefe'];
+        $array_aux['nombres'] = $row['nombres'];
+        $array_aux['apellidos'] = $row['apellidos'];
+        $array_aux['cargo'] = $row['cargo'];
+        $array_aux['id_direccion'] = $row['id_direccion'];
+        array_push($array_directores, $array_aux);
+    }
+
+    $array_jefes = array();
+    while($row = mysqli_fetch_array($queryJefes)){
+        $array_aux = array();
+        $array_aux['id_usuario'] = $row['id_jefe'];
+        $array_aux['nombres'] = $row['nombres'];
+        $array_aux['apellidos'] = $row['apellidos'];
+        $array_aux['cargo'] = $row['cargo'];
+        $array_aux['id_unidad'] = $row['id_unidad'];        
+        array_push($array_jefes, $array_aux);
     }
 
 ?>
@@ -142,7 +175,7 @@ if($datos_personales['step'] > 6){
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <label class="block">Unidad de Adscripción</label>
-                                                                    <select class="form-control" id="unidad" name="unidad" required>
+                                                                    <select class="form-control" id="unidad" name="unidad" required onchange="changeUnidad();">
                                                                         <option value="">Seleccione</option>                                                            
                                                                     </select>
                                                                 </div>
@@ -151,12 +184,18 @@ if($datos_personales['step'] > 6){
                                                                     <label class="block">Supervisor Inmediato</label>
                                                                     <select class="form-control" id="supervisor_inmediato" name="supervisor_inmediato">
                                                                         <option value="">Seleccione</option>
+                                                                        <!--<option value='new'>Soy el Nuevo Supervisor de esta UNIDAD/DIRECCION</option>-->
                                                             <?php
-                                                                while ($row = mysqli_fetch_array($queryJefes)) {
+                                                                /*while ($row = mysqli_fetch_array($queryJefes)) {
                                                             ?>
-                                                                        <option value="<?php echo $row['id_usuario']; ?>"><?php echo $row['nombres'] . " " . $row['apellidos'] . " (" . $row['cargo'] . ")"; ?></option>
+                                                                        <option value="<?php echo $row['id_jefe']; ?>"><?php echo $row['nombres'] . " " . $row['apellidos'] . ( ($row['cargo'] != "") ? (" (" . $row['cargo'] . ")") : "" ) ; ?></option>
                                                             <?php
                                                                 }
+                                                                while ($row = mysqli_fetch_array($queryDirectores)) {
+                                                            ?>
+                                                                        <option value="<?php echo $row['id_jefe']; ?>"><?php echo $row['nombres'] . " " . $row['apellidos'] . ( ($row['cargo'] != "") ? (" (" . $row['cargo'] . ")") : "" ) ; ?></option>
+                                                            <?php
+                                                                }*/
                                                             ?>                                                          
                                                                     </select>
                                                                 </div>
@@ -225,6 +264,9 @@ if($datos_personales['step'] > 6){
     var array_direcciones = <?php echo json_encode($array_direcciones);?>;
     var array_unidades = <?php echo json_encode($array_unidades);?>;
 
+    var array_directores = <?php echo json_encode($array_directores);?>;
+    var array_jefes = <?php echo json_encode($array_jefes);?>;
+
     $(document).ready(function() {
         //$("#fecha_ingreso").trigger("change");
         calculateTime("fecha_ingreso", "age");
@@ -244,6 +286,8 @@ if($datos_personales['step'] > 6){
                 //$("#unidad").trigger("change");
                 changeDireccion();
                 $("#unidad").val("<?php echo $datos_abae['id_unidad'];?>");
+
+                changeUnidad();
             }
         }
 
@@ -271,6 +315,7 @@ if($datos_personales['step'] > 6){
     function changeCargo(){    
         $("#direccion").html("<option value=''>Seleccione</option>");
         $("#unidad").html("<option value=''>Seleccione</option>");
+        $("#supervisor_inmediato").html("<option value=''>Seleccione</option>");
 
         $("#direccion").parent().show();
         $("#unidad").parent().show();
@@ -343,6 +388,36 @@ if($datos_personales['step'] > 6){
             for(var i = 0 ; i < array_unidades.length ; i++){
                 if(array_unidades[i]['id_direccion'] == $("#direccion").val()){
                     $("#unidad").append("<option value='" + array_unidades[i]['id_unidad'] + "'>" + array_unidades[i]['nombre'] + "</option>");
+                }
+            }
+        }
+
+        $("#supervisor_inmediato").html("<option value=''>Seleccione</option>");
+        if($("#direccion").val() != ""){
+
+            if($("#cargo").val() != "Director") {
+            
+                for(var i = 0 ; i < array_directores.length ; i++){
+                    if(array_directores[i]['id_direccion'] == $("#direccion").val()){
+                        $("#supervisor_inmediato").append("<option value='" + array_directores[i]['id_usuario'] + "'>" + array_directores[i]['nombres'] + " " + array_directores[i]['apellidos'] + ( (array_directores[i]['cargo'] != "") ? (" (" + array_directores[i]['cargo'] + ")") : "" ) + "</option>");
+                    }
+                }
+            }
+        }
+    }
+
+
+    function changeUnidad(){
+        $("#supervisor_inmediato").html("<option value=''>Seleccione</option>");
+        for(var i = 0 ; i < array_directores.length ; i++){
+            if(array_directores[i]['id_direccion'] == $("#direccion").val()){
+                $("#supervisor_inmediato").append("<option value='" + array_directores[i]['id_usuario'] + "'>" + array_directores[i]['nombres'] + " " + array_directores[i]['apellidos'] + ( (array_directores[i]['cargo'] != "") ? (" (" + array_directores[i]['cargo'] + ")") : "" ) + "</option>");
+            }
+        }
+        if($("#unidad").val() != "" && $("#cargo").val() != "Jefe"){
+            for(var i = 0 ; i < array_jefes.length ; i++){
+                if(array_jefes[i]['id_unidad'] == $("#unidad").val()){
+                    $("#supervisor_inmediato").append("<option value='" + array_jefes[i]['id_usuario'] + "'>" + array_jefes[i]['nombres'] + " " + array_jefes[i]['apellidos'] + ( (array_jefes[i]['cargo'] != "") ? (" (" + array_jefes[i]['cargo'] + ")") : "" ) + "</option>");
                 }
             }
         }

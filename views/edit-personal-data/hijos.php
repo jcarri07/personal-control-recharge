@@ -278,14 +278,6 @@ if($datos_personales['step'] > 1){
         $("#modal-form").modal("show");
     }
 
-    function deseaEliminar(id_hijo) {
-        $("#modal-actions .message").text("¿Desea eliminar?");
-        $('#aux_id').text(id_hijo);
-        $('#aux_estatus').text("inactivo");
-        $("#modal-actions").modal("show");
-    }
-
-
     $("#form-edit").on("submit",function(event){
     	event.preventDefault();
 
@@ -346,6 +338,13 @@ if($datos_personales['step'] > 1){
             }
         });
     });
+
+    function deseaEliminar(id_hijo) {
+        $("#modal-actions .message").text("¿Desea eliminar?");
+        $('#aux_id').text(id_hijo);
+        $('#aux_estatus').text("inactivo");
+        $("#modal-actions").modal("show");
+    }
 
     function modify_estatus() {
         $("#modal-actions").modal("hide");

@@ -609,53 +609,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                echo "No se encontraron resultados en datos_empresa";
           }
 
-          if (
-               $conn->query($queryUnidadJefe) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
+          $sqlNA = "UPDATE unidad AS u INNER JOIN direccion AS d ON u.id_direccion = d.id_direccion
+          SET u.id_jefe = d.id_jefe
+          WHERE u.nombre = 'N/A';";
+
+          //ejecutar consulta
+          if ($conn->query($sqlNA) === TRUE) {
+               echo "Se actualizó el campo id jefe N/A exitosamente.";
           } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
+               echo "Error al actualizar el campo id jefe N/A " . $conn->error;
           }
 
-          if (
-               $conn->query($queryCargo) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
-          } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
-          }
+          // if (
+          //      $conn->query($queryUnidadJefe) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
 
-          if (
-               $conn->query($queryJefeInmediato) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
-          } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
-          }
+          // if (
+          //      $conn->query($queryCargo) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
 
-          if (
-               $conn->query($queryJefeInmediatoABAE) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
-          } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
-          }
+          // if (
+          //      $conn->query($queryJefeInmediato) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
 
-          if (
-               $conn->query($querySetJefe) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
-          } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
-          }
+          // if (
+          //      $conn->query($queryJefeInmediatoABAE) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
 
-          if (
-               $conn->query($queryDirector) === TRUE
-          ) {
-               echo "Consulta ejecutada correctamente.";
-          } else {
-               echo "Error al ejecutar la consulta: " . $conn->error;
-          }
+          // if (
+          //      $conn->query($querySetJefe) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
+
+          // if (
+          //      $conn->query($queryDirector) === TRUE
+          // ) {
+          //      echo "Consulta ejecutada correctamente.";
+          // } else {
+          //      echo "Error al ejecutar la consulta: " . $conn->error;
+          // }
 
           // Verificar si $cargo es igual a "Jefe" o "Director"
           if ($cargo == "Jefe" || $cargo == "Director") {
@@ -831,6 +842,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           } else {
                echo "Error al actualizar el campo 'step': " . $conn->error;
           }
+          
 
           // Cerrar la conexión y liberar recursos
           $stmt->close();

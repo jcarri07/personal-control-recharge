@@ -95,5 +95,14 @@
             echo "vacio";
     }
 
+    if($opc == "estatus"){
+        $estatus = $_POST['estatus'];
+        $sql = "UPDATE datos_hijos SET estatus = '$estatus' WHERE id_datos_hijos = '$id';";
+        $res = mysqli_query($conn, $sql);
+
+        if($res == 1)
+            echo "si";
+    }
+
     closeConection($conn);
 ?>

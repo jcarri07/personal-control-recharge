@@ -10,8 +10,24 @@
     $id = $_POST['id'];
     $opc = $_POST['opc'];
 
+    if($opc == "add"){
+
+        $especializacion = $_POST['especializacion'];
+        $titulo = $_POST['titulo'];
+        $anio = $_POST['anio'];
+        $institucion = $_POST['institucion'];
+
+        $sql = "INSERT INTO nivel_academico (id_usuario, especializacion, titulo_obtenido, anio_egreso, instituto_universitario, estatus)
+                VALUES ('$id', '$especializacion', '$titulo', '$anio', '$institucion', 'activo');";
+        $res = mysqli_query($conn, $sql);
+
+        if($res == 1)
+            echo 'si';
+    }
+
     if($opc == "edit"){
 
+        $id_nivel_academico = $_POST['id_nivel_academico'];
         $especializacion = $_POST['especializacion'];
         $titulo = $_POST['titulo'];
         $anio = $_POST['anio'];
@@ -23,7 +39,7 @@
         if(mysqli_num_rows($query) > 0) {
             $row = mysqli_fetch_array($query);
 
-            $id_nivel_academico = $row['id_nivel_academico'];
+            //$id_nivel_academico = $row['id_nivel_academico'];
             $res = "";
 
             //Datos Academicos
@@ -50,13 +66,22 @@
             if($res == "")
                 echo "vacio";
         }
-        else {
+        /*else {
             $sql = "INSERT INTO nivel_academico (id_usuario, especializacion, titulo_obtenido, anio_egreso, instituto_universitario, estatus) VALUES ('$id', '$especializacion', '$titulo', '$anio', '$institucion', 'A');";
             $res = mysqli_query($conn, $sql);
 
             if($res == 1)
                 echo "si";
-        }
+        }*/
+    }
+
+    if($opc == "estatus"){
+        $estatus = $_POST['estatus'];
+        $sql = "UPDATE nivel_academico SET estatus = '$estatus' WHERE id_nivel_academico = '$id';";
+        $res = mysqli_query($conn, $sql);
+
+        if($res == 1)
+            echo "si";
     }
 
     closeConection($conn);

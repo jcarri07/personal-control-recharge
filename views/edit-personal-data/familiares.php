@@ -273,6 +273,7 @@ if($datos_personales['step'] > 2){
     function openModalAdd(){
         $("#aux_id").text("");
         $("#aux_opc").text("add");
+        $("#aux_estatus").text("");
         $("#form-edit")[0].reset();
         $("#modal-form .modal-title").text("Añadir Familiar");
         $("#modal-form").modal("show");
@@ -281,6 +282,7 @@ if($datos_personales['step'] > 2){
     function openModalEdit(id, nombre, apellido, parentesco, cedula, fecha_nacimiento, sexo, estado_civil, educacion){
         $("#aux_id").text(id);
         $("#aux_opc").text("edit");
+        $("#aux_estatus").text("");
 
         $("#status_family").val(parentesco);
         $("#name").val(nombre);

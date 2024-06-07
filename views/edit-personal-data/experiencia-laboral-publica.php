@@ -229,6 +229,7 @@ if($datos_personales['step'] > 5){
     function openModalAdd(){
         $("#aux_id").text("");
         $("#aux_opc").text("add");
+        $("#aux_estatus").text("");
         $("#form-edit")[0].reset();
         $("#modal-form .modal-title").text("Añadir Antecedentes en la Administracion Pública");
         $("#modal-form").modal("show");
@@ -237,6 +238,7 @@ if($datos_personales['step'] > 5){
     function openModalEdit(id, organismo, fecha_ingreso, fecha_egreso, cargo, antecedentes_servicios){
         $("#aux_id").text(id);
         $("#aux_opc").text("edit");
+        $("#aux_estatus").text("");
 
         $("#organismo").val(organismo);
         $("#fecha_ingreso").val(fecha_ingreso);

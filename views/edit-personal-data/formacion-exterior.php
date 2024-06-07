@@ -228,6 +228,7 @@ if($datos_personales['step'] > 4){
     function openModalAdd(){
         $("#aux_id").text("");
         $("#aux_opc").text("add");
+        $("#aux_estatus").text("");
         $("#form-edit")[0].reset();
         $("#modal-form .modal-title").text("Añadir Formación Exterior");
         $("#modal-form").modal("show");
@@ -236,6 +237,7 @@ if($datos_personales['step'] > 4){
     function openModalEdit(id, titulo, anio, instituto, pais){
         $("#aux_id").text(id);
         $("#aux_opc").text("edit");
+        $("#aux_estatus").text("");
 
         $("#titulo").val(titulo);
         $("#anio").val(anio);

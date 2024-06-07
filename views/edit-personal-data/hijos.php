@@ -254,6 +254,7 @@ if($datos_personales['step'] > 1){
     function openModalAdd(){
         $("#aux_id").text("");
         $("#aux_opc").text("add");
+        $("#aux_estatus").text("");
         $("#form-edit")[0].reset();
         $("#modal-form .modal-title").text("Añadir Hijo");
         $("#modal-form").modal("show");
@@ -262,6 +263,7 @@ if($datos_personales['step'] > 1){
     function openModalEdit(id, nombre, fecha_nacimiento, cedula, sexo, educacion, talla_camisa, talla_pantalon, talla_calzado){
         $("#aux_id").text(id);
         $("#aux_opc").text("edit");
+        $("#aux_estatus").text("");
 
         $("#name").val(nombre);
         $("#birthday").val(fecha_nacimiento);

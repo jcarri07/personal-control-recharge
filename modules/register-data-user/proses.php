@@ -374,14 +374,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Especializacion: " . $especializacion . ", Titulo Obtenido: " . $tituloObtenido . ", Año de Grado: " . $anoGrado . ", Institucion: " . $institucion . ", Estatus: " . $estatus;
 
-          $sql2 = "UPDATE usuario SET step = 4 WHERE step = 3 AND id_usuario = '$idUser'";
+          // $sql2 = "UPDATE usuario SET step = 4 WHERE step = 3 AND id_usuario = '$idUser'";
 
-          // Ejecutar la consulta
-          if ($conn->query($sql2) === TRUE) {
-               echo "Se actualizó el campo 'step' exitosamente.";
-          } else {
-               echo "Error al actualizar el campo 'step': " . $conn->error;
-          }
+          // // Ejecutar la consulta
+          // if ($conn->query($sql2) === TRUE) {
+          //      echo "Se actualizó el campo 'step' exitosamente.";
+          // } else {
+          //      echo "Error al actualizar el campo 'step': " . $conn->error;
+          // }
 
 
           // Cerrar la conexión y liberar recursos

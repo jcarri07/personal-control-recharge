@@ -814,7 +814,7 @@ closeConection($conn);
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">Grado de Instrucción</div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <select class="form-control required" id="status-children" name="grade-academic" required>
+                                                                                                        <select class="form-control required" id="status-children" name="grade-academic" >
                                                                                                             <option value="Seleccione">Seleccione</option>
                                                                                                             <option value="TSU">TSU</option>
                                                                                                             <option value="Licenciatura">Licenciatura</option>
@@ -830,7 +830,7 @@ closeConection($conn);
                                                                                                         <label for="confirm-2" class="block">Título Obtenido</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="title-academic" id="dropper-default-children" type="text" class="form-control required" required>
+                                                                                                        <input name="title-academic" id="dropper-default-children" type="text" class="form-control required" >
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
@@ -838,7 +838,7 @@ closeConection($conn);
                                                                                                         <label for="confirm-2" class="block">Año de Grado</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="year-academic" id="year-academic" type="number" class="form-control required" value="" required>
+                                                                                                        <input name="year-academic" id="year-academic" type="number" class="form-control required" value="">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
@@ -846,16 +846,16 @@ closeConection($conn);
                                                                                                         <label for="email-2" class="block">Institución Universitaria</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="institute-academic" type="text" class=" form-control" required>
+                                                                                                        <input name="institute-academic" type="text" class=" form-control">
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
                                                                                             <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
-                                                                                                <!-- <div style="margin:5px;">
-                                                                                                    <button class="btn btn-primary btn-outline-primary">Omitir</button>
-                                                                                                </div> -->
                                                                                                 <div style="margin:5px;">
-                                                                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar"></i>
+                                                                                                    <button id="omitir-academicos" class="btn btn-primary btn-outline-primary">Omitir</button>
+                                                                                                </div>
+                                                                                                <div style="margin:5px;">
+                                                                                                    <input id="guardar-academicos" type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar"></i>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </form>
@@ -1378,11 +1378,7 @@ closeConection($conn);
                                                                                                 <div class="form-group row">
                                                                                                     <div class="col-md-4 col-lg-2">¿Pertenece a Algún Partido Político? (Indique)</div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <select class="form-control required" name="partidoPolitico" id="partido-others">
-                                                                                                            <option value="Seleccione">Seleccione</option>
-                                                                                                            <option value="No">No</option>
-                                                                                                            <option value="Si">Si</option>
-                                                                                                        </select>
+                                                                                                        <input class="form-control required" name="partidoPolitico" placeholder="indique" id="partido-others">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
@@ -2075,6 +2071,36 @@ closeConection($conn);
             });
         });
 
+        //Omitir Formacion en el exterior
+        $(document).ready(function(e) {
+            $('#omitir-academicos').click(function(e) {
+                e.preventDefault();
+                $('#tab-exterior').tab('show');
+                $('#tab-academicos').append(icono);
+                $("#tab-academicos").addClass("disabled");
+                step = 4;
+                accion = "academicos";
+                // Aquí puedes agregar la función que deseas ejecutar al hacer clic en el botón
+                console.log('Se hizo clic en el botón "Omitir"');
+                $.ajax({
+                    url: '../utils/step.php',
+                    method: 'POST',
+                    data: {
+                        parametro1: step,
+                        parametro2: accion,
+                        // Agrega aquí los demás parámetros y valores que necesites enviar
+                    },
+                    success: function(response) {
+                        // Maneja la respuesta del servidor después de la inserción
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Maneja cualquier error que ocurra durante la solicitud
+                        console.error(error);
+                    }
+                });
+            });
+        }); 
 
 
         //Omitir Formacion en el exterior

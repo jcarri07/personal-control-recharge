@@ -31,6 +31,17 @@
             }
         }
 
+        if($valor2 == "academicos") {
+            $sql2 = "UPDATE usuario SET step = '$valor1' WHERE step = 3 AND id_usuario = '$idUser'";
+    
+            // Ejecutar la consulta
+            if ($conn->query($sql2) === TRUE) {
+                echo "Se actualizó el campo 'step' exitosamente.";
+            } else {
+                echo "Error al actualizar el campo 'step': " . $conn->error;
+            }
+        }
+
         if($valor2 == "exterior") {
             $sql2 = "UPDATE usuario SET step = '$valor1' WHERE step = 4 AND id_usuario = '$idUser'";
     

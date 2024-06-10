@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-12-2023 a las 01:52:42
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 07-06-2024 a las 16:18:32
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 CREATE DATABASE personal_control;
 USE personal_control;
@@ -30,7 +30,7 @@ CREATE TABLE `ciudades` (
   `id_ciudad` int(50) NOT NULL DEFAULT 0,
   `id_estado` varchar(100) DEFAULT NULL,
   `ciudad` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ciudades`
@@ -392,7 +392,7 @@ CREATE TABLE `datos_abae` (
   `id_direccion` int(30) NOT NULL DEFAULT 0,
   `tlf_oficina` varchar(40) NOT NULL DEFAULT '00000000',
   `id_jefe` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -413,7 +413,7 @@ CREATE TABLE `datos_hijos` (
   `talla_calzado` varchar(10) NOT NULL DEFAULT '0',
   `estatus` varchar(10) DEFAULT NULL,
   `edad` int(10) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -429,7 +429,7 @@ CREATE TABLE `datos_militar` (
   `instituto_militar` varchar(100) NOT NULL,
   `rango` varchar(50) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -470,7 +470,14 @@ CREATE TABLE `datos_personales` (
   `enfermedad_cronica` varchar(200) NOT NULL DEFAULT 'N/A',
   `nombre_conyugue` varchar(200) NOT NULL DEFAULT 'N/A',
   `parroquia` int(10) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `datos_personales`
+--
+
+INSERT INTO `datos_personales` (`id_datos_personales`, `id_usuario`, `id_municipio`, `fecha_registro`, `domicilio`, `lugar_nacimiento`, `fecha_nacimiento`, `sexo`, `estado_civil`, `talla_camisa`, `talla_pantalon`, `talla_calzado`, `estatura`, `peso`, `perfil_dominante`, `telefono_movil`, `telefono_habitacion`, `rif`, `contacto_emergencia`, `telefono_emergencia`, `alergias`, `tipo_sangre`, `padece_enfermedad_cronica`, `esta_embarazada`, `meses_gestacion`, `firma`, `estatus`, `foto`, `cantidad_hijos`, `enfermedad_cronica`, `nombre_conyugue`, `parroquia`) VALUES
+(67, 30, 87, '2024-06-07', 'Nueva Taborda / Calle el Silencio', 'Puerto Cabello', '1995-07-29', 'Masculino', 'Casado(a)', 'M', '42', '42', '1.68', '85', 'Diestro', '04144001564', '02423770971', '246420099', 'Yohaily Añez', '04244086819', 'Priperam', 'B+', 'No', 'N/A', 'N/A', 'Imagen1.png', 'activo', 'Jose_Carrizales.png', 0, 'N/A', 'Yohaily Añez', 276);
 
 -- --------------------------------------------------------
 
@@ -483,7 +490,7 @@ CREATE TABLE `datos_vacaciones` (
   `id_solicitud` int(11) DEFAULT NULL,
   `fecha_reintegro` date DEFAULT NULL,
   `cant_periodos` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -497,7 +504,7 @@ CREATE TABLE `direccion` (
   `nombre` varchar(100) NOT NULL DEFAULT 'Nombre de la Direccion',
   `id_jefe` varchar(100) NOT NULL DEFAULT 'Nombre del Jefe',
   `estatus` varchar(10) DEFAULT 'activo'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `direccion`
@@ -532,7 +539,7 @@ CREATE TABLE `estados` (
   `id_estado` int(11) NOT NULL,
   `estado` varchar(250) NOT NULL,
   `iso_3166-2` varchar(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `estados`
@@ -580,7 +587,7 @@ CREATE TABLE `experiencia_instituciones_publicas` (
   `cargo` varchar(50) NOT NULL,
   `antecedentes_servicios` varchar(20) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -593,14 +600,14 @@ CREATE TABLE `feriados` (
   `days_actual` text DEFAULT NULL,
   `days_siguiente` text DEFAULT NULL,
   `fecha_actualizacion` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `feriados`
 --
 
 INSERT INTO `feriados` (`id`, `days_actual`, `days_siguiente`, `fecha_actualizacion`) VALUES
-(1, '[{\"name\":\"AÃ±o Nuevo\",\"date\":\"2023-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Reyes Magos\",\"date\":\"2023-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del Maestro\",\"date\":\"2023-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-20 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2023-02-21 00:00:00\",\"status\":\"activo\"},{\"name\":\"San JosÃ©\",\"date\":\"2023-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2023-04-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2023-04-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2023-04-07 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2023-04-09 00:00:00\",\"status\":\"activo\"},{\"name\":\"DeclaraciÃ³n de la Independencia\",\"date\":\"2023-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del trabajador\",\"date\":\"2023-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2023-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Independencia\",\"date\":\"2023-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de SimÃ³n BolÃ­var\",\"date\":\"2023-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Bandera\",\"date\":\"2023-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de Nuestra SeÃ±ora de Coromoto\",\"date\":\"2023-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la resistencia indÃ­gena\",\"date\":\"2023-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2023-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Difuntos\",\"date\":\"2023-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepciÃ³n\",\"date\":\"2023-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la AviaciÃ³n Nacional\",\"date\":\"2023-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2023-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2023-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del AÃ±o\",\"date\":\"2023-12-31 00:00:00\",\"status\":\"activo\"}]', '[{\"name\":\"AÃ±o Nuevo\",\"date\":\"2024-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Reyes Magos\",\"date\":\"2024-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del Maestro\",\"date\":\"2024-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-13 00:00:00\",\"status\":\"activo\"},{\"name\":\"San JosÃ©\",\"date\":\"2024-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2024-03-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2024-03-28 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2024-03-29 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2024-03-31 00:00:00\",\"status\":\"activo\"},{\"name\":\"DeclaraciÃ³n de la Independencia\",\"date\":\"2024-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a del trabajador\",\"date\":\"2024-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2024-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Independencia\",\"date\":\"2024-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de SimÃ³n BolÃ­var\",\"date\":\"2024-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la Bandera\",\"date\":\"2024-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de Nuestra SeÃ±ora de Coromoto\",\"date\":\"2024-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la resistencia indÃ­gena\",\"date\":\"2024-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2024-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de los Difuntos\",\"date\":\"2024-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepciÃ³n\",\"date\":\"2024-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"DÃ­a de la AviaciÃ³n Nacional\",\"date\":\"2024-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2024-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2024-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del AÃ±o\",\"date\":\"2024-12-31 00:00:00\",\"status\":\"activo\"}]', '2023-12-18');
+(1, '[{\"name\":\"Año Nuevo\",\"date\":\"2024-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de los Reyes Magos\",\"date\":\"2024-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día del Maestro\",\"date\":\"2024-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2024-02-13 00:00:00\",\"status\":\"activo\"},{\"name\":\"San José\",\"date\":\"2024-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2024-03-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2024-03-28 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2024-03-29 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2024-03-31 00:00:00\",\"status\":\"activo\"},{\"name\":\"Declaración de la Independencia\",\"date\":\"2024-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día del trabajador\",\"date\":\"2024-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2024-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Independencia\",\"date\":\"2024-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de Simón Bolívar\",\"date\":\"2024-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Bandera\",\"date\":\"2024-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de Nuestra Señora de Coromoto\",\"date\":\"2024-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la resistencia indígena\",\"date\":\"2024-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2024-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de los Difuntos\",\"date\":\"2024-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepción\",\"date\":\"2024-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Aviación Nacional\",\"date\":\"2024-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2024-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2024-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del Año\",\"date\":\"2024-12-31 00:00:00\",\"status\":\"activo\"}]', '[{\"name\":\"Año Nuevo\",\"date\":\"2025-01-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de los Reyes Magos\",\"date\":\"2025-01-06 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día del Maestro\",\"date\":\"2025-01-15 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2025-03-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"Carnaval\",\"date\":\"2025-03-04 00:00:00\",\"status\":\"activo\"},{\"name\":\"San José\",\"date\":\"2025-03-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Semana Santa\",\"date\":\"2025-04-14 00:00:00\",\"status\":\"activo\"},{\"name\":\"Jueves Santo\",\"date\":\"2025-04-17 00:00:00\",\"status\":\"activo\"},{\"name\":\"Viernes Santo\",\"date\":\"2025-04-18 00:00:00\",\"status\":\"activo\"},{\"name\":\"Declaración de la Independencia\",\"date\":\"2025-04-19 00:00:00\",\"status\":\"activo\"},{\"name\":\"Pascua\",\"date\":\"2025-04-20 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día del trabajador\",\"date\":\"2025-05-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Aniversario de la Batalla de Carabobo\",\"date\":\"2025-06-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Independencia\",\"date\":\"2025-07-05 00:00:00\",\"status\":\"activo\"},{\"name\":\"Natalicio de Simón Bolívar\",\"date\":\"2025-07-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Bandera\",\"date\":\"2025-08-03 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de Nuestra Señora de Coromoto\",\"date\":\"2025-09-11 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la resistencia indígena\",\"date\":\"2025-10-12 00:00:00\",\"status\":\"activo\"},{\"name\":\"Todos los Santos\",\"date\":\"2025-11-01 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de los Difuntos\",\"date\":\"2025-11-02 00:00:00\",\"status\":\"activo\"},{\"name\":\"La inmaculada concepción\",\"date\":\"2025-12-08 00:00:00\",\"status\":\"activo\"},{\"name\":\"Día de la Aviación Nacional\",\"date\":\"2025-12-10 00:00:00\",\"status\":\"activo\"},{\"name\":\"Nochebuena\",\"date\":\"2025-12-24 00:00:00\",\"status\":\"activo\"},{\"name\":\"Navidad\",\"date\":\"2025-12-25 00:00:00\",\"status\":\"activo\"},{\"name\":\"Fin del Año\",\"date\":\"2025-12-31 00:00:00\",\"status\":\"activo\"}]', '2024-06-07');
 
 -- --------------------------------------------------------
 
@@ -616,7 +623,7 @@ CREATE TABLE `formacion_exterior` (
   `instituto_universitario` varchar(100) NOT NULL,
   `pais` varchar(50) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -628,7 +635,7 @@ CREATE TABLE `municipios` (
   `id_municipio` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `municipio` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `municipios`
@@ -985,7 +992,14 @@ CREATE TABLE `nivel_academico` (
   `anio_egreso` varchar(10) NOT NULL,
   `instituto_universitario` varchar(100) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `nivel_academico`
+--
+
+INSERT INTO `nivel_academico` (`id_nivel_academico`, `id_usuario`, `especializacion`, `titulo_obtenido`, `anio_egreso`, `instituto_universitario`, `estatus`) VALUES
+(28, 30, 'Licenciatura', 'Ingeniero de Sistemas', '2019', 'UNEFA', 'activo');
 
 -- --------------------------------------------------------
 
@@ -1005,7 +1019,14 @@ CREATE TABLE `nucleo_familiar` (
   `estado_civil` varchar(20) NOT NULL,
   `grado_instruccion` varchar(50) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `nucleo_familiar`
+--
+
+INSERT INTO `nucleo_familiar` (`id_nucleo_familiar`, `id_usuario`, `nombre`, `apellido`, `parentesco`, `cedula`, `fecha_nacimiento`, `sexo`, `estado_civil`, `grado_instruccion`, `estatus`) VALUES
+(33, 30, 'Yohaily de los Angeles', 'Añez Hernandez', 'Esposo(a)', '29648153', '2002-11-11', 'Femenino', 'Casado(a)', 'Secundaria', 'activo');
 
 -- --------------------------------------------------------
 
@@ -1042,7 +1063,7 @@ CREATE TABLE `otros_datos_usuario` (
   `ruta_trabajo` varchar(500) NOT NULL,
   `deporte_actividad_cutural` varchar(200) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -1053,7 +1074,7 @@ CREATE TABLE `otros_datos_usuario` (
 CREATE TABLE `paises` (
   `id` int(11) NOT NULL,
   `pais` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paises`
@@ -1263,7 +1284,7 @@ CREATE TABLE `parroquias` (
   `id_parroquia` int(11) NOT NULL,
   `id_municipio` int(11) NOT NULL,
   `parroquia` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `parroquias`
@@ -2422,7 +2443,7 @@ CREATE TABLE `sede` (
   `telefono_oficina` varchar(50) NOT NULL,
   `jefe` varchar(100) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `sede`
@@ -2460,7 +2481,7 @@ CREATE TABLE `solicitud` (
   `supervisor` int(30) NOT NULL,
   `aprobado_por` int(30) NOT NULL,
   `is_read` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -2472,7 +2493,7 @@ CREATE TABLE `tipo_solicitud` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) DEFAULT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_solicitud`
@@ -2483,7 +2504,6 @@ INSERT INTO `tipo_solicitud` (`id`, `nombre`, `estatus`) VALUES
 (2, 'Reposo', 'activa'),
 (3, 'Permisos', 'activa'),
 (4, 'Constancia', 'activa');
-
 
 -- --------------------------------------------------------
 
@@ -2497,7 +2517,7 @@ CREATE TABLE `unidad` (
   `nombre` varchar(100) NOT NULL,
   `id_jefe` varchar(100) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `unidad`
@@ -2575,14 +2595,15 @@ CREATE TABLE `usuario` (
   `id_jefe` int(30) NOT NULL,
   `step` int(10) NOT NULL DEFAULT 0,
   `correo` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, `user`, `pass`, `tipo_usuario`, `estatus`, `id_jefe`, `step`, `correo`) VALUES
-(0, 'Administrador', 'SIGH', '0', 'Operador', 'SIGH', '1234', 'admin', 'activo', 0, 0, '');
+(0, 'Administrador', 'SIGH', '0', 'Operador', 'SIGH', '1234', 'admin', 'activo', 0, 0, ''),
+(30, 'Jose Franzue', 'Carrizales Vargas', '24642009', '', 'jcarri07', '1234', 'empleado', 'activo', 0, 6, 'carrizalesj5@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -2752,7 +2773,7 @@ ALTER TABLE `datos_militar`
 -- AUTO_INCREMENT de la tabla `datos_personales`
 --
 ALTER TABLE `datos_personales`
-  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_datos_personales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_vacaciones`
@@ -2794,13 +2815,13 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT de la tabla `nivel_academico`
 --
 ALTER TABLE `nivel_academico`
-  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_nivel_academico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `nucleo_familiar`
 --
 ALTER TABLE `nucleo_familiar`
-  MODIFY `id_nucleo_familiar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_nucleo_familiar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `otros_datos_usuario`
@@ -2842,7 +2863,7 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Restricciones para tablas volcadas

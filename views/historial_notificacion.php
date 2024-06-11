@@ -62,6 +62,7 @@ include_once "../database/conexion.php";
                             if ($num_r >= 1) {
                                 $obj = mysqli_fetch_object($res);
                                 $cargo = $obj->cargo;
+                                historial($conn, $tipo_usuario, $id_usuario);
                             } else { ?>
 
                                 <ul class="" style="border-radius:5px">
@@ -73,6 +74,7 @@ include_once "../database/conexion.php";
                             <?php }
 
                             $num_r = mysqli_num_rows($res);
+                            
                         } else {
                             historial($conn, $tipo_usuario, $id_usuario);
                         }

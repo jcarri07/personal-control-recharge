@@ -59,7 +59,7 @@ include_once "../database/conexion.php";
 
                             $num_r = mysqli_num_rows($res);
 
-                            if ($num_r >= 1) {
+                            if ($num_r) {
                                 $obj = mysqli_fetch_object($res);
                                 $cargo = $obj->cargo;
                                 historial($conn, $tipo_usuario, $id_usuario);
@@ -93,7 +93,6 @@ include_once "../database/conexion.php";
                                                                 FROM solicitud s
                                                                 JOIN (SELECT nombres AS nombreS,apellidos AS apellidoS, id_usuario FROM usuario ) AS t ON s.supervisor = t.id_usuario
                                                                 JOIN usuario u ON s.id_usuario = u.id_usuario
-                                                                JOIN datos_abae d ON d.id_usuario = s.id_usuario
                                                                 JOIN datos_personales da ON da.id_usuario = u.id_usuario
                                                                 WHERE NOT s.estatus = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");
@@ -106,7 +105,6 @@ include_once "../database/conexion.php";
                                                                 FROM solicitud s
                                                                 JOIN (SELECT nombres AS nombreS,apellidos AS apellidoS, id_usuario FROM usuario ) AS t ON s.supervisor = t.id_usuario
                                                                 JOIN usuario u ON s.id_usuario = u.id_usuario
-                                                                JOIN datos_abae d ON d.id_usuario = s.id_usuario
                                                                 JOIN datos_personales da ON da.id_usuario = u.id_usuario
                                                                 WHERE s.id_usuario = '$id_usuario' AND NOT s.is_read IS NULL AND NOT s.estatus_supervisor = 'pendiente' AND NOT s.estatus = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");
@@ -118,7 +116,6 @@ include_once "../database/conexion.php";
                                                                 FROM solicitud s
                                                                 JOIN (SELECT nombres AS nombreS,apellidos AS apellidoS, id_usuario FROM usuario WHERE id_usuario = '$id_usuario') AS t ON '$id_usuario' = t.id_usuario
                                                                 JOIN usuario u ON s.id_usuario = u.id_usuario
-                                                                JOIN datos_abae d ON d.id_usuario = s.id_usuario
                                                                 JOIN datos_personales da ON da.id_usuario = u.id_usuario
                                                                 WHERE s.supervisor = '$id_usuario' AND NOT s.estatus_supervisor = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");
@@ -129,7 +126,6 @@ include_once "../database/conexion.php";
                                                                 FROM solicitud s
                                                                 JOIN (SELECT nombres AS nombreS,apellidos AS apellidoS, id_usuario FROM usuario ) AS t ON s.supervisor = t.id_usuario
                                                                 JOIN usuario u ON s.id_usuario = u.id_usuario
-                                                                JOIN datos_abae d ON d.id_usuario = s.id_usuario
                                                                 JOIN datos_personales da ON da.id_usuario = u.id_usuario
                                                                 WHERE s.id_usuario = '$id_usuario'AND NOT s.is_read IS NULL AND NOT s.estatus_supervisor = 'pendiente' AND NOT s.estatus = 'pendiente'
                                                                 ORDER BY s.date_apro DESC");

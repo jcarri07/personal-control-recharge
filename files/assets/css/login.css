@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
 	box-sizing: border-box;
 }
 
 body {
-    background: url(../images/auth/blue-background.jpg) no-repeat !important;
+    background: url(../images/fondo.jpg) no-repeat !important;
     background-size: cover !important;
 	display: flex;
 	justify-content: center;

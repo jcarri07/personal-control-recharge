@@ -253,7 +253,7 @@ $fila = mysqli_fetch_assoc($resultado);
             </nav>
 
             <!-- Sidebar chat start -->
-            <div id="sidebar" class="users p-chat-user showChat">
+            <!-- <div id="sidebar" class="users p-chat-user showChat">
                 <div class="had-container">
                     <div class="card card_main p-fixed users-main">
                         <div class="user-box">
@@ -317,9 +317,9 @@ $fila = mysqli_fetch_assoc($resultado);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Sidebar inner chat start-->
-            <div class="showChat_inner">
+            <!-- <div class="showChat_inner">
                 <div class="media chat-inner-header">
                     <a class="back_chatBox">
                         <i class="feather icon-chevron-left"></i> Josephin Doe
@@ -357,7 +357,7 @@ $fila = mysqli_fetch_assoc($resultado);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Sidebar inner chat end-->
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
@@ -597,10 +597,11 @@ $fila = mysqli_fetch_assoc($resultado);
 </body>
 
 <!-- <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script> -->
-<script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
-<script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+
 <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script>
 <script type="text/javascript" src="..\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+<script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
+<script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
 <!-- modernizr js -->

@@ -2279,7 +2279,7 @@
     <script src="..\files\assets\js\pcoded.min.js"></script>
     <!-- custom js -->
     <script src="..\files\assets\js\vartical-layout.min.js"></script>
-    <script type="text/javascript" src="..\files\assets\pages\dashboard\custom-dashboard.js"></script>
+    
     <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>

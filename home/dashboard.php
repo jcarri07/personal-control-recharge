@@ -29,7 +29,7 @@ include '../views/homebar.php';
         // xhttp.send();
         //CARGAR LIBRERIAS (.js, .css) PERTENECIENTES A LAS VISTAS!
         var scriptElement = document.createElement("script");
-        scriptElement.src = "../files/assets/pages/dashboard/custom-dashboard.js"; //Cambiar la ruta de la libreria.
+        //scriptElement.src = "../files/assets/pages/dashboard/custom-dashboard.js"; //Cambiar la ruta de la libreria.
         scriptElement.onload = function() {
             console.log("si")
         };

@@ -162,7 +162,7 @@
         }
     }
 
-    $sql = "SELECT u.id_usuario, nombres, apellidos, u.cedula AS 'cedula', u.cargo AS 'cargo', tipo_usuario, correo, (SELECT IF(da.id_unidad <> '0', CONCAT(un.nombre, ' - ', d.nombre), '') FROM datos_abae da, unidad un, direccion d  WHERE da.id_usuario = u.id_usuario AND da.id_unidad = un.id_unidad AND un.id_direccion = d.id_direccion) AS 'unidad' $add_select
+    $sql = "SELECT u.id_usuario, nombres, apellidos, u.cedula AS 'cedula', u.cargo AS 'cargo', tipo_usuario, correo, (SELECT IF(da.id_unidad <> '0', CONCAT(un.nombre, ' - ', d.nombre), '') FROM datos_abae da, unidad un, direccion d  WHERE da.id_usuario = u.id_usuario AND da.id_unidad = un.id_unidad AND un.id_direccion = d.id_direccion LIMIT 1) AS 'unidad' $add_select
             FROM usuario u $add_tables
             WHERE u.estatus = 'activo' $add_where;";
     $query = mysqli_query($conn, $sql);

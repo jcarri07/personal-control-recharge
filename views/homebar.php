@@ -209,11 +209,21 @@ $fila = mysqli_fetch_assoc($resultado);
                                 </div>
                             </li>-->
                             <li style="padding:10px"></li>
+                            <li style="height:49px" class="d-flex align-items-center px-0">
+                                <div style="width:40px;height:40px;overflow: hidden;border-radius:50%;text-align:center;position: relative;" class="" alt="">
+                                    <img src="../assets/empleados-images/<?php if ($personal_data != null) {
+                                                                                echo $personal_data['foto'];
+                                                                            } else {
+                                                                                echo "avatar_default.jpg";
+                                                                            } ?>" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px">
+                                </div>
+                            </li>
+                            <li style="padding:10px"></li>
                             <li class="user-profile header-notification" style="padding: 0px;">
                                 <div class="dropdown-primary dropdown" style="text-align: center;">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" >
-                                        <img src="../assets/empleados-images/<?php if($personal_data != null) { echo $personal_data['foto']; } else { echo "avatar_default.jpg"; } ?>" class="img-radius" alt="User-Profile-Image">
-                                        <span><?php echo $fila['nombres']." ".$fila['apellidos'] ?></span>
+                                    <div class="dropdown-toggle" data-toggle="dropdown" style="text-align:center;">
+
+                                        <span><?php echo $fila['nombres'] . " " . $fila['apellidos'] ?></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -372,110 +382,110 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>
                             </ul>
-<?php
-                    if($_SESSION['tipo_usuario'] != "admin"){
-?>                           
-                            <div class="pcoded-navigatio-lavel">Datos personales</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class=" ">
-                                    <a href="../home/form-register.php">
-                                        <span class="pcoded-micon"><i class="feather icon-user"></i></span>
-                                        <span class="pcoded-mtext">Mis datos</span>
-                                    </a>
-                                </li>
-                                <!--<li class=" ">
+                            <?php
+                            if ($_SESSION['tipo_usuario'] != "admin") {
+                            ?>
+                                <div class="pcoded-navigatio-lavel">Datos personales</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="../home/form-register.php">
+                                            <span class="pcoded-micon"><i class="feather icon-user"></i></span>
+                                            <span class="pcoded-mtext">Mis datos</span>
+                                        </a>
+                                    </li>
+                                    <!--<li class=" ">
                                     <a href="../home/form-edit-data.php">
                                         <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
                                         <span class="pcoded-mtext">Actualización de datos</span>
                                     </a>
                                 </li>-->
 
-                                <li class="pcoded-hasmenu"><!-- pcoded-trigger -->
-                                    <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
-                                        <span class="pcoded-mtext">Actualización de datos</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class="pcoded-trigger"> <!--active-->
-                                            <a href="../home/form-edit-data.php?page=datos-personales" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Personales</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                    <li class="pcoded-hasmenu"><!-- pcoded-trigger -->
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="feather icon-edit"></i></span>
+                                            <span class="pcoded-mtext">Actualización de datos</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="pcoded-trigger"> <!--active-->
+                                                <a href="../home/form-edit-data.php?page=datos-personales" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Personales</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class="pcoded-trigger">
-                                            <a href="../home/form-edit-data.php?page=hijos" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Hijos</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class="pcoded-trigger">
+                                                <a href="../home/form-edit-data.php?page=hijos" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Hijos</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=familiares" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Familiares</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=familiares" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Familiares</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=datos-academicos" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Académicos</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=datos-academicos" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Académicos</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=formacion-exterior" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Formación exterior</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=formacion-exterior" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Formación exterior</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=experiencia-laboral-publica" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Experiencia laboral</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=experiencia-laboral-publica" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Experiencia laboral</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=datos-institucionales" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Institucionales</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=datos-institucionales" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Institucionales</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=comision-servicio" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Comisión de servicio</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=comision-servicio" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Comisión de servicio</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="../home/form-edit-data.php?page=otros-datos" data-i18n="nav.widget.main">
-                                                <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
-                                                <span class="pcoded-mtext">Otros datos</span>
-                                                <!--<span class="pcoded-badge label label-danger">100+</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=otros-datos" data-i18n="nav.widget.main">
+                                                    <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
+                                                    <span class="pcoded-mtext">Otros datos</span>
+                                                    <!--<span class="pcoded-badge label label-danger">100+</span>
                                                 <span class="pcoded-mcaret"></span>-->
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-<?php
- }
-?>
+                            <?php
+                            }
+                            ?>
 
 
 
@@ -512,21 +522,21 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </ul>
                                 </li>
                             </ul>
-<?php
-                    if($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe"){
-?>
-                            <div class="pcoded-navigatio-lavel">Búsqueda</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class=" ">
-                                    <a href="../home/form-edit-data.php?page=filtros-de-busqueda">
-                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Información de personal</span>
-                                    </a>
-                                </li>
-                            </ul>
-<?php
-                    }
-?>
+                            <?php
+                            if ($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe") {
+                            ?>
+                                <div class="pcoded-navigatio-lavel">Búsqueda</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="../home/form-edit-data.php?page=filtros-de-busqueda">
+                                            <span class="pcoded-micon"><i class="feather icon-list"></i></span>
+                                            <span class="pcoded-mtext">Información de personal</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php
+                            }
+                            ?>
                             <div class="pcoded-navigatio-lavel">Notificaciones</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
@@ -536,34 +546,34 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>
                             </ul>
-                            <br>            
+                            <br>
                             <!-- ESTO NO BORRARLOOOOO -->
-<?php
-                    if($_SESSION['tipo_usuario'] == "admin"){
-?>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
-                                        <span class="pcoded-mtext">Configuraciones</span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class="">
-                                            <a href="../home/config_feriados.php">
-                                                <span class="pcoded-mtext">Feriados</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="../home/select_admin.php">
-                                                <span class="pcoded-mtext">Administrador</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
                             <?php
-                    }
-?>
+                            if ($_SESSION['tipo_usuario'] == "admin") {
+                            ?>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                                            <span class="pcoded-mtext">Configuraciones</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="../home/config_feriados.php">
+                                                    <span class="pcoded-mtext">Feriados</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="../home/select_admin.php">
+                                                    <span class="pcoded-mtext">Administrador</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            <?php
+                            }
+                            ?>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class=" ">
                                     <a href="../php/logout.php">

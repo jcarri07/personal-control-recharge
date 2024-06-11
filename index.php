@@ -28,7 +28,7 @@ date_default_timezone_set("America/Caracas");
     <![endif]-->
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="#">
     <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
@@ -49,7 +49,7 @@ date_default_timezone_set("America/Caracas");
     <link rel="stylesheet" type="text/css" href="files\assets\css\login.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css">
+    
 </head>
 
 <body class="fix-menu" style="height: 100vh !important;margin:0;">
@@ -68,7 +68,7 @@ date_default_timezone_set("America/Caracas");
                         <input type="text" name="apellido" placeholder="Apellidos" pattern="^[a-zA-Z\s\._-]*$" style="border-radius: 15px;" required />
                     </div>
                 </div>
-                <input type="email" name="email" placeholder="Ejemplo@abae.gob.ve" style="border-radius: 15px;" />
+                <input type="email" name="email" autocomplete="off" placeholder="Ejemplo@abae.gob.ve" style="border-radius: 15px;" />
                 <div class="row">
                     <div class="col-md-6">
                         <input type="password" placeholder="Contraseña" name="password" style="border-radius: 15px;" required />

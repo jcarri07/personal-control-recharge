@@ -211,7 +211,7 @@ if (1) {
                                                 <?php if (($_SESSION['tipo_usuario'] == "jefe" && $data['tipo_solicitud'] == 'Constancia') || ($_SESSION['tipo_usuario'] == "jefe" && $data['estatus'] == 'aprobada') || ($_SESSION['tipo_usuario'] == "jefe" && $data['id_usuario'] == $_SESSION['id_usuario'])) { ?>
 
                                                 <?php } else { ?>
-                                                    <button class="btn btn-info btn-outline-info" onclick="modificar()" id="modi" style="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar"><i class="icofont icofont-edit"></i></button>
+                                                    <button class="btn btn-info btn-outline-info" onclick="modificar()" id="modi" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar"><i class="icofont icofont-edit"></i></button>
                                                 <?php } ?>
                                             <?php } ?>
                                             <?php if ($data['tipo_solicitud'] == 'Reposo') { ?>

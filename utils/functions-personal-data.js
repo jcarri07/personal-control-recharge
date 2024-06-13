@@ -47,10 +47,12 @@ function hideMarriedInformation() {
   let statusInput = $("#status");
   let spouseDiv = $("#divSpouse");
   let spouseInput = $("#spouse");
+  console.log(statusInput.val());
 
   if (
     statusInput.val() == "Soltero(a)" ||
     statusInput.val() == "Viudo(a)" ||
+    statusInput.val() == "Divorciado(a)" ||
     statusInput.val() == "Separado de Union Legal" ||
     statusInput.val() == "Separado de Union de Hecho"
   ) {
@@ -73,12 +75,12 @@ function womanInformation() {
   if (genderInput.val() == "Masculino") {
     gestation.val("N/A");
     pregnant.val("N/A");
-    gestationDiv.css("visibility", "hidden");
-    pregnantDiv.css("visibility", "hidden");
+    gestationDiv.css("display", "none");
+    pregnantDiv.css("display", "none");
   } else {
     gestation.val("");
-    gestationDiv.css("visibility", "visible");
-    pregnantDiv.css("visibility", "visible");
+    gestationDiv.css("display", "flex");
+    pregnantDiv.css("display", "flex");
   }
 }
 
@@ -88,10 +90,16 @@ function hideGestation() {
   let gestationSelect = $("#gestation");
   let gestationDiv = $("#divGestation");
 
-  if (pregnantSelect.val() == "No") {
+  if (
+    pregnantSelect.val() == "No" ||
+    pregnantSelect.val() == "N/A" ||
+    pregnantSelect.val() == ""
+  ) {
     gestationSelect.val("N/A");
-    gestationDiv.css("visibility", "hidden");
+    gestationDiv.css("display", "none");
+    gestationDiv.css("visibily", "hidden");
   } else {
+    gestationDiv.css("display", "flex");
     gestationDiv.css("visibility", "visible");
   }
 }
@@ -104,9 +112,9 @@ function chronicFunction() {
 
   if (chronicSelect.value == "No") {
     chronicInput.value = "N/A";
-    $('#chronicDiv').hide();
+    $("#chronicDiv").hide();
   } else {
     chronicInput.value = "";
-    $('#chronicDiv').show();
+    $("#chronicDiv").show();
   }
 }

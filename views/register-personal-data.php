@@ -279,7 +279,7 @@ closeConection($conn);
                                                                                                             <option value="Soltero(a)">Soltero(a)</option>
                                                                                                             <option value="Conyugue">Concubinato</option>
                                                                                                             <option value="Casado(a)">Casado(a)</option>
-                                                                                                            <option value="Anulado">Divorciado(a)</option>
+                                                                                                            <option value="Divorciado(a)">Divorciado(a)</option>
                                                                                                             <option value="Viudo(a)">Viudo(a)</option>
                                                                                                         </select>
                                                                                                     </div>
@@ -403,7 +403,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="chronicDiv">
+                                                                                                <div class="form-group row" id="chronicDiv" style="display: none;">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="datejoin" class="block">Tipo de Enfermedad</label>
                                                                                                     </div>
@@ -439,7 +439,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="divGestation">
+                                                                                                <div class="form-group row" id="divGestation" style="visibility: hidden;">
                                                                                                     <div class="col-md-4 col-lg-2">Meses de Gestación</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control" id="gestation" name="gestation">

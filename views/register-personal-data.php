@@ -1636,7 +1636,7 @@ closeConection($conn);
         });
 
         $('#div-vehiculo').hide();
-        
+
         function hideVehiculoPublic() {
             var selectedOption = $('#transportePublico-others').val();
             if (selectedOption === 'No') {
@@ -1902,13 +1902,19 @@ closeConection($conn);
         //Pestañas completadas                                                                                                        
         $(document).ready(function() {
             if (step >= 1) {
-                let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
-                $('#tab-personales').append(icono);
-                $('#tab-personales').addClass('disabled');
-                $('#tab-hijos').tab('show');
-            } else {
-                $('#tab-hijos').prop('disabled', true);
-            }
+            let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
+            $('#tab-personales').append(icono);
+            $('#tab-personales').removeClass('active');
+            $('#tab-personales').addClass('disabled');
+            
+            // Activar el tab de hijos
+            $('#tab-hijos').tab('show');
+
+            // Agregar la clase "active" al tab de hijos
+            document.getElementById("tab-hijos").classList.add("active");
+        } else {
+            $('#tab-hijos').prop('disabled', true);
+        }
 
             if (step >= 2) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');

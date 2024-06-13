@@ -439,7 +439,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="divGestation" style="visibility: hidden;">
+                                                                                                <div class="form-group row" id="divGestation" style="visibility: none;">
                                                                                                     <div class="col-md-4 col-lg-2">Meses de Gestación</div>
                                                                                                     <div class="col-md-8 col-lg-10">
                                                                                                         <select class="form-control" id="gestation" name="gestation">
@@ -1164,7 +1164,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="family-info-container">
+                                                                                                <div class="form-group row" id="family-info-container" style = 'visibility: hidden;'>
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label class="block">Nombre del Familiar</label>
                                                                                                     </div>
@@ -1314,7 +1314,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="div-codigo">
+                                                                                                <div class="form-group row" id="div-codigo" style='visibility: hidden;'>
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Código Carnet de la Patria</label>
                                                                                                     </div>
@@ -1322,7 +1322,7 @@ closeConection($conn);
                                                                                                         <input name="code-others" type="text" class="form-control required" value="">
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="div-serial">
+                                                                                                <div class="form-group row" id="div-serial" style='visibility: hidden;'>
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Serial Carnet de la Patria</label>
                                                                                                     </div>
@@ -1330,7 +1330,7 @@ closeConection($conn);
                                                                                                         <input name="serial-others" type="text" class="form-control required" value="">
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="div-beneficios">
+                                                                                                <div class="form-group row" id="div-beneficios" style='visibility: hidden;'>
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Beneficios del Carnet de la Patria</label>
                                                                                                     </div>
@@ -1471,7 +1471,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="tipoVehiculos">
+                                                                                                <div class="form-group row" id="tipoVehiculos" style="visibility: hidden;">
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Tipo de Vehículo</label>
                                                                                                     </div>
@@ -1501,7 +1501,7 @@ closeConection($conn);
                                                                                                         </select>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group row" id="div-vehiculo">
+                                                                                                <div class="form-group row" id="div-vehiculo" style='visibility: hidden;'>
                                                                                                     <div class="col-md-4 col-lg-2">
                                                                                                         <label for="confirm-2" class="block">Indique Cual</label>
                                                                                                     </div>
@@ -1635,12 +1635,16 @@ closeConection($conn);
             });
         });
 
+        $('#div-vehiculo').hide();
+        
         function hideVehiculoPublic() {
             var selectedOption = $('#transportePublico-others').val();
             if (selectedOption === 'No') {
                 $('#div-vehiculo').hide();
+                $('#div-vehiculo').css('visibility', 'hidden');
             } else {
                 $('#div-vehiculo').show();
+                $('#div-vehiculo').css('visibility', 'visible');
             }
         }
 
@@ -1649,8 +1653,10 @@ closeConection($conn);
             var selectedOption = $('#vehiculo-others').val();
             if (selectedOption === 'No') {
                 $('#tipoVehiculos').hide();
+                $('#tipoVehiculos').css('visibility', 'hidden');
             } else {
                 $('#tipoVehiculos').show();
+                $('#tipoVehiculos').css('visibility', 'visible');
             }
         }
 
@@ -1660,10 +1666,16 @@ closeConection($conn);
                 $('#div-codigo').hide();
                 $('#div-serial').hide();
                 $('#div-beneficios').hide();
+                $('#div-codigo').css('visibility', 'hidden');
+                $('#div-serial').css('visibility', 'hidden');
+                $('#div-beneficios').css('visibility', 'hidden');
             } else {
                 $('#div-codigo').show();
                 $('#div-serial').show();
                 $('#div-beneficios').show();
+                $('#div-codigo').css('visibility', 'visible');
+                $('#div-serial').css('visibility', 'visible');
+                $('#div-beneficios').css('visibility', 'visible');
             }
         }
 
@@ -1673,10 +1685,16 @@ closeConection($conn);
                 $('#div-codigoPSUV').hide();
                 $('#div-serialPSUV').hide();
                 $('#div-beneficiosPSUV').hide();
+                $('#div-codigoPSUV').css('visibility', 'hidden');
+                $('#div-serialPSUV').css('visibility', 'hidden');
+                $('#div-beneficiosPSUV').css('visibility', 'hidden');
             } else {
                 $('#div-codigoPSUV').show();
                 $('#div-serialPSUV').show();
                 $('#div-beneficiosPSUV').show();
+                $('#div-codigoPSUV').css('visibility', 'visible');
+                $('#div-serialPSUV').css('visibility', 'visible');
+                $('#div-beneficiosPSUV').css('visibility', 'visible');
             }
         }
 
@@ -1686,9 +1704,11 @@ closeConection($conn);
             if (selectedOption === 'No') { // Si se selecciona "No"
                 // Ocultar el div contenedor de los campos
                 $('#family-info-container').hide();
+                $('#family-info-container').css('visibility', 'hidden');
             } else {
                 // Mostrar el div contenedor de los campos
                 $('#family-info-container').show();
+                $('#family-info-container').css('visibility', 'visible');
             }
         }
 

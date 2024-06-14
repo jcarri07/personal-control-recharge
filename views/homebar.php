@@ -607,11 +607,11 @@ $fila = mysqli_fetch_assoc($resultado);
 </body>
 
 <!-- <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script> -->
-
+<script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
+<script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
 <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script>
 <script type="text/javascript" src="..\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>-->
-<script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
 <!-- modernizr js -->
@@ -635,3 +635,15 @@ $fila = mysqli_fetch_assoc($resultado);
 <!-- <script type="text/javascript" src="../files/assets/js/SmoothScroll.js"></script>
 <script type="text/javascript" src="../files/assets/pages/dashboard/custom-dashboard.js"></script>
 <script src="../files/assets/js/vartical-layout.min.js"></script> -->
+
+<script>
+    /*if (jQuery) {
+        alert("jQuery esta cargado");
+
+    }
+    else{
+        alert("No");
+        //import '..\files\bower_components\jquery\js\jquery.min.js';
+    }*/
+    //jQuery(document).ready( function() {})
+</script>

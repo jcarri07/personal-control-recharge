@@ -121,12 +121,12 @@ $fila = mysqli_fetch_assoc($resultado);
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
 
-                    <div class="navbar-logo">
-                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                    <div class="navbar-logo" style="background-color: #fff;">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!" style="color: #404E67;">
                             <i class="feather icon-menu"></i>
                         </a>
-                        <a href="dashboard.php">
-                            <img class="img-fluid" src="..\files\assets\images\logo.png" alt="Theme-Logo">
+                        <a href="dashboard.php" class="">
+                            <img class="img-fluid mr-4" src="..\files\assets\images\logo.png" alt="Theme-Logo">
                         </a>
                         <a class="mobile-options">
                             <i class="feather icon-more-horizontal"></i>

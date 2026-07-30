@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-$view = "../views/dashboard.php";
-include '../views/homebar.php'; 
+<?php
+$view = "";
+
+if ($_SESSION['tipo_usuario'] != "admin") {
+    $view = "../views/dashboard.php";
+} else {
+    $view = "../views/dashboard_admin.php";
+}
+include '../views/homebar.php';
 ?>
 
 <script>

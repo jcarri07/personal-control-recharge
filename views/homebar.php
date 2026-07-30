@@ -52,7 +52,8 @@ $fila = mysqli_fetch_assoc($resultado);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="#">
-    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="keywords"
+        content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <!-- Favicon icon -->
     <link rel="icon" href="..\files\assets\images\favicon.png" type="image/png">
@@ -210,12 +211,14 @@ $fila = mysqli_fetch_assoc($resultado);
                             </li>-->
                             <li style="padding:10px"></li>
                             <li style="height:49px" class="d-flex align-items-center px-0">
-                                <div style="width:40px;height:40px;overflow: hidden;border-radius:50%;text-align:center;position: relative;" class="" alt="">
+                                <div style="width:40px;height:40px;overflow: hidden;border-radius:50%;text-align:center;position: relative;"
+                                    class="" alt="">
                                     <img src="../assets/empleados-images/<?php if ($personal_data != null) {
-                                                                                echo $personal_data['foto'];
-                                                                            } else {
-                                                                                echo "avatar_default.jpg";
-                                                                            } ?>" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px">
+                                        echo $personal_data['foto'];
+                                    } else {
+                                        echo "avatar_default.jpg";
+                                    } ?>"
+                                        style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px">
                                 </div>
                             </li>
                             <li style="padding:10px"></li>
@@ -226,7 +229,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                         <span><?php echo $fila['nombres'] . " " . $fila['apellidos'] ?></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
-                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <ul class="show-notification profile-notification dropdown-menu"
+                                        data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                         <!--<li>
                                             <a href="#!">
                                                 <i class="feather icon-settings"></i> Settings
@@ -384,7 +388,7 @@ $fila = mysqli_fetch_assoc($resultado);
                             </ul>
                             <?php
                             if ($_SESSION['tipo_usuario'] != "admin") {
-                            ?>
+                                ?>
                                 <div class="pcoded-navigatio-lavel">Datos personales</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
@@ -408,7 +412,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="pcoded-trigger"> <!--active-->
-                                                <a href="../home/form-edit-data.php?page=datos-personales" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=datos-personales"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Personales</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -424,7 +429,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=familiares" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=familiares"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Familiares</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -432,7 +438,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=datos-academicos" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=datos-academicos"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Académicos</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -440,7 +447,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=formacion-exterior" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=formacion-exterior"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Formación exterior</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -448,7 +456,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=experiencia-laboral-publica" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=experiencia-laboral-publica"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Experiencia laboral</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -456,7 +465,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=datos-institucionales" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=datos-institucionales"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Institucionales</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -464,7 +474,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=comision-servicio" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=comision-servicio"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Comisión de servicio</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -472,7 +483,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
-                                                <a href="../home/form-edit-data.php?page=otros-datos" data-i18n="nav.widget.main">
+                                                <a href="../home/form-edit-data.php?page=otros-datos"
+                                                    data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->
                                                     <span class="pcoded-mtext">Otros datos</span>
                                                     <!--<span class="pcoded-badge label label-danger">100+</span>
@@ -483,7 +495,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </li>
                                 </ul>
 
-                            <?php
+                                <?php
                             }
                             ?>
 
@@ -524,7 +536,7 @@ $fila = mysqli_fetch_assoc($resultado);
                             </ul>
                             <?php
                             if ($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe") {
-                            ?>
+                                ?>
                                 <div class="pcoded-navigatio-lavel">Búsqueda</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
@@ -534,7 +546,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </a>
                                     </li>
                                 </ul>
-                            <?php
+                                <?php
                             }
                             ?>
                             <div class="pcoded-navigatio-lavel">Notificaciones</div>
@@ -550,7 +562,7 @@ $fila = mysqli_fetch_assoc($resultado);
                             <!-- ESTO NO BORRARLOOOOO -->
                             <?php
                             if ($_SESSION['tipo_usuario'] == "admin") {
-                            ?>
+                                ?>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="pcoded-hasmenu ">
                                         <a href="javascript:void(0)">
@@ -571,7 +583,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         </ul>
                                     </li>
                                 </ul>
-                            <?php
+                                <?php
                             }
                             ?>
                             <ul class="pcoded-item pcoded-left-item">

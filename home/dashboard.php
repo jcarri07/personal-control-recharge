@@ -3,7 +3,7 @@
 
 <?php
 $view = "";
-
+session_start();
 if ($_SESSION['tipo_usuario'] != "admin") {
     $view = "../views/dashboard.php";
 } else {

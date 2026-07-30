@@ -52,332 +52,6 @@ if (mysqli_num_rows($query) > 0) {
     }
 
     ?>
-    <!--
-<div class="page-body">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="wizard">
-                                <section>
-                                    <form id="example-advanced-form" class="wizard-form" method="POST" action="" enctype="multipart/form-data">
-                                        <h3> Datos Personales </h3>
-                                        <fieldset>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Nombres y Apellidos</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input id="nameEmployeer" name="nameEmployeer" type="text" class="required form-control" value="<?php echo $fila['nombres'] . " " . $fila['apellidos'] ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Cedula de Identidad</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="ciEmployeer" type="number" class="required form-control" value="<?php echo $fila['cedula'] ?>" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">R.I.F</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="rifEmployeer" type="text" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Lugar de Nacimiento</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="birthPlace" type="text" class="form-control required" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Fecha de Nacimiento</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="birthday" id="birthday" type="date" class="form-control required" onchange="calculateAge('birthday','age')" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Edad</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="ageEmployeer" id="age" type="text" class="form-control required" value="" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Sexo</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" id="gender" name="genderEmployeer" onchange="womanInformation()">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="Femenino">Femenino</option>
-                                                        <option value="Masculino">Masculino</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Estado Civil</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" id="status" name="statusEmployeer" onchange="hideMarriedInformation()">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="Casado(a)">Casado(a)</option>
-                                                        <option value="Conyugue">Conyugue</option>
-                                                        <option value="Anulado">Anulado</option>
-                                                        <option value="Conyugue">Conyugue</option>
-                                                        <option value="Separado de Union Legal">Separado de Union Legal</option>
-                                                        <option value="Separado de Union de Hecho">Separado de Union de Hecho</option>
-                                                        <option value="Viudo(a)">Viudo(a)</option>
-                                                        <option value="Soltero(a)">Soltero(a)</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                        <h3> Dirección y Contacto </h3>
-                                        <fieldset>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Estado</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="state" id="estado">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <?php
-                                                        /*while ($row = mysqli_fetch_array($queryEstados)) {
-                                                        ?>
-                                                            <option value="<?php echo $row['id_estado']; ?>"><?php echo $row['estado']; ?></option>
-                                                        <?php
-                                                        }*/
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Municipio</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="municipality" id="ciudad">
-                                                        <option value="N/A">Seleccione</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Direccion de Domicilio</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="address" type="text" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Telefono de Habitacion</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="phone" type="number" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Telefono Movil</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="cellphone" type="number" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Telefono de Emergencia</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="emergencyPhone" type="number" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label class="block">Nombre del Contacto de Emergencia</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="emergencyContact" type="text" class="form-control required">
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                        <h3> Datos Medicos </h3>
-                                        <fieldset>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="University-2" class="block">Alergias</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="alergy" type="text" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Grupo Sanguineo</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="bloodType">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="O-">O-</option>
-                                                        <option value="O+">O+</option>
-                                                        <option value="A-">A-</option>
-                                                        <option value="A+">A+</option>
-                                                        <option value="B-">B-</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="AB-">AB-</option>
-                                                        <option value="AB+">AB+</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Padece de alguna enfermedad Crónica?</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="chronicDisease" id="chronicDisease" onchange="chronicFunction()">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="Si">Si</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" id="chronicDiv">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="datejoin" class="block">Describa tipo de enfermedad</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="chronic" id='chronicInput' type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" id="divSpouse">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="datejoin" class="block">Nombre del Conyugue</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="spouse" type="text" id="spouse" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Perfil Dominante</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="perfilDominante">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="Diestro">Diestro</option>
-                                                        <option value="Zurdo">Zurdo</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="datejoin" class="block" value="0">Numero de Hijos</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="childrens" id="childrens" type="number" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" id="divPregnant">
-                                                <div class="col-md-4 col-lg-2">Si esta Embarazada Indique</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control" id="pregnant" name="pregnant" onchange="hideGestation()">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="Si">Si</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                        <h3> Tallas y Medidas</h3>
-                                        <fieldset>
-                                            <div class="form-group row" id="divGestation">
-                                                <div class="col-md-4 col-lg-2">Meses de Gestación</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control" id="gestation" name="gestation">
-                                                        <option value="0">Seleccione</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">Talla de Camisa</div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <select class="form-control required" name="shirtSizes">
-                                                        <option value="N/A">Seleccione</option>
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="surname-2" class="block">Talla de Pantalon</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="jeansSizes" type="number" class="form-control required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="phone-2" class="block">Talla de Calzado</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="shoesSizes" type="number" class="form-control required phone">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="date" class="block">Estatura (m)</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="stature" type="number" class="form-control required date-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="date" class="block">Peso (Kg)</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="weight" type="number" class="form-control required date-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="date" class="block">Firma digital</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="firm" type="file" class="form-control required date-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-4 col-lg-2">
-                                                    <label for="date" class="block">Foto del Empleado</label>
-                                                </div>
-                                                <div class="col-md-8 col-lg-10">
-                                                    <input name="photoEmployeer" type="file" class="form-control required date-control">
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
 
     <div class="container-fluid">
         <div class="pcoded-inner-content">
@@ -756,7 +430,7 @@ if (mysqli_num_rows($query) > 0) {
                                                                                             </div>
                                                                                             
                                                                                             <!-- Imágenes Modernas -->
-                                                                                            <div class="col-md-6 mb-4 d-flex flex-column align-items-center">
+                                                                                            <div class="col-md-6 mb-4 d-flex flex-column align-items-center mt-3">
                                                                                                 <label class="block font-weight-bold mb-3 text-uppercase text-muted" style="font-size: 0.85rem; letter-spacing: 1px;">Firma Digital</label>
                                                                                                 
                                                                                                 <div class="box-img firma d-flex align-items-center justify-content-center" style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; width: 100%; max-width: 260px; height: 120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
@@ -766,7 +440,10 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                 <div class="box-img preview firma align-items-center justify-content-center" style="display: none; background-color: #f8f9fa; border: 2px dashed #00a9ac; border-radius: 12px; width: 100%; max-width: 260px; height: 120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);"></div>
                                                                                                 
                                                                                                 <div class="mt-3 w-100 text-center" style="max-width: 260px;">
-                                                                                                    <input name="firm" id="firm" type="file" class="form-control form-control-sm" accept="image/jpeg, image/jpg, image/png">
+                                                                                                    <label for="firm" class="btn btn-outline-info btn-sm waves-effect" style="cursor: pointer; border-radius: 20px; font-weight: bold; padding: 5px 15px; border: 2px solid #00a9ac; color: #00a9ac;">
+                                                                                                        <i class="feather icon-upload"></i> Cargar Firma
+                                                                                                    </label>
+                                                                                                    <input name="firm" id="firm" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png">
                                                                                                     <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG. Ideal: 300x150</small>
                                                                                                 </div>
                                                                                             </div>
@@ -781,7 +458,10 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                 <div class="box-img preview foto" style="display: none;"></div>
                                                                                                 
                                                                                                 <div class="mt-4 w-100 text-center" style="max-width: 260px;">
-                                                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" class="form-control form-control-sm" accept="image/jpeg, image/jpg, image/png">
+                                                                                                    <label for="photoEmployeer" class="btn btn-outline-info btn-sm waves-effect" style="cursor: pointer; border-radius: 20px; font-weight: bold; padding: 5px 15px; border: 2px solid #00a9ac; color: #00a9ac;">
+                                                                                                        <i class="feather icon-camera"></i> Cargar Foto
+                                                                                                    </label>
+                                                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png">
                                                                                                     <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG. Foto frontal</small>
                                                                                                 </div>
                                                                                             </div>
@@ -1033,7 +713,7 @@ if (mysqli_num_rows($query) > 0) {
             datos.append('tipo_sangre', this.bloodType.value);
             datos.append('padece_enfermedad_cronica', this.chronicDisease.value);
             datos.append('describa_enfermedad_cronica', this.chronicInput.value);
-            datos.append('nombre_conyugue', this.spouse.value);
+            datos.append('nombre_conyugue', $("#spouse").val());
             datos.append('perfil_dominante', this.perfilDominante.value);
             datos.append('esta_embarazada', this.pregnant.value);
             datos.append('meses_gestacion', this.gestation.value);

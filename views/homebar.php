@@ -387,7 +387,8 @@ $fila = mysqli_fetch_assoc($resultado);
                                 </li>
                             </ul>
                             <?php
-                            if ($_SESSION['tipo_usuario'] != "admin") {
+                            if (true) {
+                            // if ($_SESSION['tipo_usuario'] != "admin") {
                                 ?>
                                 <div class="pcoded-navigatio-lavel">Datos personales</div>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -558,11 +559,50 @@ $fila = mysqli_fetch_assoc($resultado);
                                     </a>
                                 </li>
                             </ul>
+
+                            <div class="pcoded-navigatio-lavel">Asistencia</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
+                                        <span class="pcoded-mtext">Asistencia</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="../home/asistencia.php?page=reportar">
+                                                <span class="pcoded-mtext">Reportar Asistencia</span>
+                                            </a>
+                                        </li>
+<?php
+                                        if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
+?>
+                                            <li class="">
+                                                <a href="../home/asistencia.php?page=calendario">
+                                                    <span class="pcoded-mtext">Calendario de Reportes</span>
+                                                </a>
+                                            </li>
+                                            <!-- <li class="">
+                                                <a href="../home/asistencia.php?page=graficas">
+                                                    <span class="pcoded-mtext">Gráfica de Reportes</span>
+                                                </a>
+                                            </li> -->
+<?php
+                                        }
+?>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            
+
+
                             <br>
+
                             <!-- ESTO NO BORRARLOOOOO -->
-                            <?php
+<?php
+                            echo ($_SESSION['cargo']);
                             if ($_SESSION['tipo_usuario'] == "admin") {
-                                ?>
+?>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="pcoded-hasmenu ">
                                         <a href="javascript:void(0)">

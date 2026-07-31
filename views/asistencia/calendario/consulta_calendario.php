@@ -134,7 +134,7 @@
                                 <td><?php echo $aux1;?></td>
                                 <td><?php echo $aux2;?></td>
                                 <td>
-                                    <a type='button' onclick="modalind('<?php echo $fecha?>','<?php echo $valor['nombre_usuario']?>','<?php echo $valor['apellidos'];?>','<?php echo $valor['id_usuario'];?>')"> 
+                                    <a type='button' onclick="getAvtivitiesByUser('<?php echo $fecha?>','<?php echo $valor['nombre_usuario']?>','<?php echo $valor['apellidos'];?>','<?php echo $valor['id_usuario'];?>')"> 
                                         <i class='feather icon-file-text f-16 text-info'></i>
                                     </a>
                                 </td>
@@ -168,7 +168,7 @@
                                 <td><?php echo $aux1;?></td>
                                 <td><?php echo $aux2;?></td>
                                 <td>
-                                    <a type='button' onclick="modalind('<?php echo $fecha?>','<?php echo $valor['nombre_usuario']?>','<?php echo $valor['apellidos'];?>','<?php echo $valor['id_usuario'];?>')" <?php echo$aux3;?>> 
+                                    <a type='button' onclick="getAvtivitiesByUser('<?php echo $fecha?>','<?php echo $valor['nombre_usuario']?>','<?php echo $valor['apellidos'];?>','<?php echo $valor['id_usuario'];?>')" <?php echo$aux3;?>> 
                                         <i class='feather icon-file-text f-16 text-info'></i>
                                     </a>
                                 </td>

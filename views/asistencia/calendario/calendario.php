@@ -246,10 +246,57 @@
     calendar.render();
 
 
+    function getAvtivitiesByUser(fecha, nombre, apellido, id_usuario) {
+        //console.log('pasa algo');
+        //console.log(fecha,id);
 
+        $("#titulo-ind").html(nombre + ' ' + apellido);
+        var values = new FormData();
+        values.append("id_usuario", id_usuario);
+        values.append("fecha", fecha);
+        values.append("nombre", nombre);
+        values.append("apellido", apellido);
 
+        $.ajax({
+            url: '../views/asistencia/calendario/actividades_por_usuario.php',
+            type: 'POST',
+            data: values,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                $("#modi-cont").html(response);
+                
+                var fecha = $("#fc-dom-86").text();
+                array = fecha.split(" ");
 
-    
+                var string = "";
+                for (var i = 0; i < array.length; i++) {
+                if (i == 2)
+                    string += array[2][0].toUpperCase() + array[2].substring(1);
+                else
+                    string += array[i];
+
+                if (i < array.length - 1)
+                    string += " ";
+                }
+                $("#fc-dom-86").text(string);
+            },
+            error: function(response) {
+                alertify.error("Error inesperado.");
+            }
+        });
+        $('#modd-cont').html('Seleccione un Reporte para Visualizar su Descripción.');
+        $('#modalindividual').modal('show');
+        $('.modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+    }
+
+    function modaldes(response) {
+        $('#modd-cont').html(response);
+    }
+
 
 </script>
 
@@ -275,6 +322,32 @@
             <div class="modal-footer">
                 <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" onclick="PDF_individual()" class="btn  btn-primary">Descargar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show bd-example-modal-lg" id="modalindividual" tabindex="-1" aria-hidden="true" aria-labelledby="modal">
+    <div class="modal-dialog modal-lg"><!-- style="left: 22%;"-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title col-md-8">
+                    <h2 id="titulo-ind"></h2>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body p-3" id="modi-cont">
+            </div>
+            <div class="box-description-activity p-3">
+                <h4 class="box-title">Descripción</h4>
+                <div id="modd-cont">
+                    Seleccione un Reporte para Visualizar su Descripción.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

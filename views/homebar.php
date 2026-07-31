@@ -574,7 +574,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                             </a>
                                         </li>
 <?php
-                                        if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
+                                        // if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
 ?>
                                             <li class="">
                                                 <a href="../home/asistencia.php?page=calendario">
@@ -587,7 +587,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li> -->
 <?php
-                                        }
+                                        // }
 ?>
                                     </ul>
                                 </li>
@@ -600,7 +600,6 @@ $fila = mysqli_fetch_assoc($resultado);
 
                             <!-- ESTO NO BORRARLOOOOO -->
 <?php
-                            echo ($_SESSION['cargo']);
                             if ($_SESSION['tipo_usuario'] == "admin") {
 ?>
                                 <ul class="pcoded-item pcoded-left-item">

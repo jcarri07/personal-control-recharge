@@ -31618,3 +31618,6 @@ div:where(.swal2-icon).swal2-success
 .fc-day-today .fc-daygrid-day-top .fc-daygrid-day-number {
     font-weight: 800;
 }
+.fc-list-day-text {
+    color: black !important;
+}

@@ -22,7 +22,7 @@ closeConection($conn);
 if ($datos_personales['step'] > 2) {
 
 
-    ?>
+?>
 
 
     <div class="container-fluid">
@@ -70,7 +70,7 @@ if ($datos_personales['step'] > 2) {
                                                         </div>
                                                         <?php
                                                         if (mysqli_num_rows($query) > 0) {
-                                                            ?>
+                                                        ?>
                                                             <div class="dt-responsive table-responsive mt-5">
                                                                 <table id="row-select"
                                                                     class="table table-striped table-bordered nowrap">
@@ -100,8 +100,11 @@ if ($datos_personales['step'] > 2) {
                                                                             $educacion = $row['grado_instruccion'];
 
                                                                             setlocale(LC_TIME, "spanish");
-                                                                            $fecha_nueva = strftime("%d de %B de %Y", strtotime($fecha_nacimiento));
-                                                                            ?>
+                                                                            //$fecha_nueva = strftime("%d de %B de %Y", strtotime($fecha_nacimiento));
+                                                                            $fecha = new DateTime($fecha_nacimiento);
+                                                                            $format_fecha = new IntlDateFormatter('es_ES', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+                                                                            $fecha_nueva = $format_fecha->format($fecha);
+                                                                        ?>
                                                                             <tr>
                                                                                 <td><?php echo ++$i; ?></td>
                                                                                 <td><?php echo $nombre . " " . $apellido; ?></td>
@@ -120,19 +123,19 @@ if ($datos_personales['step'] > 2) {
                                                                                     </button>
                                                                                 </td>
                                                                             </tr>
-                                                                            <?php
+                                                                        <?php
                                                                         }
                                                                         ?>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <?php
+                                                        <?php
                                                         } else {
-                                                            ?>
+                                                        ?>
                                                             <h2 class="text-center mt-4">No hay familiares registrados</h2>
 
 
-                                                            <?php
+                                                        <?php
                                                         }
                                                         ?>
 
@@ -299,7 +302,8 @@ if ($datos_personales['step'] > 2) {
             $("#last_name").val(apellido);
             $("#birthday").val(fecha_nacimiento);
             $("#ci").val(cedula);
-            $("#gender").val(sexo); estado_civil
+            $("#gender").val(sexo);
+            estado_civil
             $("#estado_civil").val(estado_civil);
             $("#education").val(educacion);
 
@@ -310,7 +314,7 @@ if ($datos_personales['step'] > 2) {
         }
 
 
-        $("#form-edit").on("submit", function (event) {
+        $("#form-edit").on("submit", function(event) {
             event.preventDefault();
 
             var datos = new FormData();
@@ -336,31 +340,28 @@ if ($datos_personales['step'] > 2) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (response) { //console.log(response);
+                success: function(response) { //console.log(response);
                     $('.loaderParent').hide();
                     if (response == 'si') {
                         //alertify.success("Bello."); 
                         $("#modal-generic .message").text("Actualización Exitosa");
                         $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                         $("#modal-generic").modal("show");
-                    }
-                    else {
+                    } else {
                         $("#modal-generic .aceptar button").attr("onclick", "");
                         if (response == "vacio") {
                             //alertify.warning("Datos vacíos o sin modificación.");
                             $("#modal-generic .message").text("Datos vacíos o sin modificación");
                             $("#modal-generic").modal("show");
 
-                        }
-                        else {
+                        } else {
                             //alertify.error("Error al registrar.");
                             $("#modal-generic .message").text("Error al registrar");
                             $("#modal-generic").modal("show");
                         }
                     }
-                }
-                ,
-                error: function (response) {
+                },
+                error: function(response) {
                     $('.loaderParent').hide();
                     //alertify.error("Error al registrar."); 
                     $("#modal-generic .message").text("Error al registrar");
@@ -392,22 +393,20 @@ if ($datos_personales['step'] > 2) {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (response) { //console.log(response);
+                success: function(response) { //console.log(response);
                     $('.loaderParent').hide();
                     if (response == 'si') {
                         //alertify.success("Bello."); 
                         $("#modal-generic .message").text("Actualización Exitosa");
                         $("#modal-generic .aceptar button").attr("onclick", "window.location.reload();");
                         $("#modal-generic").modal("show");
-                    }
-                    else {
+                    } else {
                         $("#modal-generic .aceptar button").attr("onclick", "");
                         $("#modal-generic .message").text("Error al registrar");
                         $("#modal-generic").modal("show");
                     }
-                }
-                ,
-                error: function (response) {
+                },
+                error: function(response) {
                     $('.loaderParent').hide();
                     //alertify.error("Error al registrar."); 
                     $("#modal-generic .message").text("Error al registrar");
@@ -469,10 +468,10 @@ if ($datos_personales['step'] > 2) {
     </div>
 
 
-    <?php
+<?php
 
 } else {
-    ?>
+?>
     <div class="container-fluid">
         <div class="pcoded-inner-content">
             <!-- Main-body start -->
@@ -519,6 +518,6 @@ if ($datos_personales['step'] > 2) {
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 ?>

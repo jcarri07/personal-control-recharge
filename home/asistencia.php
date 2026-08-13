@@ -25,6 +25,7 @@
 <script src='../assets/fullcalendar-6.1.4/packages/core/locales-all.global.min.js'></script>
 <link rel="stylesheet" href="../assets/alertifyjs/css/alertify.min.css">
 <script src="../assets/alertifyjs/alertify.js"></script>
+<script src="../assets/apexchartsjs/apexcharts.min.js"></script>
 
 <script>
     // function iniciarTabla(id) {
@@ -76,7 +77,7 @@ switch ($_GET['page']) {
         $view = "../views/asistencia/calendario/calendario.php";
         break;
     case "graficas":
-        $view = "../views/asistencia/graficas.php";
+        $view = "../views/asistencia/graficas/graficas.php";
         break;
     default:
         $view = "";
@@ -174,6 +175,10 @@ include '../views/homebar.php';
     table tr th {
         background: #01A9AC;
         color: white;
+    }
+
+    .apx-legendview, .apexcharts-canvas {
+        overflow-y: hidden !important;
     }
 </style>
 

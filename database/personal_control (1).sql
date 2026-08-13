@@ -2713,6 +2713,18 @@ INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, 
 -- Índices para tablas volcadas
 --
 
+CREATE TABLE `actividad` (
+    `id_actividad` INT(11) AUTO_INCREMENT PRIMARY KEY,
+    `fecha` DATE NOT NULL,
+    `hora` TIME NOT NULL,
+    `condicion` VARCHAR(50) NOT NULL,
+    `descripcion` VARCHAR(1000) NOT NULL,
+    `archivo` VARCHAR(255) NULL,
+    `id_usuario` INT(11) NOT NULL,
+    `estatus` VARCHAR(15) DEFAULT NULL,
+    CONSTRAINT `actividad_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+);
+
 --
 -- Indices de la tabla `datos_abae`
 --

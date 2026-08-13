@@ -581,11 +581,11 @@ $fila = mysqli_fetch_assoc($resultado);
                                                     <span class="pcoded-mtext">Calendario de Reportes</span>
                                                 </a>
                                             </li>
-                                            <!-- <li class="">
+                                            <li class="">
                                                 <a href="../home/asistencia.php?page=graficas">
                                                     <span class="pcoded-mtext">Gráfica de Reportes</span>
                                                 </a>
-                                            </li> -->
+                                            </li>
 <?php
                                         // }
 ?>

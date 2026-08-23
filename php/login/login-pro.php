@@ -1,9 +1,8 @@
 <?php
 require_once "../../database/conexion.php";
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (!isset($_SESSION)) {
+    session_start();
+}
 $user = $_POST["user"];
 $contra = $_POST["password"];
 
@@ -21,6 +20,15 @@ if ($num_r >= 1) {
     $_SESSION["cedula"] = $obj->cedula;
     $_SESSION["usuario"] = $obj->user;
     $_SESSION["tipo_usuario"] = $obj->tipo_usuario;
+    $_SESSION["cargo"] = $obj->tipo_usuario;
+    
+    $res2 = mysqli_query($conn, "SELECT d.id_unidad 
+                           FROM datos_abae d, usuario us
+                           WHERE us.id_usuario='$obj->id_usuario' AND d.id_usuario = us.id_usuario");
+    //Agregar la unidad a la session                       
+    $obj2 = mysqli_fetch_object($res2);
+    $_SESSION["unidad"] = $obj2->id_unidad;
+
 
     $re = mysqli_query($conn, "SELECT u.nombre, u.id_unidad
                             FROM unidad u

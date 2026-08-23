@@ -297,6 +297,54 @@
         $('#modd-cont').html(response);
     }
 
+    /*-----------------REPORTES----------------*/
+    function PDF_unidad() {
+
+    const x = new Date();
+    var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+    window.open(url, "_blank");
+
+  }
+  /*--REPORTE SEMANAL--*/
+  function PDF_semana() {
+    val = $("#sell option:selected").val();
+    const x = new Date();
+    var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+    window.open(url, "_blank");
+
+  }
+  /*--REPORTE DIARIO--*/
+  function PDF_individual() {
+    var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+    window.open(url, "_blank");
+  }
+
+  function semana(){
+    numero = numeroSemanas(date);
+    aux = 1;
+    $('#modi-sem').html('');
+    $('#modi-sem').append('<div class="col-sm-12" style="padding: 0px;"><select name="" id="sell" class="form-control"></select>');
+    while(aux <= numero){
+      $('#sell').append('<option value='+aux+'>'+aux+'</option>')
+      aux++;
+    }
+    $('#modalsemana').modal('show');
+  }
+  
+  function numeroSemanas(date) {
+    
+    //var year = year.getFullYear();
+    console.log(date);
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    console.log(firstDay);console.log(lastDay);
+    var daysInMonth = lastDay.getDate();
+    var daysInFirstWeek = 7 - ((firstDay.getDay() == 0) ? 6 : firstDay.getDay() - 1);
+    var daysLeft = daysInMonth - daysInFirstWeek;
+    console.log((firstDay.getMonth() + 1).toString() + " " + daysInFirstWeek + " " + daysInMonth);
+    return Math.ceil(daysLeft / 7) + 1;
+  }
+
 
 </script>
 
@@ -351,4 +399,26 @@
             </div>
         </div>
     </div>
+</div>
+<!-- Modal de consulta semana -->
+<div class="modal fade show bd-example-modal-sm" id="modalsemana" tabindex="-1" aria-hidden="true" aria-labelledby="modal">
+  <div class="modal-dialog modal-sm"><!-- style="left: 22%;"-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title col-md-8">
+          <h2 id="titulo-ind"></h2>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">X</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modi-sem">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" onclick="PDF_semana()" class="btn  btn-primary">Descargar</button>
+      </div>
+    </div>
+  </div>
 </div>

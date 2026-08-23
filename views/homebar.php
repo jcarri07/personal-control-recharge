@@ -576,18 +576,26 @@ $fila = mysqli_fetch_assoc($resultado);
 <?php
                                         // if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
 ?>
-                                            <li class="">
-                                                <a href="../home/asistencia.php?page=calendario">
-                                                    <span class="pcoded-mtext">Calendario de Reportes</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="../home/asistencia.php?page=graficas">
-                                                    <span class="pcoded-mtext">Gráfica de Reportes</span>
-                                                </a>
-                                            </li>
+                                        <li class="">
+                                            <a href="../home/asistencia.php?page=calendario">
+                                                <span class="pcoded-mtext">Calendario de Reportes</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="../home/asistencia.php?page=graficas">
+                                                <span class="pcoded-mtext">Gráfica de Reportes</span>
+                                            </a>
+                                        </li>
 <?php
-                                        // }
+                                        if($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe") {
+?>
+                                        <li class="">
+                                            <a href="../views/asistencia/reportes/graficaApdf.php?anio=<?php echo date('Y') ?>">
+                                                <span class="pcoded-mtext">Reporte Anual</span>
+                                            </a>
+                                        </li>
+<?php
+                                         }
 ?>
                                     </ul>
                                 </li>

@@ -19,11 +19,11 @@
 
     $unidades = [];
 
-    if($cargo == 'Director'){
+    if($cargo == 'Director' || $cargo == 'Operador'){
 
         if($unidad == '0'){
             $addWhere .= " i.id_direccion = '$idDireccion' ";
-            $addWhereInUser .= " id_direccion = '$idDireccion' ";
+            $addWhereInUser .= "WHERE id_direccion = '$idDireccion' ";
 
             $sql = "SELECT * FROM unidad WHERE id_direccion = '$idDireccion';";
             $query = mysqli_query($conn, $sql);
@@ -36,12 +36,12 @@
             }
         }else{
             $addWhere .= " i.id_unidad = '$unidad' ";
-            $addWhereInUser .= " id_unidad = '$unidad' ";
+            $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
         }
     }
     if($cargo == 'Jefe') {
         $addWhere .= " i.id_unidad = '$id_unidad' ";
-        $addWhereInUser .= " id_unidad = '$id_unidad' ";
+        $addWhereInUser .= "WHERE id_unidad = '$id_unidad' ";
     }
 
     $sql = "SELECT u.id_usuario, 
@@ -55,7 +55,7 @@
                     /*i.nombre as nombre_unidad,*/
                     da.id_unidad
                 FROM unidad i 
-                JOIN usuario u ON u.estatus = 'activo' AND u.id_usuario IN (SELECT id_usuario FROM datos_abae WHERE $addWhereInUser)
+                JOIN usuario u ON u.estatus = 'activo' AND u.id_usuario IN (SELECT id_usuario FROM datos_abae $addWhereInUser)
                 LEFT JOIN datos_abae da ON da.id_direccion = i.id_direccion AND da.id_usuario = u.id_usuario
                 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario AND a.fecha = '$fecha' AND a.estatus = 'A' AND YEAR(a.fecha) = '$year'
                 WHERE $addWhere

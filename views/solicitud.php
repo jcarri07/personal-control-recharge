@@ -2241,7 +2241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('autoOpenModalBtn').style.display = 'none';
 
-    if(pasos == 8 || pasos == 9){
+    if(pasos == 8 || pasos == 9 || pasos >= 12){
 
         // Aquí puedes cerrar la modal
         document.getElementById('exampleModal').style.display = 'none'; // Ocultar la modal

@@ -7,9 +7,8 @@
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE DATABASE personal_control;
+USE personal_control;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -2714,18 +2713,6 @@ INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, 
 -- Índices para tablas volcadas
 --
 
-CREATE TABLE `actividad` (
-    `id_actividad` INT(11) AUTO_INCREMENT PRIMARY KEY,
-    `fecha` DATE NOT NULL,
-    `hora` TIME NOT NULL,
-    `condicion` VARCHAR(50) NOT NULL,
-    `descripcion` VARCHAR(1000) NOT NULL,
-    `archivo` VARCHAR(255) NULL,
-    `id_usuario` INT(11) NOT NULL,
-    `estatus` VARCHAR(15) DEFAULT NULL,
-    CONSTRAINT `actividad_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-);
-
 --
 -- Indices de la tabla `datos_abae`
 --
@@ -2863,6 +2850,18 @@ ALTER TABLE `unidad`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
+
+CREATE TABLE `actividad` (
+    `id_actividad` INT(11) AUTO_INCREMENT PRIMARY KEY,
+    `fecha` DATE NOT NULL,
+    `hora` TIME NOT NULL,
+    `condicion` VARCHAR(50) NOT NULL,
+    `descripcion` VARCHAR(1000) NOT NULL,
+    `archivo` VARCHAR(255) NULL,
+    `id_usuario` INT(11) NOT NULL,
+    `estatus` VARCHAR(15) DEFAULT NULL,
+    CONSTRAINT `actividad_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas

@@ -448,6 +448,24 @@ $fila = mysqli_fetch_assoc($resultado);
                                                 </a>
                                             </li>
                                             <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=formacion-actual"
+                                                    data-i18n="nav.widget.main">
+                                                    <span class="pcoded-mtext">Formación actual</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=cursos-realizados"
+                                                    data-i18n="nav.widget.main">
+                                                    <span class="pcoded-mtext">Cursos realizados</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="../home/form-edit-data.php?page=certificados-actividades"
+                                                    data-i18n="nav.widget.main">
+                                                    <span class="pcoded-mtext">Certificados de actividades</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
                                                 <a href="../home/form-edit-data.php?page=formacion-exterior"
                                                     data-i18n="nav.widget.main">
                                                     <!--<span class="pcoded-micon"><i class="ti-view-grid"></i></span>-->

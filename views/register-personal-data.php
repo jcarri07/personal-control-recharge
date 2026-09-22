@@ -172,6 +172,18 @@ closeConection($conn);
                                                     <div class="slide"></div>
                                                 </li>
                                                 <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#pane-formacion-actual" role="tab" style="text-align: left; margin-left: 10px;" id="tab-formacion-actual">Formación actual</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#pane-cursos-realizados" role="tab" style="text-align: left; margin-left: 10px;" id="tab-cursos-realizados">Cursos realizados</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#pane-certificados-actividades" role="tab" style="text-align: left; margin-left: 10px;" id="tab-certificados-actividades">Certificados de actividades</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#settings7" role="tab" style="text-align: left; margin-left: 10px;" id="tab-exterior">Formación exterior</a>
                                                     <div class="slide"></div>
                                                 </li>
@@ -852,10 +864,239 @@ closeConection($conn);
                                                                                             </fieldset>
                                                                                             <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
                                                                                                 <div style="margin:5px;">
-                                                                                                    <button id="omitir-academicos" class="btn btn-primary btn-outline-primary">Omitir</button>
+                                                                                                    <button type="button" id="omitir-academicos" class="btn btn-primary btn-outline-primary">Omitir</button>
                                                                                                 </div>
                                                                                                 <div style="margin:5px;">
                                                                                                     <input id="guardar-academicos" type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </section>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Form Basic Wizard card end -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Page body end -->
+                                                 </div>
+                                                <div class="tab-pane" id="pane-formacion-actual" role="tabpanel">
+                                                    <!-- Page body start -->
+                                                    <div class="page-body">
+                                                        <div class="row">
+                                                            <div class=" col-sm-12">
+                                                                <!-- Form wizard with validation card start -->
+                                                                <div class="card">
+                                                                    <div class="card-block">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div id="wizard">
+                                                                                    <section>
+                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertFormacionActual">
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Formación Actual</p>
+                                                                                            </div>
+                                                                                            <fieldset style="height: 489px;">
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Estudios en Curso</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="estudios-en-curso" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Año Estimado de Graduación</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="anio-estimado-graduacion" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Instituto / Universidad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="instituto-universidad-fa" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Observaciones</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <textarea name="observaciones-fa" class="form-control" rows="4"></textarea>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </fieldset>
+                                                                                            <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
+                                                                                                <div style="margin:5px;">
+                                                                                                    <button id="omitir-formacion-actual" class="btn btn-primary btn-outline-primary">Omitir</button>
+                                                                                                </div>
+                                                                                                <div style="margin:5px;">
+                                                                                                    <input id="guardar-formacion-actual" type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </section>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Form Basic Wizard card end -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Page body end -->
+                                                </div>
+                                                <div class="tab-pane" id="pane-cursos-realizados" role="tabpanel">
+                                                    <!-- Page body start -->
+                                                    <div class="page-body">
+                                                        <div class="row">
+                                                            <div class=" col-sm-12">
+                                                                <!-- Form wizard with validation card start -->
+                                                                <div class="card">
+                                                                    <div class="card-block">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div id="wizard">
+                                                                                    <section>
+                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCursoRealizado">
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Cursos Realizados</p>
+                                                                                            </div>
+                                                                                            <fieldset style="height: 489px;">
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Nombre del Curso</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="nombre-curso-cr" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Duración</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="duracion-cr" type="text" class="form-control required" placeholder="Ej: 40 horas, 3 meses" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Año del Curso</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="anio-curso-cr" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Instituto / Universidad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="instituto-universidad-cr" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Observaciones</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <textarea name="observaciones-cr" class="form-control" rows="3"></textarea>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </fieldset>
+                                                                                            <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
+                                                                                                <div style="margin:5px;">
+                                                                                                    <button id="omitir-cursos-realizados" class="btn btn-primary btn-outline-primary">Omitir</button>
+                                                                                                </div>
+                                                                                                <div style="margin:5px;">
+                                                                                                    <input id="guardar-cursos-realizados" type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </section>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Form Basic Wizard card end -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Page body end -->
+                                                </div>
+                                                <div class="tab-pane" id="pane-certificados-actividades" role="tabpanel">
+                                                    <!-- Page body start -->
+                                                    <div class="page-body">
+                                                        <div class="row">
+                                                            <div class=" col-sm-12">
+                                                                <!-- Form wizard with validation card start -->
+                                                                <div class="card">
+                                                                    <div class="card-block">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div id="wizard">
+                                                                                    <section>
+                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCertificadoActividad">
+                                                                                            <div style="display: flex; justify-content: center; align-items: center; width: 450px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
+                                                                                                <p style="color: white; margin-top: 15px; font-size: 16px">Certificados de Actividades Realizadas en la Institución</p>
+                                                                                            </div>
+                                                                                            <fieldset style="height: 489px;">
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Nombre del Curso / Actividad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="nombre-curso-ca" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Duración</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="duracion-ca" type="text" class="form-control required" placeholder="Ej: 40 horas, 3 meses" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Año del Curso / Actividad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="anio-curso-ca" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Instituto / Universidad</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <input name="instituto-universidad-ca" type="text" class="form-control required" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-md-4 col-lg-2">
+                                                                                                        <label class="block">Observaciones</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-8 col-lg-10">
+                                                                                                        <textarea name="observaciones-ca" class="form-control" rows="3"></textarea>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </fieldset>
+                                                                                            <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
+                                                                                                <div style="margin:5px;">
+                                                                                                    <button id="omitir-certificados-actividades" class="btn btn-primary btn-outline-primary">Omitir</button>
+                                                                                                </div>
+                                                                                                <div style="margin:5px;">
+                                                                                                    <input id="guardar-certificados-actividades" type="submit" class="btn btn-primary waves-effect waves-light" value="Guardar">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </form>
@@ -1238,7 +1479,7 @@ closeConection($conn);
                                                                                             </fieldset>
                                                                                             <div style="display: flex; justify-content: flex-end; width: 100%; margin: 1px;">
                                                                                                 <div style="margin:5px;">
-                                                                                                    <button type="submit" class="btn btn-primary btn-outline-primary" id="omitir-comision">Omitir</button>
+                                                                                                    <button type="button" class="btn btn-primary btn-outline-primary" id="omitir-comision">Omitir</button>
                                                                                                 </div>
                                                                                                 <div style="margin:5px;">
                                                                                                     <button type="submit" id="save-comision" class="btn btn-primary waves-effect waves-light">Guardar</inp>
@@ -1902,24 +2143,26 @@ closeConection($conn);
         //Pestañas completadas                                                                                                        
         $(document).ready(function() {
             if (step >= 1) {
-            let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
-            $('#tab-personales').append(icono);
-            $('#tab-personales').removeClass('active');
-            $('#tab-personales').addClass('disabled');
-            
-            // Activar el tab de hijos
-            $('#tab-hijos').tab('show');
+                let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
+                $('#tab-personales').append(icono);
+                $('#tab-personales').removeClass('active');
+                $('#tab-personales').addClass('disabled');
+                
+                // Activar el tab de hijos
+                $('#tab-hijos').prop('disabled', false).removeClass('disabled');
+                $('#tab-hijos').tab('show');
 
-            // Agregar la clase "active" al tab de hijos
-            document.getElementById("tab-hijos").classList.add("active");
-        } else {
-            $('#tab-hijos').prop('disabled', true);
-        }
+                // Agregar la clase "active" al tab de hijos
+                document.getElementById("tab-hijos").classList.add("active");
+            } else {
+                $('#tab-hijos').prop('disabled', true);
+            }
 
             if (step >= 2) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-hijos').append(icono);
                 $('#tab-hijos').addClass('disabled');
+                $('#tab-familiares').prop('disabled', false).removeClass('disabled');
                 $('#tab-familiares').tab('show');
             } else {
                 $('#tab-familiares').prop('disabled', true);
@@ -1929,6 +2172,7 @@ closeConection($conn);
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-familiares').append(icono);
                 $('#tab-familiares').addClass('disabled');
+                $('#tab-academicos').prop('disabled', false).removeClass('disabled');
                 $('#tab-academicos').tab('show');
             } else {
                 $('#tab-academicos').prop('disabled', true);
@@ -1938,57 +2182,111 @@ closeConection($conn);
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-academicos').append(icono);
                 $('#tab-academicos').addClass('disabled');
+                $('#tab-formacion-actual').prop('disabled', false).removeClass('disabled');
+                $('#tab-formacion-actual').tab('show');
+            } else {
+                $('#tab-formacion-actual').prop('disabled', true);
+            }
+
+            if (step >= 5) {
+                let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
+                $('#tab-formacion-actual').append(icono);
+                $('#tab-formacion-actual').addClass('disabled');
+                $('#tab-cursos-realizados').prop('disabled', false).removeClass('disabled');
+                $('#tab-cursos-realizados').tab('show');
+            } else {
+                $('#tab-cursos-realizados').prop('disabled', true);
+            }
+
+            if (step >= 6) {
+                let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
+                $('#tab-cursos-realizados').append(icono);
+                $('#tab-cursos-realizados').addClass('disabled');
+                $('#tab-certificados-actividades').prop('disabled', false).removeClass('disabled');
+                $('#tab-certificados-actividades').tab('show');
+            } else {
+                $('#tab-certificados-actividades').prop('disabled', true);
+            }
+
+            if (step >= 7) {
+                let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
+                $('#tab-certificados-actividades').append(icono);
+                $('#tab-certificados-actividades').addClass('disabled');
+                $('#tab-exterior').prop('disabled', false).removeClass('disabled');
                 $('#tab-exterior').tab('show');
             } else {
                 $('#tab-exterior').prop('disabled', true);
             }
 
-            if (step >= 5) {
+            if (step >= 8) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-exterior').append(icono);
                 $('#tab-exterior').addClass('disabled');
+                $('#tab-experiencia').prop('disabled', false).removeClass('disabled');
                 $('#tab-experiencia').tab('show');
             } else {
                 $('#tab-experiencia').prop('disabled', true);
             }
 
-            if (step >= 6) {
+            if (step >= 9) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-experiencia').append(icono);
                 $('#tab-experiencia').addClass('disabled');
+                $('#tab-institucionales').prop('disabled', false).removeClass('disabled');
                 $('#tab-institucionales').tab('show');
             } else {
                 $('#tab-institucionales').prop('disabled', true);
             }
 
-            if (step >= 7) {
+            if (step >= 10) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-institucionales').append(icono);
                 $('#tab-institucionales').addClass('disabled');
+                $('#tab-comision').prop('disabled', false).removeClass('disabled');
                 $('#tab-comision').tab('show');
             } else {
                 $('#tab-comision').prop('disabled', true);
             }
 
-            if (step >= 8) {
+            if (step >= 11) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-comision').append(icono);
                 $('#tab-comision').addClass('disabled');
+                $('#tab-otros').prop('disabled', false).removeClass('disabled');
                 $('#tab-otros').tab('show');
             } else {
                 $('#tab-otros').prop('disabled', true);
             }
 
-            if (step >= 9) {
+            if (step >= 12) {
                 let icono = $('<i>').addClass('fa fa-check-circle').css('margin-left', '5px');
                 $('#tab-otros').append(icono);
                 $('#tab-otros').addClass('disabled');
+                $('#tab-finish').prop('disabled', false).removeClass('disabled');
                 $('#tab-finish').tab('show');
             } else {
                 $('#tab-finish').prop('disabled', true);
             }
         });
 
+
+        // Si se guardó en una pestaña de las nuevas secciones, regresar a esa pestaña tras el guardado
+        $(document).ready(function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var tabParam = urlParams.get('tab');
+            if (tabParam) {
+                var tabId = '#tab-' + tabParam;
+                $(tabId).prop('disabled', false).removeClass('disabled');
+                $(tabId).tab('show');
+                if (tabParam === 'cursos-realizados') {
+                    $('#tab-formacion-actual').prop('disabled', false).removeClass('disabled');
+                }
+                if (tabParam === 'certificados-actividades') {
+                    $('#tab-formacion-actual').prop('disabled', false).removeClass('disabled');
+                    $('#tab-cursos-realizados').prop('disabled', false).removeClass('disabled');
+                }
+            }
+        });
 
         //Agregar hijos
         $(document).ready(function() {
@@ -2098,31 +2396,108 @@ closeConection($conn);
             });
         });
 
-        //Omitir Formacion en el exterior
+        //Omitir Academicos
         $(document).ready(function(e) {
             $('#omitir-academicos').click(function(e) {
                 e.preventDefault();
-                $('#tab-exterior').tab('show');
                 $('#tab-academicos').append(icono);
                 $("#tab-academicos").addClass("disabled");
+                $('#tab-formacion-actual').prop('disabled', false).removeClass('disabled');
+                $('#tab-formacion-actual').tab('show');
                 step = 4;
                 accion = "academicos";
-                // Aquí puedes agregar la función que deseas ejecutar al hacer clic en el botón
-                console.log('Se hizo clic en el botón "Omitir"');
                 $.ajax({
                     url: '../utils/step.php',
                     method: 'POST',
                     data: {
                         parametro1: step,
                         parametro2: accion,
-                        // Agrega aquí los demás parámetros y valores que necesites enviar
                     },
                     success: function(response) {
-                        // Maneja la respuesta del servidor después de la inserción
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Maneja cualquier error que ocurra durante la solicitud
+                        console.error(error);
+                    }
+                });
+            });
+        });
+
+        //Omitir Formacion Actual
+        $(document).ready(function(e) {
+            $('#omitir-formacion-actual').click(function(e) {
+                e.preventDefault();
+                $('#tab-formacion-actual').append(icono);
+                $("#tab-formacion-actual").addClass("disabled");
+                $('#tab-cursos-realizados').prop('disabled', false).removeClass('disabled');
+                $('#tab-cursos-realizados').tab('show');
+                step = 5;
+                accion = "formacion-actual";
+                $.ajax({
+                    url: '../utils/step.php',
+                    method: 'POST',
+                    data: {
+                        parametro1: step,
+                        parametro2: accion,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+
+        //Omitir Cursos Realizados
+        $(document).ready(function(e) {
+            $('#omitir-cursos-realizados').click(function(e) {
+                e.preventDefault();
+                $('#tab-cursos-realizados').append(icono);
+                $("#tab-cursos-realizados").addClass("disabled");
+                $('#tab-certificados-actividades').prop('disabled', false).removeClass('disabled');
+                $('#tab-certificados-actividades').tab('show');
+                step = 6;
+                accion = "cursos-realizados";
+                $.ajax({
+                    url: '../utils/step.php',
+                    method: 'POST',
+                    data: {
+                        parametro1: step,
+                        parametro2: accion,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+
+        //Omitir Certificados Actividades
+        $(document).ready(function(e) {
+            $('#omitir-certificados-actividades').click(function(e) {
+                e.preventDefault();
+                $('#tab-certificados-actividades').append(icono);
+                $("#tab-certificados-actividades").addClass("disabled");
+                $('#tab-exterior').prop('disabled', false).removeClass('disabled');
+                $('#tab-exterior').tab('show');
+                step = 7;
+                accion = "certificados-actividades";
+                $.ajax({
+                    url: '../utils/step.php',
+                    method: 'POST',
+                    data: {
+                        parametro1: step,
+                        parametro2: accion,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
                         console.error(error);
                     }
                 });
@@ -2134,12 +2509,12 @@ closeConection($conn);
         $(document).ready(function(e) {
             $('#omitir-exterior').click(function(e) {
                 e.preventDefault();
+                $('#tab-experiencia').prop('disabled', false).removeClass('disabled');
                 $('#tab-experiencia').tab('show');
                 $('#tab-exterior').append(icono);
                 $("#tab-exterior").addClass("disabled");
-                step = 5;
+                step = 8;
                 accion = "exterior";
-                // Aquí puedes agregar la función que deseas ejecutar al hacer clic en el botón
                 console.log('Se hizo clic en el botón "Omitir"');
                 $.ajax({
                     url: '../utils/step.php',
@@ -2147,14 +2522,11 @@ closeConection($conn);
                     data: {
                         parametro1: step,
                         parametro2: accion,
-                        // Agrega aquí los demás parámetros y valores que necesites enviar
                     },
                     success: function(response) {
-                        // Maneja la respuesta del servidor después de la inserción
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Maneja cualquier error que ocurra durante la solicitud
                         console.error(error);
                     }
                 });
@@ -2186,14 +2558,14 @@ closeConection($conn);
 
         //Omitir experiencia en la administracion publica
         $(document).ready(function(e) {
-            $('#omitir-comision').click(function(e) {
+            $('#omitir-publica').click(function(e) {
                 e.preventDefault();
-                $('#tab-otros').tab('show');
-                $('#tab-comision').append(icono);
-                $("#tab-comision").addClass("disabled");
-                step = 8;
-                accion = "comision";
-                // Aquí puedes agregar la función que deseas ejecutar al hacer clic en el botón
+                $('#tab-institucionales').prop('disabled', false).removeClass('disabled');
+                $('#tab-institucionales').tab('show');
+                $('#tab-experiencia').append(icono);
+                $("#tab-experiencia").addClass("disabled");
+                step = 9;
+                accion = "publica";
                 console.log('Se hizo clic en el botón "Omitir"');
                 $.ajax({
                     url: '../utils/step.php',
@@ -2201,30 +2573,27 @@ closeConection($conn);
                     data: {
                         parametro1: step,
                         parametro2: accion,
-                        // Agrega aquí los demás parámetros y valores que necesites enviar
                     },
                     success: function(response) {
-                        // Maneja la respuesta del servidor después de la inserción
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Maneja cualquier error que ocurra durante la solicitud
                         console.error(error);
                     }
                 });
             });
         });
 
-        //Omitir experiencia en la administracion publica
+        //Omitir comision
         $(document).ready(function(e) {
-            $('#omitir-publica').click(function(e) {
+            $('#omitir-comision').click(function(e) {
                 e.preventDefault();
-                $('#tab-institucionales').tab('show');
-                $('#tab-experiencia').append(icono);
-                $("#tab-experiencia").addClass("disabled");
-                step = 6;
-                accion = "publica";
-                // Aquí puedes agregar la función que deseas ejecutar al hacer clic en el botón
+                $('#tab-otros').prop('disabled', false).removeClass('disabled');
+                $('#tab-otros').tab('show');
+                $('#tab-comision').append(icono);
+                $("#tab-comision").addClass("disabled");
+                step = 11;
+                accion = "comision";
                 console.log('Se hizo clic en el botón "Omitir"');
                 $.ajax({
                     url: '../utils/step.php',
@@ -2232,14 +2601,11 @@ closeConection($conn);
                     data: {
                         parametro1: step,
                         parametro2: accion,
-                        // Agrega aquí los demás parámetros y valores que necesites enviar
                     },
                     success: function(response) {
-                        // Maneja la respuesta del servidor después de la inserción
                         console.log(response);
                     },
                     error: function(xhr, status, error) {
-                        // Maneja cualquier error que ocurra durante la solicitud
                         console.error(error);
                     }
                 });

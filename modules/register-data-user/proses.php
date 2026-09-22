@@ -393,6 +393,106 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      }
 }
 
+//FORMACION ACTUAL
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     if ($_GET['act'] == 'insertFormacionActual') {
+          $estudiosEnCurso = $_POST["estudios-en-curso"];
+          $anioEstimadoGraduacion = $_POST["anio-estimado-graduacion"];
+          $institutoUniversidad = $_POST["instituto-universidad-fa"];
+          $observaciones = $_POST["observaciones-fa"] ?? "";
+          $estatus = "activo";
+
+          $sql = "INSERT INTO formacion_actual ( 
+                    id_usuario,	
+                    estudios_en_curso,	
+                    anio_estimado_graduacion,	
+                    instituto_universidad,	
+                    observaciones,	
+                    estatus
+          ) VALUES ( ?, ?, ?, ?, ?, ?)";
+
+          $stmt = $conn->prepare($sql);
+          if ($stmt === false) {
+               die("Error en la preparación de la consulta: " . $conn->error);
+          }
+
+          $stmt->bind_param("isssss", $idUser, $estudiosEnCurso, $anioEstimadoGraduacion, $institutoUniversidad, $observaciones, $estatus);
+          $stmt->execute();
+          $stmt->close();
+          $conn->close();
+
+          header("Location: ../../home/form-register.php?tab=formacion-actual");
+     }
+}
+
+//CURSOS REALIZADOS
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     if ($_GET['act'] == 'insertCursoRealizado') {
+          $nombreCurso = $_POST["nombre-curso-cr"];
+          $duracion = $_POST["duracion-cr"];
+          $anioCurso = $_POST["anio-curso-cr"];
+          $institutoUniversidad = $_POST["instituto-universidad-cr"];
+          $observaciones = $_POST["observaciones-cr"] ?? "";
+          $estatus = "activo";
+
+          $sql = "INSERT INTO cursos_realizados ( 
+                    id_usuario,	
+                    nombre_curso,	
+                    duracion,	
+                    anio_curso,	
+                    instituto_universidad,	
+                    observaciones,	
+                    estatus
+          ) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+
+          $stmt = $conn->prepare($sql);
+          if ($stmt === false) {
+               die("Error en la preparación de la consulta: " . $conn->error);
+          }
+
+          $stmt->bind_param("issssss", $idUser, $nombreCurso, $duracion, $anioCurso, $institutoUniversidad, $observaciones, $estatus);
+          $stmt->execute();
+          $stmt->close();
+          $conn->close();
+
+          header("Location: ../../home/form-register.php?tab=cursos-realizados");
+     }
+}
+
+//CERTIFICADOS ACTIVIDADES
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     if ($_GET['act'] == 'insertCertificadoActividad') {
+          $nombreCurso = $_POST["nombre-curso-ca"];
+          $duracion = $_POST["duracion-ca"];
+          $anioCurso = $_POST["anio-curso-ca"];
+          $institutoUniversidad = $_POST["instituto-universidad-ca"];
+          $observaciones = $_POST["observaciones-ca"] ?? "";
+          $estatus = "activo";
+
+          $sql = "INSERT INTO certificados_actividades ( 
+                    id_usuario,	
+                    nombre_curso,	
+                    duracion,	
+                    anio_curso,	
+                    instituto_universidad,	
+                    observaciones,	
+                    estatus
+          ) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+
+          $stmt = $conn->prepare($sql);
+          if ($stmt === false) {
+               die("Error en la preparación de la consulta: " . $conn->error);
+          }
+
+          $stmt->bind_param("issssss", $idUser, $nombreCurso, $duracion, $anioCurso, $institutoUniversidad, $observaciones, $estatus);
+          $stmt->execute();
+          $stmt->close();
+          $conn->close();
+
+          header("Location: ../../home/form-register.php?tab=certificados-actividades");
+     }
+}
+
 //ACADEMICOS EXTERIOR
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if ($_GET['act'] == 'insertAcademicExteriorData') {
@@ -543,7 +643,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Unidad : " . $unidadAdscripcion . ", Año ingreso: " . $fechaInicioABAE .  ", super: " . $supervisorInmediato . "Fecha Admin:" . $fechaInicioAdminPublica . ", Cargo: " . $cargo . " Correo: " . $correoElectronico . " Nombre Familiar: " . $nombreFamiliar . "Estatus: " . $status;
 
-          $sql2 = "UPDATE usuario SET step = 7 WHERE step = 6 AND id_usuario = '$idUser'";
+          $sql2 = "UPDATE usuario SET step = 10 WHERE id_usuario = '$idUser' AND step < 10";
 
           // Ejecutar la consulta
           if ($conn->query($sql2) === TRUE) {
@@ -755,7 +855,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Inicio : " . $beginDateComision . ", Fin: " . $finishDateComision . "Instituto:" . $instituteComision . ", Rango: " . $rangeComision . " Estatus: " . $estatus;
 
-          $sql2 = "UPDATE usuario SET step = 8 WHERE step = 7 AND id_usuario = '$idUser'";
+          $sql2 = "UPDATE usuario SET step = 11 WHERE id_usuario = '$idUser' AND step < 11";
 
           // Ejecutar la consulta
           if ($conn->query($sql2) === TRUE) {
@@ -853,7 +953,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                echo "Error al insertar los datos de otros usuarios: " . $stmt->error;
           }
 
-          $sql2 = "UPDATE usuario SET step = 9 WHERE step = 8 AND id_usuario = '$idUser'";
+          $sql2 = "UPDATE usuario SET step = 12 WHERE id_usuario = '$idUser' AND step < 12";
 
           // Ejecutar la consulta
           if ($conn->query($sql2) === TRUE) {

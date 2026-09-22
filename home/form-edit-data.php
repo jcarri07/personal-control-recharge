@@ -64,6 +64,15 @@ switch ($_GET['page']) {
     case "datos-academicos":
         $view = "../views/edit-personal-data/datos-academicos.php";
         break;
+    case "formacion-actual":
+        $view = "../views/edit-personal-data/formacion-actual.php";
+        break;
+    case "cursos-realizados":
+        $view = "../views/edit-personal-data/cursos-realizados.php";
+        break;
+    case "certificados-actividades":
+        $view = "../views/edit-personal-data/certificados-actividades.php";
+        break;
     case "formacion-exterior":
         $view = "../views/edit-personal-data/formacion-exterior.php";
         break;

@@ -552,7 +552,7 @@ CREATE TABLE `datos_militar` (
 --
 
 INSERT INTO `datos_militar` (`id_datos_militar`, `id_usuario`, `fecha_inicio`, `fecha_fin`, `instituto_militar`, `rango`, `estatus`) VALUES
-(5, 34, '0000-00-00', '0000-00-00', '', '', 'activo');
+(5, 34, NULL, NULL, '', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -564,7 +564,7 @@ CREATE TABLE `datos_personales` (
   `id_datos_personales` int(11) NOT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_municipio` int(11) DEFAULT NULL,
-  `fecha_registro` date DEFAULT current_timestamp(),
+  `fecha_registro` timestamp DEFAULT current_timestamp(),
   `domicilio` varchar(100) NOT NULL,
   `lugar_nacimiento` varchar(100) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL,

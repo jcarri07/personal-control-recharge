@@ -301,7 +301,7 @@
     function PDF_unidad() {
 
     const x = new Date();
-    var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+    var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
     window.open(url, "_blank");
 
   }
@@ -309,13 +309,13 @@
   function PDF_semana() {
     val = $("#sell option:selected").val();
     const x = new Date();
-    var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+    var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
     window.open(url, "_blank");
 
   }
   /*--REPORTE DIARIO--*/
   function PDF_individual() {
-    var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['tipo_usuario'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+    var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
     window.open(url, "_blank");
   }
 

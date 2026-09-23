@@ -80,12 +80,12 @@
     $au = DateTime::createFromFormat("Y-m-d", $fecha);
     $Y = date("Y");
 
-    $selectFields = "u.id_usuario, u.tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
+    $selectFields = "u.id_usuario, d.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
                 a.condicion, a.descripcion, a.hora, a.fecha, 
                 un.nombre as nombre_unidad, a.archivo as archivo";
 
     $baseJoin = "FROM datos_abae i 
-                LEFT JOIN usuario u ON i.id_usuario = u.id_usuario 
+                RIGHT JOIN usuario u ON i.id_usuario = u.id_usuario 
                 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario
                 LEFT JOIN unidad un ON i.id_unidad = un.id_unidad 
                 AND MONTH(a.fecha) = '$mes' 
@@ -96,17 +96,16 @@
     $baseConditions = "i.estatus = 'activo'";
 
     if ($tipo == 'Director') {
-        $userConditions = "u.estatus = 'activo' AND u.tipo_usuario != '$tipo'";
+        
         
         if ($uni == '0') {
             $query = "SELECT $selectFields
                     $baseJoin
-                    WHERE  $userConditions
                     ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC";
         } else {
             $query = "SELECT $selectFields
                     $baseJoin
-                    WHERE  i.id_unidad = '$uni' AND $userConditions
+                    WHERE  i.id_unidad = '$uni' 
                     ORDER BY u.nombres DESC, u.tipo_usuario ASC, a.fecha DESC, a.hora ASC";
         }
         

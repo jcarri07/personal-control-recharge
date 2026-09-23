@@ -6,13 +6,13 @@ if (!isset($_SESSION)) {
 $user = $_POST["user"];
 $contra = $_POST["password"];
 
-$res = mysqli_query($conn, "SELECT * 
-                           FROM usuario 
-                           WHERE user='$user' AND pass='$contra';");
-$num_r = mysqli_num_rows($res);
+$res = mysqli_query($conn, "SELECT u.id_usuario, u.nombres, u.apellidos, u.cedula, u.user, u.tipo_usuario, d.cargo 
+                           FROM usuario u
+                           LEFT JOIN datos_abae d ON u.id_usuario = d.id_usuario
+                           WHERE u.user='$user' AND u.pass='$contra';");
 
 
-if ($num_r >= 1) {
+if (mysqli_num_rows($res) >= 1) {
     $obj = mysqli_fetch_object($res);
     $_SESSION["id_usuario"] = $obj->id_usuario;
     $_SESSION["nombre"] = $obj->nombres;
@@ -20,8 +20,12 @@ if ($num_r >= 1) {
     $_SESSION["cedula"] = $obj->cedula;
     $_SESSION["usuario"] = $obj->user;
     $_SESSION["tipo_usuario"] = $obj->tipo_usuario;
-    $_SESSION["cargo"] = $obj->tipo_usuario;
-    
+    if ($obj->cargo != null) {
+        $_SESSION["cargo"] = $obj->cargo;
+    } else {
+        $_SESSION["cargo"] = 'Sin asignar';
+    }
+
     $res2 = mysqli_query($conn, "SELECT d.id_unidad 
                            FROM datos_abae d, usuario us
                            WHERE us.id_usuario='$obj->id_usuario' AND d.id_usuario = us.id_usuario");
@@ -40,14 +44,6 @@ if ($num_r >= 1) {
         $aux = mysqli_fetch_object($re);
         $_SESSION["unidad"] = $aux->nombre;
         $_SESSION["id_unidad"] = $aux->id_unidad;
-
-        $res = mysqli_query($conn, "SELECT cargo 
-                            FROM datos_abae
-                            WHERE id_unidad = '$aux->id_unidad' AND id_usuario = '$obj->id_usuario';");
-        if (mysqli_num_rows($res) >= 1) {
-            $aux = mysqli_fetch_object($res);
-            $_SESSION["cargo"] = $aux->cargo;
-        }
     }
     echo "si";
 } else {

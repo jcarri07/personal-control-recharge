@@ -592,7 +592,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                             </a>
                                         </li>
 <?php
-                                        // if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
+                                        if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
 ?>
                                         <li class="">
                                             <a href="../home/asistencia.php?page=calendario">
@@ -605,7 +605,9 @@ $fila = mysqli_fetch_assoc($resultado);
                                             </a>
                                         </li>
 <?php
-                                        if($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe") {
+                                        }
+                                        // if($_SESSION['tipo_usuario'] == "admin" || $_SESSION['tipo_usuario'] == "jefe" || $_SESSION['tipo_usuario'] == "Jefe") {
+                                        if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
 ?>
                                         <li class="">
                                             <a href="../views/asistencia/reportes/graficaApdf.php?anio=<?php echo date('Y') ?>">
@@ -613,7 +615,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                             </a>
                                         </li>
 <?php
-                                         }
+                                        }
 ?>
                                     </ul>
                                 </li>

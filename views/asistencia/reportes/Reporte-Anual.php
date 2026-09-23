@@ -4,23 +4,18 @@ ob_start();
 require_once '../../../database/conexion.php';
 date_default_timezone_set("America/Caracas");
 setlocale(LC_TIME, "spanish");
-//$au = new DateTime();//aqui
-$a = $_GET["anio"];
 
+$a = isset($_GET["anio"]) ? intval($_GET["anio"]) : date('Y');
 
-$res = mysqli_query($conn, "SELECT u.id_usuario, u.tipo_usuario, u.nombres as nombre_usuario, u.apellidos, a.condicion, a.descripcion, a.hora, a.fecha, un.nombre as nombre_unidad
+$res = mysqli_query($conn, "SELECT u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, a.condicion, a.descripcion, a.hora, a.fecha, un.nombre as nombre_unidad
 FROM datos_abae i 
-LEFT JOIN usuario u ON i.id_usuario = u.id_usuario  
+RIGHT JOIN usuario u ON i.id_usuario = u.id_usuario  
 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario AND YEAR(a.fecha) = '$a' AND a.estatus = 'activo'
 LEFT JOIN unidad un ON i.id_unidad = un.id_unidad 
 WHERE i.estatus = 'activo'  
-ORDER BY un.nombre,u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC;");
-
+ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC;");
 
 $num_r = mysqli_num_rows($res);
-
-
-
 
 if ($num_r >= 1) {
 ?>
@@ -31,92 +26,103 @@ if ($num_r >= 1) {
         include_once 'style-pdf.php';
 ?>
     <body>
-<?php
-        include_once 'style-pdf.php';
-?>
         <?php echo '<h2>Reporte de Asistencias del año '.$a.'</h2>'; ?>
         <br>
         <div id="watermark">
             <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/user-profiles/Logo-Abae-sin-fondo2.png" height="45%" width="45%" />
         </div>
 
-        <ul>
             <?php
-            //echo'<div class="card card-body row">';
-
+            $unidad_actual = null;
+            $usuario_actual_id = null;
             $i = 1;
+
             while ($fila = mysqli_fetch_assoc($res)) {
 
-                if (!isset($unidad_actual) || $unidad_actual != $fila['nombre_unidad']) {
-
-                    $x='';
-                    if(isset($unidad_actual)){ $x='<div style="page-break-after:always;"></div>'; }
-                    $unidad_actual = $fila['nombre_unidad'];
-
-                    echo '</ul>'.$x.'<li><h3>' . $fila['nombre_unidad'] . '</h3></li><ul>';
-                }
-                // Si es un usuario diferente al anterior, se inicia una nueva tabla
-                if ($fila['nombre_usuario'] == NULL) {
-                    echo '<p style= "">Sin Usuarios</p><br>';
-                } else {
-                    if (!isset($usuario_actual) || $usuario_actual != $fila['nombre_usuario']) {
-                        if (isset($usuario_actual)) {
-                            $i = 1;
-            ?>
-                            </table>
-                            <br>
-                        <?php
-                        }
-                        $usuario_actual = $fila['nombre_usuario'];
-                        $sel;
-                        if ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") {
-                            $sel = "(E)";
-                        }else{$sel = "";};
-                        ?>
-                        <?php echo ('<li><p style= ""><b>' . $fila['tipo_usuario'] . $sel . '</b>: ' . $usuario_actual . ' ' . $fila['apellidos'] . '</p></li>'); ?>
-                        <table class="table table-body">
-                            <thead style='width:100%;background: #184072;color:#f5f5f5;'>
-                                <tr>
-                                    <th>N°</th>
-                                    <th>Condicion</th>
-                                    <th>Descripción</th>
-                                    <th>Fecha</th>
-                                </tr>
-                            </thead>
-                        <?php
+                // Si cambia la unidad
+                if ($unidad_actual !== $fila['nombre_unidad']) {
+                    // Cerrar tabla de usuario previo si estaba abierta
+                    if ($usuario_actual_id !== null) {
+                        echo '</tbody></table><br>';
+                        $usuario_actual_id = null;
                     }
-                        ?>
-                        <tbody style='width:100%'>
-                            <tr>
-                                <?php if (isset($fila['hora']) || $fila['hora'] == true) { ?>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo $fila['condicion']; ?></td>
-                                    <td><?php echo $fila['descripcion']; ?></td>
-                                    <td><?php
-                                        $al = strftime('%d de ', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp()) . ' ' . ucwords(strftime('%b ', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp())) . ' ' . strftime('del %Y', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp());
-                                        echo $al . " a las " . date("g:i a", strtotime($fila['hora'])); ?></td>
-                                <?php $i++;
-                                } else { ?>
-                                    <td><?php echo '#'; ?></td>
-                                    <td><?php echo 'Sin Reportes'; ?></td>
-                                    <td ><?php echo '-------------------'; ?></td>
-                                    <td ><?php echo '-------------------'; ?></td>
-                                <?php
-                                }
-                                ?>
-                            </tr>
-                        </tbody>
+                    // Cerrar lista de unidad previa y agregar salto de página si no es la primera
+                    if ($unidad_actual !== null) {
+                        echo '</ul><div style="page-break-after:always;"></div>';
+                    }
+
+                    $unidad_actual = $fila['nombre_unidad'];
+                    echo '<h3>' . htmlspecialchars($unidad_actual ?? 'Sin Unidad') . '</h3>';
+                    echo '<ul style="list-style:none; padding-left:0;">';
+                }
+
+                // Si no hay usuario asociado a este registro
+                if ($fila['id_usuario'] === null) {
+                    echo '<li><p>Sin Usuarios</p></li><br>';
+                    continue;
+                }
+
+                // Si cambia el usuario
+                if ($usuario_actual_id !== $fila['id_usuario']) {
+                    if ($usuario_actual_id !== null) {
+                        echo '</tbody></table><br>';
+                    }
+
+                    $usuario_actual_id = $fila['id_usuario'];
+                    $i = 1;
+
+                    $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
+                    $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
+
+                    echo '<li><p><b>' . htmlspecialchars($fila['tipo_usuario']) . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';
+                    echo '<table class="table table-body">';
+                    echo '<thead style="width:100%;background: #184072;color:#f5f5f5;">';
+                    echo '<tr>';
+                    echo '<th>N°</th>';
+                    echo '<th>Condicion</th>';
+                    echo '<th>Descripción</th>';
+                    echo '<th>Fecha</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody style="width:100%">';
+                }
+
+                // Renderizar fila de reporte / actividad
+                if (!empty($fila['hora']) && !empty($fila['fecha'])) {
+                    $timestamp = strtotime($fila['fecha']);
+                    $meses = [1 => 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                    $numMes = (int)date('n', $timestamp);
+                    $fechaFormateada = date('d', $timestamp) . ' de ' . ($meses[$numMes] ?? '') . ' del ' . date('Y', $timestamp);
+                    $horaFormateada = date("g:i a", strtotime($fila['hora']));
+                    ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo htmlspecialchars($fila['condicion']); ?></td>
+                        <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
+                        <td><?php echo $fechaFormateada . " a las " . $horaFormateada; ?></td>
+                    </tr>
+                    <?php
+                    $i++;
+                } else {
+                    ?>
+                    <tr>
+                        <td>#</td>
+                        <td>Sin Reportes</td>
+                        <td>-------------------</td>
+                        <td>-------------------</td>
+                    </tr>
                     <?php
                 }
-            };
-            if (isset($usuario_actual)) {
-                    ?>
-                        </table>
-        </ul>
-        </ul>
-    <?php
+            }
 
-            };
+            // Cerrar tabla y lista pendientes al finalizar el bucle
+            if ($usuario_actual_id !== null) {
+                echo '</tbody></table>';
+            }
+            if ($unidad_actual !== null) {
+                echo '</ul>';
+            }
+            ?>
 
             //echo'</div>';
     ?>

@@ -170,7 +170,8 @@ if ($num_r >= 1) {
         include_once 'header-pdf.php';
 
 
-        $a = ucwords(strftime('%B ', $au->getTimestamp())) . ' ' . strftime('del %Y', $au->getTimestamp());
+        $meses_full = [1 => 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        $a = ($meses_full[(int)$au->format('n')] ?? '') . ' del ' . $au->format('Y');
         $primer_dia_semana = date("d-m-Y", strtotime("$anio-$me-$dias_semana[0]"));
 
         // Último día de la semana
@@ -186,125 +187,114 @@ if ($num_r >= 1) {
 ?>
 
 
-        <ul>
             <?php
-            //echo'<div class="card card-body row">';
-            $usuario_actual = NULL;
+            $unidad_actual = null;
+            $usuario_actual_id = null;
             $i = 1;
             $images = [];
+
             while ($fila = mysqli_fetch_assoc($res)) {
 
-                if (!isset($unidad_actual) || $unidad_actual != $fila['nombre_unidad']) {
-
-                    $x='';
-                    if(isset($unidad_actual)){ $x='<div style="page-break-after:always;"></div>'; }
-                    $unidad_actual = $fila['nombre_unidad'];
-
-                    echo '</ul>'.$x.'<li><h3>' . $fila['nombre_unidad'] . '</h3></li><ul>';
-                }
-                // Si es un usuario diferente al anterior, se inicia una nueva tabla
-                if ($fila['nombre_usuario'] == NULL) {
-                    echo '<li><p style= "">Sin Usuarios</p></li><br>';
-                } else {
-                    if (!isset($usuario_actual) || $usuario_actual != $fila['nombre_usuario']) {
-                        if (isset($usuario_actual)) {
-
-                            $i = 1;
-            ?>
-                            </table>
-                            <br>
-                        <?php $i = 1;
-                        }
-
-                        $usuario_actual = $fila['nombre_usuario'];
-                        $sel = "";
-                        if ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") {
-                            $sel = "(E)";
-                        }else{$sel = "";};
-
-                        echo ('<li><p class="mb-1"><b>' . $fila['tipo_usuario'] . $sel . '</b>: ' . $usuario_actual . ' ' . $fila['apellidos'] . '</p></li>');
-                        if (isset($fila['fecha']) || $fila['fecha'] == true) { 
-?>
-                            <table class="table table-body">
-                                <thead style='width:100%;background: #184072;color:#f5f5f5;'>
-                                    <tr>
-                                        <th>N°</th>
-                                        <th>Condicion</th>
-                                        <th>Descripción</th>
-                                        <th >Fecha</th>
-                                        <th>Archivo</th>
-
-                                    </tr>
-                                </thead>
-<?php
-                        }
-                        else {
-                            echo '<p class="m-0 ml-1 f-italic">Sin Reportes</p>';
-                            continue;
-                        }
+                // Si cambia la unidad
+                if ($unidad_actual !== $fila['nombre_unidad']) {
+                    if ($usuario_actual_id !== null) {
+                        echo '</tbody></table><br>';
+                        $usuario_actual_id = null;
+                    }
+                    if ($unidad_actual !== null) {
+                        echo '</ul><div style="page-break-after:always;"></div>';
                     }
 
-                        ?>
+                    $unidad_actual = $fila['nombre_unidad'];
+                    echo '<h3>' . htmlspecialchars($unidad_actual ?? 'Sin Unidad') . '</h3>';
+                    echo '<ul style="list-style:none; padding-left:0;">';
+                }
 
-                        <tbody style='width:100%; '>
-                            <tr>
-                                <?php if (isset($fila['fecha']) || $fila['fecha'] == true) { ?>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo $fila['condicion']; ?></td>
-                                    <td><?php echo $fila['descripcion']; ?></td>
-                                    <td><?php
-                                        $a = strftime('%d de ', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp()) . ' ' . ucwords(strftime('%b ', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp())) . ' ' . strftime('del %Y', DateTime::createFromFormat("Y-m-d", $fila['fecha'])->getTimestamp());
-                                        $date = $a . " a las " . date("g:i a", strtotime($fila['hora'])); 
-                                        echo $date;
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php 
-                                            if($fila['archivo']) {
-                                        ?>
-                                                <a href="<?php echo $baseUrl . $fila['archivo']; ?>">Ver Archivo</a>
-                                        <?php 
-                                            }
-                                            else{
-                                                echo '-';
-                                            }
-                                        ?>
-                                    </td>
+                // Si no hay usuario asociado a este registro
+                if ($fila['id_usuario'] === null) {
+                    echo '<li><p>Sin Usuarios</p></li><br>';
+                    continue;
+                }
 
-                                <?php $i++;
-                                } else { ?>
-                                
-                                    <td style="width:50px"><?php echo '#'; ?></td>
-                                    <td ><?php echo 'Sin Reportes'; ?></td>
-                                    <td ><?php echo '-------------------'; ?></td>
-                                    <td ><?php echo '-------------------'; ?></td>
-                                    <td ><?php echo '-------------------'; ?></td>
+                // Si cambia el usuario
+                if ($usuario_actual_id !== $fila['id_usuario']) {
+                    if ($usuario_actual_id !== null) {
+                        echo '</tbody></table><br>';
+                    }
 
-                                <?php
-                                }
-                                ?>
-                            </tr>
-                        </tbody>
+                    $usuario_actual_id = $fila['id_usuario'];
+                    $i = 1;
+
+                    $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
+                    $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
+
+                    echo '<li><p class="mb-1"><b>' . htmlspecialchars($fila['tipo_usuario']) . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';
+                    echo '<table class="table table-body">';
+                    echo '<thead style="width:100%;background: #184072;color:#f5f5f5;">';
+                    echo '<tr>';
+                    echo '<th>N°</th>';
+                    echo '<th>Condicion</th>';
+                    echo '<th>Descripción</th>';
+                    echo '<th>Fecha</th>';
+                    echo '<th>Archivo</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody style="width:100%">';
+                }
+
+                $dateStr = '';
+                // Renderizar fila de reporte / actividad
+                if (!empty($fila['fecha']) && !empty($fila['hora'])) {
+                    $timestamp = strtotime($fila['fecha']);
+                    $meses = [1 => 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                    $numMes = (int)date('n', $timestamp);
+                    $fechaFormateada = date('d', $timestamp) . ' de ' . ($meses[$numMes] ?? '') . ' del ' . date('Y', $timestamp);
+                    $horaFormateada = date("g:i a", strtotime($fila['hora']));
+                    $dateStr = $fechaFormateada . " a las " . $horaFormateada;
+                    ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo htmlspecialchars($fila['condicion']); ?></td>
+                        <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
+                        <td><?php echo $dateStr; ?></td>
+                        <td>
+                            <?php if (!empty($fila['archivo'])) { ?>
+                                <a href="<?php echo htmlspecialchars($baseUrl . $fila['archivo']); ?>">Ver Archivo</a>
+                            <?php } else { echo '-'; } ?>
+                        </td>
+                    </tr>
+                    <?php
+                    $i++;
+                } else {
+                    ?>
+                    <tr>
+                        <td style="width:50px">#</td>
+                        <td>Sin Reportes</td>
+                        <td>-------------------</td>
+                        <td>-------------------</td>
+                        <td>-------------------</td>
+                    </tr>
                     <?php
                 }
 
-                if($fila['archivo']){
-                    if(esImagen('../../../' . $fila['archivo'])){
+                if (!empty($fila['archivo'])) {
+                    if (esImagen('../../../' . $fila['archivo'])) {
                         $array = [];
                         $array['url'] = $baseUrl . $fila['archivo'];
-                        $array['description'] = $fila['nombre_usuario'] . ' ' . $fila['apellido'] . ' - ' . $fila['condicion'] . ' (' . $date . ')';
+                        $array['description'] = $fila['nombre_usuario'] . ' ' . $fila['apellidos'] . ' - ' . $fila['condicion'] . ($dateStr ? ' (' . $dateStr . ')' : '');
                         $images[] = $array;
                     }
                 }
             }
-            if (isset($usuario_actual)) {
-                    ?>
-                        </table>
-        </ul>
-        </ul>
-    <?php
 
-            };
+            // Cerrar tabla y lista pendientes al finalizar el bucle
+            if ($usuario_actual_id !== null) {
+                echo '</tbody></table>';
+            }
+            if ($unidad_actual !== null) {
+                echo '</ul>';
+            }
+            ?>
 
 
             //echo'</div>';
@@ -354,6 +344,7 @@ if ($num_r >= 1) {
     </html>
 
 <?php
+}
 }
 closeConection($conn);
 

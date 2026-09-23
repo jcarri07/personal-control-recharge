@@ -297,10 +297,6 @@ if ($num_r >= 1) {
             ?>
 
 
-            //echo'</div>';
-
-    ?>
-
         <div style="page-break-after:always;"></div>
         <br>
         <h3 class="m-0 mb-1">Anexos Fotográficos</h3>
@@ -345,7 +341,7 @@ if ($num_r >= 1) {
 
 <?php
 }
-}
+
 closeConection($conn);
 
 require_once '../../../php/reportes/dompdf/vendor/autoload.php';

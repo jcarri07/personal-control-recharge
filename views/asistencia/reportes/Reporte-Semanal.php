@@ -80,7 +80,7 @@
     $au = DateTime::createFromFormat("Y-m-d", $fecha);
     $Y = date("Y");
 
-    $selectFields = "u.id_usuario, d.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
+    $selectFields = "u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
                 a.condicion, a.descripcion, a.hora, a.fecha, 
                 un.nombre as nombre_unidad, a.archivo as archivo";
 

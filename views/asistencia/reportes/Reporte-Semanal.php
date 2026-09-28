@@ -10,15 +10,17 @@
     $mes = $_GET['mes'];
     $numero_semana = $_GET['num'];
     $d = new DateTime($fecha);
-    $me = $d->format('m'); //mes consulta
+    // $me = $d->format('m'); //mes consulta
+    $me = $mes;
     $dias = $d->format('t');
-    $anio = $d->format('Y'); // año consulta
+    // $anio = $d->format('Y'); // año consulta
+    $anio = $_GET['anio'];
 
 
     $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
     $scriptPath = dirname($_SERVER['SCRIPT_NAME']);
-    $baseUrl = $protocol . $host . $scriptPath;
+    $baseUrl = $protocol . $host . $scriptPath . '../../../../';
     $baseUrl = str_replace('php/reportes/modelos', '', $baseUrl);
 
 
@@ -37,7 +39,51 @@
         return $days;
     };
 
-    $dias_semana = get_days_of_week($me, $numero_semana);
+    function getDaysOfWeekOfMonth($year, $month, $week, $clip = true): array
+    {
+        $year  = (int) $year;
+        $month = (int) $month;
+        $week  = (int) $week;
+        $firstOfMonth = new DateTime("$year-" . str_pad($month, 2, '0', STR_PAD_LEFT) . "-01");
+        $firstOfMonth->setTime(0, 0, 0);
+
+        // Lunes de la semana que contiene el día 1
+        $dow = (int) $firstOfMonth->format('N'); // 1=lunes ... 7=domingo
+        $monday = clone $firstOfMonth;
+        if ($dow !== 1) {
+            $monday->modify('-' . ($dow - 1) . ' days');
+        }
+
+        // Avanzar (week - 1) semanas
+        if ($week > 1) {
+            $monday->modify('+' . ($week - 1) . ' weeks');
+        }
+
+        // Construir array de 7 días
+        $days = [];
+        $cursor = clone $monday;
+        for ($i = 0; $i < 7; $i++) {
+            if ($clip) {
+                $sameMonth = ((int) $cursor->format('n') === $month)
+                        && ((int) $cursor->format('Y') === $year);
+                if ($sameMonth) {
+                    $days[] = $cursor->format('Y-m-d');
+                }
+            } else {
+                $days[] = $cursor->format('Y-m-d');
+            }
+            $cursor->modify('+1 day');
+        }
+
+        return $days;
+    }
+
+    // $dias_semana = get_days_of_week($me, $numero_semana);
+
+    $dias_semana = getDaysOfWeekOfMonth($anio, $mes, $numero_semana);
+    foreach($dias_semana as &$diaTemp) {
+        $diaTemp = explode('-', $diaTemp)[2];
+    }
     $cantidad = count($dias_semana) - 1;
 
     // Último día del mes
@@ -99,9 +145,11 @@
         
         
         if ($uni == '0') {
-            $query = "SELECT $selectFields
+            $sql = "SELECT $selectFields
                     $baseJoin
-                    ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC";
+                    WHERE u.id_usuario <> 0
+                    ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC;";
+            $query = $sql;
         } else {
             $query = "SELECT $selectFields
                     $baseJoin
@@ -112,7 +160,7 @@
         $res = mysqli_query($conn, $query);
     }
 
-    if ($tipo == 'jefe') {
+    if ($tipo == 'Jefe') {
         $query = "SELECT $selectFields
                 $baseJoin
                 WHERE  i.id_unidad = '$id_unidad' 
@@ -227,7 +275,7 @@ if ($num_r >= 1) {
                     $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
                     $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
 
-                    echo '<li><p class="mb-1"><b>' . htmlspecialchars($fila['tipo_usuario']) . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';
+                    echo '<li><p class="mb-1"><b>' . htmlspecialchars($fila['tipo_usuario'] ?? '') . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';
                     echo '<table class="table table-body">';
                     echo '<thead style="width:100%;background: #184072;color:#f5f5f5;">';
                     echo '<tr>';
@@ -321,14 +369,14 @@ if ($num_r >= 1) {
     <div>
     <h3>Asistencias del Personal</h3>
     <div style="display:flex; justify-content:center;">
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+        <img src="<?php echo $baseUrl; ?>/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
     </div>
     <h5 style="color:#f56a69">Los reportes que se visualizan en la gráfica de asistencia no incluyen aquellos realizados los días Sábado y Domingo</h5>
     <br>
     <div style="page-break-after:always;"></div>
     <h3>Cantidad de Reportes</h3>
     <div style="display:flex; justify-content:center;">
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+        <img src="<?php echo $baseUrl; ?>/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
     </div>
     </div>
     <footer>

@@ -305,33 +305,68 @@
     window.open(url, "_blank");
 
   }
-  /*--REPORTE SEMANAL--*/
-  function PDF_semana() {
-    val = $("#sell option:selected").val();
-    const x = new Date();
-    var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
-    window.open(url, "_blank");
+    /*--REPORTE SEMANAL--*/
+    function PDF_semana() {
+        // val = $("#sell option:selected").val();
+        // const x = new Date();
+        // var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+        
+        const val      = $("#sell option:selected").val();
+        const unidad   = $("#unidad option:selected").val();
+        const today    = new Date();
 
-  }
+
+        const calendarTemp = calendar;
+        date = calendarTemp.getDate();
+
+        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        if((fecha.getMonth() + 1) < 10)
+            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+
+        const params = new URLSearchParams({
+            id_unidad : unidad,
+            unidad    : "<?php echo $_SESSION['id_unidad']; ?>",
+            tipo      : "<?php echo $_SESSION['cargo']; ?>",
+            anio      : today.getFullYear(),
+            // mes       : String(today.getMonth() + 1).padStart(2, '0'),
+            mes       : date.getMonth() + 1,
+            dia       : String(today.getDate()).padStart(2, '0'),
+            num       : val,
+            fecha     : fechaTemp,
+            id_direccion : "<?php echo $idDireccion; ?>",
+        });
+
+        // console.log(params.toString());
+
+        const url = "../views/asistencia/reportes/graficaSpdf.php?" + params.toString();
+        window.open(url, "_blank");
+    }
   /*--REPORTE DIARIO--*/
   function PDF_individual() {
     var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
     window.open(url, "_blank");
   }
 
-  function semana(){
-    numero = numeroSemanas(date);
-    aux = 1;
-    $('#modi-sem').html('');
-    $('#modi-sem').append('<div class="col-sm-12" style="padding: 0px;"><select name="" id="sell" class="form-control"></select>');
-    while(aux <= numero){
-      $('#sell').append('<option value='+aux+'>'+aux+'</option>')
-      aux++;
+    function semana(){
+        const $modal = $("#modalsemana");
+        // numero = numeroSemanas(date);
+        numero = numeroSemanas();
+        aux = 1;
+        $modal.find('.modal-body').html('');
+        $modal.find('.modal-body').append('<div class="col-sm-12" style="padding: 0px;"><select name="" id="sell" class="form-control"></select>');
+        while(aux <= numero){
+            $modal.find('#sell').append('<option value='+aux+'>'+aux+'</option>')
+            aux++;
+        }
+        $modal.modal('show');
     }
-    $('#modalsemana').modal('show');
-  }
   
-  function numeroSemanas(date) {
+    // function numeroSemanas(date) {
+    function numeroSemanas() {
+
+    //Obteniendo datos del calendario
+    const calendarTemp = calendar;
+    date = calendarTemp.getDate();
     
     //var year = year.getFullYear();
     console.log(date);
@@ -402,23 +437,23 @@
 </div>
 <!-- Modal de consulta semana -->
 <div class="modal fade show bd-example-modal-sm" id="modalsemana" tabindex="-1" aria-hidden="true" aria-labelledby="modal">
-  <div class="modal-dialog modal-sm"><!-- style="left: 22%;"-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title col-md-8">
-          <h2 id="titulo-ind"></h2>
-        </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">X</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modi-sem">
+    <div class="modal-dialog modal-sm"><!-- style="left: 22%;"-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title col-md-8">
+                    <h2 id="titulo-ind"></h2>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" onclick="PDF_semana()" class="btn  btn-primary">Descargar</button>
-      </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="PDF_semana()" class="btn  btn-primary">Descargar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

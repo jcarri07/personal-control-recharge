@@ -23,100 +23,19 @@
 
     date_default_timezone_set("America/Caracas");
     setlocale(LC_TIME, "Spanish");
-    $list = array(
-        'Vacaciones' => 0,
-        'Estudios' => 0,
-        'Asistente' => 0,
-        'Otro' => 0,
-        'Consulta Médica' => 0,
-        'Permiso Especial' => 0,
-    );
-    $lista = array(
-        "Vacaciones" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        ),
-        "Estudios" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        ),
-        "Asistente" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        ),
-        "Otro" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        ),
-        "Consulta Médica" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        ),
-        "Permiso Especial" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-        )
-    );
+    $categorias = [
+        "Vacaciones",
+        "Estudios",
+        "Asistente",
+        "Otro",
+        "Consulta Médica",
+        "Permiso Especial",
+        "Inasistencia",
+    ];
+    $lista = [];
+    foreach ($categorias as $categoria) {
+        $lista[$categoria] = array_fill(1, 31, 0);
+    }
 
     //$fecha = $_GET['fecha'];
 
@@ -138,7 +57,8 @@
     $informeUnidades = mysqli_query($conn, "SELECT a.condicion, siglas, a.fecha
             FROM actividad a
             JOIN usuario us ON us.id_usuario = a.id_usuario AND us.estatus = 'A'
-            JOIN unidad u ON u.id_unidad = us.id_unidad AND u.estatus = 'A'
+            JOIN datos_abae d ON us.id_usuario = d.id_usuario AND d.estatus = 'A'
+            JOIN unidad u ON u.id_unidad = d.id_unidad AND u.estatus = 'A'
             WHERE YEAR(fecha) = '$anio' AND a.estatus = 'A'
             ORDER BY fecha ASC;");
 
@@ -148,31 +68,64 @@
     }
 
     /****AQUI HAGO LA CONSULTA Y GUARDO LA LISTA DE ASISTENCIAS Y INASISTENCIAS****/
-    $AsistenciaUnidades = mysqli_query($conn, "SELECT u.siglas,COUNT(IF(a.id_actividad > 0, 1, 0)) / '$add_where' / t.total_trabajadores * 100 AS porcentaje_asistencias
+    $AsistenciaUnidades = mysqli_query($conn, "SELECT u.siglas,(
+                                                    COUNT(IF(a.id_actividad > 0, 1, 0)) / '$add_where' / t.total_trabajadores * 100
+                                                ) AS porcentaje_asistencias
                                             FROM
                                                 (
                                                     SELECT id_unidad, COUNT(*) AS total_trabajadores
-                                                    FROM usuario
+                                                    FROM datos_abae
                                                     WHERE NOT id_unidad = '0' AND estatus = 'A'
                                                     GROUP BY id_unidad
-                                                ) AS t, unidad u, usuario us, (select id_actividad,fecha,condicion, id_usuario FROM actividad WHERE AND estatus = 'A' GROUP BY id_usuario,condicion,DAY(fecha)) AS a
-                                            WHERE t.id_unidad = u.id_unidad AND u.id_unidad = us.id_unidad AND us.id_usuario = a.id_usuario AND YEAR(a.fecha) = '$anio' AND a.condicion = 'Asistente'
-                                            GROUP BY u.id_unidad
-                                            ORDER BY u.id_unidad ASC;");
+                                                ) AS t, 
+                                                (
+                                                    SELECT id_actividad,fecha,condicion, id_usuario 
+                                                    FROM actividad 
+                                                    WHERE estatus = 'A' 
+                                                    GROUP BY id_usuario,condicion,DAY(fecha)
+                                                ) AS a,
+                                                unidad u, datos_abae d, usuario us 
+                                            WHERE t.id_unidad = u.id_unidad AND 
+                                                u.id_unidad = d.id_unidad AND 
+                                                d.id_usuario = us.id_usuario AND 
+                                                us.id_usuario = a.id_usuario AND 
+                                                YEAR(a.fecha) = '$anio' AND 
+                                                a.condicion = 'Asistente'
+                                                GROUP BY u.id_unidad
+                                                ORDER BY u.id_unidad ASC;");
 
-    $AsistenciaFechas = mysqli_query($conn, "SELECT MONTH(a.fecha) AS mes,COUNT(IF(a.id_actividad > 0, 1, 0)) / IF(MONTH(NOW()) = MONTH(a.fecha),DAY(NOW()),DAY(LAST_DAY(a.fecha))) / t.total_trabajadores * 100 AS porcentaje_asistencias
+    $AsistenciaFechas = mysqli_query($conn, "SELECT MONTH(a.fecha) AS mes,(
+                                                            COUNT(IF(a.id_actividad > 0, 1, 0)) / 
+                                                            IF(MONTH(NOW()) = MONTH(a.fecha),DAY(NOW()),DAY(LAST_DAY(a.fecha))) / 
+                                                            t.total_trabajadores * 100
+                                                        ) AS porcentaje_asistencias
                                             FROM
                                                 (
                                                     SELECT id_unidad, COUNT(*) AS total_trabajadores
-                                                    FROM usuario
+                                                    FROM datos_abae
                                                     WHERE NOT id_unidad = '0' AND estatus = 'A'
                                                     GROUP BY id_unidad
-                                                ) AS t, unidad u, usuario us, (select id_actividad,fecha,condicion, id_usuario FROM actividad WHERE estatus = 'A' GROUP BY id_usuario,condicion,DAY(fecha)) AS a
-                                            WHERE t.id_unidad = u.id_unidad AND u.id_unidad = us.id_unidad AND us.id_usuario = a.id_usuario AND YEAR(a.fecha) = '$anio' AND a.condicion = 'Asistente'
+                                                ) AS t,
+                                                (
+                                                    SELECT id_actividad,fecha,condicion, id_usuario 
+                                                    FROM actividad 
+                                                    WHERE estatus = 'A' 
+                                                    GROUP BY id_usuario,condicion,DAY(fecha)
+                                                ) AS a,
+                                                unidad u, datos_abae d, usuario us
+                                            WHERE t.id_unidad = u.id_unidad AND 
+                                            u.id_unidad = d.id_unidad AND 
+                                            d.id_usuario = us.id_usuario AND 
+                                            us.id_usuario = a.id_usuario AND 
+                                            YEAR(a.fecha) = '$anio' AND 
+                                            a.condicion = 'Asistente'
                                             GROUP BY mes
-                                            ORDER BY u.id_unidad ASC;");
+                                            ORDER BY d.id_unidad ASC;");
 
-    $querySiglas = mysqli_query($conn, "SELECT siglas FROM unidad WHERE estatus = 'A' ORDER BY id_unidad ASC;");
+    $querySiglas = mysqli_query($conn, "SELECT siglas 
+                                            FROM unidad 
+                                            WHERE estatus = 'A' 
+                                            ORDER BY id_unidad ASC;");
     $i = 0;
     while ($row = mysqli_fetch_array($querySiglas)) {
         $siglas[$i] = $row['siglas'];

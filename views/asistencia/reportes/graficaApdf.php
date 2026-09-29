@@ -140,7 +140,7 @@
         $unidades[$siglas[$i]] = $list;
         $i++;
     }
-    ?> console.log(<?php echo json_encode($unidades); ?>);
+    ?> console.table(<?php echo json_encode($unidades); ?>);
     <?php
     while ($row = mysqli_fetch_array($informeFechas)) {
 
@@ -303,7 +303,6 @@
         );
         chart.render();
     <?php }
-    Conn::exit_db($conn);
 
     function opcionesFecha($h, $si)
     { 
@@ -615,7 +614,9 @@
             options3
         );
         chart.render();
-    <?php } ?>
+    <?php } 
+    closeConection($conn); 
+    ?>
 
     const x = document.querySelector(".convert");
     const y = document.querySelector(".convert2");

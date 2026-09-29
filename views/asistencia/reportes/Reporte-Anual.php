@@ -123,9 +123,6 @@ if ($num_r >= 1) {
                 echo '</ul>';
             }
             ?>
-
-            //echo'</div>';
-    ?>
     <div style="page-break-after:always;"></div>
     <br>
     <h3>Asistencias del Personal</h3>

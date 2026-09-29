@@ -13,7 +13,7 @@ RIGHT JOIN usuario u ON i.id_usuario = u.id_usuario
 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario AND YEAR(a.fecha) = '$a' AND a.estatus = 'activo'
 LEFT JOIN unidad un ON i.id_unidad = un.id_unidad 
 WHERE i.estatus = 'activo'  
-ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC;");
+ORDER BY un.nombre, u.tipo_usuario DESC, u.nombres DESC, a.fecha DESC, a.hora ASC;");
 
 $num_r = mysqli_num_rows($res);
 

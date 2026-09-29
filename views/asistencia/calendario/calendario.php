@@ -1,5 +1,5 @@
 <?php
-    $sql = "SELECT da.cargo AS 'cargo_datos_abae', da.id_unidad AS 'id_unidad', u.cargo AS 'cargo_usuario', id_direccion
+    $sql = "SELECT DISTINCT da.cargo AS 'cargo_datos_abae', da.id_unidad AS 'id_unidad', u.cargo AS 'cargo_usuario', id_direccion
             FROM usuario u
             LEFT JOIN datos_abae da ON u.id_usuario = da.id_usuario
             WHERE u.id_usuario = '$idUser';";
@@ -207,11 +207,13 @@
             date = info.date;
 
             var idUnidad = "<?php echo $idUnidad; ?>";
-            if($("#unidad").length > 0)
+            if($("#unidad").length > 0){
                 idUnidad = $("#unidad").val();
-
+            }
+            var n_unidad = $("#unidad option:selected").text();
             var values = new FormData();
             values.append("unidad", idUnidad);
+            values.append("nombre_unidad", n_unidad);
             values.append("fecha", info.dateStr);
             values.append("cargo", "<?php echo $cargo; ?>");
             values.append("id_unidad", "<?php echo $idUnidad; ?>");

@@ -114,115 +114,68 @@
             opcionesAll($queryAsistencia, $siglas);
             ReportesAll(total($lista, $queryUnidades), $siglas);
         } else {
-            $sql = "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
-                FROM unidad i
-                JOIN datos_abae da ON da.id_unidad = '$id_unidad' AND da.id_unidad = i.id_unidad
-                JOIN usuario u ON da.id_usuario = u.id_usuario AND u.estatus = 'activo' AND u.cargo <> '$tipo' 
-                JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
-                WHERE fecha = '$fecha'
-                ORDER BY a.id_usuario ASC;";
-            $queryUnidades = mysqli_query($conn, $sql);
-
-            $sql = "SELECT us.nombres, us.apellidos, IF(COUNT(a.id_actividad) > 0, 1, 0) * 100 AS porcentaje_asistencias
-                    FROM
-                        (
-                            SELECT id_unidad, COUNT(*) AS total_trabajadores
-                            FROM usuario us, datos_abae da
-                            WHERE da.id_usuario = us.id_usuario AND id_unidad = '$id_unidad'
-                            GROUP BY id_unidad
-                        ) AS trabajadores_por_unidad,
-                        unidad u, 
-                        usuario us, 
-                        actividad a,
-                        datos_abae da      
-                    WHERE trabajadores_por_unidad.id_unidad = u.id_unidad AND 
-                        da.id_usuario = us.id_usuario AND
-                        u.id_unidad = da.id_unidad AND 
-                        us.id_usuario = a.id_usuario AND 
-                        a.fecha = '$fecha' AND
-                        a.condicion = 'Asistente' AND 
-                        trabajadores_por_unidad.id_unidad = '$id_unidad'
-                    GROUP BY us.id_usuario
-                    ORDER BY u.id_unidad ASC;";
-            $queryAsistencia = mysqli_query($conn, $sql);
-
-            $sql = "SELECT nombres, apellidos, us.id_usuario 
-                    FROM usuario us, datos_abae da
-                    WHERE us.id_usuario = da.id_usuario AND id_unidad = '$id_unidad' AND us.estatus = 'activo' 
-                    ORDER BY us.id_usuario ASC;";
-
-            $queryNombres = mysqli_query($conn, $sql);
-            $i = 1;
-            while ($row = mysqli_fetch_array($queryNombres)) {
-                $idUsuario = $row['id_usuario'];
-                $nombre[$idUsuario] = $row['nombres'];
-                $apellido[$idUsuario] = $row['apellidos'];
-                $id[$idUsuario] = $row['id_usuario'];
-                $i++;
-            }
-            opcionesInd($queryAsistencia, $nombre, $apellido);
-            $inidividual = individual($lista, $queryUnidades);
-            ReportesInd($inidividual, $nombre, $apellido, $id);
+            
         }
     }
-    if ($tipo == 'Jefe') {
-        $queryUnidades = mysqli_query($conn, "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
-                                        FROM unidad i
-                                        JOIN usuario u ON i.id_unidad = u.id_unidad AND u.estatus = 'A'  
-                                        JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
-                                        WHERE i.id_unidad = '$unidad' AND NOT u.tipo = 'Director' AND DAY(fecha) = '$dia' AND MONTH(fecha) = '$me' AND YEAR(fecha) = '$anio'
-                                        ORDER BY a.id_usuario ASC;");
+    // if ($tipo == 'Jefe') {
+    if (($tipo == 'Jefe' || $tipo == 'Director') && $id_unidad != '0') {
+        if($tipo == 'Jefe') {
+            $id_unidad = $_GET['unidad'] ?? '';
+        }
+        $sql = "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
+            FROM unidad i
+            JOIN datos_abae da ON da.id_unidad = '$id_unidad' AND da.id_unidad = i.id_unidad
+            JOIN usuario u ON da.id_usuario = u.id_usuario AND u.estatus = 'activo' AND u.cargo <> '$tipo' 
+            JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
+            WHERE fecha = '$fecha'
+            ORDER BY a.id_usuario ASC;";
+        $queryUnidades = mysqli_query($conn, $sql);
 
-        $queryAsistencia = mysqli_query($conn, "SELECT us.nombre, us.apellido,IF(COUNT(a.id_actividad) > 0, 1, 0) * 100 AS porcentaje_asistencias
-                                                FROM
-                                                (
-                                                    SELECT id_unidad,COUNT(*) AS total_trabajadores
-                                                    FROM usuario
-                                                    WHERE NOT id_unidad = '0'
-                                                    GROUP BY id_unidad
-                                                ) AS t,unidad u, usuario us, actividad a        
-                                                WHERE t.id_unidad = u.id_unidad AND u.id_unidad = us.id_unidad AND us.id_usuario = a.id_usuario AND DAY(a.fecha) = '$dia' AND MONTH(a.fecha) = '$me' AND YEAR(a.fecha) = '$anio' AND a.condicion = 'Asistente' AND t.id_unidad = '$unidad'
-                                                GROUP BY us.id_usuario
-                                                ORDER BY us.id_usuario ASC;");
+        $sql = "SELECT us.nombres, us.apellidos, IF(COUNT(a.id_actividad) > 0, 1, 0) * 100 AS porcentaje_asistencias
+                FROM
+                    (
+                        SELECT id_unidad, COUNT(*) AS total_trabajadores
+                        FROM usuario us, datos_abae da
+                        WHERE da.id_usuario = us.id_usuario AND id_unidad = '$id_unidad'
+                        GROUP BY id_unidad
+                    ) AS trabajadores_por_unidad,
+                    unidad u, 
+                    usuario us, 
+                    actividad a,
+                    datos_abae da      
+                WHERE trabajadores_por_unidad.id_unidad = u.id_unidad AND 
+                    da.id_usuario = us.id_usuario AND
+                    u.id_unidad = da.id_unidad AND 
+                    us.id_usuario = a.id_usuario AND 
+                    a.fecha = '$fecha' AND
+                    a.condicion = 'Asistente' AND 
+                    trabajadores_por_unidad.id_unidad = '$id_unidad'
+                GROUP BY us.id_usuario
+                ORDER BY u.id_unidad ASC;";
+        $queryAsistencia = mysqli_query($conn, $sql);
 
-        $queryNombres = mysqli_query($conn, "SELECT nombre, apellido, id_usuario FROM usuario WHERE id_unidad = '$unidad' estatus = 'A' ORDER BY id_usuario ASC;");
+        $sql = "SELECT nombres, apellidos, us.id_usuario 
+                FROM usuario us, datos_abae da
+                WHERE us.id_usuario = da.id_usuario AND id_unidad = '$id_unidad' AND us.estatus = 'activo' 
+                ORDER BY us.id_usuario ASC;";
+
+        $queryNombres = mysqli_query($conn, $sql);
         $i = 1;
         while ($row = mysqli_fetch_array($queryNombres)) {
-            $nombre[$i] = $row['nombre'];
-            $apellido[$i] = $row['apellido'];
-            $id[$i] = $row['id_usuario'];
+            $idUsuario = $row['id_usuario'];
+            $nombre[$idUsuario] = $row['nombres'];
+            $apellido[$idUsuario] = $row['apellidos'];
+            $id[$idUsuario] = $row['id_usuario'];
             $i++;
         }
-
         opcionesInd($queryAsistencia, $nombre, $apellido);
-        ReportesInd(individual($lista, $queryUnidades),$nombre,$apellido,$id);
+        $inidividual = individual($lista, $queryUnidades);
+        ReportesInd($inidividual, $nombre, $apellido, $id);
     }
 
     function total($lista, $queryUnidades)
     {
         while ($row = mysqli_fetch_array($queryUnidades)) {
-            // switch ($row['condicion']) {
-            //     case 'Vacaciones':
-            //         $lista['Vacaciones'][$row['id_unidad']] += 1;
-            //         break;
-            //     case 'Estudios':
-            //         $lista['Estudios'][$row['id_unidad']] += 1;
-            //         break;
-            //     case 'Otro':
-            //         $lista['Otro'][$row['id_unidad']] += 1;
-            //         break;
-            //     case 'Asistente':
-            //         $lista['Asistente'][$row['id_unidad']] += 1;
-            //         break;
-            //     case 'Consulta Médica':
-            //         $lista['Consulta Médica'][$row['id_unidad']] += 1;
-            //         break;
-            //     case 'Permiso Especial':
-            //         $lista['Permiso Especial'][$row['id_unidad']] += 1;
-            //         break;
-            //     default:
-            //         break;
-            // };
             $cond = $row['condicion'];
             $id   = $row['id_unidad'];
             if (isset($lista[$cond])) {
@@ -234,29 +187,6 @@
     function individual($lista, $queryUnidades)
     {
         while ($row = mysqli_fetch_array($queryUnidades)) {
-            // switch ($row['condicion']) {
-            //     case 'Vacaciones':
-            //         $lista['Vacaciones'][$row['id_usuario']] += 1;
-            //         break;
-            //     case 'Estudios':
-            //         $lista['Estudios'][$row['id_usuario']] += 1;
-            //         break;
-            //     case 'Otro':
-            //         $lista['Otro'][$row['id_usuario']] += 1;
-            //         break;
-            //     case 'Asistente':
-            //         $lista['Asistente'][$row['id_usuario']] += 1;
-            //         break;
-            //     case 'Consulta Médica':
-            //         $lista['Consulta Médica'][$row['id_usuario']] += 1;
-            //         break;
-            //     case 'Permiso Especial':
-            //         $lista['Permiso Especial'][$row['id_usuario']] += 1;
-            //         break;
-            //     default:
-            //         break;
-            // };
-
             $cond = $row['condicion'];
             $id = $row['id_usuario'];
             if (isset($lista[$cond])) {

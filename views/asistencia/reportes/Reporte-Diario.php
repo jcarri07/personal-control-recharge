@@ -57,7 +57,7 @@
         $res = mysqli_query($conn, $query);
     }
     
-    if ($tipo == 'jefe') {
+    if ($tipo == 'Jefe') {
         $query = "SELECT $selectFields
                  FROM datos_abae i
                  $joinConditions
@@ -185,7 +185,7 @@
                     $usuario_actual_id = $fila['id_usuario'];
                     $i = 1;
 
-                    $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
+                    $sel = ($fila['tipo_usuario'] == "Jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
                     $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
 
                     echo '<li><p class="mb-1"><b>' . htmlspecialchars($fila['tipo_usuario']) . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';

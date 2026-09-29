@@ -227,7 +227,7 @@
                         (
                             SELECT id_unidad, COUNT(*) AS total_trabajadores
                             FROM usuario u, datos_abae da
-                            WHERE u.id_usuario = da.id_usuario AND id_unidad <> '$id_unidad' AND u.estatus = 'activo'
+                            WHERE u.id_usuario = da.id_usuario AND id_unidad <> '$id_unidad' AND u.estatus = 'activo' AND da.id_direccion = '$id_direccion'
                             GROUP BY id_unidad
                         ) AS trabajadores_por_unidad, 
                         (
@@ -291,7 +291,10 @@
         $sql = "SELECT a.id_usuario, a.condicion, DAY(a.fecha) AS dia
                 FROM unidad i
                 JOIN usuario u ON u.estatus = 'activo'
-                JOIN datos_abae da ON da.id_usuario = u.id_usuario AND i.id_unidad = da.id_unidad AND da.id_unidad = '$id_unidad' AND NOT da.cargo = '$tipo'
+                JOIN datos_abae da ON da.id_usuario = u.id_usuario AND 
+                    i.id_unidad = da.id_unidad AND 
+                    da.id_unidad = '$id_unidad'
+                    -- AND da.cargo <> '$tipo'
                 JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A' AND MONTH(a.fecha) = '$me' AND YEAR(a.fecha) = '$anio' AND fecha BETWEEN '$primer_dia_semana' AND '$ultimo_dia_semana' AND DAYOFWEEK(fecha) NOT IN (1, 7) 
                 WHERE i.id_unidad = '$id_unidad'                                  
                 ORDER BY a.fecha ASC;";

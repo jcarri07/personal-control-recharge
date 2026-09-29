@@ -125,7 +125,9 @@
         $sql = "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
             FROM unidad i
             JOIN datos_abae da ON da.id_unidad = '$id_unidad' AND da.id_unidad = i.id_unidad
-            JOIN usuario u ON da.id_usuario = u.id_usuario AND u.estatus = 'activo' AND u.cargo <> '$tipo' 
+            JOIN usuario u ON da.id_usuario = u.id_usuario AND 
+                u.estatus = 'activo' 
+                -- AND u.cargo <> '$tipo' 
             JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
             WHERE fecha = '$fecha'
             ORDER BY a.id_usuario ASC;";

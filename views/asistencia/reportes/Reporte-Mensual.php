@@ -45,7 +45,7 @@ imagedestroy($source_img);*/
     $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
     $scriptPath = dirname($_SERVER['SCRIPT_NAME']);
-    $baseUrl = $protocol . $host . $scriptPath;
+    $baseUrl = $protocol . $host . $scriptPath . '../../../../';
     $baseUrl = str_replace('php/reportes/modelos', '', $baseUrl);
 
     // Variables comunes para todas las consultas
@@ -79,7 +79,7 @@ imagedestroy($source_img);*/
         $res = mysqli_query($conn, $query);
     }
 
-    if ($tipo == 'jefe') {
+    if ($tipo == 'Jefe') {
         $query = "SELECT $selectFields
         $baseJoin
         WHERE i.id_unidad = '$id_unidad' 
@@ -184,7 +184,7 @@ if ($num_r >= 1) {
                     $usuario_actual_id = $fila['id_usuario'];
                     $i = 1;
 
-                    $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
+                    $sel = ($fila['tipo_usuario'] == "Jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
                     $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
 
                     echo '<li><p class="mb-1"><b>' . htmlspecialchars($fila['tipo_usuario']) . $sel . '</b>: ' . htmlspecialchars($nombre_completo) . '</p></li>';
@@ -229,9 +229,9 @@ if ($num_r >= 1) {
                     <tr>
                         <td style="width:50px">#</td>
                         <td>Sin Reportes</td>
-                        <td>-------------------</td>
-                        <td>-------------------</td>
-                        <td>-------------------</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                     </tr>
                     <?php
                 }
@@ -256,10 +256,7 @@ if ($num_r >= 1) {
             ?>
 
 
-            //echo'</div>';
 
-
-?>
 
             
         <div style="page-break-after:always;"></div>
@@ -287,13 +284,13 @@ if ($num_r >= 1) {
     <div>
     <h3>Asistencias del Personal</h3>
     <div style="display:flex; justify-content:center;">
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+        <img src="<?php echo $baseUrl; ?>/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
     </div>
     <br>
     <div style="page-break-after:always;"></div>
     <h3>Cantidad de Reportes</h3>
     <div style="display:flex; justify-content:center;">
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+        <img src="<?php echo $baseUrl; ?>/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
     </div>
     </div>
     <footer>

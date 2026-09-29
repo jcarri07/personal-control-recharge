@@ -299,12 +299,28 @@
 
     /*-----------------REPORTES----------------*/
     function PDF_unidad() {
+        const x = new Date();
+        // var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
+        
+        const calendarTemp = calendar;
+        date = calendarTemp.getDate();
 
-    const x = new Date();
-    var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
-    window.open(url, "_blank");
+        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        if((fecha.getMonth() + 1) < 10)
+            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
 
-  }
+        const params = new URLSearchParams({
+            id_unidad : $("#unidad option:selected").val(),
+            unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
+            tipo      : "<?php echo $_SESSION['cargo']; ?>",
+            fecha     : fechaTemp,
+            id_direccion : "<?php echo $idDireccion; ?>",
+            mes       : date.getMonth() + 1,
+            anio      : date.getFullYear(),
+        });
+        const url = "../views/asistencia/reportes/graficaMpdf.php?" + params.toString();
+        window.open(url, "_blank");
+    }
     /*--REPORTE SEMANAL--*/
     function PDF_semana() {
         // val = $("#sell option:selected").val();
@@ -327,7 +343,7 @@
             id_unidad : unidad,
             unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
             tipo      : "<?php echo $_SESSION['cargo']; ?>",
-            anio      : today.getFullYear(),
+            anio      : date.getFullYear(),
             // mes       : String(today.getMonth() + 1).padStart(2, '0'),
             mes       : date.getMonth() + 1,
             dia       : String(today.getDate()).padStart(2, '0'),

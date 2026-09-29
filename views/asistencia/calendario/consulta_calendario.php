@@ -8,6 +8,7 @@
     $unidad = $_POST['unidad'];
     $fecha = $_POST['fecha'];
     $cargo = $_POST['cargo'];
+    $n_unidad = $_POST['nombre_unidad'];
     $currentUser = $_POST['current_user'];
     $id_unidad =$_POST['id_unidad'];
     $idDireccion = $_POST['id_direccion'];
@@ -35,8 +36,13 @@
                 ];
             }
         }else{
-            $addWhere .= " i.id_unidad = '$unidad' ";
-            $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
+            if($n_unidad != 'N/A'){
+                $addWhere .= " i.id_unidad = '$unidad' ";
+                $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
+            }else{
+                $addWhere .= " i.id_unidad = '$unidad' ";
+                $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
+            }
         }
     }
     if($cargo == 'Jefe') {

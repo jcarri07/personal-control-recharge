@@ -32,206 +32,22 @@
         "Consulta Médica" => 0,
         "Permiso Especial" => 0,
     );*/
-    $lista = array(
-        "Vacaciones" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-        "Estudios" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-        "Asistente" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-        "Otro" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-        "Consulta Médica" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-        "Permiso Especial" => array(
-            "1" => 0,
-            "2" => 0,
-            "3" => 0,
-            "4" => 0,
-            "5" => 0,
-            "6" => 0,
-            "7" => 0,
-            "8" => 0,
-            "9" => 0,
-            "10" => 0,
-            "11" => 0,
-            "12" => 0,
-            "13" => 0,
-            "14" => 0,
-            "15" => 0,
-            "16" => 0,
-            "17" => 0,
-            "18" => 0,
-            "19" => 0,
-            "20" => 0,
-            "21" => 0,
-            "22" => 0,
-            "23" => 0,
-            "24" => 0,
-            "25" => 0,
-            "26" => 0,
-            "27" => 0,
-            "28" => 0,
-            "29" => 0,
-            "30" => 0,
-            "31" => 0,
-        ),
-    );
+    $categorias = [
+        "Vacaciones",
+        "Estudios",
+        "Asistente",
+        "Otro",
+        "Consulta Médica",
+        "Permiso Especial",
+        "Inasistencia",
+    ];
+
+    $lista = [];
+    foreach ($categorias as $categoria) {
+        // $lista[$categoria] = array_fill(1, 31, 0);
+        $lista[$categoria] = [];
+    }
+
     $nombre = array();
     $apellido = array();
     $id = array();
@@ -244,67 +60,109 @@
     $unidad = $_GET['unidad'];
     $fecha = $_GET['fecha'];
     $dia = $_GET['dia'];
+    $id_direccion = $_GET['id_direccion'];
     $d = new DateTime($fecha);
     $me = $d->format('m');
     $dias = $d->format('t');
     $anio = $d->format('Y');
 
     if ($tipo == 'Director') {
-
         if ($id_unidad == '0') {
-            $queryUnidades = mysqli_query($conn, "SELECT u.id_unidad,a.condicion
-            FROM actividad a
-            JOIN usuario u ON u.id_usuario = a.id_usuario
-            WHERE DAY(a.fecha) = '$dia' AND MONTH(a.fecha) = '$me' AND YEAR(a.fecha) = '$anio' AND a.estatus = 'A'
-            ORDER BY u.id_unidad ASC;");
+            $sql = "SELECT da.id_unidad, a.condicion, siglas
+                    FROM actividad a
+                    JOIN usuario us ON us.id_usuario = a.id_usuario
+                    JOIN datos_abae da ON da.id_usuario = us.id_usuario AND da.id_direccion = '$id_direccion'
+                    JOIN unidad u ON da.id_unidad = u.id_unidad
+                    WHERE a.fecha = '$fecha' AND a.estatus = 'A'
+                    ORDER BY da.id_unidad ASC;";
+            $queryUnidades = mysqli_query($conn, $sql);
 
-            $queryAsistencia = mysqli_query($conn, "SELECT u.siglas,IF(COUNT(a.id_actividad) > 0, 1, 0) /  1 / t.total_trabajadores * 100 AS porcentaje_asistencias
-                                                    FROM
-                                                    (
-                                                        SELECT id_unidad,COUNT(*) AS total_trabajadores
-                                                        FROM usuario
-                                                        GROUP BY id_unidad
-                                                    ) AS t,unidad u, usuario us, actividad a        
-                                                    WHERE t.id_unidad = u.id_unidad AND u.id_unidad = us.id_unidad AND us.id_usuario = a.id_usuario AND DAY(a.fecha) = '$dia' AND MONTH(a.fecha) = '$me' AND YEAR(a.fecha) = '$anio' AND a.condicion = 'Asistente'
-                                                    GROUP BY u.id_unidad
-                                                    ORDER BY u.id_unidad ASC;");
+            $sql = "SELECT u.siglas, IF(COUNT(a.id_actividad) > 0, 1, 0) /  1 / trabajadores_por_unidad.total_trabajadores * 100 AS porcentaje_asistencias
+                    FROM
+                        (
+                            SELECT id_unidad, COUNT(*) AS total_trabajadores
+                            FROM usuario us, datos_abae da
+                            WHERE da.id_usuario = us.id_usuario AND da.id_direccion = '$id_direccion'
+                            GROUP BY id_unidad
+                        ) AS trabajadores_por_unidad,
+                        unidad u, 
+                        usuario us, 
+                        actividad a,
+                        datos_abae da     
+                    WHERE trabajadores_por_unidad.id_unidad = u.id_unidad AND 
+                        da.id_usuario = us.id_usuario AND
+                        u.id_unidad = da.id_unidad AND 
+                        us.id_usuario = a.id_usuario AND 
+                        da.id_direccion = '$id_direccion' AND
+                        a.fecha = '$fecha' AND 
+                        a.condicion = 'Asistente'
+                    GROUP BY u.id_unidad
+                    ORDER BY u.id_unidad ASC;";
+            $queryAsistencia = mysqli_query($conn, $sql);
 
-            $querySiglas = mysqli_query($conn, "SELECT siglas FROM unidad WHERE estatus = 'A'ORDER BY id_unidad ASC;");
+            $sql = "SELECT siglas, id_unidad
+                    FROM unidad 
+                    WHERE id_direccion = '$id_direccion'
+                    ORDER BY id_unidad ASC;";
+            $querySiglas = mysqli_query($conn, $sql);
             $i = 0;
             while ($row = mysqli_fetch_array($querySiglas)) {
-                $siglas[$i] = $row['siglas'];
+                // $siglas[$i] = $row['siglas'];
+                $siglas[$row['id_unidad']] = $row['siglas'];
                 $i++;
             }
-            opcionesAll($queryAsistencia, $siglas);     
+            opcionesAll($queryAsistencia, $siglas);
             ReportesAll(total($lista, $queryUnidades), $siglas);
         } else {
-            $queryUnidades = mysqli_query($conn, "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
-                                              FROM unidad i
-                                              JOIN usuario u ON i.id_unidad = u.id_unidad AND u.estatus = 'A' AND NOT u.tipo = '$tipo' 
-                                              JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
-                                              WHERE i.id_unidad = '$id_unidad' AND i.estatus = 'A' AND DAY(fecha) = '$dia' AND MONTH(fecha) = '$me' AND YEAR(fecha) = '$anio'
-                                              ORDER BY a.id_usuario ASC;");
-            $queryAsistencia = mysqli_query($conn, "SELECT us.nombre, us.apellido,IF(COUNT(a.id_actividad) > 0, 1, 0) * 100 AS porcentaje_asistencias
-                                                    FROM
-                                                    (
-                                                        SELECT id_unidad,COUNT(*) AS total_trabajadores
-                                                        FROM usuario
-                                                        GROUP BY id_unidad
-                                                    ) AS t,unidad u, usuario us, actividad a        
-                                                    WHERE t.id_unidad = u.id_unidad AND u.id_unidad = us.id_unidad AND us.id_usuario = a.id_usuario AND DAY(a.fecha) = '$dia' AND MONTH(a.fecha) = '$me' AND YEAR(a.fecha) = '$anio' AND a.condicion = 'Asistente' AND t.id_unidad = '$id_unidad'
-                                                    GROUP BY us.id_usuario
-                                                    ORDER BY u.id_unidad ASC;");
+            $sql = "SELECT a.id_usuario,a.condicion, DAY(a.fecha) AS dia
+                FROM unidad i
+                JOIN datos_abae da ON da.id_unidad = '$id_unidad' AND da.id_unidad = i.id_unidad
+                JOIN usuario u ON da.id_usuario = u.id_usuario AND u.estatus = 'activo' AND u.cargo <> '$tipo' 
+                JOIN actividad a ON u.id_usuario = a.id_usuario AND a.estatus = 'A'
+                WHERE fecha = '$fecha'
+                ORDER BY a.id_usuario ASC;";
+            $queryUnidades = mysqli_query($conn, $sql);
 
-            $queryNombres = mysqli_query($conn, "SELECT nombre, apellido,id_usuario FROM usuario WHERE id_unidad = '$id_unidad' estatus = 'A' ORDER BY id_usuario ASC;");
+            $sql = "SELECT us.nombres, us.apellidos, IF(COUNT(a.id_actividad) > 0, 1, 0) * 100 AS porcentaje_asistencias
+                    FROM
+                        (
+                            SELECT id_unidad, COUNT(*) AS total_trabajadores
+                            FROM usuario us, datos_abae da
+                            WHERE da.id_usuario = us.id_usuario AND id_unidad = '$id_unidad'
+                            GROUP BY id_unidad
+                        ) AS trabajadores_por_unidad,
+                        unidad u, 
+                        usuario us, 
+                        actividad a,
+                        datos_abae da      
+                    WHERE trabajadores_por_unidad.id_unidad = u.id_unidad AND 
+                        da.id_usuario = us.id_usuario AND
+                        u.id_unidad = da.id_unidad AND 
+                        us.id_usuario = a.id_usuario AND 
+                        a.fecha = '$fecha' AND
+                        a.condicion = 'Asistente' AND 
+                        trabajadores_por_unidad.id_unidad = '$id_unidad'
+                    GROUP BY us.id_usuario
+                    ORDER BY u.id_unidad ASC;";
+            $queryAsistencia = mysqli_query($conn, $sql);
+
+            $sql = "SELECT nombres, apellidos, us.id_usuario 
+                    FROM usuario us, datos_abae da
+                    WHERE us.id_usuario = da.id_usuario AND id_unidad = '$id_unidad' AND us.estatus = 'activo' 
+                    ORDER BY us.id_usuario ASC;";
+
+            $queryNombres = mysqli_query($conn, $sql);
             $i = 1;
             while ($row = mysqli_fetch_array($queryNombres)) {
-                $nombre[$i] = $row['nombre'];
-                $apellido[$i] = $row['apellido'];
-                $id[$i] = $row['id_usuario'];
+                $idUsuario = $row['id_usuario'];
+                $nombre[$idUsuario] = $row['nombres'];
+                $apellido[$idUsuario] = $row['apellidos'];
+                $id[$idUsuario] = $row['id_usuario'];
                 $i++;
             }
             opcionesInd($queryAsistencia, $nombre, $apellido);
-            ReportesInd(individual($lista, $queryUnidades),$nombre,$apellido,$id);
+            $inidividual = individual($lista, $queryUnidades);
+            ReportesInd($inidividual, $nombre, $apellido, $id);
         }
     }
     if ($tipo == 'Jefe') {
@@ -335,6 +193,7 @@
             $id[$i] = $row['id_usuario'];
             $i++;
         }
+
         opcionesInd($queryAsistencia, $nombre, $apellido);
         ReportesInd(individual($lista, $queryUnidades),$nombre,$apellido,$id);
     }
@@ -342,83 +201,78 @@
     function total($lista, $queryUnidades)
     {
         while ($row = mysqli_fetch_array($queryUnidades)) {
-
-
-            switch ($row['condicion']) {
-                case 'Vacaciones':
-                    $lista['Vacaciones'][$row['id_unidad']] += 1;
-                    //$lista['Vacaciones']['fecha'] = $row['fecha'];
-                    break;
-                case 'Estudios':
-                    $lista['Estudios'][$row['id_unidad']] += 1;
-                    //$lista['Estudios']['fecha'] = $row['fecha'];
-                    break;
-                case 'Otro':
-                    $lista['Otro'][$row['id_unidad']] += 1;
-                    //$lista['Otro']['fecha'] = $row['fecha'];
-                    break;
-                case 'Asistente':
-                    $lista['Asistente'][$row['id_unidad']] += 1;
-                    //$lista['Asistente']['fecha'] = $row['fecha'];
-                    break;
-                case 'Consulta Médica':
-                    $lista['Consulta Médica'][$row['id_unidad']] += 1;
-                    //$lista['Consulta Médica']['fecha'] = $row['fecha'];
-                    break;
-                case 'Permiso Especial':
-                    $lista['Permiso Especial'][$row['id_unidad']] += 1;
-                    //$lista['Permiso Especial']['fecha'] = $row['fecha'];
-                    break;
-                default:
-                    break;
-            };
+            // switch ($row['condicion']) {
+            //     case 'Vacaciones':
+            //         $lista['Vacaciones'][$row['id_unidad']] += 1;
+            //         break;
+            //     case 'Estudios':
+            //         $lista['Estudios'][$row['id_unidad']] += 1;
+            //         break;
+            //     case 'Otro':
+            //         $lista['Otro'][$row['id_unidad']] += 1;
+            //         break;
+            //     case 'Asistente':
+            //         $lista['Asistente'][$row['id_unidad']] += 1;
+            //         break;
+            //     case 'Consulta Médica':
+            //         $lista['Consulta Médica'][$row['id_unidad']] += 1;
+            //         break;
+            //     case 'Permiso Especial':
+            //         $lista['Permiso Especial'][$row['id_unidad']] += 1;
+            //         break;
+            //     default:
+            //         break;
+            // };
+            $cond = $row['condicion'];
+            $id   = $row['id_unidad'];
+            if (isset($lista[$cond])) {
+                $lista[$cond][$id] = ($lista[$cond][$id] ?? 0) + 1;
+            }
         }
         return $lista;
     }
     function individual($lista, $queryUnidades)
     {
         while ($row = mysqli_fetch_array($queryUnidades)) {
+            // switch ($row['condicion']) {
+            //     case 'Vacaciones':
+            //         $lista['Vacaciones'][$row['id_usuario']] += 1;
+            //         break;
+            //     case 'Estudios':
+            //         $lista['Estudios'][$row['id_usuario']] += 1;
+            //         break;
+            //     case 'Otro':
+            //         $lista['Otro'][$row['id_usuario']] += 1;
+            //         break;
+            //     case 'Asistente':
+            //         $lista['Asistente'][$row['id_usuario']] += 1;
+            //         break;
+            //     case 'Consulta Médica':
+            //         $lista['Consulta Médica'][$row['id_usuario']] += 1;
+            //         break;
+            //     case 'Permiso Especial':
+            //         $lista['Permiso Especial'][$row['id_usuario']] += 1;
+            //         break;
+            //     default:
+            //         break;
+            // };
 
-
-            switch ($row['condicion']) {
-                case 'Vacaciones':
-                    $lista['Vacaciones'][$row['id_usuario']] += 1;
-                    //$lista['Vacaciones']['fecha'] = $row['fecha'];
-                    break;
-                case 'Estudios':
-                    $lista['Estudios'][$row['id_usuario']] += 1;
-                    //$lista['Estudios']['fecha'] = $row['fecha'];
-                    break;
-                case 'Otro':
-                    $lista['Otro'][$row['id_usuario']] += 1;
-                    //$lista['Otro']['fecha'] = $row['fecha'];
-                    break;
-                case 'Asistente':
-                    $lista['Asistente'][$row['id_usuario']] += 1;
-                    //$lista['Asistente']['fecha'] = $row['fecha'];
-                    break;
-                case 'Consulta Médica':
-                    $lista['Consulta Médica'][$row['id_usuario']] += 1;
-                    //$lista['Consulta Médica']['fecha'] = $row['fecha'];
-                    break;
-                case 'Permiso Especial':
-                    $lista['Permiso Especial'][$row['id_usuario']] += 1;
-                    //$lista['Permiso Especial']['fecha'] = $row['fecha'];
-                    break;
-                default:
-                    break;
-            };
-        }return $lista;
+            $cond = $row['condicion'];
+            $id = $row['id_usuario'];
+            if (isset($lista[$cond])) {
+                $lista[$cond][$id] = ($lista[$cond][$id] ?? 0) + 1;
+            }
+        }
+        return $lista;
     }
     
-
-
 
     function opcionesAll($h, $si)
     {
         while ($row = mysqli_fetch_array($h)) {
             $i = 0;
-            while ($i < count($si)) {
+            // while ($i < count($si)) {
+            foreach($si as $i => $v) {
                 if ($si[$i] == $row['siglas']) {
                     $porcentajes[$i] = $row['porcentaje_asistencias'];
                 }
@@ -451,7 +305,8 @@
             series: [{
                     name: "Asistencias",
                     data: [<?php $i = 0;
-                            while ($i < count($si)) {
+                            // while ($i < count($si)) {
+                            foreach($si as $i => $v) {
                                 if (isset($porcentajes[$i])) {
                                     echo round($porcentajes[$i], 2);
                                 } else {
@@ -466,7 +321,8 @@
                 {
                     name: "Inasistencias",
                     data: [<?php $i = 0;
-                            while ($i < count($si)) {
+                            // while ($i < count($si)) {
+                            foreach($si as $i => $v) {
                                 if (isset($porcentajes[$i])) {
                                     echo 100 - round($porcentajes[$i], 2);
                                 } else {
@@ -492,7 +348,8 @@
             xaxis: {
                 //type: 'datetime',
                 categories: [<?php $i = 0;
-                                while ($i < count($si)) {
+                                // while ($i < count($si)) {
+                                foreach($si as $i => $v) {
                                     echo "'" . $si[$i] . "'";
                                     echo ',';
                                     $i++;
@@ -510,17 +367,19 @@
 
     function opcionesInd($h, $no, $ape)
     {
-
         $i = 1;
         while ($row = mysqli_fetch_array($h)) {
             $i = 1;
-            while ($i <= count($no)) {
-                if ($no[$i] == $row['nombre']) {
+            // while ($i <= count($no)) {
+            foreach($no as $i => $v) {
+                if ($no[$i] == $row['nombres']) {
                     $porcentajes[$i] = $row['porcentaje_asistencias'];
                 }
                 $i++;
             }
-        } ?>
+        } 
+?>
+
         var options = {
             chart: {
                 toolbar: {
@@ -547,7 +406,8 @@
             series: [{
                     name: "Asistencias",
                     data: [<?php $i = 1;
-                            while ($i <= count($no)) {
+                            // while ($i <= count($no)) {
+                            foreach($no as $i => $v) {
                                 if (isset($porcentajes[$i])) {
                                     echo round($porcentajes[$i], 2);
                                 } else {
@@ -562,7 +422,8 @@
                 {
                     name: "Inasistencias",
                     data: [<?php $i = 1;
-                            while ($i <= count($no)) {
+                            // while ($i <= count($no)) {
+                            foreach($no as $i => $v) {
                                 if (isset($porcentajes[$i])) {
                                     echo 100 - round($porcentajes[$i], 2);
                                 } else {
@@ -588,7 +449,8 @@
             xaxis: {
                 //type: 'datetime',
                 categories: [<?php $i = 1;
-                                while ($i <= count($no)) {
+                                // while ($i <= count($no)) {
+                                foreach($no as $i => $v) {
                                     echo "['" . $no[$i] . "','" . $ape[$i] . "']";
                                     echo ',';
                                     $i++;
@@ -636,8 +498,9 @@
             series: [{
                     name: "Vacaciones",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Vacaciones'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Vacaciones'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -648,8 +511,9 @@
                 {
                     name: "Asistencias",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Asistente'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Asistente'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -658,8 +522,9 @@
                 {
                     name: "Consultas Médicas",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Consulta Médica'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Consulta Médica'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -668,8 +533,9 @@
                 {
                     name: "Permisos Especiales",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Permiso Especial'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Permiso Especial'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -678,8 +544,9 @@
                 {
                     name: "Estudios",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Estudios'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Estudios'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -688,8 +555,9 @@
                 {
                     name: "Otros",
                     data: [<?php $i = 1;
-                            while ($i <= count($si)) {
-                                echo $h['Otro'][$i];
+                            // while ($i <= count($si)) {
+                            foreach($si as $i => $v) {
+                                echo $h['Otro'][$i] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -710,7 +578,8 @@
                 //type: 'datetime',
                 categories: [<?php
                                 $i = 0;
-                                while ($i < count($si)) {
+                                // while ($i <= count($si)) {
+                                foreach($si as $i => $v) {
                                     echo "'" . $si[$i] . "'";
                                     echo ',';
                                     $i++;
@@ -727,7 +596,8 @@
 
     <?php }
     function ReportesInd($h, $nom,$ape,$id)
-    {?>
+    {
+?>
     var options2 = {
             chart: {
                 toolbar: {
@@ -755,8 +625,9 @@
             series: [{
                     name: "Vacaciones",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Vacaciones'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Vacaciones'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -767,8 +638,9 @@
                 {
                     name: "Asistencias",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Asistente'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Asistente'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -777,8 +649,9 @@
                 {
                     name: "Consultas Médicas",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Consulta Médica'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Consulta Médica'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -787,8 +660,9 @@
                 {
                     name: "Permisos Especiales",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Permiso Especial'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Permiso Especial'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -797,8 +671,9 @@
                 {
                     name: "Estudios",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Estudios'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Estudios'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -807,8 +682,9 @@
                 {
                     name: "Otros",
                     data: [<?php $i = 1;
-                            while ($i <= count($nom)) {
-                                echo $h['Otro'][$id[$i]];
+                            // while ($i <= count($nom)) {
+                            foreach($nom as $i => $v) {
+                                echo $h['Otro'][$id[$i]] ?? 0;
                                 echo ',';
                                 $i++;
                             } ?>],
@@ -829,7 +705,8 @@
                 //type: 'datetime',
                 categories: [<?php
                                 $i = 1;
-                                while ($i <= count($nom)) {
+                                // while ($i <= count($nom)) {
+                                foreach($nom as $i => $v) {
                                     echo "'" . $nom[$i] ." ".$ape[$i]."'";
                                     echo ',';
                                     $i++;

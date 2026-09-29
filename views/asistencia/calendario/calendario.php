@@ -325,7 +325,7 @@
 
         const params = new URLSearchParams({
             id_unidad : unidad,
-            unidad    : "<?php echo $_SESSION['id_unidad']; ?>",
+            unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
             tipo      : "<?php echo $_SESSION['cargo']; ?>",
             anio      : today.getFullYear(),
             // mes       : String(today.getMonth() + 1).padStart(2, '0'),
@@ -341,11 +341,24 @@
         const url = "../views/asistencia/reportes/graficaSpdf.php?" + params.toString();
         window.open(url, "_blank");
     }
-  /*--REPORTE DIARIO--*/
-  function PDF_individual() {
-    var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-    window.open(url, "_blank");
-  }
+    /*--REPORTE DIARIO--*/
+    function PDF_individual() {
+        // var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        
+        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        if((fecha.getMonth() + 1) < 10)
+            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        const params = new URLSearchParams({
+            uni       : $("#unidad option:selected").val(),
+            unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
+            tipo      : "<?php echo $_SESSION['cargo']; ?>",
+            dia       : (fecha.getDate()),
+            fecha     : fechaTemp,
+            id_direccion : "<?php echo $idDireccion; ?>",
+        });
+        const url = "../views/asistencia/reportes/graficaDpdf.php?" + params.toString();
+        window.open(url, "_blank");
+    }
 
     function semana(){
         const $modal = $("#modalsemana");

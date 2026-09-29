@@ -19,7 +19,7 @@
     $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
     $scriptPath = dirname($_SERVER['SCRIPT_NAME']);
-    $baseUrl = $protocol . $host . $scriptPath;
+    $baseUrl = $protocol . $host . $scriptPath . '../../../../';
     $baseUrl = str_replace('php/reportes/modelos', '', $baseUrl);
 
     // Variables comunes para ambas consultas
@@ -35,15 +35,16 @@
         AND a.estatus = 'activo' 
         AND YEAR(a.fecha) = '$Y'";
 
-    $orderBy = "ORDER BY i.nombre, u.tipo_usuario ASC, u.nombre DESC, a.hora ASC";
+    $orderBy = "ORDER BY u.nombres, u.tipo_usuario ASC, u.nombres DESC, a.hora ASC";
 
     if ($tipo == 'Director') {
         
         if ($uni == '0') {
-            $query = "SELECT $selectFields
+            $sql = "SELECT $selectFields
                      FROM datos_abae i 
                      $joinConditions
                      $orderBy";
+            $query = $sql;
         } else {
             
             $query = "SELECT $selectFields
@@ -273,13 +274,13 @@
         <br>
         <h3>Asistencias del Personal</h3>
         <div style="display:flex; justify-content:center;">
-            <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+            <img src="<?php echo $baseUrl; ?>/img/temp/imagen-1-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
         </div>
         <br>
         <div style="page-break-after:always;"></div>
         <h3>Cantidad de Reportes</h3>
         <div style="display:flex; justify-content:center;">
-            <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/personal-control-recharge/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
+            <img src="<?php echo $baseUrl; ?>/img/temp/imagen-2-<?php echo $_SESSION['id_usuario']; ?>.png" style=" max-width:100%; height:auto;border:solid;border-color: #808080;">
         </div>
 
     </body>

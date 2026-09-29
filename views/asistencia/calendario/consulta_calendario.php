@@ -41,7 +41,7 @@
                 $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
             }else{
                 $addWhere .= " i.id_unidad = '$unidad' ";
-                $addWhereInUser .= "WHERE id_unidad = '$unidad' ";
+                $addWhereInUser .= "WHERE id_unidad IN (SELECT id_unidad FROM unidad WHERE nombre = '$n_unidad') ";
             }
         }
     }

@@ -43,6 +43,7 @@ if ($num_r >= 1) {
             $unidad_actual = null;
             $usuario_actual_id = null;
             $i = 1;
+            $sinReporteImpreso = false;
 
             while ($fila = mysqli_fetch_assoc($res)) {
                 $nombre_unidad_fila = (!empty($fila['nombre_unidad']) && trim($fila['nombre_unidad']) !== '') ? trim($fila['nombre_unidad']) : 'N/A';
@@ -78,6 +79,7 @@ if ($num_r >= 1) {
 
                     $usuario_actual_id = $fila['id_usuario'];
                     $i = 1;
+                    $sinReporteImpreso = false;
 
                     $sel = ($fila['tipo_usuario'] == "jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
                     $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
@@ -112,7 +114,9 @@ if ($num_r >= 1) {
                     <?php
                     $i++;
                 } else {
-                    ?>
+                    if (!$sinReporteImpreso) {
+                        $sinReporteImpreso = true;
+                        ?>
                     <tr>
                         <td>#</td>
                         <td>Sin Reportes</td>
@@ -120,6 +124,7 @@ if ($num_r >= 1) {
                         <td>-------------------</td>
                     </tr>
                     <?php
+                    }
                 }
             }
 

@@ -163,6 +163,7 @@
             $usuario_actual_id = null;
             $i = 1;
             $images = [];
+            $sinReporteImpreso = false;
 
             while ($fila = mysqli_fetch_assoc($res)) {
                 $nombre_unidad_fila = (!empty($fila['nombre_unidad']) && trim($fila['nombre_unidad']) !== '') ? trim($fila['nombre_unidad']) : 'N/A';
@@ -196,6 +197,7 @@
 
                     $usuario_actual_id = $fila['id_usuario'];
                     $i = 1;
+                    $sinReporteImpreso = false;
 
                     $sel = ($fila['tipo_usuario'] == "Jefe" || $fila['tipo_usuario'] == "Director") ? "(E)" : "";
                     $nombre_completo = $fila['nombre_usuario'] . ' ' . $fila['apellidos'];
@@ -232,7 +234,9 @@
                     <?php
                     $i++;
                 } else {
-                    ?>
+                    if (!$sinReporteImpreso) {
+                        $sinReporteImpreso = true;
+                        ?>
                     <tr>
                         <td>#</td>
                         <td>Sin Reportes</td>
@@ -241,6 +245,7 @@
                         <td>-------------------</td>
                     </tr>
                     <?php
+                    }
                 }
 
                 if (!empty($fila['archivo'])) {

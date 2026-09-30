@@ -610,7 +610,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                         if(isset($_SESSION['cargo']) && ($_SESSION['cargo'] == 'Director' || $_SESSION['cargo'] == 'Jefe')) {
 ?>
                                         <li class="">
-                                            <a href="../views/asistencia/reportes/graficaApdf.php?anio=<?php echo date('Y') ?>">
+                                            <a href="../views/asistencia/reportes/graficaApdf.php?anio=<?php echo date('Y') ?>" target="_blank">
                                                 <span class="pcoded-mtext">Reporte Anual</span>
                                             </a>
                                         </li>

@@ -301,78 +301,81 @@
 
     /*-----------------REPORTES----------------*/
     function PDF_unidad() {
-        const x = new Date();
-        // var url = "../views/asistencia/reportes/graficaMpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
-        
-        const calendarTemp = calendar;
-        date = calendarTemp.getDate();
+        const calendarTemp = (typeof calendar !== 'undefined') ? calendar : null;
+        const curDate = calendarTemp ? calendarTemp.getDate() : new Date();
+        const baseDate = (typeof fecha !== 'undefined' && fecha) ? fecha : curDate;
 
-        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        if((fecha.getMonth() + 1) < 10)
-            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        const y = baseDate.getFullYear();
+        const m = String(curDate.getMonth() + 1).padStart(2, '0');
+        const d = String(baseDate.getDate()).padStart(2, '0');
+        const fechaTemp = `${y}-${m}-${d}`;
+
+        const unidadVal = ($("#unidad").length > 0) ? $("#unidad").val() : "<?php echo $idUnidad ?? '0'; ?>";
 
         const params = new URLSearchParams({
-            id_unidad : $("#unidad option:selected").val(),
+            id_unidad : unidadVal,
             unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
-            tipo      : "<?php echo $_SESSION['cargo']; ?>",
+            tipo      : "<?php echo $_SESSION['cargo'] ?? ''; ?>",
             fecha     : fechaTemp,
-            id_direccion : "<?php echo $idDireccion; ?>",
-            mes       : date.getMonth() + 1,
-            anio      : date.getFullYear(),
+            id_direccion : "<?php echo $idDireccion ?? ''; ?>",
+            mes       : curDate.getMonth() + 1,
+            anio      : curDate.getFullYear(),
         });
         const url = "../views/asistencia/reportes/graficaMpdf.php?" + params.toString();
         window.open(url, "_blank");
     }
+
     /*--REPORTE SEMANAL--*/
     function PDF_semana() {
-        // val = $("#sell option:selected").val();
-        // const x = new Date();
-        // var url = "../views/asistencia/reportes/graficaSpdf.php?id_unidad=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad']; ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&mes=" + (date.getMonth() + 1) + "&&num="+val+"&&fecha=" + date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + x.getDate();
-        
-        const val      = $("#sell option:selected").val();
-        const unidad   = $("#unidad option:selected").val();
-        const today    = new Date();
+        const val = $("#sell option:selected").val();
+        const unidadVal = ($("#unidad").length > 0) ? $("#unidad").val() : "<?php echo $idUnidad ?? '0'; ?>";
+        const today = new Date();
 
+        const calendarTemp = (typeof calendar !== 'undefined') ? calendar : null;
+        const curDate = calendarTemp ? calendarTemp.getDate() : new Date();
+        const baseDate = (typeof fecha !== 'undefined' && fecha) ? fecha : curDate;
 
-        const calendarTemp = calendar;
-        date = calendarTemp.getDate();
-
-        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        if((fecha.getMonth() + 1) < 10)
-            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        const y = baseDate.getFullYear();
+        const m = String(curDate.getMonth() + 1).padStart(2, '0');
+        const d = String(baseDate.getDate()).padStart(2, '0');
+        const fechaTemp = `${y}-${m}-${d}`;
 
         const params = new URLSearchParams({
-            id_unidad : unidad,
+            id_unidad : unidadVal,
             unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
-            tipo      : "<?php echo $_SESSION['cargo']; ?>",
-            anio      : date.getFullYear(),
-            // mes       : String(today.getMonth() + 1).padStart(2, '0'),
-            mes       : date.getMonth() + 1,
+            tipo      : "<?php echo $_SESSION['cargo'] ?? ''; ?>",
+            anio      : curDate.getFullYear(),
+            mes       : curDate.getMonth() + 1,
             dia       : String(today.getDate()).padStart(2, '0'),
             num       : val,
             fecha     : fechaTemp,
-            id_direccion : "<?php echo $idDireccion; ?>",
+            id_direccion : "<?php echo $idDireccion ?? ''; ?>",
         });
-
-        // console.log(params.toString());
 
         const url = "../views/asistencia/reportes/graficaSpdf.php?" + params.toString();
         window.open(url, "_blank");
     }
+
     /*--REPORTE DIARIO--*/
     function PDF_individual() {
-        // var url = "../views/asistencia/reportes/graficaDpdf.php?uni=" + $("#unidad option:selected").val() + "&&unidad=<?php echo $_SESSION['unidad'] ?>&&tipo=<?php echo $_SESSION['cargo'] ?>&&dia=" + (fecha.getDate()) + "&&fecha=" + fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        
-        let fechaTemp = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        if((fecha.getMonth() + 1) < 10)
-            fechaTemp = fecha.getFullYear() + "-0" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        const calendarTemp = (typeof calendar !== 'undefined') ? calendar : null;
+        const curDate = calendarTemp ? calendarTemp.getDate() : new Date();
+        const baseDate = (typeof fecha !== 'undefined' && fecha) ? fecha : curDate;
+
+        const y = baseDate.getFullYear();
+        const m = String(baseDate.getMonth() + 1).padStart(2, '0');
+        const d = String(baseDate.getDate()).padStart(2, '0');
+        const fechaTemp = `${y}-${m}-${d}`;
+
+        const unidadVal = ($("#unidad").length > 0) ? $("#unidad").val() : "<?php echo $idUnidad ?? '0'; ?>";
+
         const params = new URLSearchParams({
-            uni       : $("#unidad option:selected").val(),
+            uni       : unidadVal,
             unidad    : "<?php echo $_SESSION['id_unidad'] ?? ''; ?>",
-            tipo      : "<?php echo $_SESSION['cargo']; ?>",
-            dia       : (fecha.getDate()),
+            tipo      : "<?php echo $_SESSION['cargo'] ?? ''; ?>",
+            dia       : baseDate.getDate(),
             fecha     : fechaTemp,
-            id_direccion : "<?php echo $idDireccion; ?>",
+            id_direccion : "<?php echo $idDireccion ?? ''; ?>",
         });
         const url = "../views/asistencia/reportes/graficaDpdf.php?" + params.toString();
         window.open(url, "_blank");

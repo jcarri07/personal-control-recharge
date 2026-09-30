@@ -7,13 +7,20 @@ setlocale(LC_TIME, "spanish");
 
 $a = isset($_GET["anio"]) ? intval($_GET["anio"]) : date('Y');
 
-$res = mysqli_query($conn, "SELECT u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, a.condicion, a.descripcion, a.hora, a.fecha, un.nombre as nombre_unidad
+$res = mysqli_query($conn, "SELECT u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, a.condicion, a.descripcion, a.hora, a.fecha, 
+COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') as nombre_unidad
 FROM datos_abae i 
 RIGHT JOIN usuario u ON i.id_usuario = u.id_usuario  
 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario AND YEAR(a.fecha) = '$a' AND a.estatus = 'activo'
 LEFT JOIN unidad un ON i.id_unidad = un.id_unidad 
-WHERE i.estatus = 'activo'  
-ORDER BY un.nombre, u.tipo_usuario DESC, u.nombres DESC, a.fecha DESC, a.hora ASC;");
+WHERE u.id_usuario IS NOT NULL AND u.id_usuario <> 0 AND i.estatus = 'activo'  
+ORDER BY 
+    CASE WHEN COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') = 'N/A' THEN 1 ELSE 0 END,
+    nombre_unidad ASC, 
+    u.tipo_usuario DESC, 
+    u.nombres ASC, 
+    a.fecha DESC, 
+    a.hora ASC;");
 
 $num_r = mysqli_num_rows($res);
 
@@ -38,9 +45,10 @@ if ($num_r >= 1) {
             $i = 1;
 
             while ($fila = mysqli_fetch_assoc($res)) {
+                $nombre_unidad_fila = (!empty($fila['nombre_unidad']) && trim($fila['nombre_unidad']) !== '') ? trim($fila['nombre_unidad']) : 'N/A';
 
                 // Si cambia la unidad
-                if ($unidad_actual !== $fila['nombre_unidad']) {
+                if ($unidad_actual !== $nombre_unidad_fila) {
                     // Cerrar tabla de usuario previo si estaba abierta
                     if ($usuario_actual_id !== null) {
                         echo '</tbody></table><br>';
@@ -51,8 +59,8 @@ if ($num_r >= 1) {
                         echo '</ul><div style="page-break-after:always;"></div>';
                     }
 
-                    $unidad_actual = $fila['nombre_unidad'];
-                    echo '<h3>' . htmlspecialchars($unidad_actual ?? 'Sin Unidad') . '</h3>';
+                    $unidad_actual = $nombre_unidad_fila;
+                    echo '<h3>' . htmlspecialchars($unidad_actual) . '</h3>';
                     echo '<ul style="list-style:none; padding-left:0;">';
                 }
 

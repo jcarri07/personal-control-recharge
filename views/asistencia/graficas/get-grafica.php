@@ -22,7 +22,8 @@ function get_days_of_week($month_num, $week_num)
 };
 
 
-$unidadSearch = $_POST['unidad'];
+$unidadSearch = $_POST['unidad'] ?? '0';
+$nombreUnidadSearch = $_POST['nombre_unidad'] ?? '';
 $cargo = $_POST['cargo'];
 $id_unidad = $_POST['id_unidad'];
 $id_direccion = $_POST['id_direccion'];
@@ -128,7 +129,11 @@ if($cargo == 'Director') {
         // }
 
         if ($unidadSearch != '0') {
-            $addWhere .= " AND da.id_unidad = '$unidadSearch' ";
+            if ($nombreUnidadSearch == 'N/A') {
+                $addWhere .= " AND (da.id_unidad IN (SELECT id_unidad FROM unidad WHERE nombre = 'N/A') OR da.id_unidad = 0 OR da.id_unidad IS NULL) ";
+            } else {
+                $addWhere .= " AND da.id_unidad = '$unidadSearch' ";
+            }
         }
     }
 }

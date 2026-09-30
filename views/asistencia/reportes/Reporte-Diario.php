@@ -25,32 +25,42 @@
     // Variables comunes para ambas consultas
     $selectFields = "u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
         a.condicion, a.descripcion, a.hora, a.fecha, 
-        un.nombre as nombre_unidad, a.archivo as archivo";
+        COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') as nombre_unidad, a.archivo as archivo";
 
     $joinConditions = "LEFT JOIN usuario u ON i.id_usuario = u.id_usuario 
         LEFT JOIN actividad a ON u.id_usuario = a.id_usuario
-        LEFT JOIN unidad un ON i.id_unidad = un.id_unidad  
-        AND MONTH(a.fecha) = '$mes' 
-        AND DAY(a.fecha) = '$dia' 
-        AND a.estatus = 'activo' 
-        AND YEAR(a.fecha) = '$Y'";
+            AND MONTH(a.fecha) = '$mes' 
+            AND DAY(a.fecha) = '$dia' 
+            AND a.estatus = 'activo' 
+            AND YEAR(a.fecha) = '$Y'
+        LEFT JOIN unidad un ON i.id_unidad = un.id_unidad";
 
-    $orderBy = "ORDER BY u.nombres, u.tipo_usuario ASC, u.nombres DESC, a.hora ASC";
+    $orderBy = "ORDER BY 
+        CASE WHEN COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') = 'N/A' THEN 1 ELSE 0 END,
+        nombre_unidad ASC, 
+        u.tipo_usuario ASC, 
+        u.nombres ASC, 
+        a.hora ASC";
 
     if ($tipo == 'Director') {
-        
         if ($uni == '0') {
             $sql = "SELECT $selectFields
                      FROM datos_abae i 
                      $joinConditions
+                     WHERE u.id_usuario IS NOT NULL AND u.id_usuario <> 0 AND i.estatus = 'activo'
                      $orderBy";
             $query = $sql;
         } else {
-            
+            $resNombre = mysqli_query($conn, "SELECT nombre FROM unidad WHERE id_unidad = '$uni' LIMIT 1");
+            $rowU = mysqli_fetch_assoc($resNombre);
+            $condUnidad = ($rowU && trim($rowU['nombre']) === 'N/A')
+                ? "(i.id_unidad IN (SELECT id_unidad FROM unidad WHERE nombre = 'N/A') OR i.id_unidad = 0 OR i.id_unidad IS NULL)"
+                : "i.id_unidad = '$uni'";
+
             $query = "SELECT $selectFields
                      FROM datos_abae i 
                      $joinConditions
-                     WHERE i.id_unidad = '$uni' AND i.estatus = 'activo'
+                     WHERE $condUnidad AND u.id_usuario IS NOT NULL AND u.id_usuario <> 0 AND i.estatus = 'activo'
                      $orderBy";
         }
         
@@ -63,7 +73,8 @@
                  $joinConditions
                  WHERE u.tipo_usuario != 'Director' 
                  AND i.id_unidad = '$id_unidad'
-                 ORDER BY u.tipo_usuario ASC, u.nombres DESC, a.hora ASC";
+                 AND u.id_usuario IS NOT NULL AND u.id_usuario <> 0 AND i.estatus = 'activo'
+                 $orderBy";
     
         $res = mysqli_query($conn, $query);
         
@@ -154,9 +165,10 @@
             $images = [];
 
             while ($fila = mysqli_fetch_assoc($res)) {
+                $nombre_unidad_fila = (!empty($fila['nombre_unidad']) && trim($fila['nombre_unidad']) !== '') ? trim($fila['nombre_unidad']) : 'N/A';
 
                 // Si cambia la unidad
-                if ($unidad_actual !== $fila['nombre_unidad']) {
+                if ($unidad_actual !== $nombre_unidad_fila) {
                     if ($usuario_actual_id !== null) {
                         echo '</tbody></table><br>';
                         $usuario_actual_id = null;
@@ -165,8 +177,8 @@
                         echo '</ul><div style="page-break-after:always;"></div>';
                     }
 
-                    $unidad_actual = $fila['nombre_unidad'];
-                    echo '<h3>' . htmlspecialchars($unidad_actual ?? 'Sin Unidad') . '</h3>';
+                    $unidad_actual = $nombre_unidad_fila;
+                    echo '<h3>' . htmlspecialchars($unidad_actual) . '</h3>';
                     echo '<ul style="list-style:none; padding-left:0;">';
                 }
 

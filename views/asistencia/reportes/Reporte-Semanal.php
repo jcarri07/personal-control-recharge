@@ -128,33 +128,45 @@
 
     $selectFields = "u.id_usuario, i.cargo as tipo_usuario, u.nombres as nombre_usuario, u.apellidos, 
                 a.condicion, a.descripcion, a.hora, a.fecha, 
-                un.nombre as nombre_unidad, a.archivo as archivo";
+                COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') as nombre_unidad, a.archivo as archivo";
 
     $baseJoin = "FROM datos_abae i 
                 RIGHT JOIN usuario u ON i.id_usuario = u.id_usuario 
                 LEFT JOIN actividad a ON u.id_usuario = a.id_usuario
-                LEFT JOIN unidad un ON i.id_unidad = un.id_unidad 
-                AND MONTH(a.fecha) = '$mes' 
-                AND a.fecha BETWEEN '$primer_dia_semana' AND '$ultimo_dia_semana' 
-                AND a.estatus = 'activo' 
-                AND YEAR(a.fecha) = '$Y'";
+                    AND MONTH(a.fecha) = '$mes' 
+                    AND a.fecha BETWEEN '$primer_dia_semana' AND '$ultimo_dia_semana' 
+                    AND a.estatus = 'activo' 
+                    AND YEAR(a.fecha) = '$Y'
+                LEFT JOIN unidad un ON i.id_unidad = un.id_unidad";
 
     $baseConditions = "i.estatus = 'activo'";
 
+    $orderBy = "ORDER BY 
+        CASE WHEN COALESCE(NULLIF(TRIM(un.nombre), ''), 'N/A') = 'N/A' THEN 1 ELSE 0 END,
+        nombre_unidad ASC, 
+        u.tipo_usuario ASC, 
+        u.nombres ASC, 
+        a.fecha DESC, 
+        a.hora ASC";
+
     if ($tipo == 'Director') {
-        
-        
         if ($uni == '0') {
             $sql = "SELECT $selectFields
                     $baseJoin
-                    WHERE u.id_usuario <> 0
-                    ORDER BY un.nombre, u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC;";
+                    WHERE u.id_usuario <> 0 AND i.estatus = 'activo'
+                    $orderBy;";
             $query = $sql;
         } else {
+            $resNombre = mysqli_query($conn, "SELECT nombre FROM unidad WHERE id_unidad = '$uni' LIMIT 1");
+            $rowU = mysqli_fetch_assoc($resNombre);
+            $condUnidad = ($rowU && trim($rowU['nombre']) === 'N/A')
+                ? "(i.id_unidad IN (SELECT id_unidad FROM unidad WHERE nombre = 'N/A') OR i.id_unidad = 0 OR i.id_unidad IS NULL)"
+                : "i.id_unidad = '$uni'";
+
             $query = "SELECT $selectFields
                     $baseJoin
-                    WHERE  i.id_unidad = '$uni' 
-                    ORDER BY u.nombres DESC, u.tipo_usuario ASC, a.fecha DESC, a.hora ASC";
+                    WHERE $condUnidad AND u.id_usuario <> 0 AND i.estatus = 'activo'
+                    $orderBy";
         }
         
         $res = mysqli_query($conn, $query);
@@ -163,9 +175,9 @@
     if ($tipo == 'Jefe') {
         $query = "SELECT $selectFields
                 $baseJoin
-                WHERE  i.id_unidad = '$id_unidad' 
+                WHERE i.id_unidad = '$id_unidad' 
                 AND u.estatus = 'activo' AND u.tipo_usuario != 'Director'
-                ORDER BY u.tipo_usuario ASC, u.nombres DESC, a.fecha DESC, a.hora ASC";
+                $orderBy";
         
         $res = mysqli_query($conn, $query);
     }
@@ -241,9 +253,10 @@ if ($num_r >= 1) {
             $images = [];
 
             while ($fila = mysqli_fetch_assoc($res)) {
+                $nombre_unidad_fila = (!empty($fila['nombre_unidad']) && trim($fila['nombre_unidad']) !== '') ? trim($fila['nombre_unidad']) : 'N/A';
 
                 // Si cambia la unidad
-                if ($unidad_actual !== $fila['nombre_unidad']) {
+                if ($unidad_actual !== $nombre_unidad_fila) {
                     if ($usuario_actual_id !== null) {
                         echo '</tbody></table><br>';
                         $usuario_actual_id = null;
@@ -252,8 +265,8 @@ if ($num_r >= 1) {
                         echo '</ul><div style="page-break-after:always;"></div>';
                     }
 
-                    $unidad_actual = $fila['nombre_unidad'];
-                    echo '<h3>' . htmlspecialchars($unidad_actual ?? 'Sin Unidad') . '</h3>';
+                    $unidad_actual = $nombre_unidad_fila;
+                    echo '<h3>' . htmlspecialchars($unidad_actual) . '</h3>';
                     echo '<ul style="list-style:none; padding-left:0;">';
                 }
 

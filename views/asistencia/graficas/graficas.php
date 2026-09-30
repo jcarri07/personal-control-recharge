@@ -48,9 +48,10 @@
         ];
     }
 
-    $sql = "SELECT u.id_usuario, nombres, apellidos, da.id_unidad, da.id_direccion, da.cargo
+    $sql = "SELECT u.id_usuario, nombres, apellidos, da.id_unidad, da.id_direccion, da.cargo, COALESCE(un.nombre, 'N/A') AS nombre_unidad
             FROM usuario u
             INNER JOIN datos_abae da ON u.id_usuario = da.id_usuario $addWhereTrabajadores
+            LEFT JOIN unidad un ON da.id_unidad = un.id_unidad
             WHERE u.estatus = 'activo' 
             ORDER BY nombres";
     $queryTrabajadores = mysqli_query($conn, $sql);
@@ -61,6 +62,7 @@
             'nombres' => $row['nombres'],
             'apellidos' => $row['apellidos'],
             'id_unidad' => $row['id_unidad'],
+            'nombre_unidad' => $row['nombre_unidad'],
             'id_direccion' => $row['id_direccion'],
             'cargo' => $row['cargo'],
         ];
@@ -117,15 +119,13 @@
 <?php
                                         foreach ($unidades as $unidad) {
 ?>
-                                            <option value="<?php echo $unidad['id']; ?>"><?php echo  $unidad['nombre']; ?></option>
+                                            <option value="<?php echo $unidad['id']; ?>" data-nombre="<?php echo $unidad['nombre']; ?>"><?php echo  $unidad['nombre']; ?></option>
 <?php
                                         }
 ?>
                                     </select>
                                 </div>
-<?php
-                            }
-?>
+
                                 <div class="col-sm-3 mb-3">
                                     <label class="form-label">Cargo</label>
                                     <select id="cargo_search" class="form-control">
@@ -134,6 +134,9 @@
                                         <option Value="Personal de Investigacion">Personal de Investigacion</option>
                                     </select>
                                 </div>
+<?php
+                            }
+?>
 
                                 <div class="col-sm-3">
                                     <label class="form-label">Trabajador</label>
@@ -211,15 +214,29 @@
         });
 
         function selectTrabajadores() {
-            const unidadId = $("#unidad").val();
-            let filtered = unidadId !== "0" 
-                ? trabajadores.filter(t => t.id_unidad == unidadId)
-                : trabajadores;
+            let filtered = trabajadores;
 
-            const cargoSearch = $("#cargo_search").val();
-            filtered = cargoSearch !== "0" 
-                ? trabajadores.filter(t => t.cargo == cargoSearch)
-                : trabajadores;
+            // Filtro por unidad (solo si el select de unidad existe en pantalla para Director)
+            if ($("#unidad").length > 0) {
+                const unidadId = $("#unidad").val();
+                const nombreUnidad = ($("#unidad option:selected").data("nombre") || $("#unidad option:selected").text()).trim();
+
+                if (unidadId !== "0") {
+                    if (nombreUnidad === "N/A") {
+                        filtered = filtered.filter(t => t.nombre_unidad === "N/A");
+                    } else {
+                        filtered = filtered.filter(t => t.id_unidad == unidadId);
+                    }
+                }
+            }
+
+            // Filtro por cargo (solo si el select de cargo existe en pantalla para Director)
+            if ($("#cargo_search").length > 0) {
+                const cargoSearch = $("#cargo_search").val();
+                if (cargoSearch && cargoSearch !== "0") {
+                    filtered = filtered.filter(t => t.cargo === cargoSearch);
+                }
+            }
             
             const $select = $("#trabajador_id").html("<option value='0'>Todos</option>");
             
@@ -343,12 +360,17 @@
         function ajax() {
             $("#grafica").html('');
             var values = new FormData();
-            values.append("unidad", $("#unidad").val());
+            var idUnidadVal = $("#unidad").length > 0 ? $("#unidad").val() : "<?php echo $idUnidad; ?>";
+            var nombreUnidadVal = $("#unidad").length > 0 ? (($("#unidad option:selected").data("nombre") || $("#unidad option:selected").text()).trim()) : "";
+            var cargoSearchVal = $("#cargo_search").length > 0 ? $("#cargo_search").val() : "0";
+
+            values.append("unidad", idUnidadVal);
+            values.append("nombre_unidad", nombreUnidadVal);
             values.append("cargo", "<?php echo $cargo; ?>");
             values.append("id_unidad", "<?php echo $idUnidad; ?>");
             values.append("id_direccion", "<?php echo $idDireccion; ?>");
             values.append("trabajador_id", $("#trabajador_id").val());
-            values.append("cargo_search", $("#cargo_search").val());
+            values.append("cargo_search", cargoSearchVal);
             values.append("mes", $("#mes").val());
             values.append("semana", $("#semana").val());
 

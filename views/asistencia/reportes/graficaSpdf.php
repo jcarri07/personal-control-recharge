@@ -604,7 +604,7 @@
                 name: "Vacaciones",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Vacaciones'][$di];
+                            echo $lista['Vacaciones'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],
@@ -613,7 +613,7 @@
                 name: "Asistencias",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Asistente'][$di];
+                            echo $lista['Asistente'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],
@@ -622,7 +622,7 @@
                 name: "Consultas Médicas",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Consulta Médica'][$di];
+                            echo $lista['Consulta Médica'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],
@@ -631,7 +631,7 @@
                 name: "Permisos Especiales",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Permiso Especial'][$di];
+                            echo $lista['Permiso Especial'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],
@@ -640,7 +640,7 @@
                 name: "Estudios",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Estudios'][$di];
+                            echo $lista['Estudios'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],
@@ -649,7 +649,7 @@
                 name: "Otros",
                 data: [<?php $i = 1;
                         foreach ($dias_semana as $di) {
-                            echo $lista['Otro'][$di];
+                            echo $lista['Otro'][(int)$di];
                             echo ',';
                             $i++;
                         } ?>],

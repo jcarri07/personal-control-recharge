@@ -36,7 +36,8 @@ date_default_timezone_set("America/Caracas");
     <!-- Favicon icon -->
     <link rel="icon" href="files\assets\images\small-logo.png" type="image/x-icon" style="object-fit: cover;">
     <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet"> -->
+    <link href="assets/fonts/css.css" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="files\bower_components\bootstrap\css\bootstrap.min.css">
     <!-- themify-icons line icon -->

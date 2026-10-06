@@ -48,7 +48,7 @@ date_default_timezone_set("America/Caracas");
     <link rel="stylesheet" type="text/css" href="files\assets\css\new-style.css">
     <link rel="stylesheet" type="text/css" href="files\assets\css\login.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="js\sweetalert2.js"></script>
     
 </head>
 

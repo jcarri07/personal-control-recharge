@@ -106,8 +106,8 @@ date_default_timezone_set("America/Caracas");
                 <div class="overlay-panel overlay-right">
                     <h1>SIGH</h1>
                         <h5><b>Sistema de Información Gestión Humana</b></h5>
-                    <p>Registrar Nuevo Personal</p>
-                    <button class="ghost" id="signUp">Registrar</button>
+                    <!-- <p>Registrar Nuevo Personal</p> -->
+                    <!--button class="ghost" id="signUp">Registrar</button-->
                 </div>
             </div>
         </div>
@@ -156,9 +156,9 @@ date_default_timezone_set("America/Caracas");
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('container');
 
-            signUpButton.addEventListener('click', () => {
+/*             signUpButton.addEventListener('click', () => {
                 container.classList.add("right-panel-active");
-            });
+            }); */
 
             signInButton.addEventListener('click', () => {
                 container.classList.remove("right-panel-active");

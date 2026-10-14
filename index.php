@@ -49,7 +49,7 @@ date_default_timezone_set("America/Caracas");
     <link rel="stylesheet" type="text/css" href="files\assets\css\new-style.css">
     <link rel="stylesheet" type="text/css" href="files\assets\css\login.css">
 
-    <script type="text/javascript" src="js\sweetalert2.js"></script>
+    
     
 </head>
 
@@ -119,6 +119,7 @@ date_default_timezone_set("America/Caracas");
         </p>
     </footer>
 
+    <script type="text/javascript" src="js\sweetalert2.js"></script>
     <!-- Required Jquery -->
     <script type="text/javascript" src="files\bower_components\jquery\js\jquery.min.js"></script>
     <script type="text/javascript" src="files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>

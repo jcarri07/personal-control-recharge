@@ -59,7 +59,7 @@ $fila = mysqli_fetch_assoc($resultado);
     <link rel="icon" href="..\files\assets\images\favicon.png" type="image/png">
     <!-- Google font-->
     <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet"> -->
-    <link href="assets/fonts/css.css" rel="stylesheet">
+    <link href="../assets/fonts/css.css" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css">
     <!-- feather Awesome -->
@@ -710,7 +710,7 @@ $fila = mysqli_fetch_assoc($resultado);
 <!-- <script type="text/javascript" src="..\files\assets\pages\dashboard\custom-dashboard.js"></script> -->
 <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+
 <!-- <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script> -->
 <!-- <script type="text/javascript" src="../files/assets/js/SmoothScroll.js"></script>
 <script type="text/javascript" src="../files/assets/pages/dashboard/custom-dashboard.js"></script>

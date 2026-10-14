@@ -69,7 +69,7 @@ closeConection($conn);
 
     <!-- <script src="../assets/select2-4.1.0-rc.0/dist/js/select2.min.js"></script> -->
     <!-- <link href="path/to/select2.min.css" rel="stylesheet" /> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="../js/sweetalert2.js"></script>
     <!-- <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css"> -->
 </head>
 

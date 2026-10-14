@@ -66,7 +66,7 @@ $año_int = intval(date("Y"));
         justify-content: center;
     }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="../js/sweetalert2.js"></script>
 <div class="page-wrapper">
 
 <div class="container-fluid">

@@ -217,7 +217,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                     <img src="../assets/empleados-images/<?php if ($personal_data != null) {
                                         echo $personal_data['foto'];
                                     } else {
-                                        echo "avatar_default.jpg";
+                                        echo "User-Profile-Image.jpg";
                                     } ?>"
                                         style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px">
                                 </div>
@@ -631,6 +631,28 @@ $fila = mysqli_fetch_assoc($resultado);
 <?php
                             if ($_SESSION['tipo_usuario'] == "admin") {
 ?>
+                                <div class="pcoded-navigatio-lavel">Administración</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)">
+                                            <span class="pcoded-micon"><i class="feather icon-users"></i></span>
+                                            <span class="pcoded-mtext">Gestión de Usuarios</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="../home/form-edit-data.php?page=lista-usuarios">
+                                                    <span class="pcoded-mtext">Lista de usuarios</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="../home/form-edit-data.php?page=crear-usuario">
+                                                    <span class="pcoded-mtext">Crear nuevo usuario</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="pcoded-hasmenu ">
                                         <a href="javascript:void(0)">

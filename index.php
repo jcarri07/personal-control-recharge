@@ -104,8 +104,8 @@ date_default_timezone_set("America/Caracas");
                     <button class="ghost" id="signIn">Iniciar Sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>SIGH</h1>
-                        <h5><b>Sistema de Información Gestión Humana</b></h5>
+                    <h1>SIGP</h1>
+                        <h5><b>Sistema de Información para la Gestión de Personal</b></h5>
                     <!-- <p>Registrar Nuevo Personal</p> -->
                     <!--button class="ghost" id="signUp">Registrar</button-->
                 </div>

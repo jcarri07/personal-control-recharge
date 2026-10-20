@@ -29,9 +29,13 @@ if (mysqli_num_rows($res) >= 1) {
     $res2 = mysqli_query($conn, "SELECT d.id_unidad 
                            FROM datos_abae d, usuario us
                            WHERE us.id_usuario='$obj->id_usuario' AND d.id_usuario = us.id_usuario");
-    //Agregar la unidad a la session                       
+    //Agregar la unidad a la session 
+    if (mysqli_num_rows($res) >= 1) {                      
     $obj2 = mysqli_fetch_object($res2);
     $_SESSION["unidad"] = $obj2->id_unidad;
+    }else{
+        $_SESSION["unidad"] = 'Sin asignar';
+    }
 
 
     $re = mysqli_query($conn, "SELECT u.nombre, u.id_unidad

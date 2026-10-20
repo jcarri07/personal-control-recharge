@@ -95,6 +95,14 @@ switch ($_GET['page']) {
     case "filtros-de-busqueda":
         $view = "../views/filtros-de-busqueda.php";
         break;
+    case "usuarios":
+    case "lista-usuarios":
+        $view = "../views/usuarios/lista-usuarios.php";
+        break;
+    case "crear-usuario":
+    case "nuevo-usuario":
+        $view = "../views/usuarios/crear-usuario.php";
+        break;
     default:
         $view = "";
         break;

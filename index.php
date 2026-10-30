@@ -86,7 +86,7 @@ date_default_timezone_set("America/Caracas");
 
                 <div style="text-align:center;" class="row m-b-20">
                     <div class="col-md-12 text-center" style="text-align:center; margin-bottom:10px">
-                        <img src="files\assets\images\logo.png" alt="logo.png" style="height:75px">
+                        <img src="files\assets\images\imagen_inicial.webp" alt="imagen_inicial.webp" style="height:105px; border-radius: 15px;">
                     </div>
                     <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesión</h2>
                 </div>

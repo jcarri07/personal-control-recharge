@@ -1,12 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?php
 session_start();
-if (!isset($_SESSION["id_usuario"]) || $_SESSION["id_usuario"] == null) {
-
-    /*print "<script>window.location='login.php';</script>";*/
-} else {
-    //print "<script>window.location='index.php';</script>";
+// [HIGH-01 FIX] Si el usuario ya tiene sesión activa, redirigir al panel principal
+if (isset($_SESSION["id_usuario"]) && $_SESSION["id_usuario"] != null) {
+    header("Location: index.php");
+    exit();
 }
 
 date_default_timezone_set("America/Caracas");
@@ -89,8 +88,12 @@ date_default_timezone_set("America/Caracas");
             <div class="row">
                 <div class="col-sm-12 " >
                     <!-- Authentication card start -->
-
+                    <?php
+                    // [HIGH-04 FIX] Incluir helper CSRF y generar token para el formulario
+                    require_once '../database/csrf_helper.php';
+                    ?>
                     <form class="md-float-material form-material form" action="tu_archivo_php.php" enctype="multipart/form-data" id="form">
+                    <?php echo csrf_field(); ?>
 
                         <div class="auth-box card">
                             <div class="card-block">
@@ -207,17 +210,16 @@ date_default_timezone_set("America/Caracas");
     <script type="text/javascript" src="..\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
     <script type="text/javascript" src="..\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
     <script type="text/javascript" src="..\files\assets\js\common-pages.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics (Deshabilitado para entorno local) -->
+    <!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script> -->
     <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-            dataLayer.push(arguments);
+            // dataLayer.push(arguments);
         }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
+        // gtag('js', new Date());
+        // gtag('config', 'UA-23581568-13');
         $(document).ready(function () {
         $("#form").submit(function(e) {
             e.preventDefault();

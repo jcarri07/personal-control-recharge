@@ -1,21 +1,24 @@
 <?php
 require_once '../database/conexion.php';
-//$idUser = $_SESSION["id_usuario"];
 
-// Verificar la conexión
+// [CRIT-04 FIX] Todos los valores de $_POST se escapan con mysqli_real_escape_string
+// antes de ser usados en la construcción dinámica del SQL
+
+// [MED-02 FIX] No exponer detalles del error al usuario
 if (mysqli_connect_errno()) {
-    echo "Error al conectar a la base de datos: " . mysqli_connect_error();
+    error_log("Error de conexión BD: " . mysqli_connect_error());
+    echo "Error de conexión. Contacte al administrador.";
     exit();
 }
 
-$direccion = $_POST['direccion'];
-$unidad = $_POST['unidad'];
-$sexo = $_POST['sexo'];
-$filtro = $_POST['filtro'];
-$subfiltro = $_POST['subfiltro'];
-$valor_filtro = $_POST['filtro_valor_select'];
-$desde = $_POST['desde'];
-$hasta = $_POST['hasta'];
+$direccion    = mysqli_real_escape_string($conn, trim($_POST['direccion']           ?? ''));
+$unidad       = mysqli_real_escape_string($conn, trim($_POST['unidad']              ?? ''));
+$sexo         = mysqli_real_escape_string($conn, trim($_POST['sexo']                ?? ''));
+$filtro       = mysqli_real_escape_string($conn, trim($_POST['filtro']              ?? ''));
+$subfiltro    = mysqli_real_escape_string($conn, trim($_POST['subfiltro']           ?? ''));
+$valor_filtro = mysqli_real_escape_string($conn, trim($_POST['filtro_valor_select'] ?? ''));
+$desde        = mysqli_real_escape_string($conn, trim($_POST['desde']               ?? ''));
+$hasta        = mysqli_real_escape_string($conn, trim($_POST['hasta']               ?? ''));
 
 $add_select = "";
 $add_tables = "";
@@ -236,23 +239,23 @@ if (mysqli_num_rows($query) > 0) {
                 ?>
                     <tr>
                         <td><?php echo ++$i; ?></td>
-                        <td><?php echo $row['nombres'] . " " . $row['apellidos']; ?></td>
-                        <td><?php echo $row['unidad'] != "" ? $row['unidad'] : "-"; ?></td>
-                        <td><?php echo $row['cargo']; ?></td>
+                        <td><?php echo htmlspecialchars($row['nombres'] . " " . $row['apellidos'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($row['unidad'] != "" ? $row['unidad'] : "-", ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($row['cargo'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                         <?php
                         if ($filtro == "hijos") {
                         ?>
-                            <td><?php echo $row['nombre_hijo']; ?></td>
+                            <td><?php echo htmlspecialchars($row['nombre_hijo'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                         <?php
                         }
                         if ($sexo != "") {
                         ?>
-                            <td><?php echo $row['sexo']; ?></td>
+                            <td><?php echo htmlspecialchars($row['sexo'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                         <?php
                         }
                         if ($subfiltro != "") {
                         ?>
-                            <td><?php echo $row[$name]; ?></td>
+                            <td><?php echo htmlspecialchars($row[$name] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                         <?php
                         }
                         ?>

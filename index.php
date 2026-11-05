@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?php
 if (!isset($_SESSION)) {
@@ -139,17 +139,16 @@ date_default_timezone_set("America/Caracas");
     <script type="text/javascript" src="files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
     <script type="text/javascript" src="files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
     <script type="text/javascript" src="files\assets\js\common-pages.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics (Deshabilitado para entorno local) -->
+    <!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script> -->
     <script>
         window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
+        //function gtag() {
+            // dataLayer.push(arguments);
+        //}
+        // gtag('js', new Date());
+        // gtag('config', 'UA-23581568-13');
         $(document).ready(function() {
 
             const signUpButton = document.getElementById('signUp');

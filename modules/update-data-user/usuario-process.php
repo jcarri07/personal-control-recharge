@@ -12,6 +12,7 @@ if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['tipo_usuario']) || $_SE
 }
 
 if (mysqli_connect_errno()) {
+    error_log("Error de conexión BD: " . mysqli_connect_error());
     echo 'error_conexion';
     exit();
 }
@@ -19,14 +20,14 @@ if (mysqli_connect_errno()) {
 $opc = isset($_POST['opc']) ? trim($_POST['opc']) : '';
 
 if ($opc === 'add') {
-    $user         = isset($_POST['usuario']) ? mysqli_real_escape_string($conn, trim($_POST['usuario'])) : '';
-    $cedula       = isset($_POST['cedula']) ? mysqli_real_escape_string($conn, trim($_POST['cedula'])) : '';
-    $nombre       = isset($_POST['nombre']) ? mysqli_real_escape_string($conn, trim($_POST['nombre'])) : '';
-    $apellido     = isset($_POST['apellido']) ? mysqli_real_escape_string($conn, trim($_POST['apellido'])) : '';
-    $email        = isset($_POST['email']) ? mysqli_real_escape_string($conn, trim($_POST['email'])) : '';
-    $tipo_usuario = isset($_POST['tipo_usuario']) && !empty($_POST['tipo_usuario']) ? mysqli_real_escape_string($conn, trim($_POST['tipo_usuario'])) : 'empleado';
-    $cargo        = isset($_POST['cargo']) ? mysqli_real_escape_string($conn, trim($_POST['cargo'])) : '';
-    $estatus      = isset($_POST['estatus']) && !empty($_POST['estatus']) ? mysqli_real_escape_string($conn, trim($_POST['estatus'])) : 'activo';
+    $user         = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
+    $cedula       = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
+    $nombre       = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+    $apellido     = isset($_POST['apellido']) ? trim($_POST['apellido']) : '';
+    $email        = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $tipo_usuario = isset($_POST['tipo_usuario']) && !empty($_POST['tipo_usuario']) ? trim($_POST['tipo_usuario']) : 'empleado';
+    $cargo        = isset($_POST['cargo']) ? trim($_POST['cargo']) : '';
+    $estatus      = isset($_POST['estatus']) && !empty($_POST['estatus']) ? trim($_POST['estatus']) : 'activo';
     $contra       = isset($_POST['pass']) ? trim($_POST['pass']) : '';
     $confirm_pass = isset($_POST['confirm_pass']) ? trim($_POST['confirm_pass']) : '';
 
@@ -43,27 +44,39 @@ if ($opc === 'add') {
     }
 
     // Verificar si ya existe cédula
-    $resCedula = mysqli_query($conn, "SELECT cedula FROM usuario WHERE cedula = '$cedula' LIMIT 1;");
-    if (mysqli_num_rows($resCedula) > 0) {
+    $stmtCedula = $conn->prepare("SELECT cedula FROM usuario WHERE cedula = ? LIMIT 1");
+    $stmtCedula->bind_param("s", $cedula);
+    $stmtCedula->execute();
+    $resCedula = $stmtCedula->get_result();
+    if ($resCedula->num_rows > 0) {
+        $stmtCedula->close();
         echo 'existe_cedula';
         closeConection($conn);
         exit();
     }
+    $stmtCedula->close();
 
     // Verificar si ya existe nombre de usuario
-    $resUser = mysqli_query($conn, "SELECT user FROM usuario WHERE user = '$user' LIMIT 1;");
-    if (mysqli_num_rows($resUser) > 0) {
+    $stmtUser = $conn->prepare("SELECT user FROM usuario WHERE user = ? LIMIT 1");
+    $stmtUser->bind_param("s", $user);
+    $stmtUser->execute();
+    $resUser = $stmtUser->get_result();
+    if ($resUser->num_rows > 0) {
+        $stmtUser->close();
         echo 'existe_usuario';
         closeConection($conn);
         exit();
     }
+    $stmtUser->close();
 
-    $contra_escaped = mysqli_real_escape_string($conn, $contra);
+    // Cifrar la contraseña con Bcrypt
+    $contraHash = password_hash($contra, PASSWORD_BCRYPT);
 
-    $sqlInsert = "INSERT INTO usuario (nombres, apellidos, cedula, cargo, user, pass, tipo_usuario, estatus, id_jefe, step, correo) 
-                  VALUES ('$nombre', '$apellido', '$cedula', '$cargo', '$user', '$contra_escaped', '$tipo_usuario', '$estatus', 0, 0, '$email');";
-
-    $res = mysqli_query($conn, $sqlInsert);
+    $stmtInsert = $conn->prepare("INSERT INTO usuario (nombres, apellidos, cedula, cargo, user, pass, tipo_usuario, estatus, id_jefe, step, correo) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, ?)");
+    $stmtInsert->bind_param("sssssssss", $nombre, $apellido, $cedula, $cargo, $user, $contraHash, $tipo_usuario, $estatus, $email);
+    $res = $stmtInsert->execute();
+    $stmtInsert->close();
 
     if ($res) {
         echo 'si';
@@ -77,14 +90,14 @@ if ($opc === 'add') {
 
 if ($opc === 'edit') {
     $id_usuario   = isset($_POST['id_usuario']) ? (int)$_POST['id_usuario'] : 0;
-    $user         = isset($_POST['usuario']) ? mysqli_real_escape_string($conn, trim($_POST['usuario'])) : '';
-    $cedula       = isset($_POST['cedula']) ? mysqli_real_escape_string($conn, trim($_POST['cedula'])) : '';
-    $nombre       = isset($_POST['nombre']) ? mysqli_real_escape_string($conn, trim($_POST['nombre'])) : '';
-    $apellido     = isset($_POST['apellido']) ? mysqli_real_escape_string($conn, trim($_POST['apellido'])) : '';
-    $email        = isset($_POST['email']) ? mysqli_real_escape_string($conn, trim($_POST['email'])) : '';
-    $tipo_usuario = isset($_POST['tipo_usuario']) && !empty($_POST['tipo_usuario']) ? mysqli_real_escape_string($conn, trim($_POST['tipo_usuario'])) : 'empleado';
-    $cargo        = isset($_POST['cargo']) ? mysqli_real_escape_string($conn, trim($_POST['cargo'])) : '';
-    $estatus      = isset($_POST['estatus']) && !empty($_POST['estatus']) ? mysqli_real_escape_string($conn, trim($_POST['estatus'])) : 'activo';
+    $user         = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
+    $cedula       = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
+    $nombre       = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+    $apellido     = isset($_POST['apellido']) ? trim($_POST['apellido']) : '';
+    $email        = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $tipo_usuario = isset($_POST['tipo_usuario']) && !empty($_POST['tipo_usuario']) ? trim($_POST['tipo_usuario']) : 'empleado';
+    $cargo        = isset($_POST['cargo']) ? trim($_POST['cargo']) : '';
+    $estatus      = isset($_POST['estatus']) && !empty($_POST['estatus']) ? trim($_POST['estatus']) : 'activo';
     $contra       = isset($_POST['pass']) ? trim($_POST['pass']) : '';
     $confirm_pass = isset($_POST['confirm_pass']) ? trim($_POST['confirm_pass']) : '';
 
@@ -95,41 +108,57 @@ if ($opc === 'edit') {
     }
 
     // Verificar si la cédula ya pertenece a otro usuario
-    $resCedula = mysqli_query($conn, "SELECT id_usuario FROM usuario WHERE cedula = '$cedula' AND id_usuario != '$id_usuario' LIMIT 1;");
-    if (mysqli_num_rows($resCedula) > 0) {
+    $stmtCedula = $conn->prepare("SELECT id_usuario FROM usuario WHERE cedula = ? AND id_usuario != ? LIMIT 1");
+    $stmtCedula->bind_param("si", $cedula, $id_usuario);
+    $stmtCedula->execute();
+    $resCedula = $stmtCedula->get_result();
+    if ($resCedula->num_rows > 0) {
+        $stmtCedula->close();
         echo 'existe_cedula';
         closeConection($conn);
         exit();
     }
+    $stmtCedula->close();
 
     // Verificar si el username ya pertenece a otro usuario
-    $resUser = mysqli_query($conn, "SELECT id_usuario FROM usuario WHERE user = '$user' AND id_usuario != '$id_usuario' LIMIT 1;");
-    if (mysqli_num_rows($resUser) > 0) {
+    $stmtUser = $conn->prepare("SELECT id_usuario FROM usuario WHERE user = ? AND id_usuario != ? LIMIT 1");
+    $stmtUser->bind_param("si", $user, $id_usuario);
+    $stmtUser->execute();
+    $resUser = $stmtUser->get_result();
+    if ($resUser->num_rows > 0) {
+        $stmtUser->close();
         echo 'existe_usuario';
         closeConection($conn);
         exit();
     }
+    $stmtUser->close();
 
-    // Si se especificó contraseña nueva
+    // Si el admin especificó una nueva contraseña para el usuario
     if (!empty($contra)) {
         if ($contra !== $confirm_pass) {
             echo 'pass_mismatch';
             closeConection($conn);
             exit();
         }
-        $contra_escaped = mysqli_real_escape_string($conn, $contra);
-        $sqlUpdate = "UPDATE usuario 
-                      SET nombres = '$nombre', apellidos = '$apellido', cedula = '$cedula', cargo = '$cargo', 
-                          user = '$user', pass = '$contra_escaped', tipo_usuario = '$tipo_usuario', estatus = '$estatus', correo = '$email' 
-                      WHERE id_usuario = '$id_usuario';";
+        // Cifrar la nueva contraseña con Bcrypt
+        $contraHash = password_hash($contra, PASSWORD_BCRYPT);
+
+        $stmtUp = $conn->prepare("UPDATE usuario 
+                                  SET nombres = ?, apellidos = ?, cedula = ?, cargo = ?, 
+                                      user = ?, pass = ?, tipo_usuario = ?, estatus = ?, correo = ? 
+                                  WHERE id_usuario = ?");
+        $stmtUp->bind_param("sssssssssi", $nombre, $apellido, $cedula, $cargo, $user, $contraHash, $tipo_usuario, $estatus, $email, $id_usuario);
     } else {
-        $sqlUpdate = "UPDATE usuario 
-                      SET nombres = '$nombre', apellidos = '$apellido', cedula = '$cedula', cargo = '$cargo', 
-                          user = '$user', tipo_usuario = '$tipo_usuario', estatus = '$estatus', correo = '$email' 
-                      WHERE id_usuario = '$id_usuario';";
+        // Mantener la contraseña actual sin cambios
+        $stmtUp = $conn->prepare("UPDATE usuario 
+                                  SET nombres = ?, apellidos = ?, cedula = ?, cargo = ?, 
+                                      user = ?, tipo_usuario = ?, estatus = ?, correo = ? 
+                                  WHERE id_usuario = ?");
+        $stmtUp->bind_param("ssssssssi", $nombre, $apellido, $cedula, $cargo, $user, $tipo_usuario, $estatus, $email, $id_usuario);
     }
 
-    $res = mysqli_query($conn, $sqlUpdate);
+    $res = $stmtUp->execute();
+    $stmtUp->close();
 
     if ($res) {
         echo 'si';
@@ -157,8 +186,10 @@ if ($opc === 'estatus') {
         exit();
     }
 
-    $sqlUpdate = "UPDATE usuario SET estatus = '$estatus' WHERE id_usuario = '$id_usuario';";
-    $res = mysqli_query($conn, $sqlUpdate);
+    $stmtUp = $conn->prepare("UPDATE usuario SET estatus = ? WHERE id_usuario = ?");
+    $stmtUp->bind_param("si", $estatus, $id_usuario);
+    $res = $stmtUp->execute();
+    $stmtUp->close();
 
     if ($res) {
         echo 'si';
@@ -185,8 +216,10 @@ if ($opc === 'delete') {
         exit();
     }
 
-    $sqlDelete = "DELETE FROM usuario WHERE id_usuario = '$id_usuario';";
-    $res = mysqli_query($conn, $sqlDelete);
+    $stmtDel = $conn->prepare("DELETE FROM usuario WHERE id_usuario = ?");
+    $stmtDel->bind_param("i", $id_usuario);
+    $res = $stmtDel->execute();
+    $stmtDel->close();
 
     if ($res) {
         echo 'si';

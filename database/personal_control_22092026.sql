@@ -2791,7 +2791,7 @@ CREATE TABLE `usuario` (
   `cedula` varchar(20) NOT NULL,
   `cargo` varchar(30) NOT NULL,
   `user` varchar(50) NOT NULL,
-  `pass` varchar(50) NOT NULL,
+  `pass` varchar(255) NOT NULL,
   `tipo_usuario` varchar(50) NOT NULL,
   `estatus` varchar(10) DEFAULT NULL,
   `id_jefe` int(30) NOT NULL,
@@ -2804,12 +2804,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombres`, `apellidos`, `cedula`, `cargo`, `user`, `pass`, `tipo_usuario`, `estatus`, `id_jefe`, `step`, `correo`) VALUES
-(0, 'Carolina', 'Matheus', '0', 'Operador', 'SIGH', '1234', 'admin', 'activo', 0, 9, ''),
-(31, 'Karla Desiree', 'Mieres Henriquez', '18344910', 'Jefe', 'kmieres', '1234', 'jefe', 'activo', 0, 6, 'kmieres@abae.gob.ve'),
-(32, 'Jose Franzue', 'Carrizales Vargas', '24642009', '', 'jcarri07', '1234', 'empleado', 'activo', 31, 4, 'jcarrizales@abae.gob.ve'),
-(33, 'Gustavo', 'Guedez', '17494457', 'Director', 'gguedez', '1234', 'jefe', 'activo', 0, 8, 'gguedez@abae.gob.ve'),
-(34, 'Carolina', 'Matheus', '25441144', 'Director', 'cmatheus', '1234', 'jefe', 'activo', 0, 8, 'cmatheus@abae.gob.ve'),
-(35, 'Yassarik', 'Parra', '12556665', '', 'yparra', '123456', 'empleado', 'activo', 33, 9, 'yparra@gmail.com');
+(0, 'Carolina', 'Matheus', '0', 'Operador', 'SIGH', '$2y$12$sETymF/9cqREFRYjRNhftuYZtC3NDjzAfzK2HDliu9kdDLErZNwdy', 'admin', 'activo', 0, 9, ''),
+(31, 'Karla Desiree', 'Mieres Henriquez', '18344910', 'Jefe', 'kmieres', '$2y$12$sETymF/9cqREFRYjRNhftuYZtC3NDjzAfzK2HDliu9kdDLErZNwdy', 'jefe', 'activo', 0, 6, 'kmieres@abae.gob.ve'),
+(32, 'Jose Franzue', 'Carrizales Vargas', '24642009', '', 'jcarri07', '$2y$12$sETymF/9cqREFRYjRNhftuYZtC3NDjzAfzK2HDliu9kdDLErZNwdy', 'empleado', 'activo', 31, 4, 'jcarrizales@abae.gob.ve'),
+(33, 'Gustavo', 'Guedez', '17494457', 'Director', 'gguedez', '$2y$12$sETymF/9cqREFRYjRNhftuYZtC3NDjzAfzK2HDliu9kdDLErZNwdy', 'jefe', 'activo', 0, 8, 'gguedez@abae.gob.ve'),
+(34, 'Carolina', 'Matheus', '25441144', 'Director', 'cmatheus', '$2y$12$sETymF/9cqREFRYjRNhftuYZtC3NDjzAfzK2HDliu9kdDLErZNwdy', 'jefe', 'activo', 0, 8, 'cmatheus@abae.gob.ve'),
+(35, 'Yassarik', 'Parra', '12556665', '', 'yparra', '$2y$12$32IypkX7QBaRXw8NEP.xWejxGvz17WWeCpKmrY1RGe5SwjKOYAq0S', 'empleado', 'activo', 33, 9, 'yparra@gmail.com');
 
 --
 -- Indexes for dumped tables

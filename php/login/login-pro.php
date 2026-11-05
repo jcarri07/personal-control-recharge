@@ -21,10 +21,8 @@ $res = $stmt->get_result();
 if ($res->num_rows >= 1) {
     $obj = $res->fetch_object();
 
-    // Acepta hash bcrypt Y contraseña en texto plano (retrocompatibilidad temporal)
-    $passValida = password_verify($contra, $obj->pass) || $contra === $obj->pass;
-
-    if ($passValida) {
+    // [CRIT-01 FIX] Verificación estricta de contraseña cifrada con Bcrypt
+    if (password_verify($contra, $obj->pass)) {
         $_SESSION["id_usuario"]   = $obj->id_usuario;
         $_SESSION["nombre"]       = $obj->nombres;
         $_SESSION["apellido"]     = $obj->apellidos;

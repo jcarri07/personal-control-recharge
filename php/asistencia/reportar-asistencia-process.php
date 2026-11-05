@@ -1,5 +1,6 @@
 <?php
     require_once '../../database/conexion.php';
+    require_once '../../config/env.php';
     require '../../vendor/autoload.php';
     require_once 'email_template.php';
 
@@ -115,19 +116,25 @@
                 $template = generarTemplateCorreo($datos_correo);
 
 
-                // Integración de PHPMailer
+                // Integración de PHPMailer [CRIT-05 FIX: Credenciales cargadas de forma segura desde .env]
                 $mail = new PHPMailer(true);
                 try {
+                    $smtpHost = env('SMTP_HOST', 'smtp.gmail.com');
+                    $smtpPort = (int)env('SMTP_PORT', 587);
+                    $smtpUser = env('SMTP_USER');
+                    $smtpPass = env('SMTP_PASS');
+                    $smtpFrom = env('SMTP_FROM_EMAIL', $smtpUser);
+
                     $mail->isSMTP();
-                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->Host       = $smtpHost;
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = 'DIIEBORBURATA@gmail.com';
-                    $mail->Password   = 'oszj zijh xinp yadl';
+                    $mail->Username   = $smtpUser;
+                    $mail->Password   = $smtpPass;
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                    $mail->Port       = 587;
+                    $mail->Port       = $smtpPort;
                     $mail->CharSet    = 'UTF-8';
 
-                    $mail->setFrom('DIIEBORBURATA@gmail.com', "Reporte de ".$_SESSION['nombre']." ".$_SESSION['apellido']);
+                    $mail->setFrom($smtpFrom, "Reporte de " . ($_SESSION['nombre'] ?? '') . " " . ($_SESSION['apellido'] ?? ''));
                     // $mail->addAddress('nomina@abae.gob.ve');
                     // if(count($emails) > 0) {
                     //     foreach($emails as $email) {

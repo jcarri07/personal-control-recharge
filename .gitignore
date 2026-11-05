@@ -5,3 +5,5 @@ assets/firmas-images/*
 files/activities/*
 /img/temp
 
+# Variables de entorno y credenciales sensibles
+.env

@@ -188,12 +188,12 @@ if ($opc == "edit") {
         $res = mysqli_query($conn, $sql);
     }
 
-    // Upload de firma con validación de tipo MIME [HIGH-03 FIX parcial]
+    // Upload de firma con validación de tipo MIME
     if (isset($_FILES['firma']['name']) && $_FILES['firma']['error'] === UPLOAD_ERR_OK) {
         $image_name = $_FILES['firma']['name'];
         $extensionArchivo = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-        $allowedExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        $allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
+        $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
 
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime  = $finfo->file($_FILES['firma']['tmp_name']);
@@ -202,19 +202,19 @@ if ($opc == "edit") {
             $file = "firma_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
             $sql = getSql("firma = '$file'", $id_datos_personales);
             $res = mysqli_query($conn, $sql);
-            if ($res == 1) {
+            if ($res) {
                 $ruta_img = '../../assets/firmas-images/' . $file;
                 move_uploaded_file($_FILES['firma']['tmp_name'], $ruta_img);
             }
         }
     }
 
-    // Upload de foto con validación de tipo MIME [HIGH-03 FIX parcial]
+    // Upload de foto con validación de tipo MIME
     if (isset($_FILES['foto']['name']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $image_name = $_FILES['foto']['name'];
         $extensionArchivo = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
-        $allowedExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        $allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
+        $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
 
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime  = $finfo->file($_FILES['foto']['tmp_name']);
@@ -223,16 +223,16 @@ if ($opc == "edit") {
             $file = "foto_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
             $sql = getSql("foto = '$file'", $id_datos_personales);
             $res = mysqli_query($conn, $sql);
-            if ($res == 1) {
+            if ($res) {
                 $ruta_img = '../../assets/empleados-images/' . $file;
                 move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_img);
             }
         }
     }
 
-    if ($res == 1)
+    if ($res)
         echo "si";
-    if ($res == "")
+    else
         echo "vacio";
 }
 

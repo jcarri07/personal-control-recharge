@@ -17,41 +17,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $firmaFile = "default_firma.png";
                $fotoFile = "default_image.jpg";
 
-               // Verificar si se subió correctamente el archivo
+               // Tipos permitidos para firma y foto
+               $allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
+               $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
+
+               // --- FIRMA ---
                if (isset($_FILES["firm"]) && $_FILES["firm"]["error"] == UPLOAD_ERR_OK) {
-                    // Ruta temporal del archivo subido
-                    $temporalPathFirma = $_FILES["firm"]["tmp_name"];
+                    $ext   = strtolower(pathinfo($_FILES["firm"]["name"], PATHINFO_EXTENSION));
+                    $finfo = new finfo(FILEINFO_MIME_TYPE);
+                    $mime  = $finfo->file($_FILES["firm"]["tmp_name"]);
 
-                    // Nombre original del archivo
-                    $firmaFile = $_FILES["firm"]["name"];
-
-                    // Mover el archivo a una ubicación permanente
-                    $firmaPath = "../../assets/firmas-images/" . $firmaFile;
-                    move_uploaded_file($temporalPathFirma, $firmaPath);
-
-                    // Mensaje de éxito
-                    echo "ARCHIVO: firma sucess ";
+                    if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
+                         $firmaFile = "firma_user_" . $idUser . "_" . uniqid() . "." . $ext;
+                         $firmaPath = "../../assets/firmas-images/" . $firmaFile;
+                         move_uploaded_file($_FILES["firm"]["tmp_name"], $firmaPath);
+                         echo "ARCHIVO: firma success ";
+                    } else {
+                         $firmaFile = "default_firma.png";
+                         echo "firma tipo inválido ";
+                    }
                } else {
-                    // Error al subir el archivo
                     echo "firma error ";
                }
 
-               // Verificar si se subió correctamente el archivo
+               // --- FOTO ---
                if (isset($_FILES["photoEmployeer"]) && $_FILES["photoEmployeer"]["error"] == UPLOAD_ERR_OK) {
-                    // Ruta temporal del archivo subido
-                    $temporalPathFoto = $_FILES["photoEmployeer"]["tmp_name"];
+                    $ext   = strtolower(pathinfo($_FILES["photoEmployeer"]["name"], PATHINFO_EXTENSION));
+                    $finfo = new finfo(FILEINFO_MIME_TYPE);
+                    $mime  = $finfo->file($_FILES["photoEmployeer"]["tmp_name"]);
 
-                    // Nombre original del archivo
-                    $fotoFile = $_FILES["photoEmployeer"]["name"];
-
-                    // Mover el archivo a una ubicación permanente
-                    $fotoPath = "../../assets/empleados-images/" . $fotoFile;
-                    move_uploaded_file($temporalPathFoto, $fotoPath);
-
-                    // Mensaje de éxito
-                    echo "foto success ";
+                    if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
+                         $fotoFile = "foto_user_" . $idUser . "_" . uniqid() . "." . $ext;
+                         $fotoPath = "../../assets/empleados-images/" . $fotoFile;
+                         move_uploaded_file($_FILES["photoEmployeer"]["tmp_name"], $fotoPath);
+                         echo "foto success ";
+                    } else {
+                         $fotoFile = "default_image.jpg";
+                         echo "foto tipo inválido ";
+                    }
                } else {
-                    // Error al subir el archivo
                     echo "foto error ";
                }
                //DATOS PERSONALES

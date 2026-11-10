@@ -1161,7 +1161,7 @@ closeConection($conn);
                                                                                                             <?php
                                                                                                             while ($row = mysqli_fetch_array($queryPaises)) {
                                                                                                             ?>
-                                                                                                                <option value="<?php echo $row['pais']; ?>"><?php echo utf8_encode($row['pais']); ?></option>
+                                                                                                                <option value="<?php echo $row['pais']; ?>"><?php echo $row['pais']; ?></option>
                                                                                                             <?php
                                                                                                             }
                                                                                                             ?>

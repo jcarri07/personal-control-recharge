@@ -81,21 +81,33 @@ if (isset($_POST['Guardar'])) {
             // fin de consulta
 
             $periodosExperiencia = 0;
-            $id_usuario = $_SESSION['id_usuario'];
-            $query_experiencia = "SELECT * FROM experiencia_instituciones_publicas WHERE id_usuario ='$id_usuario'";
-            $datos_experiencias = $conn->query($query_experiencia);
+            $id_usuario = (int)$_SESSION['id_usuario'];
+
+            // [MED-04 FIX] Prepared statement en lugar de concatenación directa de $id_usuario
+            $stmt_exp = $conn->prepare("SELECT fecha_ingreso, fecha_egreso
+                                        FROM experiencia_instituciones_publicas
+                                        WHERE id_usuario = ?");
+            $stmt_exp->bind_param("i", $id_usuario);
+            $stmt_exp->execute();
+            $datos_experiencias = $stmt_exp->get_result();
 
             while ($row = $datos_experiencias->fetch_assoc()) {
                 $periodosExperiencia += get_periodos($row['fecha_ingreso'], $row['fecha_egreso']);
             }
 
-            $id = $_SESSION['id_usuario'];
+            $id = (int)$_SESSION['id_usuario'];
 
-            $query_periodos = mysqli_query($conn, "SELECT SUM(cant_periodos) AS periodos FROM datos_vacaciones,
-                (SELECT * FROM solicitud WHERE id_usuario LIKE '$id' AND tipo_solicitud LIKE 'Vacaciones' AND estatus LIKE 'aprobada') AS vacas
-                WHERE datos_vacaciones.`id_solicitud` LIKE vacas.id_solicitud")
-                or die('error: ' . mysqli_error($conn));
-            $data_periodo = mysqli_fetch_assoc($query_periodos);
+            // [MED-04 FIX] Prepared statement para query de periodos de vacaciones
+            $stmt_per = $conn->prepare(
+                "SELECT SUM(dv.cant_periodos) AS periodos
+                 FROM datos_vacaciones dv
+                 JOIN solicitud s ON dv.id_solicitud = s.id_solicitud
+                 WHERE s.id_usuario = ? AND s.tipo_solicitud = 'Vacaciones' AND s.estatus = 'aprobada'"
+            );
+            $stmt_per->bind_param("i", $id);
+            $stmt_per->execute();
+            $query_periodos = $stmt_per->get_result();
+            $data_periodo = $query_periodos->fetch_assoc();
             $periodosCumplidos = $data_periodo['periodos'];
 
             $periodosExperiencia = ($periodosExperiencia + $periodosCumplidos);
@@ -129,8 +141,13 @@ if (isset($_POST['Guardar'])) {
     // echo $fecha_ini. "Hola" . $fecha_fin." ". $subject;
 
     $query = mysqli_query($conn, "INSERT INTO solicitud(id_usuario,tipo_solicitud,motivo,fecha_inicio,fecha_fin,dias_cant,horario,created_date,estatus,estatus_supervisor,supervisor) 
-                                            VALUES('$user','$tipo_solicitud','$subject','$fecha_ini','$fecha_fin','$diff','$horario',NOW(),'$estatus','$estatus_supervisor','$supervisor')")
-        or die('error' . mysqli_error($conn));
+                                            VALUES('$user','$tipo_solicitud','$subject','$fecha_ini','$fecha_fin','$diff','$horario',NOW(),'$estatus','$estatus_supervisor','$supervisor')");
+    // [MED-02 FIX] No exponer error SQL al usuario
+    if (!$query) {
+        error_log("Error SQL solicitud: " . mysqli_error($conn));
+        header("location: ../home/solicitudes.php?alert=2");
+        exit();
+    }
 
    
 
@@ -139,9 +156,9 @@ if (isset($_POST['Guardar'])) {
         if($tipo_solicitud == "Vacaciones"){
             $id = mysqli_insert_id($conn);
             $query2 = mysqli_query($conn, "INSERT INTO datos_vacaciones(id_solicitud, fecha_reintegro, cant_periodos)
-                                            VALUES('$id', '$fecha_reintegro', '$periodos')")
-            or die('error' . mysqli_error($conn));
-            if(!$query2){
+                                            VALUES('$id', '$fecha_reintegro', '$periodos')");
+            if (!$query2) {
+                error_log("Error SQL datos_vacaciones: " . mysqli_error($conn));
                 header("location: ../home/solicitudes.php?alert=2");
             }
         }

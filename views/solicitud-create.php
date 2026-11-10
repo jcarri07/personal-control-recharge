@@ -1,7 +1,7 @@
 <?php
 require_once('../database/conexion.php');
 // session_start();
-
+error_reporting(0);
 $id = $_SESSION['id_usuario'];
 
 $query_periodos = mysqli_query($conn, "SELECT SUM(cant_periodos) AS periodos FROM datos_vacaciones,
@@ -21,7 +21,7 @@ $query_abae = "SELECT * FROM datos_abae WHERE id_usuario ='$id'";
 $datos_abae = $conn->query($query_abae);
 $rowAbae = $datos_abae->fetch_assoc();
 
-$periodosActuales = get_periodos($rowAbae['fecha_ingreso']); 
+$periodosActuales = get_periodos($rowAbae['fecha_ingreso']);
 
 while ($row = $datos_experiencias->fetch_assoc()) {
     $periodosExperiencia += get_periodos($row['fecha_ingreso'], $row['fecha_egreso']);
@@ -193,34 +193,34 @@ function get_periodos($fechaInicio, $fechaFin = null)
                                         <div class="form-group" id="form_permisos" style="display:none;">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                            <h2 class="sub-title">Motivo del permiso:</h2>
-                                            <select name="subject_per" id="subject_per" class="form-control form-control-primary">
-                                                <option value="">Seleccione</option>
-                                                <option value="Por Docencia">Por Docencia</option>
-                                                <option value="Por Estudios">Por Estudios</option>
-                                                <option value="Consulta Medica">Consulta Médica</option>
-                                                <option value="Matrimonio">Matrimonio</option>
-                                                <option value="Fallecimiento de Familiar">Fallecimiento de Familiar</option>
-                                                <option value="Lactancia Materna">Lactancia Materna</option>
-                                                <option value="Nacimiento de Hijo">Nacimiento de Hijo</option>
-                                                <option value="Diligencia Personales">Diligencia Personales</option>
-                                                <option value="Cuidados Medicos de Familiares">Cuidados Médicos de Familiares</option>
-                                                <option value="Otros">Otros</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-md-6">
+                                                    <h2 class="sub-title">Motivo del permiso:</h2>
+                                                    <select name="subject_per" id="subject_per" class="form-control form-control-primary">
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Por Docencia">Por Docencia</option>
+                                                        <option value="Por Estudios">Por Estudios</option>
+                                                        <option value="Consulta Medica">Consulta Médica</option>
+                                                        <option value="Matrimonio">Matrimonio</option>
+                                                        <option value="Fallecimiento de Familiar">Fallecimiento de Familiar</option>
+                                                        <option value="Lactancia Materna">Lactancia Materna</option>
+                                                        <option value="Nacimiento de Hijo">Nacimiento de Hijo</option>
+                                                        <option value="Diligencia Personales">Diligencia Personales</option>
+                                                        <option value="Cuidados Medicos de Familiares">Cuidados Médicos de Familiares</option>
+                                                        <option value="Otros">Otros</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <h2 class="sub-title">Horario:</h2>
                                                     <select name="horario" id="horario" class="form-control form-control-primary">
-                                                    <option value="">Seleccione</option>
-                                                    <option value="Mediodia (Mañana)">Mediodia (Mañana)</option>
-                                                    <option value="Mediodia (Tarde)">Mediodia (Tarde)</option>
-                                                    <option value="Dia Completo">Dia Completo</option>
-                                                  </select>
+                                                        <option value="">Seleccione</option>
+                                                        <option value="Mediodia (Mañana)">Mediodia (Mañana)</option>
+                                                        <option value="Mediodia (Tarde)">Mediodia (Tarde)</option>
+                                                        <option value="Dia Completo">Dia Completo</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
-                                           <br> 
-                                           <div class="row">
+                                            <br>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <h2 class="sub-title">A partir de:</h2>
                                                     <input type="date" id="fechainper" name="fecha_ini_per" class="form-control">
@@ -231,7 +231,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                                                     <input type="date" id="fechafinper" name="fecha_fin_per" class="form-control">
                                                 </div>
 
-                                               
+
 
                                             </div>
                                         </div>
@@ -257,7 +257,7 @@ function get_periodos($fechaInicio, $fechaFin = null)
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <input type="text" id="subject" name="subject" class="form-control" placeholder="Motivo" style="display:;" required>
                                             <input type="text" id="jefe" name="jefe" value="<?php echo $data1['id_jefe'] ?>" class="form-control" style="display:none;">

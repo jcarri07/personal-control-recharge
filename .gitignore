@@ -1,0 +1,9 @@
+database/conexion.php
+
+assets/empleados-images/*
+assets/firmas-images/*
+files/activities/*
+/img/temp
+
+# Variables de entorno y credenciales sensibles
+.env

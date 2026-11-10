@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?php
 if (!isset($_SESSION)) {
@@ -36,7 +36,8 @@ date_default_timezone_set("America/Caracas");
     <!-- Favicon icon -->
     <link rel="icon" href="files\assets\images\small-logo.png" type="image/x-icon" style="object-fit: cover;">
     <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet"> -->
+    <link href="assets/fonts/css.css" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="files\bower_components\bootstrap\css\bootstrap.min.css">
     <!-- themify-icons line icon -->
@@ -48,7 +49,7 @@ date_default_timezone_set("America/Caracas");
     <link rel="stylesheet" type="text/css" href="files\assets\css\new-style.css">
     <link rel="stylesheet" type="text/css" href="files\assets\css\login.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     
 </head>
 
@@ -85,7 +86,7 @@ date_default_timezone_set("America/Caracas");
 
                 <div style="text-align:center;" class="row m-b-20">
                     <div class="col-md-12 text-center" style="text-align:center; margin-bottom:10px">
-                        <img src="files\assets\images\logo.png" alt="logo.png" style="height:75px">
+                        <img src="files\assets\images\imagen_inicial.webp" alt="imagen_inicial.webp" style="height:105px; border-radius: 15px;">
                     </div>
                     <h2 style="text-align:center;" class="text-center col-md-12">Iniciar Sesión</h2>
                 </div>
@@ -103,10 +104,10 @@ date_default_timezone_set("America/Caracas");
                     <button class="ghost" id="signIn">Iniciar Sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>SIGH</h1>
-                        <h5><b>Sistema de Información Gestión Humana</b></h5>
-                    <p>Registrar Nuevo Personal</p>
-                    <button class="ghost" id="signUp">Registrar</button>
+                    <h1>SIGP</h1>
+                        <h5><b>Sistema de Información para la Gestión de Personal</b></h5>
+                    <!-- <p>Registrar Nuevo Personal</p> -->
+                    <!--button class="ghost" id="signUp">Registrar</button-->
                 </div>
             </div>
         </div>
@@ -118,6 +119,7 @@ date_default_timezone_set("America/Caracas");
         </p>
     </footer>
 
+    <script type="text/javascript" src="js\sweetalert2.js"></script>
     <!-- Required Jquery -->
     <script type="text/javascript" src="files\bower_components\jquery\js\jquery.min.js"></script>
     <script type="text/javascript" src="files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
@@ -137,26 +139,25 @@ date_default_timezone_set("America/Caracas");
     <script type="text/javascript" src="files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
     <script type="text/javascript" src="files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
     <script type="text/javascript" src="files\assets\js\common-pages.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics (Deshabilitado para entorno local) -->
+    <!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script> -->
     <script>
         window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
+        //function gtag() {
+            // dataLayer.push(arguments);
+        //}
+        // gtag('js', new Date());
+        // gtag('config', 'UA-23581568-13');
         $(document).ready(function() {
 
             const signUpButton = document.getElementById('signUp');
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('container');
 
-            signUpButton.addEventListener('click', () => {
+/*             signUpButton.addEventListener('click', () => {
                 container.classList.add("right-panel-active");
-            });
+            }); */
 
             signInButton.addEventListener('click', () => {
                 container.classList.remove("right-panel-active");

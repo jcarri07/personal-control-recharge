@@ -47,20 +47,20 @@ function hideMarriedInformation() {
   let statusInput = $("#status");
   let spouseDiv = $("#divSpouse");
   let spouseInput = $("#spouse");
-  console.log(statusInput.val());
+  let val = statusInput.val();
 
   if (
-    statusInput.val() == "Soltero(a)" ||
-    statusInput.val() == "Viudo(a)" ||
-    statusInput.val() == "Divorciado(a)" ||
-    statusInput.val() == "Separado de Union Legal" ||
-    statusInput.val() == "Separado de Union de Hecho"
+    val == "Soltero(a)" ||
+    val == "Viudo(a)" ||
+    val == "Anulado"
   ) {
     spouseInput.val("N/A");
-    spouseDiv.css("visibility", "hidden");
+    spouseDiv.hide();
   } else {
-    spouseInput.val("");
-    spouseDiv.css("visibility", "visible");
+    if (spouseInput.val() == "N/A") {
+        spouseInput.val("");
+    }
+    spouseDiv.show();
   }
 }
 

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once '../../database/conexion.php';
 
 session_start();
@@ -12,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      //FILES PERSONALES
      if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($_GET['act'] == 'insertPersonalData') {
+
+               $firmaFile = "default_firma.png";
+               $fotoFile = "default_image.jpg";
 
                // Verificar si se subió correctamente el archivo
                if (isset($_FILES["firm"]) && $_FILES["firm"]["error"] == UPLOAD_ERR_OK) {
@@ -210,6 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                echo "Datos personales registrados";
                header("Location: ../../home/form-register.php");
+               exit();
           }
      }
 }
@@ -253,7 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
 
           // Vincular los parámetros a la sentencia
-          $stmt->bind_param("issssssssss", $idUser, $nombresApellidos, $fechaNacimiento, $cedulaIdentidad, $sexo, $gradoEducacional, $tallaCamisa, $tallaPantalon, $tallaCalzado, $estatus, $edad);
+          $stmt->bind_param("isssssssssi", $idUser, $nombresApellidos, $fechaNacimiento, $cedulaIdentidad, $sexo, $gradoEducacional, $tallaCamisa, $tallaPantalon, $tallaCalzado, $estatus, $edad);
 
           // Ejecutar la consulta
           if ($stmt->execute() === true) {
@@ -272,6 +277,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos de hijos registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -331,6 +337,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos familiares registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -390,6 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos academicos registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -422,6 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $conn->close();
 
           header("Location: ../../home/form-register.php?tab=formacion-actual");
+          exit();
      }
 }
 
@@ -456,6 +465,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $conn->close();
 
           header("Location: ../../home/form-register.php?tab=cursos-realizados");
+          exit();
      }
 }
 
@@ -490,6 +500,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $conn->close();
 
           header("Location: ../../home/form-register.php?tab=certificados-actividades");
+          exit();
      }
 }
 
@@ -540,6 +551,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos academicos registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -592,6 +604,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos publicos registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -640,7 +653,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                echo "Error al insertar los datos personales: " . $stmt->error;
           }
 
-          echo "Unidad : " . $unidadAdscripcion . ", Año ingreso: " . $fechaInicioABAE .  ", super: " . $supervisorInmediato . "Fecha Admin:" . $fechaInicioAdminPublica . ", Cargo: " . $cargo . " Correo: " . $correoElectronico . " Nombre Familiar: " . $nombreFamiliar . "Estatus: " . $status;
+          echo "Unidad : " . $unidadAdscripcion . ", Año ingreso: " . $fechaInicioABAE .  ", super: " . $supervisorInmediato . "Fecha Admin:" . $fechaInicioAdminPublica . ", Cargo: " . $cargo . " Correo: " . $correoElectronico . " Nombre Familiar: " . $nombreFamiliar . "Estatus: " . $estatus;
 
           $sql2 = "UPDATE usuario SET step = 10 WHERE id_usuario = '$idUser' AND step < 10";
 
@@ -662,7 +675,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt2 = $conn->prepare($queryUnidadJefePrep);
                 $stmt2->bind_param("ii", $idUser, $unidadAdscripcion);
                 $stmt2->execute();
-                $resultQuery = $stmt2->get_result();
+                $stmt2->close();
            }
 
           if ($cargo === "Director") {
@@ -671,7 +684,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                $stmt2 = $conn->prepare($queryDirectorJefe);
                $stmt2->bind_param("ii", $idUser, $direccionAdscripcion);
                $stmt2->execute();
-               $resultQuery = $stmt2->get_result();
+               $stmt2->close();
           }
 
           //Agregar Supervisor Inmediato
@@ -697,13 +710,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if ($resultado->num_rows > 0) {
                $fila = $resultado->fetch_assoc();
-               $idJefe = $fila['id_jefe'];
+               $idJefe = (int)$fila['id_jefe'];
 
                $sqlUpdate = "UPDATE usuario SET id_jefe = $idJefe WHERE id_usuario = '$idUser'";
                if ($conn->query($sqlUpdate) === TRUE) {
                     echo "Actualización exitosa";
                } else {
-                    echo "Error al actualizar: " . $conexion->error;
+                    echo "Error al actualizar: " . $conn->error;
                }
           } else {
                echo "No se encontraron resultados en datos_empresa";
@@ -775,37 +788,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                echo "La consulta está vacía.";
            }
 
-           if (!empty($queryDirector)) {
-               // Verifica si la consulta no está vacía antes de ejecutarla
-               if ($conn->query($queryDirector) === TRUE) {
-                   echo "Consulta ejecutada correctamente.";
-               } else {
-                   echo "Error al ejecutar la consulta: " . $conn->error;
-               }
-           } else {
-               echo "La consulta está vacía.";
-           }
-
           // Verificar si $cargo es igual a "Jefe" o "Director"
           if ($cargo == "Jefe" || $cargo == "Director") {
-               // Construir la consulta de actualización
-               $query = "UPDATE usuario SET tipo_usuario = 'jefe' WHERE id_usuario = '$idUser'";
-               $query2 = "UPDATE usuario SET cargo = '$cargo' WHERE id_usuario = '$idUser'";
-               // Ejecutar la consulta
-               if (
-                    $conn->query($query) === TRUE
-               ) {
+               $query = "UPDATE usuario SET tipo_usuario = 'jefe' WHERE id_usuario = ?";
+               $stmtCargo1 = $conn->prepare($query);
+               if ($stmtCargo1) {
+                    $stmtCargo1->bind_param("i", $idUser);
+                    $stmtCargo1->execute();
+                    $stmtCargo1->close();
                     echo "Consulta ejecutada correctamente.";
-               } else {
-                    echo "Error al ejecutar la consulta: " . $conn->error;
                }
 
-               if (
-                    $conn->query($query2) === TRUE
-               ) {
+               $query2 = "UPDATE usuario SET cargo = ? WHERE id_usuario = ?";
+               $stmtCargo2 = $conn->prepare($query2);
+               if ($stmtCargo2) {
+                    $stmtCargo2->bind_param("si", $cargo, $idUser);
+                    $stmtCargo2->execute();
+                    $stmtCargo2->close();
                     echo "Consulta ejecutada correctamente.";
-               } else {
-                    echo "Error al ejecutar la consulta: " . $conn->error;
                }
           } else {
                echo "SUPERVISOR: ".$supervisorInmediato."  El valor de \$cargo no es válido.";
@@ -869,6 +869,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           echo "Datos de Comision registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 
@@ -968,6 +969,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           // echo "Datos de otros usuarios registrados";
           header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 

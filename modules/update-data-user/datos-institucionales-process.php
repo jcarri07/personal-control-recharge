@@ -70,6 +70,8 @@
         if($supervisor_inmediato != $usuario['id_jefe']){
             $sql = "UPDATE usuario SET id_jefe = '$supervisor_inmediato' WHERE id_usuario = '$id';";
             $res = mysqli_query($conn, $sql);
+            $sqlAbae = "UPDATE datos_abae SET id_jefe = '$supervisor_inmediato' WHERE id_datos_abae = '$id_datos_abae';";
+            mysqli_query($conn, $sqlAbae);
         }
         
 

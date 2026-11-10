@@ -524,7 +524,7 @@ closeConection($conn);
                                                                                                         <label for="date" class="block">Firma Digital</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="firm" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png" required>
+                                                                                                        <input name="firm" id="firm-register" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png, image/webp" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group row">
@@ -532,7 +532,7 @@ closeConection($conn);
                                                                                                         <label for="date" class="block">Foto del Empleado</label>
                                                                                                     </div>
                                                                                                     <div class="col-md-8 col-lg-10">
-                                                                                                        <input name="photoEmployeer" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png" required>
+                                                                                                        <input name="photoEmployeer" id="photoEmployeer-register" type="file" class="form-control required date-control" accept="image/jpeg, image/jpg, image/png, image/webp" required>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </fieldset>
@@ -2111,6 +2111,27 @@ closeConection($conn);
                 });
             }
         }
+
+        // Validación de tipo de archivo para firma y foto en registro
+        $(document).on('change', "#firm-register, #photoEmployeer-register", function () {
+            if (this.files && this.files[0]) {
+                var file = this.files[0];
+                var allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                var allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
+                var ext = file.name.split('.').pop().toLowerCase();
+
+                if (!allowedTypes.includes(file.type) || !allowedExts.includes(ext)) {
+                    var campo = (this.id === 'firm-register') ? 'Firma Digital' : 'Foto del Empleado';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Archivo no permitido',
+                        html: '<b>' + campo + '</b>: Solo se permiten imágenes <b>JPG, PNG o WEBP</b>.<br>Por favor selecciona una imagen válida.',
+                        confirmButtonColor: '#01a9ac'
+                    });
+                    $(this).val('');
+                }
+            }
+        });
 
         function confirmModal() {
             return new Promise(function(resolve) {

@@ -434,7 +434,7 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                 <label class="block font-weight-bold mb-3 text-uppercase text-muted" style="font-size: 0.85rem; letter-spacing: 1px;">Firma Digital</label>
                                                                                                 
                                                                                                 <div class="box-img firma d-flex align-items-center justify-content-center" style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; width: 100%; max-width: 260px; height: 120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
-                                                                                                    <img src="../assets/firmas-images/<?php echo $datos_personales_detalles['firma']; ?>" style="max-width: 90%; max-height: 90px; object-fit: contain;">
+                                                                                                    <img src="../assets/firmas-images/<?php echo !empty($datos_personales_detalles['firma']) ? htmlspecialchars($datos_personales_detalles['firma']) : 'default_firma.svg'; ?>" style="max-width: 90%; max-height: 90px; object-fit: contain;" onerror="this.onerror=null;this.src='../assets/firmas-images/default_firma.svg';">
                                                                                                 </div>
                                                                                                 
                                                                                                 <div class="box-img preview firma align-items-center justify-content-center" style="display: none; background-color: #f8f9fa; border: 2px dashed #00a9ac; border-radius: 12px; width: 100%; max-width: 260px; height: 120px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);"></div>
@@ -443,8 +443,8 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                     <label for="firm" class="btn btn-outline-info btn-sm waves-effect" style="cursor: pointer; border-radius: 20px; font-weight: bold; padding: 5px 15px; border: 2px solid #00a9ac; color: #00a9ac;">
                                                                                                         <i class="feather icon-upload"></i> Cargar Firma
                                                                                                     </label>
-                                                                                                    <input name="firm" id="firm" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png">
-                                                                                                    <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG. Ideal: 300x150</small>
+                                                                                                    <input name="firm" id="firm" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png, image/webp">
+                                                                                                    <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG, WEBP. Ideal: 300x150</small>
                                                                                                 </div>
                                                                                             </div>
                                                                                             
@@ -452,7 +452,7 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                 <label class="block font-weight-bold mb-3 text-uppercase text-muted" style="font-size: 0.85rem; letter-spacing: 1px;">Foto de Perfil</label>
                                                                                                 
                                                                                                 <div class="box-img foto">
-                                                                                                    <img src="../assets/empleados-images/<?php echo $datos_personales_detalles['foto']; ?>" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 15px rgba(0,169,172,0.3);">
+                                                                                                    <img src="../assets/empleados-images/<?php echo !empty($datos_personales_detalles['foto']) ? htmlspecialchars($datos_personales_detalles['foto']) : 'User-Profile-Image.jpg'; ?>" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 15px rgba(0,169,172,0.3);" onerror="this.onerror=null;this.src='../assets/empleados-images/User-Profile-Image.jpg';">
                                                                                                 </div>
                                                                                                 
                                                                                                 <div class="box-img preview foto" style="display: none;"></div>
@@ -461,8 +461,8 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                     <label for="photoEmployeer" class="btn btn-outline-info btn-sm waves-effect" style="cursor: pointer; border-radius: 20px; font-weight: bold; padding: 5px 15px; border: 2px solid #00a9ac; color: #00a9ac;">
                                                                                                         <i class="feather icon-camera"></i> Cargar Foto
                                                                                                     </label>
-                                                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png">
-                                                                                                    <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG. Foto frontal</small>
+                                                                                                    <input name="photoEmployeer" id="photoEmployeer" type="file" style="display: none;" accept="image/jpeg, image/jpg, image/png, image/webp">
+                                                                                                    <small class="text-muted d-block mt-2" style="font-size: 0.75rem;">Formatos: JPG, PNG, WEBP. Foto frontal</small>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -644,10 +644,24 @@ if (mysqli_num_rows($query) > 0) {
         $(document).on('change', "#photoEmployeer, #firm", function () {
             if (this.files && this.files[0]) {
 
-                array_img = [];
+                var file = this.files[0];
+                var allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                var allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
+                var ext = file.name.split('.').pop().toLowerCase();
 
-                //Funcion dentro del archivo reducir_imagen.js
-                //reduce_image(this.files[0], 0, 0, false, array_img);
+                if (!allowedTypes.includes(file.type) || !allowedExts.includes(ext)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Archivo no permitido',
+                        html: 'Solo se permiten imágenes <b>JPG, PNG o WEBP</b>.<br>Por favor selecciona una imagen válida.',
+                        confirmButtonColor: '#00a9ac'
+                    });
+                    // Limpiar el input para que no se envíe
+                    $(this).val('');
+                    return;
+                }
+
+                array_img = [];
 
                 var div = "";
                 if (this.id == "firm") {
@@ -680,7 +694,7 @@ if (mysqli_num_rows($query) > 0) {
                         $('.box-img.foto').not('.preview').hide();
                     }
                 }
-                reader.readAsDataURL(this.files[0]);
+                reader.readAsDataURL(file);
             }
         });
 

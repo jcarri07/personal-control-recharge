@@ -214,12 +214,13 @@ $fila = mysqli_fetch_assoc($resultado);
                             <li style="height:49px" class="d-flex align-items-center px-0">
                                 <div style="width:40px;height:40px;overflow: hidden;border-radius:50%;text-align:center;position: relative;"
                                     class="" alt="">
-                                    <img src="../assets/empleados-images/<?php if ($personal_data != null) {
-                                        echo $personal_data['foto'];
+                                    <img src="../assets/empleados-images/<?php if ($personal_data != null && !empty($personal_data['foto'])) {
+                                        echo htmlspecialchars($personal_data['foto']);
                                     } else {
                                         echo "User-Profile-Image.jpg";
                                     } ?>"
-                                        style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px">
+                                        style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);min-width: 100%;min-height: 100%; width:40px"
+                                        onerror="this.onerror=null;this.src='../assets/empleados-images/User-Profile-Image.jpg';">
                                 </div>
                             </li>
                             <li style="padding:10px"></li>

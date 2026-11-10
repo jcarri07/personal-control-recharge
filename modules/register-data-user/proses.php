@@ -598,14 +598,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //DATOS INSTITUCIONALES
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if ($_GET['act'] == 'insertInstituteData') {
-          ob_start();
           // Obtener los valores de los campos del formulario
           $cargo = $_POST['job-institute'];
           $fechaInicioABAE = $_POST['begin-institute'];
           $sede = $_POST['sede-institute'];
           $direccionAdscripcion = $_POST['direction-institute'] ?? "0";
           $unidadAdscripcion = $_POST['unity-institute'] ?? "0";
-          $supervisorInmediato = $_POST['chief-institute'] ?? "N/A";
+          $supervisorInmediato = $_POST['chief-institute'] ?? "0";
+          // id_jefe debe ser entero; 0 indica "soy el nuevo supervisor"
+          $supervisorInmediato = (is_numeric($supervisorInmediato) ? (int)$supervisorInmediato : 0);
           $fechaInicioAdminPublica = $_POST['begin-publicInstitute'];
           $correoElectronico = $_POST['email-institute'];
           $telefonoOficina = $_POST['tlf-institute'];
@@ -618,8 +619,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           // Preparar la consulta SQL con parámetros
           $sql = "INSERT INTO datos_abae (id_usuario, id_direccion, id_unidad, fecha_ingreso, 	
-          fecha_inicio_administracion, cargo, correo_abae, nombres_familiares_abae, estatus, tlf_oficina)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          fecha_inicio_administracion, cargo, correo_abae, nombres_familiares_abae, estatus, tlf_oficina, id_jefe)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
           // Preparar la sentencia 
           $stmt = $conn->prepare($sql);
@@ -630,7 +631,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
 
           // Vincular los parámetros a la sentencia
-          $stmt->bind_param("iiisssssss", $idUser, $direccionAdscripcion, $unidadAdscripcion, $fechaInicioABAE, $fechaInicioAdminPublica, $cargo, $correoElectronico, $nombreFamiliar, $estatus, $telefonoOficina);
+          $stmt->bind_param("iiisssssssi", $idUser, $direccionAdscripcion, $unidadAdscripcion, $fechaInicioABAE, $fechaInicioAdminPublica, $cargo, $correoElectronico, $nombreFamiliar, $estatus, $telefonoOficina, $supervisorInmediato);
 
           // Ejecutar la consulta
           if ($stmt->execute() === true) {
@@ -814,7 +815,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $stmt->close();
           $conn->close();
 
-          ob_end_clean();
           header("Location: ../../home/form-register.php");
           exit();
      }

@@ -1,11 +1,12 @@
 <?php
+session_start();
 require_once '../database/conexion.php';
 
 // Obtener el ID de la unidad seleccionada
 $direccionId = $_POST['direccionId'];
 $unidad = $_POST['idUnidad'];
 $value = 0;
-$idUser = $_SESSION["id_usuario"];
+$idUser = isset($_SESSION["id_usuario"]) ? $_SESSION["id_usuario"] : null;
 
 // Realizar la primera consulta para obtener el id_jefe
 $sql = "SELECT id_jefe FROM direccion WHERE id_direccion LIKE ? LIMIT 1";
@@ -35,6 +36,7 @@ $data = array();
 
 if ($result->num_rows > 0) {
     // $options = "<option value=''>Seleccionar...</option>";
+    $options = "";
     while ($row = $result->fetch_assoc()) {
         $data[] = array(
             'id_usuario' => $row['id_usuario'],

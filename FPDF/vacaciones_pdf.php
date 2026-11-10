@@ -245,8 +245,8 @@ $pdf->Cell(90,7,utf8_decode('Jefe de la Unidad Solicitante:'),'1',1,'C',0);
 
 
 $pdf->SetX(16);
-$pdf->Cell(90,25,utf8_decode($pdf->Image('../assets/firmas-images/'.$row5['firma'],45,183,30,18)),'LRT',0,'C',0);
-$pdf->Cell(90,20,utf8_decode($pdf->Image('../assets/firmas-images/'.$row4['firma'],133,183,30,18)),'LRT',1,'C',0);
+$pdf->Cell(90,25,utf8_decode((isset($row5['firma']) && !empty($row5['firma'])) ? $pdf->Image('../assets/firmas-images/'.$row5['firma'],45,183,30,18) : ''),'LRT',0,'C',0);
+$pdf->Cell(90,20,utf8_decode((isset($row4['firma']) && !empty($row4['firma'])) ? $pdf->Image('../assets/firmas-images/'.$row4['firma'],133,183,30,18) : ''),'LRT',1,'C',0);
 $pdf->SetX(16);
 $pdf->Cell(90,8,utf8_decode('FIRMA:'),'LRB',0,'C',0);
 $pdf->Cell(90,8,utf8_decode('FIRMA Y SELLO:'),'LRB',1,'C',0);
@@ -262,7 +262,7 @@ $pdf->Cell(90,7,utf8_decode('Solicitud Valida por Recursos Humanos'),'1',0,'C',0
 $pdf->Cell(90,7,utf8_decode('Recibido por:'),'1',1,'C',0);
 
 $pdf->SetX(106);
-$pdf->Cell(90,12.5,utf8_decode($pdf->Image('../assets/firmas-images/'.$row6['firma'],133,225,30,18)),'LRT',0,'C',0);
+$pdf->Cell(90,12.5,utf8_decode((isset($row6['firma']) && !empty($row6['firma'])) ? $pdf->Image('../assets/firmas-images/'.$row6['firma'],133,225,30,18) : ''),'LRT',0,'C',0);
 
 $pdf->SetX(16);
 $pdf->Cell(90,12.5,'SI'.$pdf->Image('img/check.jpeg',35,227.5,5),'LR',1,'L',0);

@@ -498,6 +498,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //DATOS INSTITUCIONALES
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if ($_GET['act'] == 'insertInstituteData') {
+          ob_start();
           // Obtener los valores de los campos del formulario
           $cargo = $_POST['job-institute'];
           $fechaInicioABAE = $_POST['begin-institute'];
@@ -514,9 +515,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($unidadAdscripcion === "" || $unidadAdscripcion === null) {
                $unidadAdscripcion = 0;
           }
-
-          echo "Direccion: " . $direccionAdscripcion;
-          echo "Unidad: " . $unidadAdscripcion;
 
           // Preparar la consulta SQL con parámetros
           $sql = "INSERT INTO datos_abae (id_usuario, id_direccion, id_unidad, fecha_ingreso, 	
@@ -557,14 +555,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                die("Error de conexión: " . $conn->connect_error);
           }
 
-          if ($cargo === "Jefe") {
-               $queryUnidadJefe = "UPDATE unidad SET id_jefe = ? WHERE id_unidad = ?";
+           if ($cargo === "Jefe") {
+                $queryUnidadJefePrep = "UPDATE unidad SET id_jefe = ? WHERE id_unidad = ?";
 
-               $stmt2 = $conn->prepare($queryUnidadJefe);
-               $stmt2->bind_param("ii", $idUser, $unidadAdscripcion);
-               $stmt2->execute();
-               $resultQuery = $stmt2->get_result();
-          }
+                $stmt2 = $conn->prepare($queryUnidadJefePrep);
+                $stmt2->bind_param("ii", $idUser, $unidadAdscripcion);
+                $stmt2->execute();
+                $resultQuery = $stmt2->get_result();
+           }
 
           if ($cargo === "Director") {
                $queryDirectorJefe = "UPDATE direccion SET id_jefe = ? WHERE id_direccion = ?";
@@ -589,7 +587,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           } else {
                $queryJefeInmediato = "UPDATE usuario SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
                $queryJefeInmediatoABAE = "UPDATE datos_abae SET id_jefe = '$supervisorInmediato' WHERE id_usuario = '$idUser'";
-               echo $queryUnidadJefe;
+               // echo $queryUnidadJefe;
           }
 
 
@@ -716,8 +714,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $stmt->close();
           $conn->close();
 
-          echo "Datos institucionales registrados";
-          // header("Location: ../../home/form-register.php");
+          ob_end_clean();
+          header("Location: ../../home/form-register.php");
+          exit();
      }
 }
 

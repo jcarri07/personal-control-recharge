@@ -819,7 +819,7 @@ closeConection($conn);
                                                                             <div class="col-md-12">
                                                                                 <div id="wizard">
                                                                                     <section>
-                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertAcademicData">
+                                                                                        <form id="form-academic" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertAcademicData">
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Datos Académicos</p>
                                                                                             </div>
@@ -896,7 +896,7 @@ closeConection($conn);
                                                                             <div class="col-md-12">
                                                                                 <div id="wizard">
                                                                                     <section>
-                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertFormacionActual">
+                                                                                        <form id="form-formacion-actual" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertFormacionActual">
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Formación Actual</p>
                                                                                             </div>
@@ -967,7 +967,7 @@ closeConection($conn);
                                                                             <div class="col-md-12">
                                                                                 <div id="wizard">
                                                                                     <section>
-                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCursoRealizado">
+                                                                                        <form id="form-cursos-realizados" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCursoRealizado">
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 250px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Cursos Realizados</p>
                                                                                             </div>
@@ -1046,7 +1046,7 @@ closeConection($conn);
                                                                             <div class="col-md-12">
                                                                                 <div id="wizard">
                                                                                     <section>
-                                                                                        <form class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCertificadoActividad">
+                                                                                        <form id="form-certificados-actividades" class="wizard-form" method="POST" action="../modules/register-data-user/proses.php?act=insertCertificadoActividad">
                                                                                             <div style="display: flex; justify-content: center; align-items: center; width: 450px; height: 55px; background-color: #00a9ac; border-radius: 5px; margin-bottom: 20px;">
                                                                                                 <p style="color: white; margin-top: 15px; font-size: 16px">Certificados de Actividades Realizadas en la Institución</p>
                                                                                             </div>
@@ -2397,6 +2397,66 @@ closeConection($conn);
             });
         });
 
+        //Agregar Academicos
+        $(document).ready(function() {
+            $('#guardar-academicos').click(function(e) {
+                e.preventDefault();
+                confirmModal().then(function(result) {
+                    if (result) {
+                        $("#form-academic").trigger("submit");
+                    } else {
+                        $("#form-academic").trigger("submit");
+                        $("#omitir-academicos").trigger("click");
+                    }
+                });
+            });
+        });
+
+        //Agregar Formacion Actual
+        $(document).ready(function() {
+            $('#guardar-formacion-actual').click(function(e) {
+                e.preventDefault();
+                confirmModal().then(function(result) {
+                    if (result) {
+                        $("#form-formacion-actual").trigger("submit");
+                    } else {
+                        $("#form-formacion-actual").trigger("submit");
+                        $("#omitir-formacion-actual").trigger("click");
+                    }
+                });
+            });
+        });
+
+        //Agregar Cursos Realizados
+        $(document).ready(function() {
+            $('#guardar-cursos-realizados').click(function(e) {
+                e.preventDefault();
+                confirmModal().then(function(result) {
+                    if (result) {
+                        $("#form-cursos-realizados").trigger("submit");
+                    } else {
+                        $("#form-cursos-realizados").trigger("submit");
+                        $("#omitir-cursos-realizados").trigger("click");
+                    }
+                });
+            });
+        });
+
+        //Agregar Certificados Actividades
+        $(document).ready(function() {
+            $('#guardar-certificados-actividades').click(function(e) {
+                e.preventDefault();
+                confirmModal().then(function(result) {
+                    if (result) {
+                        $("#form-certificados-actividades").trigger("submit");
+                    } else {
+                        $("#form-certificados-actividades").trigger("submit");
+                        $("#omitir-certificados-actividades").trigger("click");
+                    }
+                });
+            });
+        });
+
         //Omitir Academicos
         $(document).ready(function(e) {
             $('#omitir-academicos').click(function(e) {
@@ -2553,7 +2613,14 @@ closeConection($conn);
         $(document).ready(function() {
             $('#save-comision').click(function(e) {
                 e.preventDefault(); // Evitar el comportamiento predeterminado del botón
-                $("#form-comision").trigger("submit");
+                confirmModal().then(function(result) {
+                    if (result) {
+                        $("#form-comision").trigger("submit");
+                    } else {
+                        $("#form-comision").trigger("submit");
+                        $("#omitir-comision").trigger("click");
+                    }
+                });
             });
         });
 

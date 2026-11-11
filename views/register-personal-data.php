@@ -2116,11 +2116,11 @@ closeConection($conn);
         $(document).on('change', "#firm-register, #photoEmployeer-register", function () {
             if (this.files && this.files[0]) {
                 var file = this.files[0];
-                var allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                var allowedTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/webp'];
                 var allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
                 var ext = file.name.split('.').pop().toLowerCase();
 
-                if (!allowedTypes.includes(file.type) || !allowedExts.includes(ext)) {
+                if (!allowedExts.includes(ext) || (file.type && !allowedTypes.includes(file.type.toLowerCase()))) {
                     var campo = (this.id === 'firm-register') ? 'Firma Digital' : 'Foto del Empleado';
                     Swal.fire({
                         icon: 'error',

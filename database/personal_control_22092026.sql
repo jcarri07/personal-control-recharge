@@ -2789,7 +2789,7 @@ CREATE TABLE `usuario` (
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `cedula` varchar(20) NOT NULL,
-  `cargo` varchar(30) NOT NULL,
+  `cargo` varchar(100) NOT NULL,
   `user` varchar(50) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `tipo_usuario` varchar(50) NOT NULL,

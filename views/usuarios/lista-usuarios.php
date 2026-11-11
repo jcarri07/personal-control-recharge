@@ -372,7 +372,7 @@ closeConection($conn);
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label class="block"><b>Cargo</b></label>
-                            <input type="text" name="cargo" id="modal_cargo" class="form-control" maxlength="50" placeholder="Ej: Operador, Analista, Jefe, Director">
+                            <input type="text" name="cargo" id="modal_cargo" class="form-control" maxlength="100" placeholder="Ej: Operador, Analista, Jefe, Director">
                         </div>
                         <div class="col-md-6">
                             <label class="block"><b>Estatus</b></label>
@@ -640,6 +640,22 @@ closeConection($conn);
                             confirmButtonColor: '#00A9AC'
                         });
                         break;
+                    case 'error_cargo_largo':
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Cargo demasiado largo',
+                            text: 'El cargo ingresado excede el límite permitido en la base de datos.',
+                            confirmButtonColor: '#00A9AC'
+                        });
+                        break;
+                    case 'error_bd':
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error de Base de Datos',
+                            text: 'Ocurrió un error en la base de datos al intentar actualizar el usuario.',
+                            confirmButtonColor: '#00A9AC'
+                        });
+                        break;
                     case 'no_auth':
                         Swal.fire({
                             icon: 'error',
@@ -787,6 +803,17 @@ closeConection($conn);
                         icon: 'warning',
                         title: 'Acción No Permitida',
                         text: 'No puedes eliminar tu propia cuenta de administrador',
+                        confirmButtonColor: '#00A9AC'
+                    });
+                } else if (resp.indexOf('tiene_relaciones') === 0) {
+                    var detalles = '';
+                    if (resp.indexOf(':') !== -1) {
+                        detalles = '<br><br><small class="text-muted"><b>Registros encontrados en:</b> ' + resp.substring(resp.indexOf(':') + 1) + '.</small>';
+                    }
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No se puede eliminar este usuario',
+                        html: 'El usuario cuenta con historial, expedientes o registros institucionales asociados y no puede ser borrado físicamente para preservar la integridad de los datos.<br><br><b>Acción recomendada:</b> Cambie su estatus a <b>"Inactivo"</b> para inhabilitar su acceso al sistema sin perder su información.' + detalles,
                         confirmButtonColor: '#00A9AC'
                     });
                 } else {

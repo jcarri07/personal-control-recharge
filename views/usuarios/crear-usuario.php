@@ -160,7 +160,7 @@ if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['tipo_usuario']) || $_SE
                                         <div class="form-group row">
                                             <div class="col-md-6">
                                                 <label class="block"><b>Cargo Institucional</b></label>
-                                                <input type="text" name="cargo" id="new_cargo" class="form-control" maxlength="50" placeholder="Ej: Operador, Analista, Especialista, Director">
+                                                <input type="text" name="cargo" id="new_cargo" class="form-control" maxlength="100" placeholder="Ej: Operador, Analista, Especialista, Director">
                                                 <small class="text-muted">Puesto o función en la institución</small>
                                             </div>
                                         </div>
@@ -305,6 +305,22 @@ if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['tipo_usuario']) || $_SE
                             icon: 'warning',
                             title: 'Campos Incompletos',
                             text: 'Por favor complete todos los campos obligatorios marcados con (*)',
+                            confirmButtonColor: '#00A9AC'
+                        });
+                        break;
+                    case 'error_cargo_largo':
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Cargo demasiado largo',
+                            text: 'El cargo ingresado excede el límite permitido. Por favor use una descripción más breve o actualice la columna en la base de datos.',
+                            confirmButtonColor: '#00A9AC'
+                        });
+                        break;
+                    case 'error_bd':
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error de Base de Datos',
+                            text: 'Ocurrió un error en la base de datos al intentar registrar el usuario.',
                             confirmButtonColor: '#00A9AC'
                         });
                         break;

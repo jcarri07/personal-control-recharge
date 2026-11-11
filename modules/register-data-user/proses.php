@@ -19,17 +19,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                // Tipos permitidos para firma y foto
                $allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
-               $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
+               $allowedMimes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/webp'];
 
                // --- FIRMA ---
                if (isset($_FILES["firm"]) && $_FILES["firm"]["error"] == UPLOAD_ERR_OK) {
                     $ext   = strtolower(pathinfo($_FILES["firm"]["name"], PATHINFO_EXTENSION));
-                    $finfo = new finfo(FILEINFO_MIME_TYPE);
-                    $mime  = $finfo->file($_FILES["firm"]["tmp_name"]);
+                    $mime  = '';
+                    if (class_exists('finfo')) {
+                        $finfo = new finfo(FILEINFO_MIME_TYPE);
+                        $mime  = $finfo->file($_FILES["firm"]["tmp_name"]);
+                    } elseif (function_exists('mime_content_type')) {
+                        $mime  = mime_content_type($_FILES["firm"]["tmp_name"]);
+                    } else {
+                        $mime  = $_FILES["firm"]["type"] ?? '';
+                    }
 
-                    if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
+                    if (empty($mime) || $mime === 'application/octet-stream') {
+                        $imgInfo = @getimagesize($_FILES["firm"]["tmp_name"]);
+                        if ($imgInfo && isset($imgInfo['mime'])) {
+                            $mime = $imgInfo['mime'];
+                        }
+                    }
+
+                    if (in_array($ext, $allowedExts) && (empty($mime) || in_array($mime, $allowedMimes))) {
+                         $destDir = __DIR__ . "/../../assets/firmas-images";
+                         if (!is_dir($destDir)) {
+                             @mkdir($destDir, 0777, true);
+                         }
                          $firmaFile = "firma_user_" . $idUser . "_" . uniqid() . "." . $ext;
-                         $firmaPath = "../../assets/firmas-images/" . $firmaFile;
+                         $firmaPath = $destDir . DIRECTORY_SEPARATOR . $firmaFile;
                          move_uploaded_file($_FILES["firm"]["tmp_name"], $firmaPath);
                          echo "ARCHIVO: firma success ";
                     } else {
@@ -43,12 +61,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                // --- FOTO ---
                if (isset($_FILES["photoEmployeer"]) && $_FILES["photoEmployeer"]["error"] == UPLOAD_ERR_OK) {
                     $ext   = strtolower(pathinfo($_FILES["photoEmployeer"]["name"], PATHINFO_EXTENSION));
-                    $finfo = new finfo(FILEINFO_MIME_TYPE);
-                    $mime  = $finfo->file($_FILES["photoEmployeer"]["tmp_name"]);
+                    $mime  = '';
+                    if (class_exists('finfo')) {
+                        $finfo = new finfo(FILEINFO_MIME_TYPE);
+                        $mime  = $finfo->file($_FILES["photoEmployeer"]["tmp_name"]);
+                    } elseif (function_exists('mime_content_type')) {
+                        $mime  = mime_content_type($_FILES["photoEmployeer"]["tmp_name"]);
+                    } else {
+                        $mime  = $_FILES["photoEmployeer"]["type"] ?? '';
+                    }
 
-                    if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
+                    if (empty($mime) || $mime === 'application/octet-stream') {
+                        $imgInfo = @getimagesize($_FILES["photoEmployeer"]["tmp_name"]);
+                        if ($imgInfo && isset($imgInfo['mime'])) {
+                            $mime = $imgInfo['mime'];
+                        }
+                    }
+
+                    if (in_array($ext, $allowedExts) && (empty($mime) || in_array($mime, $allowedMimes))) {
+                         $destDir = __DIR__ . "/../../assets/empleados-images";
+                         if (!is_dir($destDir)) {
+                             @mkdir($destDir, 0777, true);
+                         }
                          $fotoFile = "foto_user_" . $idUser . "_" . uniqid() . "." . $ext;
-                         $fotoPath = "../../assets/empleados-images/" . $fotoFile;
+                         $fotoPath = $destDir . DIRECTORY_SEPARATOR . $fotoFile;
                          move_uploaded_file($_FILES["photoEmployeer"]["tmp_name"], $fotoPath);
                          echo "foto success ";
                     } else {

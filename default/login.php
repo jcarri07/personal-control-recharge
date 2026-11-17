@@ -236,7 +236,8 @@ date_default_timezone_set("America/Caracas");
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    switch (response) {
+                    var res = $.trim(response);
+                    switch (res) {
                         case "si":
                             promp("Exito", "success", "top", "center");
                         setTimeout(function(){

@@ -46,5 +46,4 @@ if (!function_exists('env')) {
 
 // Cargar automáticamente las variables de entorno
 loadEnv();
-?>
 

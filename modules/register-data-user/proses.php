@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                // Tipos permitidos para firma y foto
                $allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
-               $allowedMimes = ['image/jpeg', 'image/png', 'image/webp'];
+               $allowedMimes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/webp'];
 
                // --- FIRMA ---
                if (isset($_FILES["firm"]) && $_FILES["firm"]["error"] == UPLOAD_ERR_OK) {
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
                          $firmaFile = "firma_user_" . $idUser . "_" . uniqid() . "." . $ext;
-                         $firmaPath = "../../assets/firmas-images/" . $firmaFile;
+                         $firmaPath = __DIR__ . "/../../assets/firmas-images/" . $firmaFile;
                          move_uploaded_file($_FILES["firm"]["tmp_name"], $firmaPath);
                          echo "ARCHIVO: firma success ";
                     } else {
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if (in_array($ext, $allowedExts) && in_array($mime, $allowedMimes)) {
                          $fotoFile = "foto_user_" . $idUser . "_" . uniqid() . "." . $ext;
-                         $fotoPath = "../../assets/empleados-images/" . $fotoFile;
+                         $fotoPath = __DIR__ . "/../../assets/empleados-images/" . $fotoFile;
                          move_uploaded_file($_FILES["photoEmployeer"]["tmp_name"], $fotoPath);
                          echo "foto success ";
                     } else {

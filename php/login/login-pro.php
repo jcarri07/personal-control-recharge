@@ -1,8 +1,9 @@
 <?php
-require_once "../../database/conexion.php";
+ob_start();
 if (!isset($_SESSION)) {
     session_start();
 }
+require_once "../../database/conexion.php";
 
 // [CRIT-01 FIX] Prepared statement + password_verify para prevenir SQL Injection
 // Soporte dual: acepta bcrypt Y texto plano para retrocompatibilidad durante migración
@@ -60,11 +61,14 @@ if ($res->num_rows >= 1) {
             $_SESSION["unidad"]    = $aux->nombre;
             $_SESSION["id_unidad"] = $aux->id_unidad;
         }
+        ob_clean();
         echo "si";
     } else {
+        ob_clean();
         echo "no";
     }
 } else {
+    ob_clean();
     echo "no";
 }
 

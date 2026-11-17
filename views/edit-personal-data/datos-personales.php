@@ -645,11 +645,11 @@ if (mysqli_num_rows($query) > 0) {
             if (this.files && this.files[0]) {
 
                 var file = this.files[0];
-                var allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
                 var allowedExts  = ['jpg', 'jpeg', 'png', 'webp'];
+                var allowedTypes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/webp'];
                 var ext = file.name.split('.').pop().toLowerCase();
 
-                if (!allowedTypes.includes(file.type) || !allowedExts.includes(ext)) {
+                if (!allowedExts.includes(ext) || (file.type && !allowedTypes.includes(file.type))) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Archivo no permitido',
@@ -738,8 +738,15 @@ if (mysqli_num_rows($query) > 0) {
             datos.append('estatura', this.stature.value);
             datos.append('peso', this.weight.value);
 
-            datos.append('firma', $(this.firm)[0].files[0]);
-            datos.append('foto', $(this.photoEmployeer)[0].files[0]);
+            var firmInput = document.getElementById('firm');
+            if (firmInput && firmInput.files && firmInput.files.length > 0) {
+                datos.append('firma', firmInput.files[0]);
+            }
+
+            var photoInput = document.getElementById('photoEmployeer');
+            if (photoInput && photoInput.files && photoInput.files.length > 0) {
+                datos.append('foto', photoInput.files[0]);
+            }
 
             $('.loaderParent').show();
 

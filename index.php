@@ -178,7 +178,8 @@ date_default_timezone_set("America/Caracas");
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        switch (response) {
+                        var res = $.trim(response);
+                        switch (res) {
                             case "si":
                                 Swal.fire({
                                         icon: 'success',
@@ -232,8 +233,8 @@ date_default_timezone_set("America/Caracas");
                         contentType: false,
                         processData: false,
                         success: function(response) {
-
-                            switch (response) {
+                            var res = $.trim(response);
+                            switch (res) {
                                 case "si":
                                     Swal.fire({
                                         icon: 'success',

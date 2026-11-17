@@ -771,6 +771,7 @@ if (mysqli_num_rows($query) > 0) {
                 processData: false,
                 success: function (response) { //console.log(response);
                     $('.loaderParent').hide();
+                    response = $.trim(response);
                     if (response == 'si') {
                         //alertify.success("Bello."); 
                         $("#modal-generic .message").text("Actualización Exitosa");

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="100" viewBox="0 0 260 100">
+  <rect width="260" height="100" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="130" y="38" font-family="Arial,sans-serif" font-size="13" fill="#adb5bd" text-anchor="middle">Sin firma registrada</text>
+  <path d="M60 65 Q90 45 120 65 Q150 85 180 55 Q200 40 210 60" stroke="#ced4da" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
+

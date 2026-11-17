@@ -1,7 +1,14 @@
 database/conexion.php
 
 assets/empleados-images/*
+!assets/empleados-images/User-Profile-Image.jpg
+!assets/empleados-images/default_image.jpg
+!assets/empleados-images/.gitkeep
+
 assets/firmas-images/*
+!assets/firmas-images/default_firma.svg
+!assets/firmas-images/default_firma.png
+!assets/firmas-images/.gitkeep
 files/activities/*
 /img/temp
 

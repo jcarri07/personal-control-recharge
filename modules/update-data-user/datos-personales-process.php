@@ -194,30 +194,48 @@ if ($opc == "edit") {
     }
 
     // Upload de firma con validación de tipo MIME
-    if (isset($_FILES['firma']['name']) && $_FILES['firma']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['firma']) && $_FILES['firma']['error'] === UPLOAD_ERR_OK) {
         $image_name = $_FILES['firma']['name'];
         $extensionArchivo = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
         $allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
         $allowedMimes = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/webp'];
 
-    // Upload de firma con validación robusta de tipo MIME
-    if (isset($_FILES['firma']) && $_FILES['firma']['error'] !== UPLOAD_ERR_NO_FILE) {
-        if ($_FILES['firma']['error'] === UPLOAD_ERR_OK) {
-            $image_name = $_FILES['firma']['name'];
-            $extensionArchivo = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime  = $finfo->file($_FILES['firma']['tmp_name']);
 
-        if (in_array($extensionArchivo, $allowedExts) && in_array($mime, $allowedMimes)) {
-            $file = "firma_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
-            $ruta_img = __DIR__ . '/../../assets/firmas-images/' . $file;
-            if (move_uploaded_file($_FILES['firma']['tmp_name'], $ruta_img)) {
-                $sql = "UPDATE datos_personales SET firma = '$file' WHERE id_usuario = '$id';";
-                $res = mysqli_query($conn, $sql);
+        if (empty($mime) || $mime === 'application/octet-stream') {
+            $imgInfo = @getimagesize($_FILES['firma']['tmp_name']);
+            if ($imgInfo && isset($imgInfo['mime'])) {
+                $mime = $imgInfo['mime'];
             }
+        }
+
+        if (in_array($extensionArchivo, $allowedExts) && (empty($mime) || in_array($mime, $allowedMimes))) {
+            $destDir = __DIR__ . '/../../assets/firmas-images';
+            if (!is_dir($destDir)) {
+                @mkdir($destDir, 0777, true);
+            }
+            $file = "firma_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
+            $ruta_img = $destDir . DIRECTORY_SEPARATOR . $file;
+            if (move_uploaded_file($_FILES['firma']['tmp_name'], $ruta_img)) {
+                $sql = "UPDATE datos_personales SET firma = '$file' WHERE id_usuario = '$id'";
+                if (!empty($id_datos_personales)) {
+                    $sql .= " OR id_datos_personales = '$id_datos_personales'";
+                }
+                $resFirma = mysqli_query($conn, $sql);
+                if ($resFirma) {
+                    $res = true;
+                }
+            } else {
+                error_log("Error al guardar firma en: " . $ruta_img);
+            }
+        } else {
+            error_log("Firma rechazada por formato o MIME inválido. Ext: $extensionArchivo, MIME: $mime");
         }
     }
 
     // Upload de foto con validación de tipo MIME
-    if (isset($_FILES['foto']['name']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $image_name = $_FILES['foto']['name'];
         $extensionArchivo = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
         $allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
@@ -226,46 +244,35 @@ if ($opc == "edit") {
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime  = $finfo->file($_FILES['foto']['tmp_name']);
 
-        if (in_array($extensionArchivo, $allowedExts) && in_array($mime, $allowedMimes)) {
+        if (empty($mime) || $mime === 'application/octet-stream') {
+            $imgInfo = @getimagesize($_FILES['foto']['tmp_name']);
+            if ($imgInfo && isset($imgInfo['mime'])) {
+                $mime = $imgInfo['mime'];
+            }
+        }
+
+        if (in_array($extensionArchivo, $allowedExts) && (empty($mime) || in_array($mime, $allowedMimes))) {
+            $destDir = __DIR__ . '/../../assets/empleados-images';
+            if (!is_dir($destDir)) {
+                @mkdir($destDir, 0777, true);
+            }
             $file = "foto_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
-            $ruta_img = __DIR__ . '/../../assets/empleados-images/' . $file;
+            $ruta_img = $destDir . DIRECTORY_SEPARATOR . $file;
+
             if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_img)) {
-                $sql = "UPDATE datos_personales SET foto = '$file' WHERE id_usuario = '$id';";
-                $res = mysqli_query($conn, $sql);
-            }
-
-            if (empty($mime) || $mime === 'application/octet-stream') {
-                $imgInfo = @getimagesize($_FILES['foto']['tmp_name']);
-                if ($imgInfo && isset($imgInfo['mime'])) {
-                    $mime = $imgInfo['mime'];
+                $sql = "UPDATE datos_personales SET foto = '$file' WHERE id_usuario = '$id'";
+                if (!empty($id_datos_personales)) {
+                    $sql .= " OR id_datos_personales = '$id_datos_personales'";
                 }
-            }
-
-            if (in_array($extensionArchivo, $allowedExts) && (empty($mime) || in_array($mime, $allowedMimes))) {
-                $destDir = __DIR__ . '/../../assets/empleados-images';
-                if (!is_dir($destDir)) {
-                    @mkdir($destDir, 0777, true);
-                }
-                $file = "foto_user_" . $id . "_" . uniqid() . "." . $extensionArchivo;
-                $ruta_img = $destDir . DIRECTORY_SEPARATOR . $file;
-
-                if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_img)) {
-                    $sql = "UPDATE datos_personales SET foto = '$file' WHERE id_usuario = '$id'";
-                    if (!empty($id_datos_personales)) {
-                        $sql .= " OR id_datos_personales = '$id_datos_personales'";
-                    }
-                    $resFoto = mysqli_query($conn, $sql);
-                    if ($resFoto) {
-                        $res = true;
-                    }
-                } else {
-                    error_log("Error al guardar foto en: " . $ruta_img);
+                $resFoto = mysqli_query($conn, $sql);
+                if ($resFoto) {
+                    $res = true;
                 }
             } else {
-                error_log("Foto rechazada por formato o MIME inválido. Ext: $extensionArchivo, MIME: $mime");
+                error_log("Error al guardar foto en: " . $ruta_img);
             }
         } else {
-            error_log("Error en subida de archivo foto. Código error: " . $_FILES['foto']['error']);
+            error_log("Foto rechazada por formato o MIME inválido. Ext: $extensionArchivo, MIME: $mime");
         }
     }
 
@@ -276,4 +283,4 @@ if ($opc == "edit") {
 }
 
 closeConection($conn);
-?>
+

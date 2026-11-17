@@ -12,7 +12,7 @@ $sql = "SELECT * FROM usuario WHERE id_usuario = '$idUser' LIMIT 1;";
 $query = mysqli_query($conn, $sql);
 $datos_personales = mysqli_fetch_array($query);
 
-$sql = "SELECT * FROM datos_personales WHERE id_usuario = '$idUser' LIMIT 1;";
+$sql = "SELECT * FROM datos_personales WHERE id_usuario = '$idUser' ORDER BY id_datos_personales DESC LIMIT 1;";
 $query = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($query) > 0) {
@@ -452,7 +452,7 @@ if (mysqli_num_rows($query) > 0) {
                                                                                                 <label class="block font-weight-bold mb-3 text-uppercase text-muted" style="font-size: 0.85rem; letter-spacing: 1px;">Foto de Perfil</label>
                                                                                                 
                                                                                                 <div class="box-img foto">
-                                                                                                    <img src="../assets/empleados-images/<?php echo !empty($datos_personales_detalles['foto']) ? htmlspecialchars($datos_personales_detalles['foto']) : 'User-Profile-Image.jpg'; ?>" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 15px rgba(0,169,172,0.3);" onerror="this.onerror=null;this.src='../assets/empleados-images/User-Profile-Image.jpg';">
+                                                                                                    <img src="../assets/empleados-images/<?php echo !empty($datos_personales_detalles['foto']) ? htmlspecialchars($datos_personales_detalles['foto']) . '?v=' . time() : 'User-Profile-Image.jpg'; ?>" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 6px 15px rgba(0,169,172,0.3);" onerror="this.onerror=null;this.src='../assets/empleados-images/User-Profile-Image.jpg';">
                                                                                                 </div>
                                                                                                 
                                                                                                 <div class="box-img preview foto" style="display: none;"></div>
@@ -657,6 +657,18 @@ if (mysqli_num_rows($query) > 0) {
                         confirmButtonColor: '#00a9ac'
                     });
                     // Limpiar el input para que no se envíe
+                    $(this).val('');
+                    return;
+                }
+
+                // Validar tamaño máximo (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Imagen muy pesada',
+                        text: 'La imagen supera los 5 MB. Por favor elige una imagen más ligera o comprimida.',
+                        confirmButtonColor: '#00a9ac'
+                    });
                     $(this).val('');
                     return;
                 }

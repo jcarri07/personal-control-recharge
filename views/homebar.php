@@ -27,7 +27,7 @@ if (mysqli_connect_errno()) {
 
 // Preparar la consulta SQL
 $sql = "SELECT * FROM usuario WHERE id_usuario = '$idUser' LIMIT 1";
-$data = "SELECT * FROM datos_personales WHERE id_usuario = '$idUser' LIMIT 1;";
+$data = "SELECT * FROM datos_personales WHERE id_usuario = '$idUser' ORDER BY id_datos_personales DESC LIMIT 1;";
 
 // Ejecutar la consulta SQL
 $resultado = mysqli_query($conn, $sql);
@@ -215,7 +215,7 @@ $fila = mysqli_fetch_assoc($resultado);
                                 <div style="width:40px;height:40px;overflow: hidden;border-radius:50%;text-align:center;position: relative;"
                                     class="" alt="">
                                     <img src="../assets/empleados-images/<?php if ($personal_data != null && !empty($personal_data['foto'])) {
-                                        echo htmlspecialchars($personal_data['foto']);
+                                        echo htmlspecialchars($personal_data['foto']) . '?v=' . time();
                                     } else {
                                         echo "User-Profile-Image.jpg";
                                     } ?>"
